@@ -70,4 +70,10 @@ public class ItemCreator {
         }
         return this;
     }
+    public ItemCreator unbreakable(boolean unbreakable) {
+        if(meta != null) {
+            meta.setUnbreakable(unbreakable);
+        }
+        return this;
+    }
 }
