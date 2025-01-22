@@ -1,5 +1,5 @@
 name: DAPI
 version: '1.0'
-main: org.nandayo.DAPI
+main: org.nandayo.DAPI.DAPI
 api-version: '1.19'
 authors: [ yoshii01 ]
