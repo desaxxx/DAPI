@@ -2,7 +2,6 @@ package org.nandayo.DAPI;
 
 import net.md_5.bungee.api.ChatColor;
 
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,7 +11,7 @@ public class HexUtil {
             Pattern.CASE_INSENSITIVE
     );
 
-    private static String color(String text) {
+    public static String color(String text) {
         if (text == null || text.isEmpty()) {
             return "";
         }
@@ -30,18 +29,5 @@ public class HexUtil {
         }
 
         return ChatColor.translateAlternateColorCodes('&', text);
-    }
-
-    private static Map<String, String> colorMap = null;
-    public static void setColorMap(Map<String, String> map) {
-        colorMap = map;
-    }
-
-    public static String parse(String s) {
-        if(colorMap == null) return color(s);
-        for(Map.Entry<String, String> entry : colorMap.entrySet()) {
-            s = s.replace(entry.getKey(), entry.getValue());
-        }
-        return color(s);
     }
 }
