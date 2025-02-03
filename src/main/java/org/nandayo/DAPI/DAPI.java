@@ -1,7 +1,8 @@
 package org.nandayo.DAPI;
 
-import org.bukkit.Material;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.nandayo.DAPI.GUIManager.MenuListener;
 
 public final class DAPI extends JavaPlugin {
 
@@ -13,6 +14,7 @@ public final class DAPI extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        Bukkit.getPluginManager().registerEvents(new MenuListener(), this);
     }
 
     @Override
@@ -20,18 +22,5 @@ public final class DAPI extends JavaPlugin {
         instance = null;
     }
 
-    private static final HexUtil HEX_UTIL = new HexUtil();
-    private static final Util UTIL = new Util();
-
-    public static HexUtil getHexUtil() {
-        return HEX_UTIL;
-    }
-
-    public static Util getUtil() {
-        return UTIL;
-    }
-
-    public static ItemCreator getItemCreator(Material material) {
-        return ItemCreator.of(material);
-    }
+    public String GUI_METADATA_KEY = String.valueOf(1000000 + (int) (Math.random() * 9000000));
 }

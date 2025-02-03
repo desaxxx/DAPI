@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 
 import static org.nandayo.DAPI.HexUtil.color;
 
-
+@SuppressWarnings("unused")
 public class Util {
 
     /*
