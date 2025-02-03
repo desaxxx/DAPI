@@ -22,7 +22,7 @@ public class MenuListener implements Listener {
     public void onGUIClick(InventoryClickEvent e) {
        Player p = (Player) e.getWhoClicked();
        if(p.hasMetadata(plugin.GUI_METADATA_KEY)) {
-           Menu menu = (Menu) p.getMetadata(plugin.GUI_METADATA_KEY).getFirst().value();
+           Menu menu = (Menu) p.getMetadata(plugin.GUI_METADATA_KEY).get(0).value();
            if(menu == null) {
                return;
            }
@@ -47,7 +47,7 @@ public class MenuListener implements Listener {
     public void onGUIDrag(InventoryDragEvent e){
         Player p = (Player) e.getWhoClicked();
         if (p.hasMetadata(plugin.GUI_METADATA_KEY)) {
-            Menu menu = (Menu) p.getMetadata(plugin.GUI_METADATA_KEY).getFirst().value();
+            Menu menu = (Menu) p.getMetadata(plugin.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
                 e.setCancelled(true);
             }
@@ -61,7 +61,7 @@ public class MenuListener implements Listener {
     public void onGUIClose(InventoryCloseEvent e){
         Player p = (Player) e.getPlayer();
         if (p.hasMetadata(plugin.GUI_METADATA_KEY)) {
-            Menu menu = (Menu) p.getMetadata(plugin.GUI_METADATA_KEY).getFirst().value();
+            Menu menu = (Menu) p.getMetadata(plugin.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
                  menu.handleCloseCallback();
             }
@@ -76,7 +76,7 @@ public class MenuListener implements Listener {
     public void onQuit(PlayerQuitEvent e) {
         Player p = e.getPlayer();
         if (p.hasMetadata(plugin.GUI_METADATA_KEY)) {
-            Menu menu = (Menu) p.getMetadata(plugin.GUI_METADATA_KEY).getFirst().value();
+            Menu menu = (Menu) p.getMetadata(plugin.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
                 menu.handleCloseCallback();
             }
