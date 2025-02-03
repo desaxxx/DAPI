@@ -17,17 +17,21 @@ public final class DAPI extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        instance = null;
     }
 
-    public HexUtil getHexUtil() {
-        return new HexUtil();
+    private static final HexUtil HEX_UTIL = new HexUtil();
+    private static final Util UTIL = new Util();
+
+    public static HexUtil getHexUtil() {
+        return HEX_UTIL;
     }
 
-    public Util getUtil() {
-        return new Util();
+    public static Util getUtil() {
+        return UTIL;
     }
 
-    public ItemCreator getItemCreator(Material material) {
+    public static ItemCreator getItemCreator(Material material) {
         return ItemCreator.of(material);
     }
 }
