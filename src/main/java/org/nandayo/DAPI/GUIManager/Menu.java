@@ -15,7 +15,6 @@ import java.util.function.Consumer;
 @SuppressWarnings("unused")
 public class Menu {
 
-    private final DAPI plugin = DAPI.getInstance();
     private final List<Button> buttons = new ArrayList<>();
     private final List<LazyButton> lazyButtons = new ArrayList<>();
 
@@ -210,6 +209,6 @@ public class Menu {
         }
 
         p.openInventory(inv);
-        p.setMetadata(plugin.GUI_METADATA_KEY, new FixedMetadataValue(plugin, this));
+        p.setMetadata(DAPI.getInstance().GUI_METADATA_KEY, new FixedMetadataValue(DAPI.getInstance().plugin, this));
     }
 }

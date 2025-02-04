@@ -13,16 +13,15 @@ import java.util.Objects;
 
 public class MenuListener implements Listener {
 
-    private final DAPI plugin = DAPI.getInstance();
-
     /*
      * Cancel click if button is unmodifiable
      */
     @EventHandler
     public void onGUIClick(InventoryClickEvent e) {
        Player p = (Player) e.getWhoClicked();
-       if(p.hasMetadata(plugin.GUI_METADATA_KEY)) {
-           Menu menu = (Menu) p.getMetadata(plugin.GUI_METADATA_KEY).get(0).value();
+       DAPI dapi = DAPI.getInstance();
+       if(p.hasMetadata(dapi.GUI_METADATA_KEY)) {
+           Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
            if(menu == null) {
                return;
            }
@@ -46,8 +45,9 @@ public class MenuListener implements Listener {
     @EventHandler
     public void onGUIDrag(InventoryDragEvent e){
         Player p = (Player) e.getWhoClicked();
-        if (p.hasMetadata(plugin.GUI_METADATA_KEY)) {
-            Menu menu = (Menu) p.getMetadata(plugin.GUI_METADATA_KEY).get(0).value();
+        DAPI dapi = DAPI.getInstance();
+        if (p.hasMetadata(dapi.GUI_METADATA_KEY)) {
+            Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
                 e.setCancelled(true);
             }
@@ -60,12 +60,13 @@ public class MenuListener implements Listener {
     @EventHandler
     public void onGUIClose(InventoryCloseEvent e){
         Player p = (Player) e.getPlayer();
-        if (p.hasMetadata(plugin.GUI_METADATA_KEY)) {
-            Menu menu = (Menu) p.getMetadata(plugin.GUI_METADATA_KEY).get(0).value();
+        DAPI dapi = DAPI.getInstance();
+        if (p.hasMetadata(dapi.GUI_METADATA_KEY)) {
+            Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
                  menu.handleCloseCallback();
             }
-            p.removeMetadata(plugin.GUI_METADATA_KEY, plugin);
+            p.removeMetadata(dapi.GUI_METADATA_KEY, dapi.plugin);
         }
     }
 
@@ -75,12 +76,13 @@ public class MenuListener implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
         Player p = e.getPlayer();
-        if (p.hasMetadata(plugin.GUI_METADATA_KEY)) {
-            Menu menu = (Menu) p.getMetadata(plugin.GUI_METADATA_KEY).get(0).value();
+        DAPI dapi = DAPI.getInstance();
+        if (p.hasMetadata(dapi.GUI_METADATA_KEY)) {
+            Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
                 menu.handleCloseCallback();
             }
-            p.removeMetadata(plugin.GUI_METADATA_KEY, plugin);
+            p.removeMetadata(dapi.GUI_METADATA_KEY, dapi.plugin);
         }
     }
 }
