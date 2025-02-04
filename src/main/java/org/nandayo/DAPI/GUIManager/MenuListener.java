@@ -59,8 +59,11 @@ public class MenuListener implements Listener {
      */
     @EventHandler
     public void onGUIClose(InventoryCloseEvent e){
-        Player p = (Player) e.getPlayer();
         DAPI dapi = DAPI.getInstance();
+        if(dapi.plugin == null) {
+
+        }
+        Player p = (Player) e.getPlayer();
         if (p.hasMetadata(dapi.GUI_METADATA_KEY)) {
             Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
