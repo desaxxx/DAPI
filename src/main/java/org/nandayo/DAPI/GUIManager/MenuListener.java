@@ -18,25 +18,26 @@ public class MenuListener implements Listener {
      */
     @EventHandler
     public void onGUIClick(InventoryClickEvent e) {
-       Player p = (Player) e.getWhoClicked();
-       DAPI dapi = DAPI.getInstance();
-       if(p.hasMetadata(dapi.GUI_METADATA_KEY)) {
-           Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
-           if(menu == null) {
-               return;
-           }
-           if(menu.isEmptySlotsModifiable() && Objects.equals(e.getClickedInventory(), e.getWhoClicked().getInventory())) {
-               return;
-           }
+        DAPI dapi = DAPI.getInstance();
+        if(dapi.plugin == null) return;
 
-           Button button = menu.getButton(e.getSlot());
-           if(button != null) {
-               e.setCancelled(!button.isModifiable());
-               button.onClick(p, e.getClick());
-           }else {
-               e.setCancelled(!menu.isEmptySlotsModifiable());
-           }
-       }
+        Player p = (Player) e.getWhoClicked();
+        if(p.hasMetadata(dapi.GUI_METADATA_KEY)) {Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
+            if(menu == null) {
+                return;
+            }
+            if(menu.isEmptySlotsModifiable() && Objects.equals(e.getClickedInventory(), e.getWhoClicked().getInventory())) {
+                return;
+            }
+
+            Button button = menu.getButton(e.getSlot());
+            if(button != null) {
+                e.setCancelled(!button.isModifiable());
+                button.onClick(p, e.getClick());
+            }else {
+                e.setCancelled(!menu.isEmptySlotsModifiable());
+            }
+        }
     }
 
     /*
@@ -44,8 +45,10 @@ public class MenuListener implements Listener {
      */
     @EventHandler
     public void onGUIDrag(InventoryDragEvent e){
-        Player p = (Player) e.getWhoClicked();
         DAPI dapi = DAPI.getInstance();
+        if(dapi.plugin == null) return;
+
+        Player p = (Player) e.getWhoClicked();
         if (p.hasMetadata(dapi.GUI_METADATA_KEY)) {
             Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
@@ -60,14 +63,13 @@ public class MenuListener implements Listener {
     @EventHandler
     public void onGUIClose(InventoryCloseEvent e){
         DAPI dapi = DAPI.getInstance();
-        if(dapi.plugin == null) {
+        if(dapi.plugin == null) return;
 
-        }
         Player p = (Player) e.getPlayer();
         if (p.hasMetadata(dapi.GUI_METADATA_KEY)) {
             Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
-                 menu.handleCloseCallback();
+                menu.handleCloseCallback();
             }
             p.removeMetadata(dapi.GUI_METADATA_KEY, dapi.plugin);
         }
@@ -78,8 +80,10 @@ public class MenuListener implements Listener {
      */
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
-        Player p = e.getPlayer();
         DAPI dapi = DAPI.getInstance();
+        if(dapi.plugin == null) return;
+
+        Player p = e.getPlayer();
         if (p.hasMetadata(dapi.GUI_METADATA_KEY)) {
             Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
