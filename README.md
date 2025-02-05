@@ -7,8 +7,8 @@ ItemCreator -> Creating itemstack easily.\
 GUIManager -> Creating GUI easily.
 
 This is a shade api only.
-
-## Add repository and dependency first
+## Adding to Maven
+### Add repository and dependency first
 ```
 <repositories>
   <repository>
@@ -24,7 +24,7 @@ This is a shade api only.
 </dependency>
 ```
 
-## Then relocate the shade
+### Then relocate the shade
 ```
 <plugin>
   <groupId>org.apache.maven.plugins</groupId>
