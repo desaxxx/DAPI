@@ -26,7 +26,10 @@ public class MenuListener implements Listener {
             if(menu == null) {
                 return;
             }
-            if(menu.isEmptySlotsModifiable() && Objects.equals(e.getClickedInventory(), e.getWhoClicked().getInventory())) {
+            if(menu.isEmptySlotsModifiable() && Objects.equals(e.getClickedInventory(), p.getInventory())) {
+                return;
+            }else if(Objects.equals(e.getClickedInventory(), p.getInventory())) {
+                e.setCancelled(true);
                 return;
             }
 

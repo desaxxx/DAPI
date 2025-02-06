@@ -209,6 +209,7 @@ public class Menu {
         }
 
         p.openInventory(inv);
-        p.setMetadata(DAPI.getInstance().GUI_METADATA_KEY, new FixedMetadataValue(DAPI.getInstance().plugin, this));
+        DAPI dapi = DAPI.getInstance();
+        p.setMetadata(dapi.GUI_METADATA_KEY, new FixedMetadataValue(dapi.plugin, this));
     }
 }
