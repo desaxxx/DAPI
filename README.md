@@ -20,7 +20,7 @@ This is a shade api only.
 <dependency>
   <groupId>com.github.desaxxx</groupId>
   <artifactId>DAPI</artifactId>
-  <version>LATEST-VERSION-HERE</version>
+  <version>LATEST.VERSION.HERE</version>
 </dependency>
 ```
 
@@ -41,7 +41,7 @@ This is a shade api only.
           <!-- Shade DAPI -->
           <relocation>
             <pattern>com.github.desaxxx.dapi</pattern>
-            <shadedPattern>YOUR-UNIQUE-PACKAGE-PATH-HERE</shadedPattern>
+            <shadedPattern>YOUR.UNIQUE.PACKAGE.PATH.HERE</shadedPattern>
           </relocation>
         </relocations>
       </configuration>
