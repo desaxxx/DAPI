@@ -6,7 +6,15 @@ Util -> Console log.\
 ItemCreator -> Creating itemstack easily.\
 GUIManager -> Creating GUI easily.
 
-This is a shade api only.
+## Adding GUIManager Listener
+If you are going to use GUIManager, you have to register api events at **onEnable()**
+```
+DAPI dapi = new DAPI(this);
+dapi.registerMenuListener();
+```
+> [!NOTE]
+> This is a shade api only.
+> 
 ## Adding to Maven
 ### Add repository and dependency first
 ```
