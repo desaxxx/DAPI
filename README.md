@@ -12,9 +12,6 @@ If you are going to use GUIManager, you have to register api events at **onEnabl
 DAPI dapi = new DAPI(this);
 dapi.registerMenuListener();
 ```
-> [!NOTE]
-> This is a shade api only.
-> 
 ## Adding to Maven
 ### Add repository and dependency first
 ```
