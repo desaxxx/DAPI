@@ -42,7 +42,7 @@ public class ItemCreator {
     }
     public ItemCreator name(String name) {
         if(meta != null && name != null) {
-            meta.setDisplayName(HexUtil.color(name));
+            meta.setDisplayName(HexUtil.parse(name));
         }
         return this;
     }
@@ -50,7 +50,7 @@ public class ItemCreator {
         if(meta != null) {
             List<String> loreFix = new ArrayList<>();
             for(String line : lore) {
-                loreFix.add(HexUtil.color(line));
+                loreFix.add(HexUtil.parse(line));
             }
             meta.setLore(loreFix);
         }

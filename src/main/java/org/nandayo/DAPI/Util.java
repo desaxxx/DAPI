@@ -7,7 +7,7 @@ public class Util {
 
 
     public static void log(String msg) {
-        Bukkit.getConsoleSender().sendMessage(HexUtil.color(msg));
+        Bukkit.getConsoleSender().sendMessage(HexUtil.parse(msg));
     }
 
     public static void log(String... msgs) {

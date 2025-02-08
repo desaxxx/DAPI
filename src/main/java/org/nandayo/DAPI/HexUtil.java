@@ -1,6 +1,9 @@
 package org.nandayo.DAPI;
 
 import net.md_5.bungee.api.ChatColor;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,5 +31,17 @@ public class HexUtil {
         }
 
         return ChatColor.translateAlternateColorCodes('&', text);
+    }
+
+    public static Map<String, String> placeholders = new HashMap<>();
+
+    public static String parse(String text) {
+        String out = text;
+        for(String placeholder : placeholders.keySet()) {
+            String value = placeholders.get(placeholder);
+            placeholder = placeholder.replaceAll("([\\{\\}])", "\\\\$1");
+            out = out.replaceAll(placeholder, value);
+        }
+        return color(out);
     }
 }

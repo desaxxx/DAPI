@@ -102,7 +102,7 @@ public class Menu {
      * @param title
      */
     protected final void createInventory(int size, String title) {
-        this.inventory = Bukkit.createInventory(null, size, HexUtil.color(title));
+        this.inventory = Bukkit.createInventory(null, size, HexUtil.parse(title));
     }
 
     /*
