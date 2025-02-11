@@ -5,14 +5,11 @@ import org.bukkit.Bukkit;
 @SuppressWarnings("unused")
 public class Util {
 
+    public static String PREFIX = "";
 
-    public static void log(String msg) {
-        Bukkit.getConsoleSender().sendMessage(HexUtil.parse(msg));
-    }
-
-    public static void log(String... msgs) {
-        for (String msg : msgs) {
-            log(msg);
+    public static void log(String... msg) {
+        for(String s : msg) {
+            Bukkit.getConsoleSender().sendMessage(HexUtil.parse(PREFIX + s));
         }
     }
 }
