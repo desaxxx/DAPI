@@ -1,5 +1,0 @@
-name: DAPI
-version: ${project.version}
-main: org.nandayo.DAPI.DAPI
-api-version: '1.19'
-authors: [ yoshii01 ]
