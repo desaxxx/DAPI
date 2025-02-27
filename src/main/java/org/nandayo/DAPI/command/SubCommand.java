@@ -19,7 +19,7 @@ public abstract class SubCommand {
      */
     public void sendMissingArgsMsg(@NotNull CommandSender sender, @NotNull String label, String[] args, String options) {
         String replacedMsg = DAPI.getInstance().getMissingArgsMsg()
-                .replace("{label}", label)
+                .replace("{command}", label)
                 .replace("{current_args}", String.join(" ", args))
                 .replace("{options}", options);
         sender.sendMessage(HexUtil.parse(replacedMsg));
