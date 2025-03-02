@@ -2,6 +2,7 @@ package org.nandayo.DAPI;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
@@ -20,6 +21,9 @@ public final class DAPI {
     public DAPI(Plugin plugin) {
         instance = this;
         this.plugin = plugin;
+        if(plugin != null) {
+            new Metrics(plugin, 24974);
+        }
     }
 
     public void registerMenuListener() {

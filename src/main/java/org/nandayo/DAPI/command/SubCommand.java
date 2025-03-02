@@ -1,7 +1,5 @@
 package org.nandayo.DAPI.command;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
