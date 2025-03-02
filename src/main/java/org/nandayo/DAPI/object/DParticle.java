@@ -8,6 +8,7 @@ import org.nandayo.DAPI.object.annotation.DInfo;
 import org.nandayo.DAPI.object.annotation.DMerge;
 
 import java.util.HashMap;
+import java.util.IllegalFormatException;
 import java.util.Map;
 
 /**
@@ -300,9 +301,11 @@ public enum DParticle {
         try {
             type = Particle.valueOf(this.name());
         } catch (IllegalArgumentException e) {
-            for(String legacy : this.legacies) {
-                type = Particle.valueOf(legacy);
-                break;
+            for(String legacy : legacies) {
+                try {
+                    type = Particle.valueOf(legacy);
+                } catch (IllegalFormatException ignore) {}
+                if(type != null) break;
             }
         }
         this.particle = type;

@@ -3,6 +3,7 @@ package org.nandayo.DAPI.object;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 import org.nandayo.DAPI.object.annotation.DDeprecated;
+import org.nandayo.DAPI.object.annotation.DInfo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -1237,6 +1238,7 @@ public enum DMaterial {
     SHEEP_SPAWN_EGG,
     SHELTER_POTTERY_SHERD,
     SHIELD,
+    @DInfo(since = "1.20.3")
     SHORT_GRASS,
     SHROOMLIGHT,
     SHULKER_BOX,

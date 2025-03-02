@@ -103,7 +103,7 @@ public enum DPotionEffectType {
         if(type == null) {
             for(String legacy : this.legacies) {
                 type = PotionEffectType.getByName(legacy);
-                break;
+                if(type != null) break;
             }
         }
         this.potionEffectType = type;
