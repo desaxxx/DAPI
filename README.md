@@ -1,10 +1,13 @@
 # DAPI
 [![](https://jitpack.io/v/desaxxx/DAPI.svg)](https://jitpack.io/#desaxxx/DAPI)
 
-> HexUtil -> Using hex colors with patterns <#rrggbb>.\
-Util -> Console log.\
-ItemCreator -> Creating itemstack easily.\
-GUIManager -> Creating GUI easily.
+> DMaterial — Materials from 1.16.1 to 1.21.4 (**version compatibility**)\
+> DParticle — Particles from 1.16.1 to 1.21.4 (**version compatibility**)\
+> DPotionEffectType — PotionEffectTypes from 1.16.1 to 1.21.4 (**version compatibility**)\
+> HexUtil -> Hex colors with patterns <#rrggbb>.\
+> Util -> Console log with prefix.\
+> ItemCreator -> Building itemstack easily.\
+> GUIManager -> Creating GUI easily.
 
 ## Adding GUIManager Listener
 If you are going to use GUIManager, you have to register api events at **onEnable()**
