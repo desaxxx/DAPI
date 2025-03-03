@@ -1,14 +1,13 @@
 package org.nandayo.DAPI.object;
 
-
 import org.bukkit.Particle;
 import org.jetbrains.annotations.NotNull;
 import org.nandayo.DAPI.object.annotation.DDeprecated;
 import org.nandayo.DAPI.object.annotation.DInfo;
-import org.nandayo.DAPI.object.annotation.DMerge;
+import org.nandayo.DAPI.object.annotation.DMerged;
+import org.nandayo.DAPI.object.annotation.DRenamed;
 
 import java.util.HashMap;
-import java.util.IllegalFormatException;
 import java.util.Map;
 
 /**
@@ -20,24 +19,24 @@ import java.util.Map;
 public enum DParticle {
 
     //<editor-fold desc="Particles" defaultstate="collapsed">
-    @DInfo(renamedSince = "1.20.5")
-    ANGRY_VILLAGER("VILLAGER_ANGRY"),
+    @DRenamed(since = "1.20.5", from = "VILLAGER_ANGRY")
+    ANGRY_VILLAGER,
     ASH,
-    @DMerge(since = "1.20.5")
-    BLOCK("BLOCK_CRACK", "BLOCK_DUST"),
+    @DMerged(since = "1.20.5", of = {"BLOCK_CRACK","BLOCK_DUST"})
+    BLOCK,
     @DInfo(since = "1.21.2")
     BLOCK_CRUMBLE,
-    @DInfo(renamedSince = "1.18")
-    BLOCK_MARKER("BARRIER","LIGHT"),
-    @DInfo(renamedSince = "1.20.5")
-    BUBBLE("WATER_BUBBLE"),
+    @DMerged(since = "1.18", of = {"BARRIER","LIGHT"})
+    BLOCK_MARKER,
+    @DRenamed(since = "1.20.5", from = "WATER_BUBBLE")
+    BUBBLE,
     BUBBLE_COLUMN_UP,
     BUBBLE_POP,
     CAMPFIRE_COSY_SMOKE,
     CAMPFIRE_SIGNAL_SMOKE,
     @DInfo(since = "1.19.4")
-    @DMerge(since = "1.20")
-    CHERRY_LEAVES("DRIPPING_CHERRY_LEAVES","FALLING_CHERRY_LEAVES","LANDING_CHERRY_LEAVES"),
+    @DMerged(since = "1.20", of = {"LANDING_CHERRY_LEAVES","FALLING_CHERRY_LEAVES","DRIPPING_CHERRY_LEAVES"})
+    CHERRY_LEAVES,
     CLOUD,
     COMPOSTER,
     CRIMSON_SPORE,
@@ -51,38 +50,38 @@ public enum DParticle {
     @DInfo(since = "1.17")
     DRIPPING_DRIPSTONE_WATER,
     DRIPPING_HONEY,
-    @DInfo(renamedSince = "1.20.5")
-    DRIPPING_LAVA("DRIP_LAVA"),
+    @DRenamed(since = "1.20.5", from = "DRIP_LAVA")
+    DRIPPING_LAVA,
     DRIPPING_OBSIDIAN_TEAR,
-    @DInfo(renamedSince = "1.20.5")
-    DRIPPING_WATER("DRIP_WATER"),
-    @DInfo(renamedSince = "1.20.5")
-    DUST("REDSTONE"),
+    @DRenamed(since = "1.20.5", from = "DRIP_WATER")
+    DRIPPING_WATER,
+    @DInfo(since = "1.20.5")
+    DUST,
     @DInfo(since = "1.17")
     DUST_COLOR_TRANSITION,
     @DInfo(since = "1.20.5")
     DUST_PILLAR,
     @DInfo(since = "1.20.3")
     DUST_PLUME,
-    @DInfo(renamedSince = "1.20.5")
-    EFFECT("SPELL"),
+    @DRenamed(since = "1.20.5", from = "SPELL")
+    EFFECT,
     @DInfo(since = "1.20")
     EGG_CRACK,
-    @DInfo(renamedSince = "1.20.5")
-    ELDER_GUARDIAN("MOB_APPEARANCE"),
+    @DRenamed(since = "1.20.5", from = "MOB_APPEARANCE")
+    ELDER_GUARDIAN,
     @DInfo(since = "1.17")
     ELECTRIC_SPARK,
-    @DInfo(renamedSince = "1.20.5")
-    ENCHANT("ENCHANTMENT_TABLE"),
-    @DInfo(renamedSince = "1.20.5")
-    ENCHANTED_HIT("CRIT_MAGIC"),
+    @DRenamed(since = "1.20.5", from = "ENCHANTMENT_TABLE")
+    ENCHANT,
+    @DRenamed(since = "1.20.5", from = "CRIT_MAGIC")
+    ENCHANTED_HIT,
     END_ROD,
-    @DMerge(since = "1.20.5")
-    ENTITY_EFFECT("SPELL_MOB","SPELL_MOB_AMBIENT"),
-    @DInfo(renamedSince = "1.20.5")
-    EXPLOSION("EXPLOSION_LARGE"),
-    @DInfo(renamedSince = "1.20.5")
-    EXPLOSION_EMITTER("EXPLOSION_HUGE"),
+    @DMerged(since = "1.20.5", of = {"SPELL_MOB","SPELL_MOB_AMBIENT"})
+    ENTITY_EFFECT,
+    @DRenamed(since = "1.20.5", from = "EXPLOSION_LARGE")
+    EXPLOSION,
+    @DRenamed(since = "1.20.5", from = "EXPLOSION_HUGE")
+    EXPLOSION_EMITTER,
     @DInfo(since = "1.17")
     FALLING_DRIPSTONE_LAVA,
     @DInfo(since = "1.17")
@@ -95,10 +94,10 @@ public enum DParticle {
     @DInfo(since = "1.17")
     FALLING_SPORE_BLOSSOM,
     FALLING_WATER,
-    @DInfo(renamedSince = "1.20.5")
-    FIREWORK("FIREWORKS_SPARK"),
-    @DInfo(renamedSince = "1.20.5")
-    FISHING("WATER_WAKE"),
+    @DRenamed(since = "1.20.5", from = "FIREWORKS_SPARK")
+    FIREWORK,
+    @DRenamed(since = "1.20.5", from = "WATER_WAKE")
+    FISHING,
     FLAME,
     FLASH,
     @DInfo(since = "1.17")
@@ -108,46 +107,45 @@ public enum DParticle {
     @DInfo(since = "1.20.3")
     GUST,
     @DInfo(since = "1.20.5")
-    @DMerge(since = "1.20.5")
-    GUST_EMITTER_LARGE("GUST_DUST"),
+    GUST_EMITTER_LARGE,
     @DInfo(since = "1.20.5")
     GUST_EMITTER_SMALL,
-    @DInfo(renamedSince = "1.20.5")
-    HAPPY_VILLAGER("VILLAGER_HAPPY"),
+    @DRenamed(since = "1.20.5", from = "VILLAGER_HAPPY")
+    HAPPY_VILLAGER,
     HEART,
     @DInfo(since = "1.20.5")
     INFESTED,
-    @DInfo(renamedSince = "1.20.5")
-    INSTANT_EFFECT("SPELL_INSTANT"),
-    @DInfo(renamedSince = "1.20.5")
-    ITEM("ITEM_CRACK"),
+    @DRenamed(since = "1.20.5", from = "SPELL_INSTANT")
+    INSTANT_EFFECT,
+    @DRenamed(since = "1.20.5", from = "ITEM_CRACK")
+    ITEM,
     @DInfo(since = "1.20.5")
     ITEM_COBWEB,
-    @DInfo(renamedSince = "1.20.5")
-    ITEM_SLIME("SLIME"),
-    @DMerge(since = "1.20.5")
-    ITEM_SNOWBALL("SNOWBALL","SNOW_SHOVEL"),
+    @DRenamed(since = "1.20.5", from = "SLIME")
+    ITEM_SLIME,
+    @DMerged(since = "1.20.5", of = {"SNOWBALL","SNOW_SHOVEL"})
+    ITEM_SNOWBALL,
     LANDING_HONEY,
     LANDING_LAVA,
     LANDING_OBSIDIAN_TEAR,
-    @DInfo(renamedSince = "1.20.5")
-    LARGE_SMOKE("SMOKE_LARGE"),
+    @DRenamed(since = "1.20.5", from = "SMOKE_LARGE")
+    LARGE_SMOKE,
     LAVA,
-    @DInfo(renamedSince = "1.20.5")
-    MYCELIUM("TOWN_AURA"),
+    @DRenamed(since = "1.20.5", from = "TOWN_AURA")
+    MYCELIUM,
     NAUTILUS,
     NOTE,
     @DInfo(since = "1.20.5")
     OMINOUS_SPAWNING,
     @DInfo(since = "1.21.4")
     PALE_OAK_LEAVES,
-    @DInfo(renamedSince = "1.20.5")
-    POOF("EXPLOSION_NORMAL"),
+    @DRenamed(since = "1.20.5", from = "EXPLOSION_NORMAL")
+    POOF,
     PORTAL,
     @DInfo(since = "1.20.5")
     RAID_OMEN,
-    @DInfo(renamedSince = "1.20.5")
-    RAIN("WATER_DROP"),
+    @DRenamed(since = "1.20.5", from = "WATER_DROP")
+    RAIN,
     REVERSE_PORTAL,
     @DInfo(since = "1.17")
     SCRAPE,
@@ -161,10 +159,10 @@ public enum DParticle {
     SHRIEK,
     @DInfo(since = "1.17")
     SMALL_FLAME,
-    @DInfo(renamedSince = "1.20.5")
-    SMALL_GUST("GUST_EMITTER"),
-    @DInfo(renamedSince = "1.20.5")
-    SMOKE("SMOKE_NORMAL"),
+    @DInfo(since = "1.20.5")
+    SMALL_GUST,
+    @DRenamed(since = "1.20.5", from = "SMOKE_NORMAL")
+    SMOKE,
     SNEEZE,
     @DInfo(since = "1.17")
     SNOWFLAKE,
@@ -173,14 +171,14 @@ public enum DParticle {
     SOUL,
     SOUL_FIRE_FLAME,
     SPIT,
-    @DInfo(renamedSince = "1.20.5")
-    SPLASH("WATER_SPLASH"),
+    @DRenamed(since = "1.20.5", from = "WATER_SPLASH")
+    SPLASH,
     @DInfo(since = "1.17")
     SPORE_BLOSSOM_AIR,
     SQUID_INK,
     SWEEP_ATTACK,
-    @DInfo(renamedSince = "1.20.5")
-    TOTEM_OF_UNDYING("TOTEM"),
+    @DRenamed(since = "1.20.5", from = "TOTEM")
+    TOTEM_OF_UNDYING,
     @DInfo(since = "1.21.2")
     TRAIL,
     @DInfo(since = "1.20.5")
@@ -189,8 +187,7 @@ public enum DParticle {
     TRIAL_SPAWNER_DETECTION,
     @DInfo(since = "1.20.5")
     TRIAL_SPAWNER_DETECTION_OMINOUS,
-    @DMerge(since = "1.20.5")
-    UNDERWATER("SUSPENDED","SUSPENDED_DEPTH"),
+    @DMerged(since = "1.20.5", of = {"SUSPENDED","SUSPENDED_DEPTH"})
     @DInfo(since = "1.20.5")
     VAULT_CONNECTION,
     @DInfo(since = "1.17")
@@ -203,8 +200,8 @@ public enum DParticle {
     WHITE_ASH,
     @DInfo(since = "1.20.3")
     WHITE_SMOKE,
-    @DInfo(renamedSince = "1.20.5")
-    WITCH("SPELL_WITCH"),
+    @DRenamed(since = "1.20.5", from = "SPELL_WITCH")
+    WITCH,
     //</editor-fold>
 
     //<editor-fold desc="Deprecated" defaultstate="collapsed>
@@ -287,32 +284,23 @@ public enum DParticle {
     @DDeprecated(since = "1.20.5")
     WATER_DROP,
     @DDeprecated(since = "1.20.5")
-    WATTER_BUBBLE,
+    WATER_BUBBLE,
     @DDeprecated(since = "1.20.5")
-    WATTER_SPLASH,
+    WATER_SPLASH,
     @DDeprecated(since = "1.20.5")
-    WATTER_WAKE;
+    WATER_WAKE;
     //</editor-fold>
 
 
-    DParticle(String... legacies) {
-        this.legacies = legacies;
+    DParticle() {
         Particle type = null;
         try {
             type = Particle.valueOf(this.name());
-        } catch (IllegalArgumentException e) {
-            for(String legacy : legacies) {
-                try {
-                    type = Particle.valueOf(legacy);
-                } catch (IllegalFormatException ignore) {}
-                if(type != null) break;
-            }
-        }
+        } catch (IllegalArgumentException ignored) {}
         this.particle = type;
     }
 
     private final Particle particle;
-    private final String[] legacies;
 
     public Particle get() {
         return particle;
@@ -326,9 +314,6 @@ public enum DParticle {
     static {
         for(DParticle dType : DParticle.values()) {
             NAME_MAP.put(dType.name(), dType);
-            for(String legacy : dType.legacies) {
-                NAME_MAP.put(legacy, dType);
-            }
         }
     }
 

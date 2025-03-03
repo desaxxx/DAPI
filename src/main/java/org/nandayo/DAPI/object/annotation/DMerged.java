@@ -8,7 +8,8 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @ApiStatus.Internal
-public @interface DInfo {
+public @interface DMerged {
 
     String since();
+    String[] of();
 }

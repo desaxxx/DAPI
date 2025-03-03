@@ -4,6 +4,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 import org.nandayo.DAPI.object.annotation.DDeprecated;
 import org.nandayo.DAPI.object.annotation.DInfo;
+import org.nandayo.DAPI.object.annotation.DRenamed;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,26 +27,26 @@ public enum DPotionEffectType {
     DOLPHINS_GRACE,
     FIRE_RESISTANCE,
     GLOWING,
-    @DInfo(renamedSince = "1.20.5")
-    HASTE("FAST_DIGGING"),
+    @DRenamed(since = "1.20.5", from = "FAST_DIGGING")
+    HASTE,
     HEALTH_BOOST,
     HERO_OF_THE_VILLAGE,
     HUNGER,
     @DInfo(since = "1.20.5")
     INFESTED,
-    @DInfo(renamedSince = "1.20.5")
-    INSTANT_DAMAGE("HARM"),
-    @DInfo(renamedSince = "1.20.5")
-    INSTANT_HEALTH("HEAL"),
+    @DRenamed(since = "1.20.5", from = "HARM")
+    INSTANT_DAMAGE,
+    @DRenamed(since = "1.20.5", from = "HEAL")
+    INSTANT_HEALTH,
     INVISIBILITY,
-    @DInfo(renamedSince = "1.20.5")
-    JUMP_BOOST("JUMP"),
+    @DRenamed(since = "1.20.5", from = "JUMP")
+    JUMP_BOOST,
     LEVITATION,
     LUCK,
-    @DInfo(renamedSince = "1.20.5")
-    MINING_FATIGUE("SLOW_DIGGING"),
-    @DInfo(renamedSince = "1.20.5")
-    NAUSEA("CONFUSION"),
+    @DRenamed(since = "1.20.5", from = "SLOW_DIGGING")
+    MINING_FATIGUE,
+    @DRenamed(since = "1.20.5", from = "CONFUSION")
+    NAUSEA,
     NIGHT_VISION,
     @DInfo(since = "1.20.5")
     OOZING,
@@ -53,15 +54,15 @@ public enum DPotionEffectType {
     @DInfo(since = "1.20.5")
     RAID_OMEN,
     REGENERATION,
-    @DInfo(renamedSince = "1.20.5")
-    RESISTANCE("DAMAGE_RESISTANCE"),
+    @DRenamed(since = "1.20.5", from = "DAMAGE_RESISTANCE")
+    RESISTANCE,
     SATURATION,
-    @DInfo(renamedSince = "1.20.5")
-    SLOWNESS("SLOW"),
+    @DRenamed(since = "1.20.5", from = "SLOW")
+    SLOWNESS,
     SLOW_FALLING,
     SPEED,
-    @DInfo(renamedSince = "1.20.5")
-    STRENGTH("INCREASE_DAMAGE"),
+    @DRenamed(since = "1.20.5", from = "INCREASE_DAMAGE")
+    STRENGTH,
     @DInfo(since = "1.20.5")
     TRIAL_OMEN,
     UNLUCK,
@@ -97,20 +98,11 @@ public enum DPotionEffectType {
 
 
     @SuppressWarnings("deprecation")
-    DPotionEffectType(String... legacies) {
-        this.legacies = legacies;
-        PotionEffectType type = PotionEffectType.getByName(this.name());
-        if(type == null) {
-            for(String legacy : this.legacies) {
-                type = PotionEffectType.getByName(legacy);
-                if(type != null) break;
-            }
-        }
-        this.potionEffectType = type;
+    DPotionEffectType() {
+        this.potionEffectType = PotionEffectType.getByName(this.name());
     }
 
     private final PotionEffectType potionEffectType;
-    private final String[] legacies;
 
     public PotionEffectType get() {
         return potionEffectType;
@@ -124,9 +116,6 @@ public enum DPotionEffectType {
     static {
         for(DPotionEffectType dType : DPotionEffectType.values()) {
             NAME_MAP.put(dType.name(), dType);
-            for(String legacy : dType.legacies) {
-                NAME_MAP.put(legacy, dType);
-            }
         }
     }
 

@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 import org.nandayo.DAPI.object.annotation.DDeprecated;
 import org.nandayo.DAPI.object.annotation.DInfo;
+import org.nandayo.DAPI.object.annotation.DRenamed;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +13,6 @@ import java.util.Map;
  * Only supports 1.16.1 - 1.21.4.<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
- * Annotations will be added time to time.
  */
 @SuppressWarnings("unused")
 public enum DMaterial {
@@ -24,6 +24,7 @@ public enum DMaterial {
     ACACIA_DOOR,
     ACACIA_FENCE,
     ACACIA_FENCE_GATE,
+    @DInfo(since = "1.19.3")
     ACACIA_HANGING_SIGN,
     ACACIA_LEAVES,
     ACACIA_LOG,
@@ -33,58 +34,91 @@ public enum DMaterial {
     ACACIA_SLAB,
     ACACIA_STAIRS,
     ACACIA_TRAPDOOR,
+    @DInfo(since = "1.19.3")
     ACACIA_WALL_HANGING_SIGN,
     ACACIA_WALL_SIGN,
     ACACIA_WOOD,
     ACTIVATOR_RAIL,
     AIR,
+    @DInfo(since = "1.19")
     ALLAY_SPAWN_EGG,
     ALLIUM,
+    @DInfo(since = "1.17")
     AMETHYST_BLOCK,
+    @DInfo(since = "1.17")
     AMETHYST_CLUSTER,
+    @DInfo(since = "1.17")
     AMETHYST_SHARD,
     ANCIENT_DEBRIS,
     ANDESITE,
     ANDESITE_SLAB,
     ANDESITE_STAIRS,
     ANDESITE_WALL,
+    @DInfo(since = "1.20")
     ANGLER_POTTERY_SHERD,
     ANVIL,
     APPLE,
+    @DInfo(since = "1.20")
     ARCHER_POTTERY_SHERD,
+    @DInfo(since = "1.20.5")
     ARMADILLO_SCUTE,
+    @DInfo(since = "1.20.5")
     ARMADILLO_SPAWN_EGG,
     ARMOR_STAND,
+    @DInfo(since = "1.20")
     ARMS_UP_POTTERY_SHERD,
     ARROW,
     ATTACHED_MELON_STEM,
     ATTACHED_PUMPKIN_STEM,
+    @DInfo(since = "1.17")
     AXOLOTL_BUCKET,
+    @DInfo(since = "1.17")
     AXOLOTL_SPAWN_EGG,
+    @DInfo(since = "1.17")
     AZALEA,
+    @DInfo(since = "1.17")
     AZALEA_LEAVES,
     AZURE_BLUET,
     BAKED_POTATO,
     BAMBOO,
+    @DInfo(since = "1.19.3")
     BAMBOO_BLOCK,
+    @DInfo(since = "1.19.3")
     BAMBOO_BUTTON,
+    @DInfo(since = "1.19.3")
     BAMBOO_CHEST_RAFT,
+    @DInfo(since = "1.19.3")
     BAMBOO_DOOR,
+    @DInfo(since = "1.19.3")
     BAMBOO_FENCE,
+    @DInfo(since = "1.19.3")
     BAMBOO_FENCE_GATE,
+    @DInfo(since = "1.19.3")
     BAMBOO_HANGING_SIGN,
+    @DInfo(since = "1.19.3")
     BAMBOO_MOSAIC,
+    @DInfo(since = "1.19.3")
     BAMBOO_MOSAIC_SLAB,
+    @DInfo(since = "1.19.3")
     BAMBOO_MOSAIC_STAIRS,
+    @DInfo(since = "1.19.3")
     BAMBOO_PLANKS,
+    @DInfo(since = "1.19.3")
     BAMBOO_PRESSURE_PLATE,
+    @DInfo(since = "1.19.3")
     BAMBOO_RAFT,
     BAMBOO_SAPLING,
+    @DInfo(since = "1.19.3")
     BAMBOO_SIGN,
+    @DInfo(since = "1.19.3")
     BAMBOO_SLAB,
+    @DInfo(since = "1.19.3")
     BAMBOO_STAIRS,
+    @DInfo(since = "1.19.3")
     BAMBOO_TRAPDOOR,
+    @DInfo(since = "1.19.3")
     BAMBOO_WALL_HANGING_SIGN,
+    @DInfo(since = "1.19.3")
     BAMBOO_WALL_SIGN,
     BARREL,
     BARRIER,
@@ -101,7 +135,9 @@ public enum DMaterial {
     BEE_NEST,
     BEE_SPAWN_EGG,
     BELL,
+    @DInfo(since = "1.17")
     BIG_DRIPLEAF,
+    @DInfo(since = "1.17")
     BIG_DRIPLEAF_STEM,
     BIRCH_BOAT,
     BIRCH_BUTTON,
@@ -109,6 +145,7 @@ public enum DMaterial {
     BIRCH_DOOR,
     BIRCH_FENCE,
     BIRCH_FENCE_GATE,
+    @DInfo(since = "1.19.3")
     BIRCH_HANGING_SIGN,
     BIRCH_LEAVES,
     BIRCH_LOG,
@@ -119,6 +156,7 @@ public enum DMaterial {
     BIRCH_SLAB,
     BIRCH_STAIRS,
     BIRCH_TRAPDOOR,
+    @DInfo(since = "1.19.3")
     BIRCH_WALL_HANGING_SIGN,
     BIRCH_WALL_SIGN,
     BIRCH_WOOD,
@@ -128,8 +166,11 @@ public enum DMaterial {
     BLACKSTONE_WALL,
     BLACK_BANNER,
     BLACK_BED,
+    @DInfo(since = "1.21.2")
     BLACK_BUNDLE,
+    @DInfo(since = "1.17")
     BLACK_CANDLE,
+    @DInfo(since = "1.17")
     BLACK_CANDLE_CAKE,
     BLACK_CARPET,
     BLACK_CONCRETE,
@@ -142,6 +183,7 @@ public enum DMaterial {
     BLACK_TERRACOTTA,
     BLACK_WALL_BANNER,
     BLACK_WOOL,
+    @DInfo(since = "1.20")
     BLADE_POTTERY_SHERD,
     BLAST_FURNACE,
     BLAZE_POWDER,
@@ -149,8 +191,11 @@ public enum DMaterial {
     BLAZE_SPAWN_EGG,
     BLUE_BANNER,
     BLUE_BED,
+    @DInfo(since = "1.21.2")
     BLUE_BUNDLE,
+    @DInfo(since = "1.17")
     BLUE_CANDLE,
+    @DInfo(since = "1.17")
     BLUE_CANDLE_CAKE,
     BLUE_CARPET,
     BLUE_CONCRETE,
@@ -165,13 +210,16 @@ public enum DMaterial {
     BLUE_TERRACOTTA,
     BLUE_WALL_BANNER,
     BLUE_WOOL,
+    @DInfo(since = "1.20.5")
     BOGGED_SPAWN_EGG,
+    @DInfo(since = "1.20.5")
     BOLT_ARMOR_TRIM_SMITHING_TEMPLATE,
     BONE,
     BONE_BLOCK,
     BONE_MEAL,
     BOOK,
     BOOKSHELF,
+    @DInfo(since = "1.21.2")
     BORDURE_INDENTED_BANNER_PATTERN,
     BOW,
     BOWL,
@@ -180,8 +228,11 @@ public enum DMaterial {
     BRAIN_CORAL_FAN,
     BRAIN_CORAL_WALL_FAN,
     BREAD,
+    @DInfo(since = "1.20.5")
     BREEZE_ROD,
+    @DInfo(since = "1.20.3")
     BREEZE_SPAWN_EGG,
+    @DInfo(since = "1.20")
     BREWER_POTTERY_SHERD,
     BREWING_STAND,
     BRICK,
@@ -191,8 +242,11 @@ public enum DMaterial {
     BRICK_WALL,
     BROWN_BANNER,
     BROWN_BED,
+    @DInfo(since = "1.21.2")
     BROWN_BUNDLE,
+    @DInfo(since = "1.17")
     BROWN_CANDLE,
+    @DInfo(since = "1.17")
     BROWN_CANDLE_CAKE,
     BROWN_CARPET,
     BROWN_CONCRETE,
@@ -207,6 +261,7 @@ public enum DMaterial {
     BROWN_TERRACOTTA,
     BROWN_WALL_BANNER,
     BROWN_WOOL,
+    @DInfo(since = "1.19.4")
     BRUSH,
     BUBBLE_COLUMN,
     BUBBLE_CORAL,
@@ -214,16 +269,24 @@ public enum DMaterial {
     BUBBLE_CORAL_FAN,
     BUBBLE_CORAL_WALL_FAN,
     BUCKET,
+    @DInfo(since = "1.17")
     BUDDING_AMETHYST,
+    @DInfo(since = "1.17")
     BUNDLE,
+    @DInfo(since = "1.20")
     BURN_POTTERY_SHERD,
     CACTUS,
     CAKE,
+    @DInfo(since = "1.17")
     CALCITE,
+    @DInfo(since = "1.20")
     CALIBRATED_SCULK_SENSOR,
+    @DInfo(since = "1.19.3")
     CAMEL_SPAWN_EGG,
     CAMPFIRE,
+    @DInfo(since = "1.17")
     CANDLE,
+    @DInfo(since = "1.17")
     CANDLE_CAKE,
     CARROT,
     CARROTS,
@@ -234,7 +297,9 @@ public enum DMaterial {
     CAULDRON,
     CAVE_AIR,
     CAVE_SPIDER_SPAWN_EGG,
+    @DInfo(since = "1.17")
     CAVE_VINES,
+    @DInfo(since = "1.17")
     CAVE_VINES_PLANT,
     CHAIN,
     CHAINMAIL_BOOTS,
@@ -243,41 +308,66 @@ public enum DMaterial {
     CHAINMAIL_LEGGINGS,
     CHAIN_COMMAND_BLOCK,
     CHARCOAL,
+    @DInfo(since = "1.19.4")
     CHERRY_BOAT,
+    @DInfo(since = "1.19.4")
     CHERRY_BUTTON,
+    @DInfo(since = "1.19.4")
     CHERRY_CHEST_BOAT,
+    @DInfo(since = "1.19.4")
     CHERRY_DOOR,
+    @DInfo(since = "1.19.4")
     CHERRY_FENCE,
+    @DInfo(since = "1.19.4")
     CHERRY_FENCE_GATE,
+    @DInfo(since = "1.19.4")
     CHERRY_HANGING_SIGN,
+    @DInfo(since = "1.19.4")
     CHERRY_LEAVES,
+    @DInfo(since = "1.19.4")
     CHERRY_LOG,
+    @DInfo(since = "1.19.4")
     CHERRY_PLANKS,
+    @DInfo(since = "1.19.4")
     CHERRY_PRESSURE_PLATE,
+    @DInfo(since = "1.19.4")
     CHERRY_SAPLING,
+    @DInfo(since = "1.19.4")
     CHERRY_SIGN,
+    @DInfo(since = "1.19.4")
     CHERRY_SLAB,
+    @DInfo(since = "1.19.4")
     CHERRY_STAIRS,
+    @DInfo(since = "1.19.4")
     CHERRY_TRAPDOOR,
+    @DInfo(since = "1.19.4")
     CHERRY_WALL_HANGING_SIGN,
+    @DInfo(since = "1.19.4")
     CHERRY_WALL_SIGN,
+    @DInfo(since = "1.19.4")
     CHERRY_WOOD,
     CHEST,
     CHEST_MINECART,
     CHICKEN,
     CHICKEN_SPAWN_EGG,
     CHIPPED_ANVIL,
+    @DInfo(since = "1.19.3")
     CHISELED_BOOKSHELF,
+    @DInfo(since = "1.20.3")
     CHISELED_COPPER,
+    @DInfo(since = "1.17")
     CHISELED_DEEPSLATE,
     CHISELED_NETHER_BRICKS,
     CHISELED_POLISHED_BLACKSTONE,
     CHISELED_QUARTZ_BLOCK,
     CHISELED_RED_SANDSTONE,
+    @DInfo(since = "1.21.4")
     CHISELED_RESIN_BRICKS,
     CHISELED_SANDSTONE,
     CHISELED_STONE_BRICKS,
+    @DInfo(since = "1.20.3")
     CHISELED_TUFF,
+    @DInfo(since = "1.20.3")
     CHISELED_TUFF_BRICKS,
     CHORUS_FLOWER,
     CHORUS_FRUIT,
@@ -285,15 +375,21 @@ public enum DMaterial {
     CLAY,
     CLAY_BALL,
     CLOCK,
+    @DInfo(since = "1.21.4")
     CLOSED_EYEBLOSSOM,
     COAL,
     COAL_BLOCK,
     COAL_ORE,
     COARSE_DIRT,
+    @DInfo(since = "1.19.4")
     COAST_ARMOR_TRIM_SMITHING_TEMPLATE,
+    @DInfo(since = "1.17")
     COBBLED_DEEPSLATE,
+    @DInfo(since = "1.17")
     COBBLED_DEEPSLATE_SLAB,
+    @DInfo(since = "1.17")
     COBBLED_DEEPSLATE_STAIRS,
+    @DInfo(since = "1.17")
     COBBLED_DEEPSLATE_WALL,
     COBBLESTONE,
     COBBLESTONE_SLAB,
@@ -320,22 +416,32 @@ public enum DMaterial {
     COOKED_SALMON,
     COOKIE,
     COPPER_BLOCK,
+    @DInfo(since = "1.20.3")
     COPPER_BULB,
+    @DInfo(since = "1.20.3")
     COPPER_DOOR,
+    @DInfo(since = "1.20.3")
     COPPER_GRATE,
     COPPER_INGOT,
+    @DInfo(since = "1.17")
     COPPER_ORE,
+    @DInfo(since = "1.20.3")
     COPPER_TRAPDOOR,
     CORNFLOWER,
     COW_SPAWN_EGG,
+    @DInfo(since = "1.17")
     CRACKED_DEEPSLATE_BRICKS,
+    @DInfo(since = "1.17")
     CRACKED_DEEPSLATE_TILES,
     CRACKED_NETHER_BRICKS,
     CRACKED_POLISHED_BLACKSTONE_BRICKS,
     CRACKED_STONE_BRICKS,
+    @DInfo(since = "1.20.3")
     CRAFTER,
     CRAFTING_TABLE,
+    @DInfo(since = "1.21.2")
     CREAKING_HEART,
+    @DInfo(since = "1.21.2")
     CREAKING_SPAWN_EGG,
     CREEPER_BANNER_PATTERN,
     CREEPER_HEAD,
@@ -346,6 +452,7 @@ public enum DMaterial {
     CRIMSON_FENCE,
     CRIMSON_FENCE_GATE,
     CRIMSON_FUNGUS,
+    @DInfo(since = "1.19.3")
     CRIMSON_HANGING_SIGN,
     CRIMSON_HYPHAE,
     CRIMSON_NYLIUM,
@@ -357,10 +464,12 @@ public enum DMaterial {
     CRIMSON_STAIRS,
     CRIMSON_STEM,
     CRIMSON_TRAPDOOR,
+    @DInfo(since = "1.19.3")
     CRIMSON_WALL_HANGING_SIGN,
     CRIMSON_WALL_SIGN,
     CROSSBOW,
     CRYING_OBSIDIAN,
+    @DInfo(since = "1.17")
     CUT_COPPER,
     CUT_COPPER_SLAB,
     CUT_COPPER_STAIRS,
@@ -370,8 +479,11 @@ public enum DMaterial {
     CUT_SANDSTONE_SLAB,
     CYAN_BANNER,
     CYAN_BED,
+    @DInfo(since = "1.21.2")
     CYAN_BUNDLE,
+    @DInfo(since = "1.17")
     CYAN_CANDLE,
+    @DInfo(since = "1.17")
     CYAN_CANDLE_CAKE,
     CYAN_CARPET,
     CYAN_CONCRETE,
@@ -386,6 +498,7 @@ public enum DMaterial {
     CYAN_WOOL,
     DAMAGED_ANVIL,
     DANDELION,
+    @DInfo(since = "1.20")
     DANGER_POTTERY_SHERD,
     DARK_OAK_BOAT,
     DARK_OAK_BUTTON,
@@ -393,6 +506,7 @@ public enum DMaterial {
     DARK_OAK_DOOR,
     DARK_OAK_FENCE,
     DARK_OAK_FENCE_GATE,
+    @DInfo(since = "1.19.3")
     DARK_OAK_HANGING_SIGN,
     DARK_OAK_LEAVES,
     DARK_OAK_LOG,
@@ -403,6 +517,7 @@ public enum DMaterial {
     DARK_OAK_SLAB,
     DARK_OAK_STAIRS,
     DARK_OAK_TRAPDOOR,
+    @DInfo(since = "1.19.3")
     DARK_OAK_WALL_HANGING_SIGN,
     DARK_OAK_WALL_SIGN,
     DARK_OAK_WOOD,
@@ -432,23 +547,40 @@ public enum DMaterial {
     DEAD_TUBE_CORAL_FAN,
     DEAD_TUBE_CORAL_WALL_FAN,
     DEBUG_STICK,
+    @DInfo(since = "1.19.4")
     DECORATED_POT,
+    @DInfo(since = "1.17")
     DEEPSLATE,
+    @DInfo(since = "1.17")
     DEEPSLATE_BRICKS,
+    @DInfo(since = "1.17")
     DEEPSLATE_BRICK_SLAB,
+    @DInfo(since = "1.17")
     DEEPSLATE_BRICK_STAIRS,
+    @DInfo(since = "1.17")
     DEEPSLATE_BRICK_WALL,
+    @DInfo(since = "1.17")
     DEEPSLATE_COAL_ORE,
+    @DInfo(since = "1.17")
     DEEPSLATE_COPPER_ORE,
+    @DInfo(since = "1.17")
     DEEPSLATE_DIAMOND_ORE,
+    @DInfo(since = "1.17")
     DEEPSLATE_EMERALD_ORE,
+    @DInfo(since = "1.17")
     DEEPSLATE_GOLD_ORE,
+    @DInfo(since = "1.17")
     DEEPSLATE_IRON_ORE,
+    @DInfo(since = "1.17")
     DEEPSLATE_LAPIS_ORE,
+    @DInfo(since = "1.17")
     DEEPSLATE_REDSTONE_ORE,
     DEEPSLATE_TILES,
+    @DInfo(since = "1.17")
     DEEPSLATE_TILE_SLAB,
+    @DInfo(since = "1.17")
     DEEPSLATE_TILE_STAIRS,
+    @DInfo(since = "1.17")
     DEEPSLATE_TILE_WALL,
     DETECTOR_RAIL,
     DIAMOND,
@@ -469,7 +601,9 @@ public enum DMaterial {
     DIORITE_STAIRS,
     DIORITE_WALL,
     DIRT,
+    @DRenamed(since = "1.17", from = "GRASS_PATH")
     DIRT_PATH,
+    @DInfo(since = "1.19")
     DISC_FRAGMENT_5,
     DISPENSER,
     DOLPHIN_SPAWN_EGG,
@@ -480,10 +614,13 @@ public enum DMaterial {
     DRAGON_WALL_HEAD,
     DRIED_KELP,
     DRIED_KELP_BLOCK,
+    @DInfo(since = "1.17")
     DRIPSTONE_BLOCK,
     DROPPER,
     DROWNED_SPAWN_EGG,
+    @DInfo(since = "1.19.4")
     DUNE_ARMOR_TRIM_SMITHING_TEMPLATE,
+    @DInfo(since = "1.19")
     ECHO_SHARD,
     EGG,
     ELDER_GUARDIAN_SPAWN_EGG,
@@ -497,6 +634,7 @@ public enum DMaterial {
     ENDERMAN_SPAWN_EGG,
     ENDERMITE_SPAWN_EGG,
     ENDER_CHEST,
+    @DInfo(since = "1.19.3")
     ENDER_DRAGON_SPAWN_EGG,
     ENDER_EYE,
     ENDER_PEARL,
@@ -512,21 +650,33 @@ public enum DMaterial {
     END_STONE_BRICK_WALL,
     EVOKER_SPAWN_EGG,
     EXPERIENCE_BOTTLE,
+    @DInfo(since = "1.20")
     EXPLORER_POTTERY_SHERD,
+    @DInfo(since = "1.20.3")
     EXPOSED_CHISELED_COPPER,
+    @DInfo(since = "1.17")
     EXPOSED_COPPER,
+    @DInfo(since = "1.20.3")
     EXPOSED_COPPER_BULB,
+    @DInfo(since = "1.20.3")
     EXPOSED_COPPER_DOOR,
+    @DInfo(since = "1.20.3")
     EXPOSED_COPPER_GRATE,
+    @DInfo(since = "1.20.3")
     EXPOSED_COPPER_TRAPDOOR,
+    @DInfo(since = "1.17")
     EXPOSED_CUT_COPPER,
+    @DInfo(since = "1.17")
     EXPOSED_CUT_COPPER_SLAB,
+    @DInfo(since = "1.17")
     EXPOSED_CUT_COPPER_STAIRS,
+    @DInfo(since = "1.19.4")
     EYE_ARMOR_TRIM_SMITHING_TEMPLATE,
     FARMLAND,
     FEATHER,
     FERMENTED_SPIDER_EYE,
     FERN,
+    @DInfo(since = "1.21.2")
     FIELD_MASONED_BANNER_PATTERN,
     FILLED_MAP,
     FIRE,
@@ -541,16 +691,24 @@ public enum DMaterial {
     FLETCHING_TABLE,
     FLINT,
     FLINT_AND_STEEL,
+    @DInfo(since = "1.17")
     FLOWERING_AZALEA,
+    @DInfo(since = "1.17")
     FLOWERING_AZALEA_LEAVES,
     FLOWER_BANNER_PATTERN,
     FLOWER_POT,
+    @DInfo(since = "1.20.5")
     FLOW_ARMOR_TRIM_SMITHING_TEMPLATE,
+    @DInfo(since = "1.20.5")
     FLOW_BANNER_PATTERN,
+    @DInfo(since = "1.20.5")
     FLOW_POTTERY_SHERD,
     FOX_SPAWN_EGG,
+    @DInfo(since = "1.20")
     FRIEND_POTTERY_SHERD,
+    @DInfo(since = "1.19")
     FROGSPAWN,
+    @DInfo(since = "1.19")
     FROG_SPAWN_EGG,
     FROSTED_ICE,
     FURNACE,
@@ -565,12 +723,19 @@ public enum DMaterial {
     GLOBE_BANNER_PATTERN,
     GLOWSTONE,
     GLOWSTONE_DUST,
+    @DInfo(since = "1.17")
     GLOW_BERRIES,
+    @DInfo(since = "1.17")
     GLOW_INK_SAC,
+    @DInfo(since = "1.17")
     GLOW_ITEM_FRAME,
+    @DInfo(since = "1.17")
     GLOW_LICHEN,
+    @DInfo(since = "1.17")
     GLOW_SQUID_SPAWN_EGG,
+    @DInfo(since = "1.19")
     GOAT_HORN,
+    @DInfo(since = "1.17")
     GOAT_SPAWN_EGG,
     GOLDEN_APPLE,
     GOLDEN_AXE,
@@ -596,8 +761,11 @@ public enum DMaterial {
     GRAVEL,
     GRAY_BANNER,
     GRAY_BED,
+    @DInfo(since = "1.21.2")
     GRAY_BUNDLE,
+    @DInfo(since = "1.17")
     GRAY_CANDLE,
+    @DInfo(since = "1.17")
     GRAY_CANDLE_CAKE,
     GRAY_CARPET,
     GRAY_CONCRETE,
@@ -612,8 +780,11 @@ public enum DMaterial {
     GRAY_WOOL,
     GREEN_BANNER,
     GREEN_BED,
+    @DInfo(since = "1.21.2")
     GREEN_BUNDLE,
+    @DInfo(since = "1.17")
     GREEN_CANDLE,
+    @DInfo(since = "1.17")
     GREEN_CANDLE_CAKE,
     GREEN_CARPET,
     GREEN_CONCRETE,
@@ -629,13 +800,19 @@ public enum DMaterial {
     GRINDSTONE,
     GUARDIAN_SPAWN_EGG,
     GUNPOWDER,
+    @DInfo(since = "1.20.5")
     GUSTER_BANNER_PATTERN,
+    @DInfo(since = "1.20.5")
     GUSTER_POTTERY_SHERD,
+    @DInfo(since = "1.17")
     HANGING_ROOTS,
     HAY_BLOCK,
+    @DInfo(since = "1.20")
     HEARTBREAK_POTTERY_SHERD,
     HEART_OF_THE_SEA,
+    @DInfo(since = "1.20")
     HEART_POTTERY_SHERD,
+    @DInfo(since = "1.20.5")
     HEAVY_CORE,
     HEAVY_WEIGHTED_PRESSURE_PLATE,
     HOGLIN_SPAWN_EGG,
@@ -650,13 +827,16 @@ public enum DMaterial {
     HORN_CORAL_FAN,
     HORN_CORAL_WALL_FAN,
     HORSE_SPAWN_EGG,
+    @DInfo(since = "1.20")
     HOST_ARMOR_TRIM_SMITHING_TEMPLATE,
+    @DInfo(since = "1.20")
     HOWL_POTTERY_SHERD,
     HUSK_SPAWN_EGG,
     ICE,
     INFESTED_CHISELED_STONE_BRICKS,
     INFESTED_COBBLESTONE,
     INFESTED_CRACKED_STONE_BRICKS,
+    @DInfo(since = "1.17")
     INFESTED_DEEPSLATE,
     INFESTED_MOSSY_STONE_BRICKS,
     INFESTED_STONE,
@@ -668,6 +848,7 @@ public enum DMaterial {
     IRON_BOOTS,
     IRON_CHESTPLATE,
     IRON_DOOR,
+    @DInfo(since = "1.19.3")
     IRON_GOLEM_SPAWN_EGG,
     IRON_HELMET,
     IRON_HOE,
@@ -690,6 +871,7 @@ public enum DMaterial {
     JUNGLE_DOOR,
     JUNGLE_FENCE,
     JUNGLE_FENCE_GATE,
+    @DInfo(since = "1.19.3")
     JUNGLE_HANGING_SIGN,
     JUNGLE_LEAVES,
     JUNGLE_LOG,
@@ -700,6 +882,7 @@ public enum DMaterial {
     JUNGLE_SLAB,
     JUNGLE_STAIRS,
     JUNGLE_TRAPDOOR,
+    @DInfo(since = "1.19.3")
     JUNGLE_WALL_HANGING_SIGN,
     JUNGLE_WALL_SIGN,
     JUNGLE_WOOD,
@@ -711,10 +894,12 @@ public enum DMaterial {
     LAPIS_BLOCK,
     LAPIS_LAZULI,
     LAPIS_ORE,
+    @DInfo(since = "1.17")
     LARGE_AMETHYST_BUD,
     LARGE_FERN,
     LAVA,
     LAVA_BUCKET,
+    @DInfo(since = "1.17")
     LAVA_CAULDRON,
     LEAD,
     LEATHER,
@@ -725,12 +910,17 @@ public enum DMaterial {
     LEATHER_LEGGINGS,
     LECTERN,
     LEVER,
+    @DInfo(since = "1.17")
     LIGHT,
+    @DInfo(since = "1.17")
     LIGHTNING_ROD,
     LIGHT_BLUE_BANNER,
     LIGHT_BLUE_BED,
+    @DInfo(since = "1.21.2")
     LIGHT_BLUE_BUNDLE,
+    @DInfo(since = "1.17")
     LIGHT_BLUE_CANDLE,
+    @DInfo(since = "1.17")
     LIGHT_BLUE_CANDLE_CAKE,
     LIGHT_BLUE_CARPET,
     LIGHT_BLUE_CONCRETE,
@@ -745,8 +935,11 @@ public enum DMaterial {
     LIGHT_BLUE_WOOL,
     LIGHT_GRAY_BANNER,
     LIGHT_GRAY_BED,
+    @DInfo(since = "1.21.2")
     LIGHT_GRAY_BUNDLE,
+    @DInfo(since = "1.17")
     LIGHT_GRAY_CANDLE,
+    @DInfo(since = "1.17")
     LIGHT_GRAY_CANDLE_CAKE,
     LIGHT_GRAY_CARPET,
     LIGHT_GRAY_CONCRETE,
@@ -765,8 +958,11 @@ public enum DMaterial {
     LILY_PAD,
     LIME_BANNER,
     LIME_BED,
+    @DInfo(since = "1.21.2")
     LIME_BUNDLE,
+    @DInfo(since = "1.17")
     LIME_CANDLE,
+    @DInfo(since = "1.17")
     LIME_CANDLE_CAKE,
     LIME_CARPET,
     LIME_CONCRETE,
@@ -783,11 +979,15 @@ public enum DMaterial {
     LLAMA_SPAWN_EGG,
     LODESTONE,
     LOOM,
+    @DInfo(since = "1.20.5")
     MACE,
     MAGENTA_BANNER,
     MAGENTA_BED,
+    @DInfo(since = "1.21.2")
     MAGENTA_BUNDLE,
+    @DInfo(since = "1.17")
     MAGENTA_CANDLE,
+    @DInfo(since = "1.17")
     MAGENTA_CANDLE_CAKE,
     MAGENTA_CARPET,
     MAGENTA_CONCRETE,
@@ -803,27 +1003,48 @@ public enum DMaterial {
     MAGMA_BLOCK,
     MAGMA_CREAM,
     MAGMA_CUBE_SPAWN_EGG,
+    @DInfo(since = "1.19")
     MANGROVE_BOAT,
+    @DInfo(since = "1.19")
     MANGROVE_BUTTON,
+    @DInfo(since = "1.19")
     MANGROVE_CHEST_BOAT,
+    @DInfo(since = "1.19")
     MANGROVE_DOOR,
+    @DInfo(since = "1.19")
     MANGROVE_FENCE,
+    @DInfo(since = "1.19")
     MANGROVE_FENCE_GATE,
+    @DInfo(since = "1.19.3")
     MANGROVE_HANGING_SIGN,
+    @DInfo(since = "1.19")
     MANGROVE_LEAVES,
+    @DInfo(since = "1.19")
     MANGROVE_LOG,
+    @DInfo(since = "1.19")
     MANGROVE_PLANKS,
+    @DInfo(since = "1.19")
     MANGROVE_PRESSURE_PLATE,
+    @DInfo(since = "1.19")
     MANGROVE_PROPAGULE,
+    @DInfo(since = "1.19")
     MANGROVE_ROOTS,
+    @DInfo(since = "1.19")
     MANGROVE_SIGN,
+    @DInfo(since = "1.19")
     MANGROVE_SLAB,
+    @DInfo(since = "1.19")
     MANGROVE_STAIRS,
+    @DInfo(since = "1.19")
     MANGROVE_TRAPDOOR,
+    @DInfo(since = "1.19.3")
     MANGROVE_WALL_HANGING_SIGN,
+    @DInfo(since = "1.19")
     MANGROVE_WALL_SIGN,
+    @DInfo(since = "1.19")
     MANGROVE_WOOD,
     MAP,
+    @DInfo(since = "1.17")
     MEDIUM_AMETHYST_BUD,
     MELON,
     MELON_SEEDS,
@@ -831,6 +1052,7 @@ public enum DMaterial {
     MELON_STEM,
     MILK_BUCKET,
     MINECART,
+    @DInfo(since = "1.20")
     MINER_POTTERY_SHERD,
     MOJANG_BANNER_PATTERN,
     MOOSHROOM_SPAWN_EGG,
@@ -842,33 +1064,48 @@ public enum DMaterial {
     MOSSY_STONE_BRICK_SLAB,
     MOSSY_STONE_BRICK_STAIRS,
     MOSSY_STONE_BRICK_WALL,
+    @DInfo(since = "1.17")
     MOSS_BLOCK,
+    @DInfo(since = "1.17")
     MOSS_CARPET,
+    @DInfo(since = "1.20")
     MOURNER_POTTERY_SHERD,
     MOVING_PISTON,
+    @DInfo(since = "1.19")
     MUD,
+    @DInfo(since = "1.19")
     MUDDY_MANGROVE_ROOTS,
+    @DInfo(since = "1.19")
     MUD_BRICKS,
+    @DInfo(since = "1.19")
     MUD_BRICK_SLAB,
+    @DInfo(since = "1.19")
     MUD_BRICK_STAIRS,
+    @DInfo(since = "1.19")
     MUD_BRICK_WALL,
     MULE_SPAWN_EGG,
     MUSHROOM_STEM,
     MUSHROOM_STEW,
     MUSIC_DISC_11,
     MUSIC_DISC_13,
+    @DInfo(since = "1.19")
     MUSIC_DISC_5,
     MUSIC_DISC_BLOCKS,
     MUSIC_DISC_CAT,
     MUSIC_DISC_CHIRP,
+    @DInfo(since = "1.21")
     MUSIC_DISC_CREATOR,
+    @DInfo(since = "1.21")
     MUSIC_DISC_CREATOR_MUSIC_BOX,
     MUSIC_DISC_FAR,
     MUSIC_DISC_MALL,
     MUSIC_DISC_MELLOHI,
+    @DInfo(since = "1.18")
     MUSIC_DISC_OTHERSIDE,
     MUSIC_DISC_PIGSTEP,
+    @DInfo(since = "1.21")
     MUSIC_DISC_PRECIPICE,
+    @DInfo(since = "1.20")
     MUSIC_DISC_RELIC,
     MUSIC_DISC_STAL,
     MUSIC_DISC_STRAD,
@@ -890,6 +1127,7 @@ public enum DMaterial {
     NETHERITE_SCRAP,
     NETHERITE_SHOVEL,
     NETHERITE_SWORD,
+    @DInfo(since = "1.19.4")
     NETHERITE_UPGRADE_SMITHING_TEMPLATE,
     NETHERRACK,
     NETHER_BRICK,
@@ -912,6 +1150,7 @@ public enum DMaterial {
     OAK_DOOR,
     OAK_FENCE,
     OAK_FENCE_GATE,
+    @DInfo(since = "1.19.3")
     OAK_HANGING_SIGN,
     OAK_LEAVES,
     OAK_LOG,
@@ -922,20 +1161,28 @@ public enum DMaterial {
     OAK_SLAB,
     OAK_STAIRS,
     OAK_TRAPDOOR,
+    @DInfo(since = "1.19.3")
     OAK_WALL_HANGING_SIGN,
     OAK_WALL_SIGN,
     OAK_WOOD,
     OBSERVER,
     OBSIDIAN,
     OCELOT_SPAWN_EGG,
+    @DInfo(since = "1.19")
     OCHRE_FROGLIGHT,
+    @DInfo(since = "1.20.5")
     OMINOUS_BOTTLE,
+    @DInfo(since = "1.20.5")
     OMINOUS_TRIAL_KEY,
+    @DInfo(since = "1.21.4")
     OPEN_EYEBLOSSOM,
     ORANGE_BANNER,
     ORANGE_BED,
+    @DInfo(since = "1.21.2")
     ORANGE_BUNDLE,
+    @DInfo(since = "1.17")
     ORANGE_CANDLE,
+    @DInfo(since = "1.17")
     ORANGE_CANDLE_CAKE,
     ORANGE_CARPET,
     ORANGE_CONCRETE,
@@ -950,65 +1197,105 @@ public enum DMaterial {
     ORANGE_WALL_BANNER,
     ORANGE_WOOL,
     OXEYE_DAISY,
+    @DInfo(since = "1.20.3")
     OXIDIZED_CHISELED_COPPER,
+    @DInfo(since = "1.17")
     OXIDIZED_COPPER,
+    @DInfo(since = "1.20.3")
     OXIDIZED_COPPER_BULB,
+    @DInfo(since = "1.20.3")
     OXIDIZED_COPPER_DOOR,
+    @DInfo(since = "1.20.3")
     OXIDIZED_COPPER_GRATE,
+    @DInfo(since = "1.20.3")
     OXIDIZED_COPPER_TRAPDOOR,
+    @DInfo(since = "1.17")
     OXIDIZED_CUT_COPPER,
+    @DInfo(since = "1.17")
     OXIDIZED_CUT_COPPER_SLAB,
+    @DInfo(since = "1.17")
     OXIDIZED_CUT_COPPER_STAIRS,
     PACKED_ICE,
+    @DInfo(since = "1.19")
     PACKED_MUD,
     PAINTING,
+    @DInfo(since = "1.21.2")
     PALE_HANGING_MOSS,
+    @DInfo(since = "1.21.2")
     PALE_MOSS_BLOCK,
+    @DInfo(since = "1.21.2")
     PALE_MOSS_CARPET,
+    @DInfo(since = "1.21.2")
     PALE_OAK_BOAT,
+    @DInfo(since = "1.21.2")
     PALE_OAK_BUTTON,
+    @DInfo(since = "1.21.2")
     PALE_OAK_CHEST_BOAT,
+    @DInfo(since = "1.21.2")
     PALE_OAK_DOOR,
+    @DInfo(since = "1.21.2")
     PALE_OAK_FENCE,
+    @DInfo(since = "1.21.2")
     PALE_OAK_FENCE_GATE,
+    @DInfo(since = "1.21.2")
     PALE_OAK_HANGING_SIGN,
+    @DInfo(since = "1.21.2")
     PALE_OAK_LEAVES,
+    @DInfo(since = "1.21.2")
     PALE_OAK_LOG,
+    @DInfo(since = "1.21.2")
     PALE_OAK_PLANKS,
+    @DInfo(since = "1.21.2")
     PALE_OAK_PRESSURE_PLATE,
+    @DInfo(since = "1.21.2")
     PALE_OAK_SAPLING,
+    @DInfo(since = "1.21.2")
     PALE_OAK_SIGN,
+    @DInfo(since = "1.21.2")
     PALE_OAK_SLAB,
+    @DInfo(since = "1.21.2")
     PALE_OAK_STAIRS,
+    @DInfo(since = "1.21.2")
     PALE_OAK_TRAPDOOR,
+    @DInfo(since = "1.21.2")
     PALE_OAK_WALL_HANGING_SIGN,
+    @DInfo(since = "1.21.2")
     PALE_OAK_WALL_SIGN,
+    @DInfo(since = "1.21.2")
     PALE_OAK_WOOD,
     PANDA_SPAWN_EGG,
     PAPER,
     PARROT_SPAWN_EGG,
+    @DInfo(since = "1.19")
     PEARLESCENT_FROGLIGHT,
     PEONY,
     PETRIFIED_OAK_SLAB,
     PHANTOM_MEMBRANE,
     PHANTOM_SPAWN_EGG,
     PIGLIN_BANNER_PATTERN,
+    @DInfo(since = "1.16.2")
     PIGLIN_BRUTE_SPAWN_EGG,
+    @DInfo(since = "1.19.3")
     PIGLIN_HEAD,
     PIGLIN_SPAWN_EGG,
+    @DInfo(since = "1.19.3")
     PIGLIN_WALL_HEAD,
     PIG_SPAWN_EGG,
     PILLAGER_SPAWN_EGG,
     PINK_BANNER,
     PINK_BED,
+    @DInfo(since = "1.21.2")
     PINK_BUNDLE,
+    @DInfo(since = "1.17")
     PINK_CANDLE,
+    @DInfo(since = "1.17")
     PINK_CANDLE_CAKE,
     PINK_CARPET,
     PINK_CONCRETE,
     PINK_CONCRETE_POWDER,
     PINK_DYE,
     PINK_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.19.4")
     PINK_PETALS,
     PINK_SHULKER_BOX,
     PINK_STAINED_GLASS,
@@ -1019,13 +1306,18 @@ public enum DMaterial {
     PINK_WOOL,
     PISTON,
     PISTON_HEAD,
+    @DInfo(since = "1.20")
     PITCHER_CROP,
+    @DInfo(since = "1.20")
     PITCHER_PLANT,
+    @DInfo(since = "1.20")
     PITCHER_POD,
     PLAYER_HEAD,
     PLAYER_WALL_HEAD,
+    @DInfo(since = "1.20")
     PLENTY_POTTERY_SHERD,
     PODZOL,
+    @DInfo(since = "1.17")
     POINTED_DRIPSTONE,
     POISONOUS_POTATO,
     POLAR_BEAR_SPAWN_EGG,
@@ -1043,9 +1335,13 @@ public enum DMaterial {
     POLISHED_BLACKSTONE_SLAB,
     POLISHED_BLACKSTONE_STAIRS,
     POLISHED_BLACKSTONE_WALL,
+    @DInfo(since = "1.17")
     POLISHED_DEEPSLATE,
+    @DInfo(since = "1.17")
     POLISHED_DEEPSLATE_SLAB,
+    @DInfo(since = "1.17")
     POLISHED_DEEPSLATE_STAIRS,
+    @DInfo(since = "1.17")
     POLISHED_DEEPSLATE_WALL,
     POLISHED_DIORITE,
     POLISHED_DIORITE_SLAB,
@@ -1053,9 +1349,13 @@ public enum DMaterial {
     POLISHED_GRANITE,
     POLISHED_GRANITE_SLAB,
     POLISHED_GRANITE_STAIRS,
+    @DInfo(since = "1.20.3")
     POLISHED_TUFF,
+    @DInfo(since = "1.20.3")
     POLISHED_TUFF_SLAB,
+    @DInfo(since = "1.20.3")
     POLISHED_TUFF_STAIRS,
+    @DInfo(since = "1.20.3")
     POLISHED_TUFF_WALL,
     POPPED_CHORUS_FRUIT,
     POPPY,
@@ -1065,6 +1365,7 @@ public enum DMaterial {
     POTION,
     POTTED_ACACIA_SAPLING,
     POTTED_ALLIUM,
+    @DInfo(since = "1.17")
     POTTED_AZALEA_BUSH,
     POTTED_AZURE_BLUET,
     POTTED_BAMBOO,
@@ -1072,7 +1373,9 @@ public enum DMaterial {
     POTTED_BLUE_ORCHID,
     POTTED_BROWN_MUSHROOM,
     POTTED_CACTUS,
+    @DInfo(since = "1.19.4")
     POTTED_CHERRY_SAPLING,
+    @DInfo(since = "1.21.4")
     POTTED_CLOSED_EYEBLOSSOM,
     POTTED_CORNFLOWER,
     POTTED_CRIMSON_FUNGUS,
@@ -1081,11 +1384,14 @@ public enum DMaterial {
     POTTED_DARK_OAK_SAPLING,
     POTTED_DEAD_BUSH,
     POTTED_FERN,
+    @DInfo(since = "1.17")
     POTTED_FLOWERING_AZALEA_BUSH,
     POTTED_JUNGLE_SAPLING,
     POTTED_LILY_OF_THE_VALLEY,
+    @DInfo(since = "1.19")
     POTTED_MANGROVE_PROPAGULE,
     POTTED_OAK_SAPLING,
+    @DInfo(since = "1.21.4")
     POTTED_OPEN_EYEBLOSSOM,
     POTTED_ORANGE_TULIP,
     POTTED_OXEYE_DAISY,
@@ -1095,13 +1401,17 @@ public enum DMaterial {
     POTTED_RED_MUSHROOM,
     POTTED_RED_TULIP,
     POTTED_SPRUCE_SAPLING,
+    @DInfo(since = "1.19.4")
     POTTED_TORCHFLOWER,
     POTTED_WARPED_FUNGUS,
     POTTED_WARPED_ROOTS,
     POTTED_WHITE_TULIP,
     POTTED_WITHER_ROSE,
+    @DInfo(since = "1.17")
     POWDER_SNOW,
+    @DInfo(since = "1.17")
     POWDER_SNOW_BUCKET,
+    @DInfo(since = "1.17")
     POWDER_SNOW_CAULDRON,
     POWERED_RAIL,
     PRISMARINE,
@@ -1113,6 +1423,7 @@ public enum DMaterial {
     PRISMARINE_SLAB,
     PRISMARINE_STAIRS,
     PRISMARINE_WALL,
+    @DInfo(since = "1.20")
     PRIZE_POTTERY_SHERD,
     PUFFERFISH,
     PUFFERFISH_BUCKET,
@@ -1123,8 +1434,11 @@ public enum DMaterial {
     PUMPKIN_STEM,
     PURPLE_BANNER,
     PURPLE_BED,
+    @DInfo(since = "1.21.2")
     PURPLE_BUNDLE,
+    @DInfo(since = "1.17")
     PURPLE_CANDLE,
+    @DInfo(since = "1.17")
     PURPLE_CANDLE_CAKE,
     PURPLE_CARPET,
     PURPLE_CONCRETE,
@@ -1153,14 +1467,22 @@ public enum DMaterial {
     RABBIT_SPAWN_EGG,
     RABBIT_STEW,
     RAIL,
+    @DInfo(since = "1.20")
     RAISER_ARMOR_TRIM_SMITHING_TEMPLATE,
     RAVAGER_SPAWN_EGG,
+    @DInfo(since = "1.17")
     RAW_COPPER,
+    @DInfo(since = "1.17")
     RAW_COPPER_BLOCK,
+    @DInfo(since = "1.17")
     RAW_GOLD,
+    @DInfo(since = "1.17")
     RAW_GOLD_BLOCK,
+    @DInfo(since = "1.17")
     RAW_IRON,
+    @DInfo(since = "1.17")
     RAW_IRON_BLOCK,
+    @DInfo(since = "1.19")
     RECOVERY_COMPASS,
     REDSTONE,
     REDSTONE_BLOCK,
@@ -1171,8 +1493,11 @@ public enum DMaterial {
     REDSTONE_WIRE,
     RED_BANNER,
     RED_BED,
+    @DInfo(since = "1.21.2")
     RED_BUNDLE,
+    @DInfo(since = "1.17")
     RED_CANDLE,
+    @DInfo(since = "1.17")
     RED_CANDLE_CAKE,
     RED_CARPET,
     RED_CONCRETE,
@@ -1197,18 +1522,28 @@ public enum DMaterial {
     RED_TULIP,
     RED_WALL_BANNER,
     RED_WOOL,
+    @DInfo(since = "1.19")
     REINFORCED_DEEPSLATE,
     REPEATER,
     REPEATING_COMMAND_BLOCK,
+    @DInfo(since = "1.21.4")
     RESIN_BLOCK,
+    @DInfo(since = "1.21.4")
     RESIN_BRICK,
+    @DInfo(since = "1.21.4")
     RESIN_BRICKS,
+    @DInfo(since = "1.21.4")
     RESIN_BRICK_SLAB,
+    @DInfo(since = "1.21.4")
     RESIN_BRICK_STAIRS,
+    @DInfo(since = "1.21.4")
     RESIN_BRICK_WALL,
+    @DInfo(since = "1.21.4")
     RESIN_CLUMP,
     RESPAWN_ANCHOR,
+    @DInfo(since = "1.19.4")
     RIB_ARMOR_TRIM_SMITHING_TEMPLATE,
+    @DInfo(since = "1.17")
     ROOTED_DIRT,
     ROSE_BUSH,
     ROTTEN_FLESH,
@@ -1222,28 +1557,39 @@ public enum DMaterial {
     SANDSTONE_STAIRS,
     SANDSTONE_WALL,
     SCAFFOLDING,
+    @DInfo(since = "1.20.5")
     SCRAPE_POTTERY_SHERD,
+    @DInfo(since = "1.19")
     SCULK,
+    @DInfo(since = "1.19")
     SCULK_CATALYST,
+    @DInfo(since = "1.17")
     SCULK_SENSOR,
+    @DInfo(since = "1.19")
     SCULK_SHRIEKER,
+    @DInfo(since = "1.19")
     SCULK_VEIN,
     SEAGRASS,
     SEA_LANTERN,
     SEA_PICKLE,
+    @DInfo(since = "1.19.4")
     SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE,
+    @DInfo(since = "1.20")
     SHAPER_ARMOR_TRIM_SMITHING_TEMPLATE,
+    @DInfo(since = "1.20")
     SHEAF_POTTERY_SHERD,
     SHEARS,
     SHEEP_SPAWN_EGG,
+    @DInfo(since = "1.20")
     SHELTER_POTTERY_SHERD,
     SHIELD,
-    @DInfo(since = "1.20.3")
+    @DRenamed(since = "1.20.3", from = "GRASS")
     SHORT_GRASS,
     SHROOMLIGHT,
     SHULKER_BOX,
     SHULKER_SHELL,
     SHULKER_SPAWN_EGG,
+    @DInfo(since = "1.20")
     SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE,
     SILVERFISH_SPAWN_EGG,
     SKELETON_HORSE_SPAWN_EGG,
@@ -1251,14 +1597,18 @@ public enum DMaterial {
     SKELETON_SPAWN_EGG,
     SKELETON_WALL_SKULL,
     SKULL_BANNER_PATTERN,
+    @DInfo(since = "1.20")
     SKULL_POTTERY_SHERD,
     SLIME_BALL,
     SLIME_BLOCK,
     SLIME_SPAWN_EGG,
+    @DInfo(since = "1.17")
     SMALL_AMETHYST_BUD,
+    @DInfo(since = "1.17")
     SMALL_DRIPLEAF,
     SMITHING_TABLE,
     SMOKER,
+    @DInfo(since = "1.17")
     SMOOTH_BASALT,
     SMOOTH_QUARTZ,
     SMOOTH_QUARTZ_SLAB,
@@ -1271,13 +1621,18 @@ public enum DMaterial {
     SMOOTH_SANDSTONE_STAIRS,
     SMOOTH_STONE,
     SMOOTH_STONE_SLAB,
+    @DInfo(since = "1.20")
     SNIFFER_EGG,
+    @DInfo(since = "1.19.4")
     SNIFFER_SPAWN_EGG,
+    @DInfo(since = "1.20")
     SNORT_POTTERY_SHERD,
+    @DInfo(since = "1.19.4")
     SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE,
     SNOW,
     SNOWBALL,
     SNOW_BLOCK,
+    @DInfo(since = "1.19.3")
     SNOW_GOLEM_SPAWN_EGG,
     SOUL_CAMPFIRE,
     SOUL_FIRE,
@@ -1290,9 +1645,11 @@ public enum DMaterial {
     SPECTRAL_ARROW,
     SPIDER_EYE,
     SPIDER_SPAWN_EGG,
+    @DInfo(since = "1.19.4")
     SPIRE_ARMOR_TRIM_SMITHING_TEMPLATE,
     SPLASH_POTION,
     SPONGE,
+    @DInfo(since = "1.17")
     SPORE_BLOSSOM,
     SPRUCE_BOAT,
     SPRUCE_BUTTON,
@@ -1300,6 +1657,7 @@ public enum DMaterial {
     SPRUCE_DOOR,
     SPRUCE_FENCE,
     SPRUCE_FENCE_GATE,
+    @DInfo(since = "1.19.3")
     SPRUCE_HANGING_SIGN,
     SPRUCE_LEAVES,
     SPRUCE_LOG,
@@ -1310,9 +1668,11 @@ public enum DMaterial {
     SPRUCE_SLAB,
     SPRUCE_STAIRS,
     SPRUCE_TRAPDOOR,
+    @DInfo(since = "1.19.3")
     SPRUCE_WALL_HANGING_SIGN,
     SPRUCE_WALL_SIGN,
     SPRUCE_WOOD,
+    @DInfo(since = "1.17")
     SPYGLASS,
     SQUID_SPAWN_EGG,
     STICK,
@@ -1337,10 +1697,13 @@ public enum DMaterial {
     STRING,
     STRIPPED_ACACIA_LOG,
     STRIPPED_ACACIA_WOOD,
+    @DInfo(since = "1.19.3")
     STRIPPED_BAMBOO_BLOCK,
     STRIPPED_BIRCH_LOG,
     STRIPPED_BIRCH_WOOD,
+    @DInfo(since = "1.19.4")
     STRIPPED_CHERRY_LOG,
+    @DInfo(since = "1.19.4")
     STRIPPED_CHERRY_WOOD,
     STRIPPED_CRIMSON_HYPHAE,
     STRIPPED_CRIMSON_STEM,
@@ -1348,11 +1711,15 @@ public enum DMaterial {
     STRIPPED_DARK_OAK_WOOD,
     STRIPPED_JUNGLE_LOG,
     STRIPPED_JUNGLE_WOOD,
+    @DInfo(since = "1.19")
     STRIPPED_MANGROVE_LOG,
+    @DInfo(since = "1.19")
     STRIPPED_MANGROVE_WOOD,
     STRIPPED_OAK_LOG,
     STRIPPED_OAK_WOOD,
+    @DInfo(since = "1.21.2")
     STRIPPED_PALE_OAK_LOG,
+    @DInfo(since = "1.21.2")
     STRIPPED_PALE_OAK_WOOD,
     STRIPPED_SPRUCE_LOG,
     STRIPPED_SPRUCE_WOOD,
@@ -1363,30 +1730,41 @@ public enum DMaterial {
     SUGAR,
     SUGAR_CANE,
     SUNFLOWER,
+    @DInfo(since = "1.20")
     SUSPICIOUS_GRAVEL,
+    @DInfo(since = "1.19.4")
     SUSPICIOUS_SAND,
     SUSPICIOUS_STEW,
     SWEET_BERRIES,
     SWEET_BERRY_BUSH,
+    @DInfo(since = "1.19")
     TADPOLE_BUCKET,
+    @DInfo(since = "1.19")
     TADPOLE_SPAWN_EGG,
     TALL_GRASS,
     TALL_SEAGRASS,
     TARGET,
     TERRACOTTA,
+    @DInfo(since = "1.19.4")
     TIDE_ARMOR_TRIM_SMITHING_TEMPLATE,
+    @DInfo(since = "1.17")
     TINTED_GLASS,
     TIPPED_ARROW,
     TNT,
     TNT_MINECART,
     TORCH,
+    @DInfo(since = "1.19.4")
     TORCHFLOWER,
+    @DInfo(since = "1.19.4")
     TORCHFLOWER_CROP,
+    @DInfo(since = "1.19.4")
     TORCHFLOWER_SEEDS,
     TOTEM_OF_UNDYING,
     TRADER_LLAMA_SPAWN_EGG,
     TRAPPED_CHEST,
+    @DInfo(since = "1.20.3")
     TRIAL_KEY,
+    @DInfo(since = "1.20.3")
     TRIAL_SPAWNER,
     TRIDENT,
     TRIPWIRE,
@@ -1398,22 +1776,34 @@ public enum DMaterial {
     TUBE_CORAL_BLOCK,
     TUBE_CORAL_FAN,
     TUBE_CORAL_WALL_FAN,
+    @DInfo(since = "1.17")
     TUFF,
+    @DInfo(since = "1.20.3")
     TUFF_BRICKS,
+    @DInfo(since = "1.20.3")
     TUFF_BRICK_SLAB,
+    @DInfo(since = "1.20.3")
     TUFF_BRICK_STAIRS,
+    @DInfo(since = "1.20.3")
     TUFF_BRICK_WALL,
+    @DInfo(since = "1.20.3")
     TUFF_SLAB,
+    @DInfo(since = "1.20.3")
     TUFF_STAIRS,
+    @DInfo(since = "1.20.3")
     TUFF_WALL,
     TURTLE_EGG,
     TURTLE_HELMET,
+    @DInfo(since = "1.20.5")
     TURTLE_SCUTE,
     TURTLE_SPAWN_EGG,
     TWISTING_VINES,
     TWISTING_VINES_PLANT,
+    @DInfo(since = "1.20.5")
     VAULT,
+    @DInfo(since = "1.19")
     VERDANT_FROGLIGHT,
+    @DInfo(since = "1.19.4")
     VEX_ARMOR_TRIM_SMITHING_TEMPLATE,
     VEX_SPAWN_EGG,
     VILLAGER_SPAWN_EGG,
@@ -1422,7 +1812,9 @@ public enum DMaterial {
     VOID_AIR,
     WALL_TORCH,
     WANDERING_TRADER_SPAWN_EGG,
+    @DInfo(since = "1.19")
     WARDEN_SPAWN_EGG,
+    @DInfo(since = "1.19.4")
     WARD_ARMOR_TRIM_SMITHING_TEMPLATE,
     WARPED_BUTTON,
     WARPED_DOOR,
@@ -1430,6 +1822,7 @@ public enum DMaterial {
     WARPED_FENCE_GATE,
     WARPED_FUNGUS,
     WARPED_FUNGUS_ON_A_STICK,
+    @DInfo(since = "1.19.3")
     WARPED_HANGING_SIGN,
     WARPED_HYPHAE,
     WARPED_NYLIUM,
@@ -1441,57 +1834,105 @@ public enum DMaterial {
     WARPED_STAIRS,
     WARPED_STEM,
     WARPED_TRAPDOOR,
+    @DInfo(since = "1.19.3")
     WARPED_WALL_HANGING_SIGN,
     WARPED_WALL_SIGN,
     WARPED_WART_BLOCK,
     WATER,
     WATER_BUCKET,
+    @DInfo(since = "1.17")
     WATER_CAULDRON,
+    @DInfo(since = "1.20.3")
     WAXED_CHISELED_COPPER,
+    @DInfo(since = "1.17")
     WAXED_COPPER_BLOCK,
+    @DInfo(since = "1.20.3")
     WAXED_COPPER_BULB,
+    @DInfo(since = "1.20.3")
     WAXED_COPPER_DOOR,
+    @DInfo(since = "1.20.3")
     WAXED_COPPER_GRATE,
+    @DInfo(since = "1.20.3")
     WAXED_COPPER_TRAPDOOR,
+    @DInfo(since = "1.17")
     WAXED_CUT_COPPER,
+    @DInfo(since = "1.17")
     WAXED_CUT_COPPER_SLAB,
+    @DInfo(since = "1.17")
     WAXED_CUT_COPPER_STAIRS,
+    @DInfo(since = "1.20.3")
     WAXED_EXPOSED_CHISELED_COPPER,
+    @DInfo(since = "1.17")
     WAXED_EXPOSED_COPPER,
+    @DInfo(since = "1.20.3")
     WAXED_EXPOSED_COPPER_BULB,
+    @DInfo(since = "1.20.3")
     WAXED_EXPOSED_COPPER_DOOR,
+    @DInfo(since = "1.20.3")
     WAXED_EXPOSED_COPPER_GRATE,
+    @DInfo(since = "1.20.3")
     WAXED_EXPOSED_COPPER_TRAPDOOR,
+    @DInfo(since = "1.17")
     WAXED_EXPOSED_CUT_COPPER,
+    @DInfo(since = "1.17")
     WAXED_EXPOSED_CUT_COPPER_SLAB,
+    @DInfo(since = "1.17")
     WAXED_EXPOSED_CUT_COPPER_STAIRS,
+    @DInfo(since = "1.20.3")
     WAXED_OXIDIZED_CHISELED_COPPER,
+    @DInfo(since = "1.17")
     WAXED_OXIDIZED_COPPER,
+    @DInfo(since = "1.20.3")
     WAXED_OXIDIZED_COPPER_BULB,
+    @DInfo(since = "1.20.3")
     WAXED_OXIDIZED_COPPER_DOOR,
+    @DInfo(since = "1.20.3")
     WAXED_OXIDIZED_COPPER_GRATE,
+    @DInfo(since = "1.20.3")
     WAXED_OXIDIZED_COPPER_TRAPDOOR,
+    @DInfo(since = "1.17")
     WAXED_OXIDIZED_CUT_COPPER,
+    @DInfo(since = "1.17")
     WAXED_OXIDIZED_CUT_COPPER_SLAB,
+    @DInfo(since = "1.17")
     WAXED_OXIDIZED_CUT_COPPER_STAIRS,
+    @DInfo(since = "1.20.3")
     WAXED_WEATHERED_CHISELED_COPPER,
+    @DInfo(since = "1.17")
     WAXED_WEATHERED_COPPER,
+    @DInfo(since = "1.20.3")
     WAXED_WEATHERED_COPPER_BULB,
+    @DInfo(since = "1.20.3")
     WAXED_WEATHERED_COPPER_DOOR,
+    @DInfo(since = "1.20.3")
     WAXED_WEATHERED_COPPER_GRATE,
+    @DInfo(since = "1.20.3")
     WAXED_WEATHERED_COPPER_TRAPDOOR,
+    @DInfo(since = "1.17")
     WAXED_WEATHERED_CUT_COPPER,
+    @DInfo(since = "1.17")
     WAXED_WEATHERED_CUT_COPPER_SLAB,
+    @DInfo(since = "1.17")
     WAXED_WEATHERED_CUT_COPPER_STAIRS,
+    @DInfo(since = "1.20")
     WAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE,
+    @DInfo(since = "1.20.3")
     WEATHERED_CHISELED_COPPER,
+    @DInfo(since = "1.17")
     WEATHERED_COPPER,
+    @DInfo(since = "1.20.3")
     WEATHERED_COPPER_BULB,
+    @DInfo(since = "1.20.3")
     WEATHERED_COPPER_DOOR,
+    @DInfo(since = "1.20.3")
     WEATHERED_COPPER_GRATE,
+    @DInfo(since = "1.20.3")
     WEATHERED_COPPER_TRAPDOOR,
+    @DInfo(since = "1.17")
     WEATHERED_CUT_COPPER,
+    @DInfo(since = "1.17")
     WEATHERED_CUT_COPPER_SLAB,
+    @DInfo(since = "1.17")
     WEATHERED_CUT_COPPER_STAIRS,
     WEEPING_VINES,
     WEEPING_VINES_PLANT,
@@ -1500,8 +1941,11 @@ public enum DMaterial {
     WHEAT_SEEDS,
     WHITE_BANNER,
     WHITE_BED,
+    @DInfo(since = "1.21.2")
     WHITE_BUNDLE,
+    @DInfo(since = "1.17")
     WHITE_CANDLE,
+    @DInfo(since = "1.17")
     WHITE_CANDLE_CAKE,
     WHITE_CARPET,
     WHITE_CONCRETE,
@@ -1515,14 +1959,18 @@ public enum DMaterial {
     WHITE_TULIP,
     WHITE_WALL_BANNER,
     WHITE_WOOL,
+    @DInfo(since = "1.19.4")
     WILD_ARMOR_TRIM_SMITHING_TEMPLATE,
+    @DInfo(since = "1.20.5")
     WIND_CHARGE,
     WITCH_SPAWN_EGG,
     WITHER_ROSE,
     WITHER_SKELETON_SKULL,
     WITHER_SKELETON_SPAWN_EGG,
     WITHER_SKELETON_WALL_SKULL,
+    @DInfo(since = "1.19.3")
     WITHER_SPAWN_EGG,
+    @DInfo(since = "1.20.5")
     WOLF_ARMOR,
     WOLF_SPAWN_EGG,
     WOODEN_AXE,
@@ -1534,8 +1982,11 @@ public enum DMaterial {
     WRITTEN_BOOK,
     YELLOW_BANNER,
     YELLOW_BED,
+    @DInfo(since = "1.21.2")
     YELLOW_BUNDLE,
+    @DInfo(since = "1.17")
     YELLOW_CANDLE,
+    @DInfo(since = "1.17")
     YELLOW_CANDLE_CAKE,
     YELLOW_CARPET,
     YELLOW_CONCRETE,
@@ -1558,12 +2009,18 @@ public enum DMaterial {
     //</editor-fold>
 
     //<editor-fold desc="Deprecated" defaultstate="collapsed">
+    @DDeprecated(since = "1.17")
+    GRASS_PATH,
+    @DInfo(since = "1.19.4")
     @DDeprecated(since = "1.20")
     POTTERY_SHARD_ARCHER,
+    @DInfo(since = "1.19.4")
     @DDeprecated(since = "1.20")
     POTTERY_SHARD_ARMS_UP,
+    @DInfo(since = "1.19.4")
     @DDeprecated(since = "1.20")
     POTTERY_SHARD_PRIZE,
+    @DInfo(since = "1.19.4")
     @DDeprecated(since = "1.20")
     POTTERY_SHARD_SKULL,
     @DDeprecated(since = "1.20.3")
@@ -1573,13 +2030,11 @@ public enum DMaterial {
     //</editor-fold>
 
 
-    DMaterial(String... legacies) {
+    DMaterial() {
         this.material = Material.getMaterial(this.name());
-        this.legacies = legacies;
     }
 
     private final Material material;
-    private final String[] legacies;
 
     public Material get() {
         return material;
@@ -1594,9 +2049,6 @@ public enum DMaterial {
     static {
         for(DMaterial dMat : VALUES) {
             NAME_MAP.put(dMat.name(), dMat);
-            for(String legacy : dMat.legacies) {
-                NAME_MAP.put(legacy, dMat);
-            }
         }
     }
 
