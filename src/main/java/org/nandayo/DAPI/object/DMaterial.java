@@ -2053,6 +2053,7 @@ public enum DMaterial {
     }
 
     public static Material getByName(@NotNull String name) {
-        return NAME_MAP.get(name).get();
+        DMaterial dMaterial = NAME_MAP.get(name);
+        return dMaterial != null ? dMaterial.get() : null;
     }
 }

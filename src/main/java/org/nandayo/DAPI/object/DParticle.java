@@ -318,6 +318,7 @@ public enum DParticle {
     }
 
     public static Particle getByName(@NotNull String name) {
-        return NAME_MAP.get(name).get();
+        DParticle dParticle = NAME_MAP.get(name);
+        return dParticle != null ? dParticle.get() : null;
     }
 }

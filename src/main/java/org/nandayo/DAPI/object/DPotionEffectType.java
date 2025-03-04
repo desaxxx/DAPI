@@ -120,6 +120,7 @@ public enum DPotionEffectType {
     }
 
     public static PotionEffectType getByName(@NotNull String name) {
-        return NAME_MAP.get(name).get();
+        DPotionEffectType dPotionEffectType = NAME_MAP.get(name);
+        return dPotionEffectType != null ? dPotionEffectType.get() : null;
     }
 }
