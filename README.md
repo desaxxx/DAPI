@@ -4,6 +4,7 @@
 > DMaterial — Materials from 1.16.1 to 1.21.4 (**version compatibility**)\
 > DParticle — Particles from 1.16.1 to 1.21.4 (**version compatibility**)\
 > DPotionEffectType — PotionEffectTypes from 1.16.1 to 1.21.4 (**version compatibility**)\
+> DEntityType — EntityTypes from 1.16.1 to 1.21.4 (**version compatibility**)\
 > HexUtil -> Hex colors with patterns <#rrggbb>.\
 > Util -> Console log with prefix.\
 > ItemCreator -> Building itemstack easily.\
