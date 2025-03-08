@@ -9,6 +9,11 @@ import org.nandayo.DAPI.object.annotation.DRenamed;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Only supports 1.16.1 - 1.21.4.<br>
+ * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
+ * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
+ */
 @SuppressWarnings("unused")
 public enum DEntityType {
 
@@ -304,6 +309,6 @@ public enum DEntityType {
 
     public static EntityType getByName(@NotNull String name) {
         DEntityType dEntityType = NAME_MAP.get(name);
-        return dEntityType != null ? dEntityType.get() : null;
+        return dEntityType == null ? null : dEntityType.get();
     }
 }
