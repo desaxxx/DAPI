@@ -1,6 +1,7 @@
 package org.nandayo.DAPI;
 
 import net.md_5.bungee.api.ChatColor;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,8 +14,8 @@ public class HexUtil {
             Pattern.CASE_INSENSITIVE
     );
 
-    public static String color(String text) {
-        if (text == null || text.isEmpty()) {
+    public static String color(@NotNull String text) {
+        if (text.isEmpty()) {
             return "";
         }
 
@@ -35,12 +36,12 @@ public class HexUtil {
 
     public static Map<String, String> placeholders = new HashMap<>();
 
-    public static String parse(String text) {
+    public static String parse(@NotNull String text) {
+        if (text.isEmpty()) return "";
         String out = text;
         for(String placeholder : placeholders.keySet()) {
             String value = placeholders.get(placeholder);
-            placeholder = placeholder.replaceAll("([\\{\\}])", "\\\\$1");
-            out = out.replaceAll(placeholder, value);
+            out = out.replace(placeholder, value);
         }
         return color(out);
     }
