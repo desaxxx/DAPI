@@ -6,7 +6,8 @@
 
     <groupId>org.nandayo</groupId>
     <artifactId>DAPI</artifactId>
-    <version>1.1.9</version>
+    <!-- Note to creator: Also update in DAPI.java -->
+    <version>1.1.10</version>
     <packaging>jar</packaging>
 
     <name>DAPI</name>

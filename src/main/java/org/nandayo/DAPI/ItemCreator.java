@@ -16,9 +16,9 @@ public class ItemCreator {
     private final ItemStack itemStack;
     private final ItemMeta meta;
 
-    public ItemCreator(ItemStack itemStack) {
-        this.itemStack = itemStack;
-        this.meta = itemStack.getItemMeta();
+    public ItemCreator(@NotNull ItemStack itemStack) {
+        this.itemStack = itemStack.clone();
+        this.meta = this.itemStack.getItemMeta();
     }
 
     /**

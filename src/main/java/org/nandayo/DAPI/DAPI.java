@@ -3,6 +3,7 @@ package org.nandayo.DAPI;
 import lombok.Getter;
 import lombok.Setter;
 import org.bstats.bukkit.Metrics;
+import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
@@ -13,17 +14,16 @@ import org.nandayo.DAPI.guimanager.MenuListener;
 public final class DAPI {
 
     public final Plugin plugin;
+    private final String version = "1.1.10";
+    public final String GUI_METADATA_KEY = Util.generateRandomLowerCaseString(8);
+
     @Getter
     private static DAPI instance;
-
-    public final String GUI_METADATA_KEY = String.valueOf(1000000 + (int) (Math.random() * 9000000));
-
-    public DAPI(Plugin plugin) {
+    public DAPI(@NotNull Plugin plugin) {
         instance = this;
         this.plugin = plugin;
-        if(plugin != null) {
-            new Metrics(plugin, 24974);
-        }
+        Metrics metrics = new Metrics(plugin, 24974);
+        metrics.addCustomChart(new SimplePie("DAPI Version", () -> version));
     }
 
     public void registerMenuListener() {
