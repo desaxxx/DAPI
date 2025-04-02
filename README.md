@@ -1,12 +1,16 @@
 # DAPI
 [![](https://jitpack.io/v/desaxxx/DAPI.svg)](https://jitpack.io/#desaxxx/DAPI)
 
-> DMaterial — Materials from 1.16.1 to 1.21.4 (**version compatibility**)\
-> DParticle — Particles from 1.16.1 to 1.21.4 (**version compatibility**)\
-> DPotionEffectType — PotionEffectTypes from 1.16.1 to 1.21.4 (**version compatibility**)\
-> DEntityType — EntityTypes from 1.16.1 to 1.21.4 (**version compatibility**)\
+>[!IMPORTANT]
+> New elements from 1.21.5 is supported for DAPI v1.1.11 and newer.
+
+> DMaterial — Materials from 1.16.1 to 1.21.5 (**version compatibility**)\
+> DParticle — Particles from 1.16.1 to 1.21.5 (**version compatibility**)\
+> DPotionEffectType — PotionEffectTypes from 1.16.1 to 1.21.5 (**version compatibility**)\
+> DEntityType — EntityTypes from 1.16.1 to 1.21.5 (**version compatibility**)\
+> DEnchantment — Enchantments from 1.16.1 to 1.21.5 (**version compatibility**)\
 > HexUtil -> Hex colors with patterns <#rrggbb>.\
-> Util -> Console log with prefix.\
+> Util -> Console log with prefix, random string generator.\
 > ItemCreator -> Building itemstack easily.\
 > GUIManager -> Creating GUI easily.
 
