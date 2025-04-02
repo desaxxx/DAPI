@@ -1,4 +1,4 @@
-package org.nandayo.DAPI;
+package org.nandayo.dapi;
 
 import net.md_5.bungee.api.ChatColor;
 import org.jetbrains.annotations.NotNull;

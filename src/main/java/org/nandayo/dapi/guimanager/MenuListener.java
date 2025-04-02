@@ -1,4 +1,4 @@
-package org.nandayo.DAPI.guimanager;
+package org.nandayo.dapi.guimanager;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -7,7 +7,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.nandayo.DAPI.DAPI;
+import org.nandayo.dapi.DAPI;
 
 import java.util.Objects;
 

@@ -1,4 +1,4 @@
-package org.nandayo.DAPI;
+package org.nandayo.dapi;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,13 +8,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.DAPI.guimanager.MenuListener;
+import org.nandayo.dapi.guimanager.MenuListener;
 
 @SuppressWarnings("unused")
 public final class DAPI {
 
-    public final Plugin plugin;
-    private final String version = "1.1.10";
+    public Plugin plugin;
+    private final String version = "1.1.11";
     public final String GUI_METADATA_KEY = Util.generateRandomLowerCaseString(8);
 
     @Getter
@@ -23,7 +23,7 @@ public final class DAPI {
         instance = this;
         this.plugin = plugin;
         Metrics metrics = new Metrics(plugin, 24974);
-        metrics.addCustomChart(new SimplePie("DAPI Version", () -> version));
+        metrics.addCustomChart(new SimplePie("dapi_version", () -> version));
     }
 
     public void registerMenuListener() {
@@ -37,7 +37,7 @@ public final class DAPI {
 
     /**
      * Set missing arguments message for > ALL < subcommands.
-     * Then you can use {@link org.nandayo.DAPI.command.SubCommand#sendMissingArgsMsg(CommandSender, String, String[], String)} within
+     * Then you can use {@link org.nandayo.dapi.command.SubCommand#sendMissingArgsMsg(CommandSender, String, String[], String)} within
      * subcommands to send this message.
      * <blockquote><pre>
      *     Placeholders:

@@ -1,4 +1,4 @@
-package org.nandayo.DAPI;
+package org.nandayo.dapi;
 
 import org.bukkit.Bukkit;
 

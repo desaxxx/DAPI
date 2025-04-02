@@ -1,12 +1,14 @@
-package org.nandayo.DAPI.guimanager;
+package org.nandayo.dapi.guimanager;
 
+import lombok.AccessLevel;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.nandayo.DAPI.DAPI;
-import org.nandayo.DAPI.HexUtil;
+import org.nandayo.dapi.DAPI;
+import org.nandayo.dapi.HexUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,25 +17,23 @@ import java.util.function.Consumer;
 @SuppressWarnings("unused")
 public class Menu {
 
+    @Getter(AccessLevel.PROTECTED)
     private final List<Button> buttons = new ArrayList<>();
+    @Getter(AccessLevel.PROTECTED)
     private final List<LazyButton> lazyButtons = new ArrayList<>();
 
     private int size = 27;
     private String title = "Default";
+    @Getter(AccessLevel.PROTECTED)
     private Inventory inventory = null;
     private Consumer<Inventory> closeCallback = inventory -> {};
+    @Getter(AccessLevel.PROTECTED)
     private boolean emptySlotsModifiable = false;
 
     //-------------------------------------
     //   Public methods
     //
 
-    /*
-     * Buttons
-     */
-    public final List<Button> getButtons() {
-        return this.buttons;
-    }
 
     /*
      * Is button
@@ -53,13 +53,6 @@ public class Menu {
     }
 
     /*
-     * Lazy buttons
-     */
-    public final List<LazyButton> getLazyButtons() {
-        return this.lazyButtons;
-    }
-
-    /*
      * Is lazy button
      */
     public final boolean isLazyButton(int slot) {
@@ -74,13 +67,6 @@ public class Menu {
                 .filter(lb -> lb.getSlots().contains(slot))
                 .findFirst()
                 .orElse(null);
-    }
-
-    /*
-     * Is empty slots modifiable
-     */
-    public boolean isEmptySlotsModifiable() {
-        return emptySlotsModifiable;
     }
 
     /*
@@ -118,13 +104,6 @@ public class Menu {
      */
     protected final void createInventory() {
         createInventory(size, title);
-    }
-
-    /*
-     * Get inventory
-     */
-    protected final Inventory getInventory() {
-        return inventory;
     }
 
     /*

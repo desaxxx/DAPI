@@ -1,17 +1,17 @@
-package org.nandayo.DAPI.object;
+package org.nandayo.dapi.object;
 
 import org.bukkit.Particle;
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.DAPI.object.annotation.DDeprecated;
-import org.nandayo.DAPI.object.annotation.DInfo;
-import org.nandayo.DAPI.object.annotation.DMerged;
-import org.nandayo.DAPI.object.annotation.DRenamed;
+import org.nandayo.dapi.object.annotation.DDeprecated;
+import org.nandayo.dapi.object.annotation.DInfo;
+import org.nandayo.dapi.object.annotation.DMerged;
+import org.nandayo.dapi.object.annotation.DRenamed;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Only supports 1.16.1 - 1.21.4<br>
+ * Only supports 1.16.1 - 1.21.5<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)
  */
@@ -94,6 +94,8 @@ public enum DParticle {
     @DInfo(since = "1.17")
     FALLING_SPORE_BLOSSOM,
     FALLING_WATER,
+    @DInfo(since = "1.21.5")
+    FIREFLY,
     @DRenamed(since = "1.20.5", from = "FIREWORKS_SPARK")
     FIREWORK,
     @DRenamed(since = "1.20.5", from = "WATER_WAKE")
@@ -177,6 +179,8 @@ public enum DParticle {
     SPORE_BLOSSOM_AIR,
     SQUID_INK,
     SWEEP_ATTACK,
+    @DInfo(since = "1.21.5")
+    TINTED_LEAVES,
     @DRenamed(since = "1.20.5", from = "TOTEM")
     TOTEM_OF_UNDYING,
     @DInfo(since = "1.21.2")

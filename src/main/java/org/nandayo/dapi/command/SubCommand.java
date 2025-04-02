@@ -1,10 +1,10 @@
-package org.nandayo.DAPI.command;
+package org.nandayo.dapi.command;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.DAPI.DAPI;
-import org.nandayo.DAPI.HexUtil;
+import org.nandayo.dapi.DAPI;
+import org.nandayo.dapi.HexUtil;
 
 @SuppressWarnings("unused")
 public abstract class SubCommand {

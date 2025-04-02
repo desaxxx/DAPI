@@ -1,16 +1,16 @@
-package org.nandayo.DAPI.object;
+package org.nandayo.dapi.object;
 
 import org.bukkit.enchantments.Enchantment;
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.DAPI.object.annotation.DDeprecated;
-import org.nandayo.DAPI.object.annotation.DInfo;
-import org.nandayo.DAPI.object.annotation.DRenamed;
+import org.nandayo.dapi.object.annotation.DDeprecated;
+import org.nandayo.dapi.object.annotation.DInfo;
+import org.nandayo.dapi.object.annotation.DRenamed;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Only supports 1.16.1 - 1.21.4.<br>
+ * Only supports 1.16.1 - 1.21.5.<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */

@@ -1,16 +1,17 @@
-package org.nandayo.DAPI.object;
+package org.nandayo.dapi.object;
 
 import org.bukkit.entity.EntityType;
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.DAPI.object.annotation.DDeprecated;
-import org.nandayo.DAPI.object.annotation.DInfo;
-import org.nandayo.DAPI.object.annotation.DRenamed;
+import org.nandayo.dapi.object.annotation.DCaution;
+import org.nandayo.dapi.object.annotation.DDeprecated;
+import org.nandayo.dapi.object.annotation.DInfo;
+import org.nandayo.dapi.object.annotation.DRenamed;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Only supports 1.16.1 - 1.21.4.<br>
+ * Only supports 1.16.1 - 1.21.5.<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
@@ -134,6 +135,8 @@ public enum DEntityType {
     LEASH_KNOT,
     @DRenamed(since = "1.20.5", from = "LIGHTNING")
     LIGHTNING_BOLT,
+    @DInfo(since = "1.21.5")
+    LINGERING_POTION,
     LLAMA,
     LLAMA_SPIT,
     MAGMA_CUBE,
@@ -170,8 +173,6 @@ public enum DEntityType {
     PILLAGER,
     PLAYER,
     POLAR_BEAR,
-    @DRenamed(since = "1.20.5", from = "SPLASH_POTION")
-    POTION,
     PUFFERFISH,
     RABBIT,
     RAVAGER,
@@ -193,6 +194,10 @@ public enum DEntityType {
     SPAWNER_MINECART,
     SPECTRAL_ARROW,
     SPIDER,
+    @DCaution(
+            description = "Use DEntityType.POTION between versions of 1.20.5 to 1.21.4",
+            deprecatedSince = "1.20.5", restoredSince = "1.21.5")
+    SPLASH_POTION,
     @DInfo(since = "1.21.2")
     SPRUCE_BOAT,
     @DInfo(since = "1.21.2")
@@ -244,8 +249,6 @@ public enum DEntityType {
     @DDeprecated(since = "1.20.5")
     ENDER_SIGNAL,
     @DDeprecated(since = "1.20.5")
-    SPLASH_POTION,
-    @DDeprecated(since = "1.20.5")
     THROWN_EXP_BOTTLE,
     @DDeprecated(since = "1.20.5")
     PRIMED_TNT,
@@ -275,6 +278,9 @@ public enum DEntityType {
     LIGHTNING,
     @DDeprecated(since = "1.16.1")
     PIG_ZOMBIE,
+    @DRenamed(since = "1.20.5", from = "SPLASH_POTION")
+    @DDeprecated(since = "1.21.5")
+    POTION,
     @DInfo(since = "1.19")
     @DDeprecated(since = "1.21.2")
     CHEST_BOAT,

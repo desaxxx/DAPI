@@ -1,4 +1,4 @@
-package org.nandayo.DAPI.object.annotation;
+package org.nandayo.dapi.object.annotation;
 
 import org.jetbrains.annotations.ApiStatus;
 

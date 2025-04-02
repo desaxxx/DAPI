@@ -1,16 +1,16 @@
-package org.nandayo.DAPI.object;
+package org.nandayo.dapi.object;
 
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.DAPI.object.annotation.DDeprecated;
-import org.nandayo.DAPI.object.annotation.DInfo;
-import org.nandayo.DAPI.object.annotation.DRenamed;
+import org.nandayo.dapi.object.annotation.DDeprecated;
+import org.nandayo.dapi.object.annotation.DInfo;
+import org.nandayo.dapi.object.annotation.DRenamed;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Only supports 1.16.1 - 1.21.4.<br>
+ * Only supports 1.16.1 - 1.21.5.<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
@@ -201,6 +201,8 @@ public enum DMaterial {
     BLUE_CONCRETE,
     BLUE_CONCRETE_POWDER,
     BLUE_DYE,
+    @DInfo(since = "1.21.5")
+    BLUE_EGG,
     BLUE_GLAZED_TERRACOTTA,
     BLUE_ICE,
     BLUE_ORCHID,
@@ -252,6 +254,8 @@ public enum DMaterial {
     BROWN_CONCRETE,
     BROWN_CONCRETE_POWDER,
     BROWN_DYE,
+    @DInfo(since = "1.21.5")
+    BROWN_EGG,
     BROWN_GLAZED_TERRACOTTA,
     BROWN_MUSHROOM,
     BROWN_MUSHROOM_BLOCK,
@@ -275,7 +279,11 @@ public enum DMaterial {
     BUNDLE,
     @DInfo(since = "1.20")
     BURN_POTTERY_SHERD,
+    @DInfo(since = "1.21.5")
+    BUSH,
     CACTUS,
+    @DInfo(since = "1.21.5")
+    CACTUS_FLOWER,
     CAKE,
     @DInfo(since = "1.17")
     CALCITE,
@@ -680,6 +688,8 @@ public enum DMaterial {
     FIELD_MASONED_BANNER_PATTERN,
     FILLED_MAP,
     FIRE,
+    @DInfo(since = "1.21.5")
+    FIREFLY_BUSH,
     FIREWORK_ROCKET,
     FIREWORK_STAR,
     FIRE_CHARGE,
@@ -902,6 +912,8 @@ public enum DMaterial {
     @DInfo(since = "1.17")
     LAVA_CAULDRON,
     LEAD,
+    @DInfo(since = "1.21.5")
+    LEAF_LITTER,
     LEATHER,
     LEATHER_BOOTS,
     LEATHER_CHESTPLATE,
@@ -1583,6 +1595,8 @@ public enum DMaterial {
     @DInfo(since = "1.20")
     SHELTER_POTTERY_SHERD,
     SHIELD,
+    @DInfo(since = "1.21.5")
+    SHORT_DRY_GRASS,
     @DRenamed(since = "1.20.3", from = "GRASS")
     SHORT_GRASS,
     SHROOMLIGHT,
@@ -1741,10 +1755,16 @@ public enum DMaterial {
     TADPOLE_BUCKET,
     @DInfo(since = "1.19")
     TADPOLE_SPAWN_EGG,
+    @DInfo(since = "1.21.5")
+    TALL_DRY_GRASS,
     TALL_GRASS,
     TALL_SEAGRASS,
     TARGET,
     TERRACOTTA,
+    @DInfo(since = "1.21.5")
+    TEST_BLOCK,
+    @DInfo(since = "1.21.5")
+    TEST_INSTANCE_BLOCK,
     @DInfo(since = "1.19.4")
     TIDE_ARMOR_TRIM_SMITHING_TEMPLATE,
     @DInfo(since = "1.17")
@@ -1959,6 +1979,8 @@ public enum DMaterial {
     WHITE_TULIP,
     WHITE_WALL_BANNER,
     WHITE_WOOL,
+    @DInfo(since = "1.21.5")
+    WILDFLOWERS,
     @DInfo(since = "1.19.4")
     WILD_ARMOR_TRIM_SMITHING_TEMPLATE,
     @DInfo(since = "1.20.5")

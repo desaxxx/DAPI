@@ -7,7 +7,7 @@
     <groupId>org.nandayo</groupId>
     <artifactId>DAPI</artifactId>
     <!-- Note to creator: Also update in DAPI.java -->
-    <version>1.1.10</version>
+    <version>1.1.11</version>
     <packaging>jar</packaging>
 
     <name>DAPI</name>
@@ -37,7 +37,7 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>org.nandayo.DAPI.bstats</shadedPattern>
+                            <shadedPattern>org.nandayo.dapi.bstats</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -74,7 +74,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.21.4-R0.1-SNAPSHOT</version>
+            <version>1.21.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

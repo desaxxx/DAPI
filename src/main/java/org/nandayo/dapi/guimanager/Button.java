@@ -1,4 +1,4 @@
-package org.nandayo.DAPI.guimanager;
+package org.nandayo.dapi.guimanager;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;

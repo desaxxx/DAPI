@@ -1,4 +1,4 @@
-package org.nandayo.DAPI.object.annotation;
+package org.nandayo.dapi.object.annotation;
 
 import org.jetbrains.annotations.ApiStatus;
 
@@ -10,5 +10,5 @@ import java.lang.annotation.*;
 @ApiStatus.Internal
 public @interface DDeprecated {
 
-    String since() default "";
+    String since();
 }

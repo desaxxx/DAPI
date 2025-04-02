@@ -8,7 +8,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @ApiStatus.Internal
-public @interface DInfo {
+public @interface DCaution {
 
-    String since();
+    String description();
+    String deprecatedSince();
+    String restoredSince();
 }

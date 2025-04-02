@@ -1,4 +1,4 @@
-package org.nandayo.DAPI;
+package org.nandayo.dapi;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
