@@ -2058,7 +2058,7 @@ public enum DMaterial {
 
     private final Material material;
 
-    public Material get() {
+    public Material parseMaterial() {
         return material;
     }
 
@@ -2074,8 +2074,7 @@ public enum DMaterial {
         }
     }
 
-    public static Material getByName(@NotNull String name) {
-        DMaterial dMaterial = NAME_MAP.get(name);
-        return dMaterial == null ? null : dMaterial.get();
+    public static DMaterial getByName(@NotNull String name) {
+        return NAME_MAP.get(name);
     }
 }
