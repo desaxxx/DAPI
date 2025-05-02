@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("unused")
 @Getter
 public class Point {
 

@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
 public class ItemCreator {
@@ -75,6 +76,15 @@ public class ItemCreator {
     }
 
     /**
+     * Set name of the item stack using supplier.
+     * @param nameSupplier Supplier of String
+     * @return ItemCreator
+     */
+    public ItemCreator name(@NotNull Supplier<String> nameSupplier) {
+        return name(nameSupplier.get());
+    }
+
+    /**
      * Set lore of the item stack.
      * @param lore Strings
      * @return ItemCreator
@@ -88,6 +98,24 @@ public class ItemCreator {
             meta.setLore(loreFix);
         }
         return this;
+    }
+
+    /**
+     * Set lore of the item stack.
+     * @param lore String list
+     * @return ItemCreator
+     */
+    public ItemCreator lore(@NotNull List<String> lore) {
+        return lore(lore.toArray(new String[0]));
+    }
+
+    /**
+     * Set lore of the item stack using supplier.
+     * @param loreSupplier Supplier of String List
+     * @return ItemCreator
+     */
+    public ItemCreator lore(@NotNull Supplier<List<String>> loreSupplier) {
+        return lore(loreSupplier.get().toArray(new String[0]));
     }
 
     /**
@@ -107,21 +135,21 @@ public class ItemCreator {
     }
 
     /**
-     * Set lore of the item stack.
-     * @param lore String list
-     * @return ItemCreator
-     */
-    public ItemCreator lore(@NotNull List<String> lore) {
-        return lore(lore.toArray(new String[0]));
-    }
-
-    /**
      * Add lines to lore of the item stack.
      * @param lore String list
      * @return ItemCreator
      */
     public ItemCreator addLore(@NotNull List<String> lore) {
         return addLore(lore.toArray(new String[0]));
+    }
+
+    /**
+     * Add lines to lore of the item stack using supplier.
+     * @param loreSupplier Supplier of String List
+     * @return ItemCreator
+     */
+    public ItemCreator addLore(@NotNull Supplier<List<String>> loreSupplier) {
+        return addLore(loreSupplier.get().toArray(new String[0]));
     }
 
     /**
