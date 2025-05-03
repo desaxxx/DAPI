@@ -2,7 +2,6 @@ package org.nandayo.dapi.command;
 
 import org.bukkit.command.*;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.nandayo.dapi.Util;

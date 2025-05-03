@@ -1,6 +1,5 @@
 package org.nandayo.dapi.command;
 
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.nandayo.dapi.DAPI;
@@ -9,7 +8,7 @@ import org.nandayo.dapi.HexUtil;
 @SuppressWarnings("unused")
 public abstract class SubCommand {
 
-    abstract public boolean onSubCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args);
+    abstract public boolean onSubCommand(@NotNull CommandSender sender, @NotNull String label, String[] args);
 
     /**
      * Sends the missing arguments message.
