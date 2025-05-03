@@ -11,11 +11,18 @@ import org.jetbrains.annotations.Nullable;
 @SuppressWarnings("unused")
 public class BoundingBox {
 
-    private final Point minPoint;
-    private final Point maxPoint;
-    private final String worldName;
+    private Point minPoint;
+    private Point maxPoint;
+    private String worldName;
 
     public BoundingBox(@NotNull Point point1, @NotNull Point point2, @NotNull String worldName) {
+        this.minPoint = Point.getMinimum(point1, point2);
+        this.maxPoint = Point.getMaximum(point1, point2);
+        this.worldName = worldName;
+    }
+
+
+    public void resize(@NotNull Point point1, @NotNull Point point2, @NotNull String worldName) {
         this.minPoint = Point.getMinimum(point1, point2);
         this.maxPoint = Point.getMaximum(point1, point2);
         this.worldName = worldName;

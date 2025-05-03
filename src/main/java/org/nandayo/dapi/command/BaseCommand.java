@@ -8,6 +8,7 @@ import org.nandayo.dapi.Util;
 
 import java.util.List;
 
+@Deprecated
 @SuppressWarnings("unused")
 public abstract class BaseCommand implements CommandExecutor, TabCompleter {
 
