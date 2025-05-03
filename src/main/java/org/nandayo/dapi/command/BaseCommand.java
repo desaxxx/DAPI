@@ -16,10 +16,10 @@ public abstract class BaseCommand implements CommandExecutor, TabCompleter {
         register(plugin);
     }
 
-    abstract @NotNull String command();
-    abstract @NotNull String description();
-    abstract boolean onCommand(@NotNull CommandSender sender, @NotNull String[] args);
-    abstract @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull String[] args);
+    abstract public @NotNull String command();
+    abstract public @NotNull String description();
+    abstract public boolean onCommand(@NotNull CommandSender sender, @NotNull String[] args);
+    abstract public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull String[] args);
 
     public <T extends JavaPlugin> void register(@NotNull T plugin) {
         PluginCommand command = plugin.getCommand(command());
