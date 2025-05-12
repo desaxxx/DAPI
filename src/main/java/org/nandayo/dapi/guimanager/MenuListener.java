@@ -22,23 +22,26 @@ public class MenuListener implements Listener {
         if(dapi.plugin == null) return;
 
         Player p = (Player) e.getWhoClicked();
-        if(p.hasMetadata(dapi.GUI_METADATA_KEY)) {Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
+        if(p.hasMetadata(dapi.GUI_METADATA_KEY)) {
+            Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu == null) {
                 return;
             }
-            if(menu.isEmptySlotsModifiable() && Objects.equals(e.getClickedInventory(), p.getInventory())) {
-                return;
-            }else if(Objects.equals(e.getClickedInventory(), p.getInventory())) {
-                e.setCancelled(true);
+            boolean clickedOnPlayerInventory = Objects.equals(e.getClickedInventory(), p.getInventory());
+            if(clickedOnPlayerInventory) {
+                if(!menu.isEmptySlotsModifiable()) {
+                    e.setCancelled(true);
+                }
                 return;
             }
 
-            Button button = menu.getButton(e.getSlot());
-            if(button != null) {
-                e.setCancelled(!button.isModifiable());
-                button.onClick(p, e.getClick());
-            }else {
+            // Abstract click call.
+            AbstractButton abstractButton = menu.getButton(e.getSlot());
+            if(abstractButton == null) {
                 e.setCancelled(!menu.isEmptySlotsModifiable());
+            } else if(abstractButton instanceof Button) {
+                Button button = (Button) abstractButton;
+                button.onClick(p, e.getClick());
             }
         }
     }

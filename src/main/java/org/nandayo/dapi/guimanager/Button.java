@@ -1,29 +1,24 @@
 package org.nandayo.dapi.guimanager;
 
+import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("unused")
-public abstract class Button {
+@Getter
+public abstract class Button extends AbstractButton {
 
     private final int slot;
-    private final boolean isModifiable;
+    private final boolean modifiable;
 
-    public Button(int slot, boolean isModifiable) {
+    public Button(int slot, boolean modifiable) {
         this.slot = slot;
-        this.isModifiable = isModifiable;
+        this.modifiable = modifiable;
     }
     public Button(int slot) {
         this(slot, false);
-    }
-
-    public final int getSlot() {
-        return this.slot;
-    }
-
-    public boolean isModifiable() {
-        return isModifiable;
     }
 
     //------------------------------
@@ -32,5 +27,5 @@ public abstract class Button {
 
     public abstract ItemStack getItem();
 
-    public abstract void onClick(Player p, ClickType clickType);
+    public abstract void onClick(@NotNull Player p, ClickType clickType);
 }

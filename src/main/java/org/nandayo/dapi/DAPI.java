@@ -14,7 +14,7 @@ import org.nandayo.dapi.guimanager.MenuListener;
 public final class DAPI {
 
     public Plugin plugin;
-    private final String version = "1.1.18";
+    private final String version = "1.1.19";
     public final String GUI_METADATA_KEY = Util.generateRandomLowerCaseString(8);
 
     @Getter
