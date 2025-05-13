@@ -1,15 +1,10 @@
 package org.nandayo.dapi;
 
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -177,13 +172,10 @@ public class ItemCreator {
      */
     public ItemCreator hideFlag(@NotNull ItemFlag... flags) {
         if(meta != null) {
-            // This section is required for ItemFlag.HIDE_ATTRIBUTES to work as of MC 1.20.6
             DAPI dapi = DAPI.getInstance();
             if(dapi != null) {
-                Plugin plugin = dapi.plugin;
-                meta.addAttributeModifier(Attribute.ARMOR, new AttributeModifier(new NamespacedKey(DAPI.getInstance().plugin, "foo"),0, AttributeModifier.Operation.MULTIPLY_SCALAR_1, EquipmentSlotGroup.ANY));
+                dapi.getWrapper().addArmorAttribute(meta);
             }
-            //
             meta.addItemFlags(flags);
         }
         return this;

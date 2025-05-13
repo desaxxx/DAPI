@@ -14,7 +14,9 @@ import org.nandayo.dapi.guimanager.MenuListener;
 public final class DAPI {
 
     public Plugin plugin;
-    private final String version = "1.1.21";
+    @Getter
+    private final Wrapper wrapper;
+    private final String version = "1.1.22";
     public final String GUI_METADATA_KEY = Util.generateRandomLowerCaseString(8);
 
     @Getter
@@ -22,6 +24,7 @@ public final class DAPI {
     public DAPI(@NotNull Plugin plugin) {
         instance = this;
         this.plugin = plugin;
+        this.wrapper = new Wrapper();
         Metrics metrics = new Metrics(plugin, 24974);
         metrics.addCustomChart(new SimplePie("dapi_version", () -> version));
     }
