@@ -81,6 +81,8 @@ public class Menu {
      * @param title String
      */
     protected final void createInventory(int size, @NotNull String title) {
+        this.size = size;
+        this.title = title;
         this.inventory = Bukkit.createInventory(null, size, HexUtil.parse(title));
     }
 
@@ -106,7 +108,6 @@ public class Menu {
      */
     @Deprecated(since = "1.1.19")
     protected final void setSize(int size) {
-        this.size = size;
         createInventory(size, title);
     }
 
@@ -115,9 +116,8 @@ public class Menu {
      * @param title String
      * @deprecated This is not recommended to use, since {@link #createInventory(int, String)} already does what it does.
      */
-    @Deprecated
+    @Deprecated(since = "1.1.19")
     protected final void setTitle(String title) {
-        this.title = title;
         createInventory(size, title);
     }
 

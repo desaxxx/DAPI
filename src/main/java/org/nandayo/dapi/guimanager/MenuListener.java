@@ -13,8 +13,9 @@ import java.util.Objects;
 
 public class MenuListener implements Listener {
 
-    /*
+    /**
      * Cancel click if button is unmodifiable
+     * @param e Event*
      */
     @EventHandler
     public void onGUIClick(InventoryClickEvent e) {
@@ -25,8 +26,9 @@ public class MenuListener implements Listener {
         if(p.hasMetadata(dapi.GUI_METADATA_KEY)) {
             Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu == null) return;
+            // DAPI Menu from now.
 
-            // Menu
+            // Click on player inventory.
             boolean clickedOnPlayerInventory = Objects.equals(e.getClickedInventory(), p.getInventory());
             if(clickedOnPlayerInventory) {
                 if(!menu.isEmptySlotsModifiable()) {
@@ -35,7 +37,7 @@ public class MenuListener implements Listener {
                 return;
             }
 
-            // Abstract click call.
+            // Abstract button click.
             AbstractButton abstractButton = menu.getButton(e.getSlot());
             if(abstractButton == null) {
                 e.setCancelled(!menu.isEmptySlotsModifiable());
@@ -52,8 +54,9 @@ public class MenuListener implements Listener {
         }
     }
 
-    /*
+    /**
      * Cancel click anyway if it is drag event
+     * @param e Event*
      */
     @EventHandler
     public void onGUIDrag(InventoryDragEvent e){
@@ -69,8 +72,9 @@ public class MenuListener implements Listener {
         }
     }
 
-    /*
+    /**
      * Remove metadata on inventory close event
+     * @param e Event*
      */
     @EventHandler
     public void onGUIClose(InventoryCloseEvent e){
@@ -87,8 +91,9 @@ public class MenuListener implements Listener {
         }
     }
 
-    /*
+    /**
      * Remove metadata on quit event
+     * @param e Event*
      */
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
