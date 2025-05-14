@@ -7,9 +7,13 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.PlayerInventory;
 import org.nandayo.dapi.DAPI;
 
 import java.util.Objects;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class MenuListener implements Listener {
 
@@ -33,6 +37,8 @@ public class MenuListener implements Listener {
             if(clickedOnPlayerInventory) {
                 if(!menu.isEmptySlotsModifiable()) {
                     e.setCancelled(true);
+                    BiConsumer<PlayerInventory, Integer> playerClickConsumer = menu.getOnPlayerInventoryClick();
+                    if(playerClickConsumer != null) playerClickConsumer.accept(p.getInventory(), e.getSlot());
                 }
                 return;
             }
@@ -85,7 +91,8 @@ public class MenuListener implements Listener {
         if (p.hasMetadata(dapi.GUI_METADATA_KEY)) {
             Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
-                menu.handleCloseCallback();
+                Consumer<Inventory> closeConsumer = menu.getCloseCallback();
+                if(closeConsumer != null) closeConsumer.accept(menu.getInventory());
             }
             p.removeMetadata(dapi.GUI_METADATA_KEY, dapi.plugin);
         }
@@ -104,7 +111,8 @@ public class MenuListener implements Listener {
         if (p.hasMetadata(dapi.GUI_METADATA_KEY)) {
             Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
-                menu.handleCloseCallback();
+                Consumer<Inventory> closeConsumer = menu.getCloseCallback();
+                if(closeConsumer != null) closeConsumer.accept(menu.getInventory());
             }
             p.removeMetadata(dapi.GUI_METADATA_KEY, dapi.plugin);
         }

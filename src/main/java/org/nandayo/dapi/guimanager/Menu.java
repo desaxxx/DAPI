@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -14,6 +15,7 @@ import org.nandayo.dapi.HexUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 @SuppressWarnings("unused")
@@ -26,6 +28,7 @@ public class Menu {
     private @NotNull String title = "Default";
     private Inventory inventory = null;
     private Consumer<Inventory> closeCallback = inventory -> {};
+    private BiConsumer<PlayerInventory, Integer> onPlayerInventoryClick = (playerInventory, slot) -> {};
     private boolean emptySlotsModifiable = false;
 
     //-------------------------------------
@@ -62,14 +65,6 @@ public class Menu {
                 .orElse(null);
     }
 
-    /**
-     * Handle close callback
-     */
-    public final void handleCloseCallback() {
-        if (this.closeCallback != null) {
-            this.closeCallback.accept(this.inventory);
-        }
-    }
 
     //----------------------------------------
     //   Protected methods
@@ -164,6 +159,14 @@ public class Menu {
      */
     protected final void runOnClose(@NotNull Consumer<Inventory> callBack) {
         this.closeCallback = callBack;
+    }
+
+    /**
+     * Set player inventory click function.
+     * @param callBack Consumer of PlayerInventory
+     */
+    protected final void runOnPlayerInventoryClick(@NotNull BiConsumer<PlayerInventory, Integer> callBack) {
+        this.onPlayerInventoryClick = callBack;
     }
 
     /**
