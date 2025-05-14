@@ -2,7 +2,7 @@
 [![](https://jitpack.io/v/desaxxx/DAPI.svg)](https://jitpack.io/#desaxxx/DAPI)
 
 >[!IMPORTANT]
-> New objects from 1.21.5 is supported for DAPI v1.1.11 and newer.
+> New objects from 1.21.5 is supported as of DAPI v1.1.11 and newer.
 
 > DMaterial — Materials from 1.16.1 to 1.21.5 (**version compatibility**)\
 > DParticle — Particles from 1.16.1 to 1.21.5 (**version compatibility**)\
