@@ -2,7 +2,7 @@
 [![](https://jitpack.io/v/desaxxx/DAPI.svg)](https://jitpack.io/#desaxxx/DAPI)
 
 >[!IMPORTANT]
-> New objects from 1.21.5 is supported as of DAPI v1.1.11 and newer.
+> New objects from 1.21.5 is supported as of DAPI v1.1.11.
 
 > DMaterial — Materials from 1.16.1 to 1.21.5 (**version compatibility**)\
 > DParticle — Particles from 1.16.1 to 1.21.5 (**version compatibility**)\
@@ -12,10 +12,10 @@
 > HexUtil -> Hex colors with patterns <#rrggbb>.\
 > Util -> Console log with prefix, random string generator.\
 > ItemCreator -> Building itemstack easily.\
-> GUIManager -> Creating GUI easily.
+> GUIManager 6 Buttons -> Creating GUI easily.
 
 ## Adding GUIManager Listener
-If you are going to use GUIManager, you have to register api events at **onEnable()**
+If you are going to use GUIManager, you have to register api events.
 ```
 DAPI dapi = new DAPI(this);
 dapi.registerMenuListener();
