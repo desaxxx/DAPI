@@ -97,7 +97,8 @@ public class Wrapper {
 
     /**
      * Creating a version-compat PotionMeta.<br>
-     * setBasePotionType() -> 1.20.2<br>
+     * setBasePotionType(NotNull) -> 1.20.2<br>
+     * setBasePotionType(Nullable) -> 1.20.5<br>
      * setDurationScale() -> 1.21.5
      * @param meta PotionMeta
      * @param potionType PotionType

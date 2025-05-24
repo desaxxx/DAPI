@@ -244,7 +244,7 @@ public class ItemCreator {
     public ItemCreator potion(@Nullable PotionType potionType, @Nullable Color color) {
         if(meta != null && meta instanceof PotionMeta) {
             PotionMeta potionMeta = (PotionMeta) meta;
-            return potion(potionType, potionMeta.getDurationScale(), color);
+            return potion(potionType, 1.0f, color);
         }
         return this;
     }
@@ -257,7 +257,7 @@ public class ItemCreator {
     public ItemCreator potion(@Nullable PotionType potionType) {
         if(meta != null && meta instanceof PotionMeta) {
             PotionMeta potionMeta = (PotionMeta) meta;
-            return potion(potionType, potionMeta.getDurationScale(), potionMeta.getColor());
+            return potion(potionType, 1.0f, potionMeta.getColor());
         }
         return this;
     }
