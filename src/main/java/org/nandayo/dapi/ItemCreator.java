@@ -248,4 +248,17 @@ public class ItemCreator {
         }
         return this;
     }
+
+    /**
+     * Set the base potion of item stack.
+     * @param potionType PotionType
+     * @return ItemCreator
+     */
+    public ItemCreator potion(@Nullable PotionType potionType) {
+        if(meta != null && meta instanceof PotionMeta) {
+            PotionMeta potionMeta = (PotionMeta) meta;
+            return potion(potionType, potionMeta.getDurationScale(), potionMeta.getColor());
+        }
+        return this;
+    }
 }
