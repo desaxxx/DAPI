@@ -1,11 +1,17 @@
 package org.nandayo.dapi;
 
+import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionType;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -174,7 +180,11 @@ public class ItemCreator {
         if(meta != null) {
             DAPI dapi = DAPI.getInstance();
             if(dapi != null) {
-                dapi.getWrapper().addArmorAttribute(meta);
+                Attribute armorAttribute = dapi.getWrapper().getAttribute();
+                AttributeModifier attributeModifier = dapi.getWrapper().getAttributeModifier();
+                if(armorAttribute != null && attributeModifier != null) {
+                    meta.addAttributeModifier(armorAttribute, attributeModifier);
+                }
             }
             meta.addItemFlags(flags);
         }
@@ -189,6 +199,52 @@ public class ItemCreator {
     public ItemCreator unbreakable(boolean unbreakable) {
         if(meta != null) {
             meta.setUnbreakable(unbreakable);
+        }
+        return this;
+    }
+
+    /**
+     * Set the base potion of item stack.
+     * @param potionType PotionType
+     * @param durationScale Float
+     * @param color Color
+     * @return ItemCreator
+     */
+    public ItemCreator potion(@Nullable PotionType potionType, @Nullable Float durationScale, @Nullable Color color) {
+        if(meta != null && meta instanceof PotionMeta) {
+            PotionMeta potionMeta = (PotionMeta) meta;
+            DAPI dapi = DAPI.getInstance();
+            if(dapi != null) {
+                dapi.getWrapper().editPotionMeta(potionMeta, potionType, durationScale, color);
+            }
+        }
+        return this;
+    }
+
+    /**
+     * Set the base potion of item stack.
+     * @param potionType PotionType
+     * @param durationScale Float
+     * @return ItemCreator
+     */
+    public ItemCreator potion(@Nullable PotionType potionType, @Nullable Float durationScale) {
+        if(meta != null && meta instanceof PotionMeta) {
+            PotionMeta potionMeta = (PotionMeta) meta;
+            return potion(potionType, durationScale, potionMeta.getColor());
+        }
+        return this;
+    }
+
+    /**
+     * Set the base potion of item stack.
+     * @param potionType PotionType
+     * @param color Color
+     * @return ItemCreator
+     */
+    public ItemCreator potion(@Nullable PotionType potionType, @Nullable Color color) {
+        if(meta != null && meta instanceof PotionMeta) {
+            PotionMeta potionMeta = (PotionMeta) meta;
+            return potion(potionType, potionMeta.getDurationScale(), color);
         }
         return this;
     }
