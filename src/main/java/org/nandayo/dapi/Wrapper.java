@@ -99,19 +99,14 @@ public class Wrapper {
      * Creating a version-compat PotionMeta.<br>
      * setBasePotionType(NotNull) -> 1.20.2<br>
      * setBasePotionType(Nullable) -> 1.20.5<br>
-     * setDurationScale() -> 1.21.5
+     * setDurationScale() -> 1.21.5 spigot only so removing it...
      * @param meta PotionMeta
      * @param potionType PotionType
-     * @param scale Float
      * @param color Color
      */
-    @SuppressWarnings({"deprecation", "removal"})
-    public void editPotionMeta(@NotNull PotionMeta meta, @Nullable PotionType potionType, @Nullable Float scale, @Nullable Color color) {
-        if(minecraftVersion >= 215) {
-            meta.setBasePotionType(potionType);
-            if(meta.hasDurationScale()) meta.setDurationScale(scale);
-        }
-        else if (minecraftVersion >= 205) {
+    @SuppressWarnings("removal")
+    public void editPotionMeta(@NotNull PotionMeta meta, @Nullable PotionType potionType, @Nullable Color color) {
+        if (minecraftVersion >= 205) {
             meta.setBasePotionType(potionType);
         }
         else if(minecraftVersion >= 202) {

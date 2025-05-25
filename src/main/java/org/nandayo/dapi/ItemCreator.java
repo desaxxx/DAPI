@@ -74,6 +74,7 @@ public class ItemCreator {
      * @param name String
      * @return ItemCreator
      */
+    @SuppressWarnings("deprecation")
     public ItemCreator name(@NotNull String name) {
         if(meta != null) {
             meta.setDisplayName(HexUtil.parse(name));
@@ -95,6 +96,7 @@ public class ItemCreator {
      * @param lore Strings
      * @return ItemCreator
      */
+    @SuppressWarnings("deprecation")
     public ItemCreator lore(@NotNull String... lore) {
         if(meta != null) {
             List<String> loreFix = new ArrayList<>();
@@ -129,6 +131,7 @@ public class ItemCreator {
      * @param lore Strings
      * @return ItemCreator
      */
+    @SuppressWarnings("deprecation")
     public ItemCreator addLore(@NotNull String... lore) {
         if(meta != null) {
             List<String> loreFix = meta.getLore() == null ? new ArrayList<>() : new ArrayList<>(meta.getLore());
@@ -206,45 +209,16 @@ public class ItemCreator {
     /**
      * Set the base potion of item stack.
      * @param potionType PotionType
-     * @param durationScale Float
-     * @param color Color
-     * @return ItemCreator
-     */
-    public ItemCreator potion(@Nullable PotionType potionType, @Nullable Float durationScale, @Nullable Color color) {
-        if(meta != null && meta instanceof PotionMeta) {
-            PotionMeta potionMeta = (PotionMeta) meta;
-            DAPI dapi = DAPI.getInstance();
-            if(dapi != null) {
-                dapi.getWrapper().editPotionMeta(potionMeta, potionType, durationScale, color);
-            }
-        }
-        return this;
-    }
-
-    /**
-     * Set the base potion of item stack.
-     * @param potionType PotionType
-     * @param durationScale Float
-     * @return ItemCreator
-     */
-    public ItemCreator potion(@Nullable PotionType potionType, @Nullable Float durationScale) {
-        if(meta != null && meta instanceof PotionMeta) {
-            PotionMeta potionMeta = (PotionMeta) meta;
-            return potion(potionType, durationScale, potionMeta.getColor());
-        }
-        return this;
-    }
-
-    /**
-     * Set the base potion of item stack.
-     * @param potionType PotionType
      * @param color Color
      * @return ItemCreator
      */
     public ItemCreator potion(@Nullable PotionType potionType, @Nullable Color color) {
         if(meta != null && meta instanceof PotionMeta) {
             PotionMeta potionMeta = (PotionMeta) meta;
-            return potion(potionType, 1.0f, color);
+            DAPI dapi = DAPI.getInstance();
+            if(dapi != null) {
+                dapi.getWrapper().editPotionMeta(potionMeta, potionType, color);
+            }
         }
         return this;
     }
@@ -257,7 +231,7 @@ public class ItemCreator {
     public ItemCreator potion(@Nullable PotionType potionType) {
         if(meta != null && meta instanceof PotionMeta) {
             PotionMeta potionMeta = (PotionMeta) meta;
-            return potion(potionType, 1.0f, potionMeta.getColor());
+            return potion(potionType, potionMeta.getColor());
         }
         return this;
     }
