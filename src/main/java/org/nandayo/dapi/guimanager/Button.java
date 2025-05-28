@@ -6,19 +6,27 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SuppressWarnings("unused")
 @Getter
 public abstract class Button extends AbstractButton {
 
-    private final int slot;
     private final boolean modifiable;
 
-    public Button(int slot, boolean modifiable) {
-        this.slot = slot;
+    public Button(@NotNull List<Integer> slots, boolean modifiable) {
+        super(slots);
         this.modifiable = modifiable;
     }
-    public Button(int slot) {
-        this(slot, false);
+    public Button(@NotNull List<Integer> slots) {
+        this(slots, false);
+    }
+    public Button(boolean modifiable, @NotNull Integer... slots) {
+        this(Arrays.asList(slots), modifiable);
+    }
+    public Button(@NotNull Integer... slots) {
+        this(Arrays.asList(slots), false);
     }
 
     //------------------------------

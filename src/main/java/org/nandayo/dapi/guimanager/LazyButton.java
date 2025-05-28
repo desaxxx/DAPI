@@ -1,11 +1,9 @@
 package org.nandayo.dapi.guimanager;
 
-import com.google.common.collect.ImmutableList;
 import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,11 +11,10 @@ import java.util.List;
 @Getter
 public abstract class LazyButton extends AbstractButton {
 
-    private final @NotNull List<Integer> slots;
     private final boolean modifiable;
 
     public LazyButton(@NotNull List<Integer> slots, boolean modifiable) {
-        this.slots = new ArrayList<>(slots);
+        super(slots);
         this.modifiable = modifiable;
     }
     public LazyButton(@NotNull List<Integer> slots) {
@@ -28,11 +25,6 @@ public abstract class LazyButton extends AbstractButton {
     }
     public LazyButton(Integer... slots) {
         this(Arrays.asList(slots), false);
-    }
-
-    @NotNull
-    public final List<Integer> getSlots() {
-        return ImmutableList.copyOf(slots);
     }
 
     //------------------------------

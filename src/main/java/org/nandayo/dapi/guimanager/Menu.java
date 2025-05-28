@@ -53,14 +53,7 @@ public class Menu {
     @Nullable
     public final AbstractButton getButton(int slot) {
         return this.abstractButtons.stream()
-                .filter(b -> {
-                    if(b instanceof Button) {
-                        return ((Button) b).getSlot() == slot;
-                    } else if(b instanceof LazyButton) {
-                        return ((LazyButton) b).getSlots().contains(slot);
-                    }
-                    return false;
-                })
+                .filter(b -> b.getSlots().contains(slot))
                 .findFirst()
                 .orElse(null);
     }
@@ -122,7 +115,30 @@ public class Menu {
      * @param button AbstractButton
      */
     protected final <T extends AbstractButton> void addButton(@NotNull T button) {
+        // Remove the old button from overridden slot.
+        for(Integer slot : button.getSlots()) {
+            removeButton(slot);
+        }
+
         this.abstractButtons.add(button);
+    }
+
+    /**
+     * Remove a button from the buttons list.
+     * @param button AbstractButton
+     */
+    protected final void removeButton(@NotNull AbstractButton button) {
+        this.abstractButtons.remove(button);
+    }
+
+    /**
+     * Remove a button from given slot or remove the slot from slots of the button in case it has multiple slots.
+     * @param slot Integer
+     */
+    protected final void removeButton(int slot) {
+        AbstractButton button = getButton(slot);
+        if(button == null) return;
+        button.removeSlot(slot);
     }
 
     /**
@@ -183,7 +199,9 @@ public class Menu {
         for(AbstractButton abstractButton : abstractButtons) {
             if(abstractButton instanceof Button) {
                 Button button = (Button) abstractButton;
-                inv.setItem(button.getSlot(), button.getItem());
+                for(int slot : button.getSlots()) {
+                    inv.setItem(slot, button.getItem());
+                }
             }
             else if (abstractButton instanceof LazyButton) {
                 LazyButton lazyButton = (LazyButton) abstractButton;

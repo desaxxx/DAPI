@@ -16,7 +16,7 @@ public final class DAPI {
     public Plugin plugin;
     @Getter
     private final Wrapper wrapper;
-    private final String version = "1.1.27";
+    private final String version = "1.1.28";
     public final String GUI_METADATA_KEY = Util.generateRandomLowerCaseString(8);
 
     @Getter
@@ -27,7 +27,9 @@ public final class DAPI {
         this.wrapper = new Wrapper();
         Metrics metrics = new Metrics(plugin, 24974);
         metrics.addCustomChart(new SimplePie("dapi_version", () -> version));
+
     }
+
 
     public void registerMenuListener() {
         if(plugin == null) {
