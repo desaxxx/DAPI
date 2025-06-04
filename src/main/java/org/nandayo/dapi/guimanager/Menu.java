@@ -24,17 +24,15 @@ public class Menu {
 
     private final @NotNull List<AbstractButton> abstractButtons = new ArrayList<>();
 
-    private int size = 27;
-    private @NotNull String title = "Default";
-    private Inventory inventory = null;
-    private Consumer<Inventory> closeCallback = inventory -> {};
-    private BiConsumer<PlayerInventory, Integer> onPlayerInventoryClick = (playerInventory, slot) -> {};
+    @Deprecated(since = "1.1.29", forRemoval = true)
+    private int size;
+    private @NotNull MenuType menuType = MenuType.CHEST_3_ROWS;
+    private @NotNull String title = "Menu";
+    private @Nullable Inventory inventory = null;
+
+    private @NotNull Consumer<Inventory> closeCallback = inventory -> {};
+    private @NotNull BiConsumer<PlayerInventory, Integer> onPlayerInventoryClick = (playerInventory, slot) -> {};
     private boolean emptySlotsModifiable = false;
-
-    //-------------------------------------
-    //   Public methods
-    //
-
 
     /**
      * Check if the slot is a menu button.
@@ -59,54 +57,75 @@ public class Menu {
     }
 
 
-    //----------------------------------------
-    //   Protected methods
-    //
+
+    /**
+     * Create inventory with menu type and a title.
+     * @param menuType MenuType
+     * @param title String
+     */
+    protected final void createInventory(@NotNull MenuType menuType, @NotNull String title) {
+        this.menuType = menuType;
+        this.title = title;
+        this.inventory = menuType.createInventory(title);
+    }
+
 
     /**
      * Create inventory with size and a title.
      * @param size Integer (multiples of 9. Min:0, Max:54)
      * @param title String
+     * @deprecated Use {@link #createInventory(MenuType, String)} instead to avoid invalid inventory sizes.
      */
+    @Deprecated(since = "1.1.29", forRemoval = true)
     protected final void createInventory(int size, @NotNull String title) {
-        this.size = size;
+        this.menuType = MenuType.CHEST_3_ROWS;
         this.title = title;
         this.inventory = Bukkit.createInventory(null, size, HexUtil.parse(title));
     }
 
     /**
+     * Create inventory with MenuType and default title.
+     * @param menuType MenuType
+     */
+    protected final void createInventory(@NotNull MenuType menuType) {
+        createInventory(menuType, title);
+    }
+
+    /**
      * Create inventory with size.
      * @param size Integer (multiples of 9. Min:0, Max:54)
+     * @deprecated Use {@link #createInventory(MenuType)} instead to avoid invalid inventory sizes.
      */
+    @Deprecated(since = "1.1.29", forRemoval = true)
     protected final void createInventory(int size) {
-        createInventory(size, title);
+        createInventory(menuType, title);
     }
 
     /**
      * Create inventory with default settings.
      */
     protected final void createInventory() {
-        createInventory(size, title);
+        createInventory(menuType, title);
     }
 
     /**
      * Set size of the menu.
      * @param size Integer (multiples of 9. Min:0, Max:54)
-     * @deprecated This is not recommended to use, since {@link #createInventory(int, String)} already does what it does.
+     * @deprecated This is not recommended to use since {@link #createInventory(MenuType, String)} already does what it does.
      */
-    @Deprecated(since = "1.1.19")
+    @Deprecated(since = "1.1.19", forRemoval = true)
     protected final void setSize(int size) {
-        createInventory(size, title);
+        createInventory(menuType, title);
     }
 
     /**
      * Set title of the menu.
      * @param title String
-     * @deprecated This is not recommended to use, since {@link #createInventory(int, String)} already does what it does.
+     * @deprecated This is not recommended to use since {@link #createInventory(MenuType, String)} already does what it does.
      */
-    @Deprecated(since = "1.1.19")
+    @Deprecated(since = "1.1.19", forRemoval = true)
     protected final void setTitle(String title) {
-        createInventory(size, title);
+        createInventory(menuType, title);
     }
 
     /**
@@ -191,7 +210,7 @@ public class Menu {
      */
     protected final void displayTo(@NotNull Player p) {
         if(inventory == null) {
-            createInventory(size, title);
+            createInventory(menuType, title);
         }
         Inventory inv = this.inventory;
 

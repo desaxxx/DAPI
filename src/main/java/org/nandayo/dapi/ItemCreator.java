@@ -74,7 +74,6 @@ public class ItemCreator {
      * @param name String
      * @return ItemCreator
      */
-    @SuppressWarnings("deprecation")
     public ItemCreator name(@NotNull String name) {
         if(meta != null) {
             meta.setDisplayName(HexUtil.parse(name));
@@ -96,7 +95,6 @@ public class ItemCreator {
      * @param lore Strings
      * @return ItemCreator
      */
-    @SuppressWarnings("deprecation")
     public ItemCreator lore(@NotNull String... lore) {
         if(meta != null) {
             List<String> loreFix = new ArrayList<>();
@@ -131,7 +129,6 @@ public class ItemCreator {
      * @param lore Strings
      * @return ItemCreator
      */
-    @SuppressWarnings("deprecation")
     public ItemCreator addLore(@NotNull String... lore) {
         if(meta != null) {
             List<String> loreFix = meta.getLore() == null ? new ArrayList<>() : new ArrayList<>(meta.getLore());

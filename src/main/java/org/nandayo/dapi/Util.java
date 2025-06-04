@@ -1,6 +1,8 @@
 package org.nandayo.dapi;
 
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -12,6 +14,17 @@ public class Util {
     static public void log(String... msg) {
         for(String s : msg) {
             Bukkit.getConsoleSender().sendMessage(HexUtil.parse(PREFIX + s));
+        }
+    }
+
+    /**
+     * Send a message to CONSOLE or a player.
+     * @param receiver Message receiver
+     * @param messages Messages
+     */
+    static public void tell(@NotNull CommandSender receiver, @NotNull String[] messages) {
+        for(String m : messages) {
+            receiver.sendMessage(HexUtil.parse(Util.PREFIX + m));
         }
     }
 
