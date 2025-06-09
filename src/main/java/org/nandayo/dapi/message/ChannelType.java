@@ -92,6 +92,15 @@ public abstract class ChannelType {
     }
 
     /**
+     * Send a prefixed — from {@link Util#PREFIX} — channel message to a player or console.<br>
+     * @param receiver Player/Console
+     * @param message Message
+     */
+    public void sendWithPrefix(@NotNull CommandSender receiver, @NotNull String message) {
+        sendWithPrefix(receiver, ChannelMessage.Builder.of(message).build());
+    }
+
+    /**
      * Send a message to all online players.
      * Use {@link org.nandayo.dapi.message.ChannelMessage.Builder} to build channel messages.
      * @param message Message
@@ -105,6 +114,15 @@ public abstract class ChannelType {
     }
 
     /**
+     * Send a message to all online players.
+     * @param message Message
+     * @param includeConsole whether send the message to console or not.
+     */
+    public void sendAll(@NotNull String message, boolean includeConsole) {
+        sendAll(ChannelMessage.Builder.of(message).build(), includeConsole);
+    }
+
+    /**
      * Send a prefixed — from {@link Util#PREFIX} — message to all online players.
      * Use {@link org.nandayo.dapi.message.ChannelMessage.Builder} to build channel messages.
      * @param message Message
@@ -115,5 +133,14 @@ public abstract class ChannelType {
             sendWithPrefix(player, message);
         }
         if(includeConsole) send(Bukkit.getConsoleSender(), message);
+    }
+
+    /**
+     * Send a prefixed — from {@link Util#PREFIX} — message to all online players.
+     * @param message Message
+     * @param includeConsole whether send the message to console or not.
+     */
+    public void sendAllWithPrefix(@NotNull String message, boolean includeConsole) {
+        sendAllWithPrefix(ChannelMessage.Builder.of(message).build(), includeConsole);
     }
 }

@@ -83,6 +83,10 @@ public abstract class YAMLRegistry {
 
     static private final @NotNull List<YAMLRegistry> REGISTRIES = new ArrayList<>();
 
+    /**
+     * Get immutable list of YAMLRegistries.
+     * @return List of YAMLRegistry
+     */
     static public List<YAMLRegistry> getRegistries() {
         return ImmutableList.copyOf(REGISTRIES);
     }

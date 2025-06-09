@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 @SuppressWarnings("unused")
 @Getter(AccessLevel.PROTECTED)
@@ -24,7 +25,7 @@ public class Menu {
 
     private final @NotNull List<AbstractButton> abstractButtons = new ArrayList<>();
 
-    @Deprecated(since = "1.1.29", forRemoval = true)
+    @Deprecated(since = "1.2", forRemoval = true)
     private int size;
     private @NotNull MenuType menuType = MenuType.CHEST_3_ROWS;
     private @NotNull String title = "Menu";
@@ -33,6 +34,7 @@ public class Menu {
     private @NotNull Consumer<Inventory> closeCallback = inventory -> {};
     private @NotNull BiConsumer<PlayerInventory, Integer> onPlayerInventoryClick = (playerInventory, slot) -> {};
     private boolean emptySlotsModifiable = false;
+    private @NotNull Function<Integer, SingleSlotButton> backgroundButtonFunction = slot -> null;
 
     /**
      * Check if the slot is a menu button.
@@ -56,6 +58,16 @@ public class Menu {
                 .orElse(null);
     }
 
+    /**
+     * Get an abstract button from background function.
+     * @param slot Integer
+     * @return AbstractButton
+     */
+    @Nullable
+    public final SingleSlotButton getBackgroundButton(int slot) {
+        return this.backgroundButtonFunction.apply(slot);
+    }
+
 
 
     /**
@@ -76,7 +88,7 @@ public class Menu {
      * @param title String
      * @deprecated Use {@link #createInventory(MenuType, String)} instead to avoid invalid inventory sizes.
      */
-    @Deprecated(since = "1.1.29", forRemoval = true)
+    @Deprecated(since = "1.2", forRemoval = true)
     protected final void createInventory(int size, @NotNull String title) {
         this.menuType = MenuType.CHEST_3_ROWS;
         this.title = title;
@@ -96,7 +108,7 @@ public class Menu {
      * @param size Integer (multiples of 9. Min:0, Max:54)
      * @deprecated Use {@link #createInventory(MenuType)} instead to avoid invalid inventory sizes.
      */
-    @Deprecated(since = "1.1.29", forRemoval = true)
+    @Deprecated(since = "1.2", forRemoval = true)
     protected final void createInventory(int size) {
         createInventory(menuType, title);
     }
@@ -189,6 +201,14 @@ public class Menu {
     }
 
     /**
+     * Set background button function.
+     * @param function Function of slot -> button
+     */
+    protected final void setBackgroundButton(Function<Integer, SingleSlotButton> function) {
+        this.backgroundButtonFunction = function;
+    }
+
+    /**
      * Set close function for the menu.
      * @param callBack Consumer of Inventory
      */
@@ -214,18 +234,24 @@ public class Menu {
         }
         Inventory inv = this.inventory;
 
+        // Upload background buttons
+        for(int i = 0; i < inv.getSize(); i++) {
+            SingleSlotButton singleSlotButton = getBackgroundButton(i);
+            if(singleSlotButton == null || getButton(i) != null) continue;
+            addButton(singleSlotButton);
+        }
+
         // Buttons
-        for(AbstractButton abstractButton : abstractButtons) {
-            if(abstractButton instanceof Button) {
-                Button button = (Button) abstractButton;
-                for(int slot : button.getSlots()) {
-                    inv.setItem(slot, button.getItem());
+        for(AbstractButton abstractButton : getAbstractButtons()) {
+            for(int slot : abstractButton.getSlots()) {
+                if(abstractButton instanceof Button) {
+                    inv.setItem(slot, ((Button) abstractButton).getItem());
                 }
-            }
-            else if (abstractButton instanceof LazyButton) {
-                LazyButton lazyButton = (LazyButton) abstractButton;
-                for(int slot : lazyButton.getSlots()) {
-                    inv.setItem(slot, lazyButton.getItem());
+                else if (abstractButton instanceof LazyButton) {
+                    inv.setItem(slot, ((LazyButton) abstractButton).getItem());
+                }
+                else if (abstractButton instanceof SingleSlotButton) {
+                    inv.setItem(slot, ((SingleSlotButton) abstractButton).getItem());
                 }
             }
         }

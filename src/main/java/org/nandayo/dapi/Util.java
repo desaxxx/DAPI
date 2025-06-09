@@ -22,7 +22,7 @@ public class Util {
      * @param receiver Message receiver
      * @param messages Messages
      */
-    static public void tell(@NotNull CommandSender receiver, @NotNull String[] messages) {
+    static public void tell(@NotNull CommandSender receiver, @NotNull String... messages) {
         for(String m : messages) {
             receiver.sendMessage(HexUtil.parse(Util.PREFIX + m));
         }

@@ -38,7 +38,7 @@ public class MenuListener implements Listener {
                 if(!menu.isEmptySlotsModifiable()) {
                     e.setCancelled(true);
                     BiConsumer<PlayerInventory, Integer> playerClickConsumer = menu.getOnPlayerInventoryClick();
-                    if(playerClickConsumer != null) playerClickConsumer.accept(p.getInventory(), e.getSlot());
+                    playerClickConsumer.accept(p.getInventory(), e.getSlot());
                 }
                 return;
             }
@@ -54,8 +54,12 @@ public class MenuListener implements Listener {
                 button.onClick(p, e.getClick());
             }
             else if (abstractButton instanceof LazyButton) {
-                LazyButton lazyButton = (LazyButton) abstractButton;
-                e.setCancelled(!lazyButton.isModifiable());
+                e.setCancelled(!((LazyButton) abstractButton).isModifiable());
+            }
+            else if(abstractButton instanceof SingleSlotButton) {
+                SingleSlotButton singleSlotButton = (SingleSlotButton) abstractButton;
+                e.setCancelled(!singleSlotButton.isModifiable());
+                singleSlotButton.onClick(p, e.getClick());
             }
         }
     }
@@ -92,7 +96,7 @@ public class MenuListener implements Listener {
             Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
                 Consumer<Inventory> closeConsumer = menu.getCloseCallback();
-                if(closeConsumer != null) closeConsumer.accept(menu.getInventory());
+                closeConsumer.accept(menu.getInventory());
             }
             p.removeMetadata(dapi.GUI_METADATA_KEY, dapi.plugin);
         }
@@ -112,7 +116,7 @@ public class MenuListener implements Listener {
             Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
                 Consumer<Inventory> closeConsumer = menu.getCloseCallback();
-                if(closeConsumer != null) closeConsumer.accept(menu.getInventory());
+                closeConsumer.accept(menu.getInventory());
             }
             p.removeMetadata(dapi.GUI_METADATA_KEY, dapi.plugin);
         }
