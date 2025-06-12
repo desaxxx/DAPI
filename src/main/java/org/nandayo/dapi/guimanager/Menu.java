@@ -53,7 +53,7 @@ public class Menu {
     @Nullable
     public final AbstractButton getButton(int slot) {
         return this.abstractButtons.stream()
-                .filter(b -> b.getSlots().contains(slot))
+                .filter(b -> b.matchesSlot(slot))
                 .findFirst()
                 .orElse(null);
     }
@@ -167,9 +167,9 @@ public class Menu {
      * @param slot Integer
      */
     protected final void removeButton(int slot) {
-        AbstractButton button = getButton(slot);
-        if(button == null) return;
-        button.removeSlot(slot);
+        AbstractButton abstractButton = getButton(slot);
+        if(abstractButton == null) return;
+        abstractButton.removeSlot(slot);
     }
 
     /**
@@ -244,15 +244,7 @@ public class Menu {
         // Buttons
         for(AbstractButton abstractButton : getAbstractButtons()) {
             for(int slot : abstractButton.getSlots()) {
-                if(abstractButton instanceof Button) {
-                    inv.setItem(slot, ((Button) abstractButton).getItem());
-                }
-                else if (abstractButton instanceof LazyButton) {
-                    inv.setItem(slot, ((LazyButton) abstractButton).getItem());
-                }
-                else if (abstractButton instanceof SingleSlotButton) {
-                    inv.setItem(slot, ((SingleSlotButton) abstractButton).getItem());
-                }
+                inv.setItem(slot , abstractButton.getItem());
             }
         }
 

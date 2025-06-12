@@ -47,19 +47,9 @@ public class MenuListener implements Listener {
             AbstractButton abstractButton = menu.getButton(e.getSlot());
             if(abstractButton == null) {
                 e.setCancelled(!menu.isEmptySlotsModifiable());
-            }
-            else if(abstractButton instanceof Button) {
-                Button button = (Button) abstractButton;
-                e.setCancelled(!button.isModifiable());
-                button.onClick(p, e.getClick());
-            }
-            else if (abstractButton instanceof LazyButton) {
-                e.setCancelled(!((LazyButton) abstractButton).isModifiable());
-            }
-            else if(abstractButton instanceof SingleSlotButton) {
-                SingleSlotButton singleSlotButton = (SingleSlotButton) abstractButton;
-                e.setCancelled(!singleSlotButton.isModifiable());
-                singleSlotButton.onClick(p, e.getClick());
+            }else {
+                e.setCancelled(!abstractButton.isModifiable());
+                abstractButton.onClick(p, e.getClick());
             }
         }
     }

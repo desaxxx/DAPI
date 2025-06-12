@@ -1,26 +1,25 @@
 package org.nandayo.dapi.guimanager;
 
 import lombok.Getter;
-import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Set;
 
 @Getter
 @SuppressWarnings("unused")
 public abstract class SingleSlotButton extends AbstractButton {
 
-    private final boolean modifiable;
+    abstract public int getSlot();
 
-    public SingleSlotButton(Integer slot, boolean modifiable) {
-        super(slot);
-        this.modifiable = modifiable;
+    abstract public @Nullable ItemStack getItem();
+
+    // AbstractButton supplies onClick() and isModifiable()
+
+
+    @Override
+    final public @NotNull Set<Integer> getSlots() {
+        return Set.of(getSlot());
     }
-    public SingleSlotButton(Integer slot) {
-        this(slot, false);
-    }
-
-    public abstract ItemStack getItem();
-
-    public void onClick(@NotNull Player p, ClickType clickType) {}
 }

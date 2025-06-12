@@ -1,31 +1,36 @@
 package org.nandayo.dapi.guimanager;
 
-import com.google.common.collect.ImmutableSet;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @SuppressWarnings("unused")
 public abstract class AbstractButton {
 
-    private final @NotNull Set<Integer> slots;
-    public AbstractButton(@NotNull Set<Integer> slots) {
-        this.slots = new HashSet<>(slots);
-    }
-    public AbstractButton(@NotNull List<Integer> slots) {
-        this(ImmutableSet.copyOf(slots));
-    }
-    public AbstractButton(@NotNull Integer... slots) {
-        this(ImmutableSet.copyOf(slots));
+    public @NotNull Set<Integer> getSlots() {
+        return new HashSet<>();
     }
 
-    protected final @NotNull Set<Integer> getSlots() {
-        return ImmutableSet.copyOf(slots);
+    final public boolean matchesSlot(int slot) {
+        return getSlots().contains(slot);
     }
 
-    protected final void removeSlot(int slot) {
-        slots.remove(slot);
+    final public void removeSlot(int slot) {
+        getSlots().remove(slot);
+    }
+
+    public @Nullable ItemStack getItem() {
+        return null;
+    }
+
+    public void onClick(@NotNull Player p, @NotNull ClickType clickType) {}
+
+    public boolean isModifiable() {
+        return false;
     }
 }
