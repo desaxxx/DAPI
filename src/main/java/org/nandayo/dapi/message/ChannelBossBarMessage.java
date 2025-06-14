@@ -4,11 +4,9 @@ import lombok.Getter;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 @Getter
-@ApiStatus.Experimental
 @SuppressWarnings("unused")
 public class ChannelBossBarMessage extends ChannelMessage implements Cloneable {
 

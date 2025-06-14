@@ -1,12 +1,10 @@
 package org.nandayo.dapi.message;
 
 import lombok.Getter;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.nandayo.dapi.Util;
 
 @Getter
-@ApiStatus.Experimental
 @SuppressWarnings("unused")
 public class ChannelTitleMessage extends ChannelMessage implements Cloneable {
 

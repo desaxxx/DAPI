@@ -7,13 +7,11 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.boss.KeyedBossBar;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.nandayo.dapi.DAPI;
 import org.nandayo.dapi.HexUtil;
 import org.nandayo.dapi.Util;
 
-@ApiStatus.Experimental
 @SuppressWarnings("unused")
 public abstract class ChannelType {
 

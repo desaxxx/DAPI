@@ -3,6 +3,7 @@ package org.nandayo.dapi.guimanager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
@@ -33,6 +34,10 @@ public class MenuListener implements Listener {
                 e.setCancelled(true);
                 return;
             }
+            if(e.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY) {
+                e.setCancelled(true);
+            }
+            //
 
             // Click on player inventory.
             boolean clickedOnPlayerInventory = Objects.equals(e.getClickedInventory(), p.getInventory());
