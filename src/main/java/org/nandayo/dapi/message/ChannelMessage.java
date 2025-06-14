@@ -1,62 +1,31 @@
 package org.nandayo.dapi.message;
 
 import lombok.Getter;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
+import org.nandayo.dapi.Util;
 
 @Getter
+@ApiStatus.Experimental
 @SuppressWarnings("unused")
-public class ChannelMessage {
+public class ChannelMessage implements Cloneable {
 
-    private final @NotNull String primaryMessage;
-    private String secondaryMessage = "";
-    private int fadeInTicks = 10;
-    private int stayTicks = 70;
-    private int fadeOutTicks = 20;
+    private @NotNull String message;
 
-    public ChannelMessage(@NotNull String primaryMessage) {
-        this.primaryMessage = primaryMessage;
+    public ChannelMessage(@NotNull String message) {
+        this.message = message;
     }
 
-    public ChannelMessage(@NotNull String primaryMessage, @NotNull String secondaryMessage, int fadeInTicks, int stayTicks, int fadeOutTicks) {
-        this.primaryMessage = primaryMessage;
-        this.secondaryMessage = secondaryMessage;
-        this.fadeInTicks = fadeInTicks;
-        this.stayTicks = stayTicks;
-        this.fadeOutTicks = fadeOutTicks;
+    public void insertPrefix() {
+        this.message = Util.PREFIX + message;
     }
 
-
-
-    static public class Builder {
-
-        private final @NotNull String message;
-        private String secondaryMessage = "";
-        private int fadeInTicks = 10;
-        private int stayTicks = 70;
-        private int fadeOutTicks = 20;
-
-        public Builder(@NotNull String message) {
-            this.message = message;
-        }
-
-        static public Builder of(@NotNull String message) {
-            return new Builder(message);
-        }
-
-        public Builder secondaryMessage(@NotNull String secondaryMessage) {
-            this.secondaryMessage = secondaryMessage;
-            return this;
-        }
-
-        public Builder durations(int fadeInTicks, int stayTicks, int fadeOutTicks) {
-            this.fadeInTicks = fadeInTicks;
-            this.stayTicks = stayTicks;
-            this.fadeOutTicks = fadeOutTicks;
-            return this;
-        }
-
-        public ChannelMessage build() {
-            return new ChannelMessage(message, secondaryMessage, fadeInTicks, stayTicks, fadeOutTicks);
+    @Override
+    public ChannelMessage clone() {
+        try {
+            return (ChannelMessage) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
         }
     }
 }

@@ -7,18 +7,14 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.PlayerInventory;
 import org.nandayo.dapi.DAPI;
 
 import java.util.Objects;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 public class MenuListener implements Listener {
 
     /**
-     * Cancel click if button is unmodifiable
+     * Listening to click on DAPI GUI.
      * @param e Event*
      */
     @EventHandler
@@ -32,13 +28,18 @@ public class MenuListener implements Listener {
             if(menu == null) return;
             // DAPI Menu from now.
 
+            // Debug
+            if(menu.isClosing()) {
+                e.setCancelled(true);
+                return;
+            }
+
             // Click on player inventory.
             boolean clickedOnPlayerInventory = Objects.equals(e.getClickedInventory(), p.getInventory());
             if(clickedOnPlayerInventory) {
                 if(!menu.isEmptySlotsModifiable()) {
                     e.setCancelled(true);
-                    BiConsumer<PlayerInventory, Integer> playerClickConsumer = menu.getOnPlayerInventoryClick();
-                    playerClickConsumer.accept(p.getInventory(), e.getSlot());
+                    menu.getOnPlayerInventoryClick().accept(p.getInventory(), e.getSlot());
                 }
                 return;
             }
@@ -55,7 +56,7 @@ public class MenuListener implements Listener {
     }
 
     /**
-     * Cancel click anyway if it is drag event
+     * Listening to drag click on DAPI GUI.
      * @param e Event*
      */
     @EventHandler
@@ -73,7 +74,7 @@ public class MenuListener implements Listener {
     }
 
     /**
-     * Remove metadata on inventory close event
+     * Listening to close DAPI GUI.
      * @param e Event*
      */
     @EventHandler
@@ -85,15 +86,16 @@ public class MenuListener implements Listener {
         if (p.hasMetadata(dapi.GUI_METADATA_KEY)) {
             Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
-                Consumer<Inventory> closeConsumer = menu.getCloseCallback();
-                closeConsumer.accept(menu.getInventory());
+                menu.getCloseCallback().accept(menu.getInventory());
+                // Debug
+                menu.setClosing(true);
             }
             p.removeMetadata(dapi.GUI_METADATA_KEY, dapi.plugin);
         }
     }
 
     /**
-     * Remove metadata on quit event
+     * Listening to player quit for DAPI GUI.
      * @param e Event*
      */
     @EventHandler
@@ -105,8 +107,9 @@ public class MenuListener implements Listener {
         if (p.hasMetadata(dapi.GUI_METADATA_KEY)) {
             Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
-                Consumer<Inventory> closeConsumer = menu.getCloseCallback();
-                closeConsumer.accept(menu.getInventory());
+                menu.getCloseCallback().accept(menu.getInventory());
+                // Debug
+                menu.setClosing(true);
             }
             p.removeMetadata(dapi.GUI_METADATA_KEY, dapi.plugin);
         }

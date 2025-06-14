@@ -10,10 +10,8 @@ import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.nandayo.dapi.object.DSound;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.util.Locale;
 
 public class Wrapper {
@@ -106,7 +104,7 @@ public class Wrapper {
      * @param potionType PotionType
      * @param color Color
      */
-    @SuppressWarnings("removal")
+    @SuppressWarnings({"removal", "deprecation"})
     public void editPotionMeta(@NotNull PotionMeta meta, @Nullable PotionType potionType, @Nullable Color color) {
         if (minecraftVersion >= 205) {
             meta.setBasePotionType(potionType);
@@ -122,19 +120,19 @@ public class Wrapper {
 
     /**
      * Get the sound from given key. Only works for minecraft sounds.<br>
-     * MC 1.16.4+ : Using {@link Registry#SOUNDS}<br>
+     * MC 1.16.4+ : Using Registry.SOUNDS<br>
      * MC 1.16.1-1.16.3 : Sound class was an enum, so accessing the requested field with reflection.
      * @param key Key of the sound
      * @return Sound if found, else {@code null}.
      */
+    @SuppressWarnings("deprecation")
     public Sound getSound(@NotNull String key) {
         if(minecraftVersion >= 164) {
             return Registry.SOUNDS.get(NamespacedKey.minecraft(key));
         }
         else {
             try {
-                Field soundField = Sound.class.getField(key.replace(".","_").toUpperCase(Locale.ENGLISH));
-                return (Sound) soundField.get(null);
+                return Sound.valueOf(key.replace(".","_").toUpperCase(Locale.ENGLISH));
             } catch (Exception ignored) {}
         }
         return null;

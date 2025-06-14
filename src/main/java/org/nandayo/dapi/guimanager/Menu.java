@@ -2,6 +2,7 @@ package org.nandayo.dapi.guimanager;
 
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -35,6 +36,10 @@ public class Menu {
     private @NotNull BiConsumer<PlayerInventory, Integer> onPlayerInventoryClick = (playerInventory, slot) -> {};
     private boolean emptySlotsModifiable = false;
     private @NotNull Function<Integer, SingleSlotButton> backgroundButtonFunction = slot -> null;
+
+    // Debugger
+    @Setter
+    private boolean isClosing = false;
 
     /**
      * Check if the slot is a menu button.
