@@ -15,7 +15,7 @@ import java.util.UUID;
 
 public class MenuListener implements Listener {
 
-    static private final @NotNull HashMap<UUID, Long> LAST_CLICK = new HashMap<>();
+    static private final @NotNull HashMap<UUID, Long> LAST_SHIFT_CLICK = new HashMap<>();
 
     /**
      * Listening to click on DAPI GUI.
@@ -33,13 +33,13 @@ public class MenuListener implements Listener {
             // DAPI Menu from now.
 
             // Debug
-            Long lastClick = LAST_CLICK.get(p.getUniqueId());
+            Long lastClick = LAST_SHIFT_CLICK.get(p.getUniqueId());
             long now = System.currentTimeMillis();
-            if(lastClick != null && now - lastClick < 150) {
+            if(e.getClick().isShiftClick() && lastClick != null && now - lastClick < 150) {
                 e.setCancelled(true);
                 return;
             }
-            LAST_CLICK.put(p.getUniqueId(), now);
+            LAST_SHIFT_CLICK.put(p.getUniqueId(), now);
             //
 
             // Click on player inventory.
@@ -107,7 +107,7 @@ public class MenuListener implements Listener {
      */
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
-        LAST_CLICK.remove(e.getPlayer().getUniqueId());
+        LAST_SHIFT_CLICK.remove(e.getPlayer().getUniqueId());
         DAPI dapi = DAPI.getInstance();
         if(dapi.plugin == null) return;
 
