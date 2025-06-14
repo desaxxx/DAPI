@@ -37,10 +37,6 @@ public class Menu {
     private boolean emptySlotsModifiable = false;
     private @NotNull Function<Integer, SingleSlotButton> backgroundButtonFunction = slot -> null;
 
-    // Debugger
-    @Setter
-    private boolean isClosing = false;
-
     /**
      * Check if the slot is a menu button.
      * @param slot Integer

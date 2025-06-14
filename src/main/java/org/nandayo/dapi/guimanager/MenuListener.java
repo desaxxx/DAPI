@@ -1,5 +1,6 @@
 package org.nandayo.dapi.guimanager;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -8,6 +9,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.nandayo.dapi.DAPI;
 
 import java.util.Objects;
@@ -29,16 +31,6 @@ public class MenuListener implements Listener {
             if(menu == null) return;
             // DAPI Menu from now.
 
-            // Debug
-            if(menu.isClosing()) {
-                e.setCancelled(true);
-                return;
-            }
-            if(e.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY) {
-                e.setCancelled(true);
-            }
-            //
-
             // Click on player inventory.
             boolean clickedOnPlayerInventory = Objects.equals(e.getClickedInventory(), p.getInventory());
             if(clickedOnPlayerInventory) {
@@ -55,7 +47,7 @@ public class MenuListener implements Listener {
                 e.setCancelled(!menu.isEmptySlotsModifiable());
             }else {
                 e.setCancelled(!abstractButton.isModifiable());
-                abstractButton.onClick(p, e.getClick());
+                Bukkit.getScheduler().runTask(dapi.plugin, () -> abstractButton.onClick(p, e.getClick()));
             }
         }
     }
@@ -92,8 +84,6 @@ public class MenuListener implements Listener {
             Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
                 menu.getCloseCallback().accept(menu.getInventory());
-                // Debug
-                menu.setClosing(true);
             }
             p.removeMetadata(dapi.GUI_METADATA_KEY, dapi.plugin);
         }
@@ -113,8 +103,6 @@ public class MenuListener implements Listener {
             Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
                 menu.getCloseCallback().accept(menu.getInventory());
-                // Debug
-                menu.setClosing(true);
             }
             p.removeMetadata(dapi.GUI_METADATA_KEY, dapi.plugin);
         }
