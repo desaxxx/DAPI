@@ -35,7 +35,7 @@ public class MenuListener implements Listener {
             // Debug
             Long lastClick = LAST_SHIFT_CLICK.get(p.getUniqueId());
             long now = System.currentTimeMillis();
-            if(e.getClick().isShiftClick() && lastClick != null && now - lastClick < 150) {
+            if(e.getClick().isShiftClick() && lastClick != null && now - lastClick < 250) {
                 e.setCancelled(true);
                 return;
             }
