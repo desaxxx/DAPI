@@ -16,7 +16,7 @@ public final class DAPI {
     public Plugin plugin;
     @Getter
     private final Wrapper wrapper;
-    private final String version = "1.2.3";
+    private final String version = "1.2.4";
     public final String GUI_METADATA_KEY = "DAPI_GUI_" + Util.generateRandomLowerCaseString(8);
 
     @Getter
