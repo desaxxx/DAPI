@@ -4,17 +4,18 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryAction;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.metadata.FixedMetadataValue;
+import org.jetbrains.annotations.NotNull;
 import org.nandayo.dapi.DAPI;
 
+import java.util.HashMap;
 import java.util.Objects;
+import java.util.UUID;
 
 public class MenuListener implements Listener {
+
+    static private final @NotNull HashMap<UUID, Long> LAST_CLICK = new HashMap<>();
 
     /**
      * Listening to click on DAPI GUI.
@@ -30,6 +31,16 @@ public class MenuListener implements Listener {
             Menu menu = (Menu) p.getMetadata(dapi.GUI_METADATA_KEY).get(0).value();
             if(menu == null) return;
             // DAPI Menu from now.
+
+            // Debug
+            Long lastClick = LAST_CLICK.get(p.getUniqueId());
+            long now = System.currentTimeMillis();
+            if(lastClick != null && now - lastClick < 150) {
+                e.setCancelled(true);
+                return;
+            }
+            LAST_CLICK.put(p.getUniqueId(), now);
+            //
 
             // Click on player inventory.
             boolean clickedOnPlayerInventory = Objects.equals(e.getClickedInventory(), p.getInventory());
@@ -96,6 +107,7 @@ public class MenuListener implements Listener {
      */
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
+        LAST_CLICK.remove(e.getPlayer().getUniqueId());
         DAPI dapi = DAPI.getInstance();
         if(dapi.plugin == null) return;
 
