@@ -27,14 +27,9 @@ public final class DAPI {
     static public final String GUI_METADATA_KEY = "DAPI_GUI_" + Util.generateRandomLowerCaseString(8);
 
 
-    static private boolean menuListenerRegistered = false;
     static public void registerMenuListener() {
-        if (menuListenerRegistered) return;
-        menuListenerRegistered = true;
         Bukkit.getPluginManager().registerEvents(new MenuListener(), getPlugin());
     }
-
-
 
 
     static private Plugin plugin;
@@ -66,7 +61,7 @@ public final class DAPI {
                 if(stream == null) return null;
                 InputStreamReader reader = new InputStreamReader(stream);
                 YamlConfiguration config = YamlConfiguration.loadConfiguration(reader);
-                return config.getString("plugin.name");
+                return config.getString("name");
             } catch (Exception ignored) {}
         }
         return null;
