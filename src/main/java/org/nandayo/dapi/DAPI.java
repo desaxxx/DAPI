@@ -26,7 +26,7 @@ public final class DAPI {
     static public final String GUI_METADATA_KEY = "DAPI_GUI_" + Util.generateRandomLowerCaseString(8);
 
 
-    public void registerMenuListener() {
+    static public void registerMenuListener() {
         Bukkit.getPluginManager().registerEvents(new MenuListener(), getPlugin());
     }
 
@@ -51,11 +51,11 @@ public final class DAPI {
         for(String pluginFile : List.of("paper-plugin.yml", "plugin.yml")) {
             try {
                 InputStream stream = loader.getResourceAsStream(pluginFile);
-                if(stream != null) {
+                if (stream != null) {
                     InputStreamReader reader = new InputStreamReader(stream);
                     YamlConfiguration config = YamlConfiguration.loadConfiguration(reader);
                     String pluginName = config.getString("plugin.name");
-                    if(pluginName == null) throw new Exception("Plugin name not found!");
+                    if (pluginName == null) throw new DAPIException("Plugin name not found!");
                     return pluginName;
                 }
             } catch (Exception ignored) {}
