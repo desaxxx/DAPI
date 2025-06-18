@@ -178,10 +178,9 @@ public class ItemCreator {
      */
     public ItemCreator hideFlag(@NotNull ItemFlag... flags) {
         if(meta != null) {
-            DAPI dapi = DAPI.getInstance();
-            if(dapi != null) {
-                Attribute armorAttribute = dapi.getWrapper().getAttribute();
-                AttributeModifier attributeModifier = dapi.getWrapper().getAttributeModifier();
+            if(List.of(flags).contains(ItemFlag.HIDE_ATTRIBUTES)) {
+                Attribute armorAttribute = Wrapper.getArmorAttribute();
+                AttributeModifier attributeModifier = Wrapper.getArmorAttributeModifier();
                 if(armorAttribute != null && attributeModifier != null) {
                     meta.addAttributeModifier(armorAttribute, attributeModifier);
                 }
@@ -212,10 +211,7 @@ public class ItemCreator {
     public ItemCreator potion(@Nullable PotionType potionType, @Nullable Color color) {
         if(meta != null && meta instanceof PotionMeta) {
             PotionMeta potionMeta = (PotionMeta) meta;
-            DAPI dapi = DAPI.getInstance();
-            if(dapi != null) {
-                dapi.getWrapper().editPotionMeta(potionMeta, potionType, color);
-            }
+            Wrapper.editPotionMeta(potionMeta, potionType, color);
         }
         return this;
     }

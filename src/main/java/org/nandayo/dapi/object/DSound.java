@@ -2,7 +2,7 @@ package org.nandayo.dapi.object;
 
 import org.bukkit.Sound;
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.dapi.DAPI;
+import org.nandayo.dapi.Wrapper;
 import org.nandayo.dapi.object.annotation.DDeprecated;
 import org.nandayo.dapi.object.annotation.DInfo;
 import org.nandayo.dapi.object.annotation.DRenamed;
@@ -10,6 +10,11 @@ import org.nandayo.dapi.object.annotation.DRenamed;
 import java.util.HashMap;
 import java.util.Locale;
 
+/**
+ * Only supports 1.16.1 - 1.21.5.<br>
+ * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
+ * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
+ */
 @SuppressWarnings("unused")
 public enum DSound {
 
@@ -490,6 +495,22 @@ public enum DSound {
     BLOCK_DISPENSER_DISPENSE("block.dispenser.dispense"),
     BLOCK_DISPENSER_FAIL("block.dispenser.fail"),
     BLOCK_DISPENSER_LAUNCH("block.dispenser.launch"),
+    @DInfo(since = "1.21.6")
+    BLOCK_DRIED_GHAST_AMBIENT("block.dried_ghast.ambient"),
+    @DInfo(since = "1.21.6")
+    BLOCK_DRIED_GHAST_AMBIENT_WATER("block.dried_ghast.ambient_water"),
+    @DInfo(since = "1.21.6")
+    BLOCK_DRIED_GHAST_BREAK("block.dried_ghast.break"),
+    @DInfo(since = "1.21.6")
+    BLOCK_DRIED_GHAST_FALL("block.dried_ghast.fall"),
+    @DInfo(since = "1.21.6")
+    BLOCK_DRIED_GHAST_PLACE("block.dried_ghast.place"),
+    @DInfo(since = "1.21.6")
+    BLOCK_DRIED_GHAST_PLACE_IN_WATER("block.dried_ghast.place_in_water"),
+    @DInfo(since = "1.21.6")
+    BLOCK_DRIED_GHAST_STEP("block.dried_ghast.step"),
+    @DInfo(since = "1.21.6")
+    BLOCK_DRIED_GHAST_TRANSITION("block.dried_ghast.transition"),
     @DInfo(since = "1.17")
     BLOCK_DRIPSTONE_BLOCK_BREAK("block.dripstone_block.break"),
     @DInfo(since = "1.17")
@@ -500,6 +521,8 @@ public enum DSound {
     BLOCK_DRIPSTONE_BLOCK_PLACE("block.dripstone_block.place"),
     @DInfo(since = "1.17")
     BLOCK_DRIPSTONE_BLOCK_STEP("block.dripstone_block.step"),
+    @DInfo(since = "1.21.6")
+    BLOCK_DRY_GRASS_AMBIENT("block.dry_grass.ambient"),
     BLOCK_ENCHANTMENT_TABLE_USE("block.enchantment_table.use"),
     BLOCK_ENDER_CHEST_CLOSE("block.ender_chest.close"),
     BLOCK_ENDER_CHEST_OPEN("block.ender_chest.open"),
@@ -1026,8 +1049,6 @@ public enum DSound {
     BLOCK_SAND_IDLE("block.sand.idle"),
     BLOCK_SAND_PLACE("block.sand.place"),
     BLOCK_SAND_STEP("block.sand.step"),
-    @DInfo(since = "1.21.5")
-    BLOCK_SAND_WIND("block.sand.wind"),
     BLOCK_SCAFFOLDING_BREAK("block.scaffolding.break"),
     BLOCK_SCAFFOLDING_FALL("block.scaffolding.fall"),
     BLOCK_SCAFFOLDING_HIT("block.scaffolding.hit"),
@@ -1692,6 +1713,14 @@ public enum DSound {
     ENTITY_GENERIC_SMALL_FALL("entity.generic.small_fall"),
     ENTITY_GENERIC_SPLASH("entity.generic.splash"),
     ENTITY_GENERIC_SWIM("entity.generic.swim"),
+    @DInfo(since = "1.21.6")
+    ENTITY_GHASTLING_AMBIENT("entity.ghastling.ambient"),
+    @DInfo(since = "1.21.6")
+    ENTITY_GHASTLING_DEATH("entity.ghastling.death"),
+    @DInfo(since = "1.21.6")
+    ENTITY_GHASTLING_HURT("entity.ghastling.hurt"),
+    @DInfo(since = "1.21.6")
+    ENTITY_GHASTLING_SPAWN("entity.ghastling.spawn"),
     ENTITY_GHAST_AMBIENT("entity.ghast.ambient"),
     ENTITY_GHAST_DEATH("entity.ghast.death"),
     ENTITY_GHAST_HURT("entity.ghast.hurt"),
@@ -1760,6 +1789,22 @@ public enum DSound {
     ENTITY_GUARDIAN_FLOP("entity.guardian.flop"),
     ENTITY_GUARDIAN_HURT("entity.guardian.hurt"),
     ENTITY_GUARDIAN_HURT_LAND("entity.guardian.hurt_land"),
+    @DInfo(since = "1.21.6")
+    ENTITY_HAPPY_GHAST_AMBIENT("entity.happy_ghast.ambient"),
+    @DInfo(since = "1.21.6")
+    ENTITY_HAPPY_GHAST_DEATH("entity.happy_ghast.death"),
+    @DInfo(since = "1.21.6")
+    ENTITY_HAPPY_GHAST_EQUIP("entity.happy_ghast.equip"),
+    @DInfo(since = "1.21.6")
+    ENTITY_HAPPY_GHAST_HARNESS_GOGGLES_DOWN("entity.happy_ghast.harness_goggles_down"),
+    @DInfo(since = "1.21.6")
+    ENTITY_HAPPY_GHAST_HARNESS_GOGGLES_UP("entity.happy_ghast.harness_goggles_up"),
+    @DInfo(since = "1.21.6")
+    ENTITY_HAPPY_GHAST_HURT("entity.happy_ghast.hurt"),
+    @DInfo(since = "1.21.6")
+    ENTITY_HAPPY_GHAST_RIDING("entity.happy_ghast.riding"),
+    @DInfo(since = "1.21.6")
+    ENTITY_HAPPY_GHAST_UNEQUIP("entity.happy_ghast.unequip"),
     @DInfo(since = "1.16.1")
     ENTITY_HOGLIN_AMBIENT("entity.hoglin.ambient"),
     @DInfo(since = "1.16.1")
@@ -1820,8 +1865,6 @@ public enum DSound {
     ENTITY_ITEM_FRAME_REMOVE_ITEM("entity.item_frame.remove_item"),
     ENTITY_ITEM_FRAME_ROTATE_ITEM("entity.item_frame.rotate_item"),
     ENTITY_ITEM_PICKUP("entity.item.pickup"),
-    ENTITY_LEASH_KNOT_BREAK("entity.leash_knot.break"),
-    ENTITY_LEASH_KNOT_PLACE("entity.leash_knot.place"),
     ENTITY_LIGHTNING_BOLT_IMPACT("entity.lightning_bolt.impact"),
     ENTITY_LIGHTNING_BOLT_THUNDER("entity.lightning_bolt.thunder"),
     ENTITY_LINGERING_POTION_THROW("entity.lingering_potion.throw"),
@@ -2002,7 +2045,6 @@ public enum DSound {
     ENTITY_POLAR_BEAR_HURT("entity.polar_bear.hurt"),
     ENTITY_POLAR_BEAR_STEP("entity.polar_bear.step"),
     ENTITY_POLAR_BEAR_WARNING("entity.polar_bear.warning"),
-    ENTITY_PUFFER_FISH_AMBIENT("entity.puffer_fish.ambient"),
     ENTITY_PUFFER_FISH_BLOW_OUT("entity.puffer_fish.blow_out"),
     ENTITY_PUFFER_FISH_BLOW_UP("entity.puffer_fish.blow_up"),
     ENTITY_PUFFER_FISH_DEATH("entity.puffer_fish.death"),
@@ -2482,8 +2524,18 @@ public enum DSound {
     @DInfo(since = "1.17")
     ITEM_HONEYCOMB_WAX_ON("item.honeycomb.wax_on"),
     ITEM_HONEY_BOTTLE_DRINK("item.honey_bottle.drink"),
+    @DInfo(since = "1.21.6")
+    ITEM_HORSE_ARMOR_UNEQUIP("item.horse_armor.unequip"),
     @DInfo(since = "1.17")
     ITEM_INK_SAC_USE("item.ink_sac.use"),
+    @DRenamed(since = "1.21.6", from = "ENTITY_LEASH_KNOT_BREAK")
+    ITEM_LEAD_BREAK("item.lead.break"),
+    @DInfo(since = "1.21.6")
+    ITEM_LEAD_TIED("item.lead.tied"),
+    @DInfo(since = "1.21.6")
+    ITEM_LEAD_UNTIED("item.lead.untied"),
+    @DInfo(since = "1.21.6")
+    ITEM_LLAMA_CARPET_UNEQUIP("item.llama_carpet.unequip"),
     @DInfo(since = "1.16.1")
     ITEM_LODESTONE_COMPASS_LOCK("item.lodestone_compass.lock"),
     @DInfo(since = "1.21")
@@ -2495,6 +2547,10 @@ public enum DSound {
     ITEM_NETHER_WART_PLANT("item.nether_wart.plant"),
     @DInfo(since = "1.21")
     ITEM_OMINOUS_BOTTLE_DISPOSE("item.ominous_bottle.dispose"),
+    @DInfo(since = "1.21.6")
+    ITEM_SADDLE_UNEQUIP("item.saddle.unequip"),
+    @DInfo(since = "1.21.6")
+    ITEM_SHEARS_SNIP("item.shears.snip"),
     ITEM_SHIELD_BLOCK("item.shield.block"),
     ITEM_SHIELD_BREAK("item.shield.break"),
     ITEM_SHOVEL_FLATTEN("item.shovel.flatten"),
@@ -2545,6 +2601,7 @@ public enum DSound {
     MUSIC_DISC_RELIC("music_disc.relic"),
     MUSIC_DISC_STAL("music_disc.stal"),
     MUSIC_DISC_STRAD("music_disc.strad"),
+    MUSIC_DISC_TEARS("music_disc.tears"),
     MUSIC_DISC_WAIT("music_disc.wait"),
     MUSIC_DISC_WARD("music_disc.ward"),
     MUSIC_DRAGON("music.dragon"),
@@ -2617,6 +2674,9 @@ public enum DSound {
     //</editor-fold>
 
     //<editor-folder desc="Deprecated" defaultstate="collapsed">
+    @DInfo(since = "1.21.5")
+    @DDeprecated(since = "1.21.6")
+    BLOCK_SAND_WIND("block.sand.wind"),
     @DInfo(since = "1.21")
     @DDeprecated(since = "1.21")
     BLOCK_TRIAL_SPAWNER_AMBIENT_CHARGED("block.trial_spawner.ambient_charged"),
@@ -2629,6 +2689,12 @@ public enum DSound {
     @DInfo(since = "1.19")
     @DDeprecated(since = "1.21.2")
     ENTITY_GOAT_SCREAMING_HORN_BREAK("entity.goat.screaming.horn_break"),
+    @DDeprecated(since = "1.21.6")
+    ENTITY_LEASH_KNOT_BREAK("entity.leash_knot.break"),
+    @DDeprecated(since = "1.21.6")
+    ENTITY_LEASH_KNOT_PLACE("entity.leash_knot.place"),
+    @DDeprecated(since = "1.21.6")
+    ENTITY_PUFFER_FISH_AMBIENT("entity.puffer_fish.ambient"),
     @DDeprecated(since = "1.21.5")
     ENTITY_WOLF_HOWL("entity.wolf.howl"),
     @DDeprecated(since = "1.16.1")
@@ -2665,7 +2731,7 @@ public enum DSound {
     private final @NotNull String key;
 
     public Sound parseSound() {
-        return DAPI.getInstance().getWrapper().getSound(key);
+        return Wrapper.getSound(key);
     }
 
 

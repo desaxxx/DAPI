@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Only supports 1.16.1 - 1.21.5.<br>
+ * Only supports 1.16.1 - 1.21.6.<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
@@ -177,6 +177,8 @@ public enum DMaterial {
     BLACK_CONCRETE_POWDER,
     BLACK_DYE,
     BLACK_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    BLACK_HARNESS,
     BLACK_SHULKER_BOX,
     BLACK_STAINED_GLASS,
     BLACK_STAINED_GLASS_PANE,
@@ -204,6 +206,8 @@ public enum DMaterial {
     @DInfo(since = "1.21.5")
     BLUE_EGG,
     BLUE_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    BLUE_HARNESS,
     BLUE_ICE,
     BLUE_ORCHID,
     BLUE_SHULKER_BOX,
@@ -257,6 +261,8 @@ public enum DMaterial {
     @DInfo(since = "1.21.5")
     BROWN_EGG,
     BROWN_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    BROWN_HARNESS,
     BROWN_MUSHROOM,
     BROWN_MUSHROOM_BLOCK,
     BROWN_SHULKER_BOX,
@@ -498,6 +504,8 @@ public enum DMaterial {
     CYAN_CONCRETE_POWDER,
     CYAN_DYE,
     CYAN_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    CYAN_HARNESS,
     CYAN_SHULKER_BOX,
     CYAN_STAINED_GLASS,
     CYAN_STAINED_GLASS_PANE,
@@ -620,6 +628,8 @@ public enum DMaterial {
     DRAGON_EGG,
     DRAGON_HEAD,
     DRAGON_WALL_HEAD,
+    @DInfo(since = "1.21.6")
+    DRIED_GHAST,
     DRIED_KELP,
     DRIED_KELP_BLOCK,
     @DInfo(since = "1.17")
@@ -782,6 +792,8 @@ public enum DMaterial {
     GRAY_CONCRETE_POWDER,
     GRAY_DYE,
     GRAY_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    GRAY_HARNESS,
     GRAY_SHULKER_BOX,
     GRAY_STAINED_GLASS,
     GRAY_STAINED_GLASS_PANE,
@@ -801,6 +813,8 @@ public enum DMaterial {
     GREEN_CONCRETE_POWDER,
     GREEN_DYE,
     GREEN_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    GREEN_HARNESS,
     GREEN_SHULKER_BOX,
     GREEN_STAINED_GLASS,
     GREEN_STAINED_GLASS_PANE,
@@ -816,6 +830,8 @@ public enum DMaterial {
     GUSTER_POTTERY_SHERD,
     @DInfo(since = "1.17")
     HANGING_ROOTS,
+    @DInfo(since = "1.21.6")
+    HAPPY_GHAST_SPAWN_EGG,
     HAY_BLOCK,
     @DInfo(since = "1.20")
     HEARTBREAK_POTTERY_SHERD,
@@ -939,6 +955,8 @@ public enum DMaterial {
     LIGHT_BLUE_CONCRETE_POWDER,
     LIGHT_BLUE_DYE,
     LIGHT_BLUE_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    LIGHT_BLUE_HARNESS,
     LIGHT_BLUE_SHULKER_BOX,
     LIGHT_BLUE_STAINED_GLASS,
     LIGHT_BLUE_STAINED_GLASS_PANE,
@@ -958,6 +976,8 @@ public enum DMaterial {
     LIGHT_GRAY_CONCRETE_POWDER,
     LIGHT_GRAY_DYE,
     LIGHT_GRAY_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    LIGHT_GRAY_HARNESS,
     LIGHT_GRAY_SHULKER_BOX,
     LIGHT_GRAY_STAINED_GLASS,
     LIGHT_GRAY_STAINED_GLASS_PANE,
@@ -981,6 +1001,8 @@ public enum DMaterial {
     LIME_CONCRETE_POWDER,
     LIME_DYE,
     LIME_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    LIME_HARNESS,
     LIME_SHULKER_BOX,
     LIME_STAINED_GLASS,
     LIME_STAINED_GLASS_PANE,
@@ -1006,6 +1028,8 @@ public enum DMaterial {
     MAGENTA_CONCRETE_POWDER,
     MAGENTA_DYE,
     MAGENTA_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    MAGENTA_HARNESS,
     MAGENTA_SHULKER_BOX,
     MAGENTA_STAINED_GLASS,
     MAGENTA_STAINED_GLASS_PANE,
@@ -1121,6 +1145,8 @@ public enum DMaterial {
     MUSIC_DISC_RELIC,
     MUSIC_DISC_STAL,
     MUSIC_DISC_STRAD,
+    @DInfo(since = "1.21.6")
+    MUSIC_DISC_TEARS,
     MUSIC_DISC_WAIT,
     MUSIC_DISC_WARD,
     MUTTON,
@@ -1201,6 +1227,8 @@ public enum DMaterial {
     ORANGE_CONCRETE_POWDER,
     ORANGE_DYE,
     ORANGE_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    ORANGE_HARNESS,
     ORANGE_SHULKER_BOX,
     ORANGE_STAINED_GLASS,
     ORANGE_STAINED_GLASS_PANE,
@@ -1307,6 +1335,8 @@ public enum DMaterial {
     PINK_CONCRETE_POWDER,
     PINK_DYE,
     PINK_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    PINK_HARNESS,
     @DInfo(since = "1.19.4")
     PINK_PETALS,
     PINK_SHULKER_BOX,
@@ -1457,6 +1487,8 @@ public enum DMaterial {
     PURPLE_CONCRETE_POWDER,
     PURPLE_DYE,
     PURPLE_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    PURPLE_HARNESS,
     PURPLE_SHULKER_BOX,
     PURPLE_STAINED_GLASS,
     PURPLE_STAINED_GLASS_PANE,
@@ -1516,6 +1548,8 @@ public enum DMaterial {
     RED_CONCRETE_POWDER,
     RED_DYE,
     RED_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    RED_HARNESS,
     RED_MUSHROOM,
     RED_MUSHROOM_BLOCK,
     RED_NETHER_BRICKS,
@@ -1972,6 +2006,8 @@ public enum DMaterial {
     WHITE_CONCRETE_POWDER,
     WHITE_DYE,
     WHITE_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    WHITE_HARNESS,
     WHITE_SHULKER_BOX,
     WHITE_STAINED_GLASS,
     WHITE_STAINED_GLASS_PANE,
@@ -2015,6 +2051,8 @@ public enum DMaterial {
     YELLOW_CONCRETE_POWDER,
     YELLOW_DYE,
     YELLOW_GLAZED_TERRACOTTA,
+    @DInfo(since = "1.21.6")
+    YELLOW_HARNESS,
     YELLOW_SHULKER_BOX,
     YELLOW_STAINED_GLASS,
     YELLOW_STAINED_GLASS_PANE,

@@ -72,7 +72,7 @@ public abstract class ChannelType {
             bossBar.addPlayer(player);
 
             // removal
-            Bukkit.getScheduler().runTaskLater(DAPI.getInstance().plugin, () -> {
+            Bukkit.getScheduler().runTaskLater(DAPI.getPlugin(), () -> {
                 bossBar.removePlayer(((Player) receiver));
                 Bukkit.removeBossBar(bossBar.getKey());
             }, bossBarMessage.getStayTicks());

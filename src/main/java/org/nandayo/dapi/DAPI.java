@@ -6,38 +6,74 @@ import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.nandayo.dapi.guimanager.MenuListener;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
+
 @SuppressWarnings("unused")
 public final class DAPI {
 
-    public Plugin plugin;
-    @Getter
-    private final Wrapper wrapper;
-    private final String version = "1.2.4";
-    public final String GUI_METADATA_KEY = "DAPI_GUI_" + Util.generateRandomLowerCaseString(8);
-
-    @Getter
-    private static DAPI instance;
-    public DAPI(@NotNull Plugin plugin) {
-        instance = this;
-        this.plugin = plugin;
-        this.wrapper = new Wrapper();
-        Metrics metrics = new Metrics(plugin, 24974);
-        metrics.addCustomChart(new SimplePie("dapi_version", () -> version));
-
+    private DAPI() {
+        // no construction
     }
+
+    static public final String VERSION = "1.2.5";
+    static public final String GUI_METADATA_KEY = "DAPI_GUI_" + Util.generateRandomLowerCaseString(8);
 
 
     public void registerMenuListener() {
-        if(plugin == null) {
-            Util.log("&cPlugin is not initialized! Try defining DAPI in your main class.");
-            return;
-        }
-        Bukkit.getPluginManager().registerEvents(new MenuListener(), plugin);
+        Bukkit.getPluginManager().registerEvents(new MenuListener(), getPlugin());
     }
+
+
+
+    static private Plugin plugin;
+
+    @NotNull
+    static public Plugin getPlugin() {
+        if(plugin != null) return plugin;
+        String pluginName = findPluginName();
+        Plugin foundPlugin = Bukkit.getPluginManager().getPlugin(pluginName);
+        if(foundPlugin == null) throw new DAPIException("Plugin not found with name '" + pluginName + "'!");
+        plugin = foundPlugin;
+        registerMetrics();
+        return plugin;
+    }
+
+    @NotNull
+    static private String findPluginName() {
+        ClassLoader loader = DAPI.class.getClassLoader();
+        for(String pluginFile : List.of("paper-plugin.yml", "plugin.yml")) {
+            try {
+                InputStream stream = loader.getResourceAsStream(pluginFile);
+                if(stream != null) {
+                    InputStreamReader reader = new InputStreamReader(stream);
+                    YamlConfiguration config = YamlConfiguration.loadConfiguration(reader);
+                    String pluginName = config.getString("plugin.name");
+                    if(pluginName == null) throw new Exception("Plugin name not found!");
+                    return pluginName;
+                }
+            } catch (Exception ignored) {}
+        }
+        throw new DAPIException("Plugin file (either 'plugin.yml' or 'paper-plugin.yml') not found!");
+    }
+
+
+    static private boolean metricsRegistered = false;
+
+    static private void registerMetrics() {
+        if(metricsRegistered) return;
+        metricsRegistered = true;
+        Util.log("[DAPI] Registering metrics for DAPI using plugin '" + plugin.getName() + "'.");
+        Metrics metrics = new Metrics(plugin, 24974);
+        metrics.addCustomChart(new SimplePie("dapi_version", () -> VERSION));
+    }
+
 
 
     /**
@@ -55,5 +91,6 @@ public final class DAPI {
      */
     @Getter
     @Setter
-    public @NotNull String missingArgsMsg = "";
+    @Deprecated(since = "1.2.5", forRemoval = true)
+    static public @NotNull String missingArgsMsg = "";
 }

@@ -2,7 +2,6 @@ package org.nandayo.dapi.guimanager;
 
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -250,7 +249,6 @@ public class Menu {
         }
 
         p.openInventory(inv);
-        DAPI dapi = DAPI.getInstance();
-        p.setMetadata(dapi.GUI_METADATA_KEY, new FixedMetadataValue(dapi.plugin, this));
+        p.setMetadata(DAPI.GUI_METADATA_KEY, new FixedMetadataValue(DAPI.getPlugin(), this));
     }
 }

@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Only supports 1.16.1 - 1.21.5.<br>
+ * Only supports 1.16.1 - 1.21.6.<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
@@ -112,6 +112,8 @@ public enum DEntityType {
     @DInfo(since = "1.17")
     GOAT,
     GUARDIAN,
+    @DInfo(since = "1.21.6")
+    HAPPY_GHAST,
     @DInfo(since = "1.16.1")
     HOGLIN,
     @DRenamed(since = "1.20.5", from = "MINECART_HOPPER")

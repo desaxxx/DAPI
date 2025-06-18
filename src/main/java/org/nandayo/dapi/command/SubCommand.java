@@ -15,7 +15,7 @@ public abstract class SubCommand {
      * @param sender Command sender
      */
     public void sendMissingArgsMsg(@NotNull CommandSender sender, @NotNull String label, String[] args, String options) {
-        String replacedMsg = DAPI.getInstance().getMissingArgsMsg()
+        @SuppressWarnings("deprecation") String replacedMsg = DAPI.getMissingArgsMsg()
                 .replace("{command}", label)
                 .replace("{current_args}", String.join(" ", args))
                 .replace("{options}", options);
