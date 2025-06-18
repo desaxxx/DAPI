@@ -58,7 +58,8 @@ public final class DAPI {
         for(String pluginFile : List.of("paper-plugin.yml", "plugin.yml")) {
             try {
                 InputStream stream = loader.getResourceAsStream(pluginFile);
-                if(stream == null) return null;
+                if(stream == null) continue;
+                
                 InputStreamReader reader = new InputStreamReader(stream);
                 YamlConfiguration config = YamlConfiguration.loadConfiguration(reader);
                 return config.getString("name");
