@@ -23,6 +23,10 @@ import java.util.function.Function;
 @Getter(AccessLevel.PROTECTED)
 public class Menu {
 
+    protected Menu() {
+        DAPI.registerMenuListener();
+    }
+
     private final @NotNull List<AbstractButton> abstractButtons = new ArrayList<>();
 
     @Deprecated(since = "1.2", forRemoval = true)

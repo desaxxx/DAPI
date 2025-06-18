@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.nandayo.dapi.guimanager.MenuListener;
 
 import java.io.InputStream;
@@ -26,9 +27,13 @@ public final class DAPI {
     static public final String GUI_METADATA_KEY = "DAPI_GUI_" + Util.generateRandomLowerCaseString(8);
 
 
+    static private boolean menuListenerRegistered = false;
     static public void registerMenuListener() {
+        if (menuListenerRegistered) return;
+        menuListenerRegistered = true;
         Bukkit.getPluginManager().registerEvents(new MenuListener(), getPlugin());
     }
+
 
 
 
@@ -37,7 +42,7 @@ public final class DAPI {
     @NotNull
     static public Plugin getPlugin() {
         if(plugin != null) return plugin;
-        String pluginName = findPluginName();
+        String pluginName = forcePluginName();
         Plugin foundPlugin = Bukkit.getPluginManager().getPlugin(pluginName);
         if(foundPlugin == null) throw new DAPIException("Plugin not found with name '" + pluginName + "'!");
         plugin = foundPlugin;
@@ -46,21 +51,25 @@ public final class DAPI {
     }
 
     @NotNull
+    static private String forcePluginName() {
+        String pluginName = findPluginName();
+        if(pluginName != null) return pluginName;
+        throw new DAPIException("Plugin name not found! To developer who uses DAPI, please check your plugin file (either 'plugin.yml' or 'paper-plugin.yml') and ensure it has 'name' key there.");
+    }
+
+    @Nullable
     static private String findPluginName() {
         ClassLoader loader = DAPI.class.getClassLoader();
         for(String pluginFile : List.of("paper-plugin.yml", "plugin.yml")) {
             try {
                 InputStream stream = loader.getResourceAsStream(pluginFile);
-                if (stream != null) {
-                    InputStreamReader reader = new InputStreamReader(stream);
-                    YamlConfiguration config = YamlConfiguration.loadConfiguration(reader);
-                    String pluginName = config.getString("plugin.name");
-                    if (pluginName == null) throw new DAPIException("Plugin name not found!");
-                    return pluginName;
-                }
+                if(stream == null) return null;
+                InputStreamReader reader = new InputStreamReader(stream);
+                YamlConfiguration config = YamlConfiguration.loadConfiguration(reader);
+                return config.getString("plugin.name");
             } catch (Exception ignored) {}
         }
-        throw new DAPIException("Plugin file (either 'plugin.yml' or 'paper-plugin.yml') not found!");
+        return null;
     }
 
 
