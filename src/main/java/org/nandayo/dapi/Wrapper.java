@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Constructor;
+import java.util.Locale;
 
 @SuppressWarnings("unused")
 public class Wrapper {
@@ -129,7 +130,7 @@ public class Wrapper {
         }
         else {
             try {
-                Enum.valueOf((Class<Enum>) Class.forName("org.bukkit.Sound"), key);
+                return (Sound) Enum.valueOf((Class<Enum>) Class.forName("org.bukkit.Sound"), key.replace(".","_").toUpperCase(Locale.ENGLISH));
             } catch (Exception ignored) {}
         }
         return null;
