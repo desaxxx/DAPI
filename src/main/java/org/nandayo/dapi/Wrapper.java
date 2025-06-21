@@ -11,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Constructor;
-import java.util.Locale;
 
 @SuppressWarnings("unused")
 public class Wrapper {
@@ -102,7 +101,7 @@ public class Wrapper {
      * @param potionType PotionType
      * @param color Color
      */
-    @SuppressWarnings({"removal", "deprecation"})
+    @SuppressWarnings({"removal"})
     static public void editPotionMeta(@NotNull PotionMeta meta, @Nullable PotionType potionType, @Nullable Color color) {
         if (minecraftVersion >= 205) {
             meta.setBasePotionType(potionType);
@@ -123,14 +122,14 @@ public class Wrapper {
      * @param key Key of the sound
      * @return Sound if found, else {@code null}.
      */
-    @SuppressWarnings("deprecation")
+    @SuppressWarnings({"unchecked", "rawtypes"})
     static public Sound getSound(@NotNull String key) {
         if(minecraftVersion >= 164) {
             return Registry.SOUNDS.get(NamespacedKey.minecraft(key));
         }
         else {
             try {
-                return Sound.valueOf(key.replace(".","_").toUpperCase(Locale.ENGLISH));
+                Enum.valueOf((Class<Enum>) Class.forName("org.bukkit.Sound"), key);
             } catch (Exception ignored) {}
         }
         return null;

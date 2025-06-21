@@ -59,7 +59,7 @@ public final class DAPI {
             try {
                 InputStream stream = loader.getResourceAsStream(pluginFile);
                 if(stream == null) continue;
-                
+
                 InputStreamReader reader = new InputStreamReader(stream);
                 YamlConfiguration config = YamlConfiguration.loadConfiguration(reader);
                 return config.getString("name");
