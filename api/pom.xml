@@ -16,11 +16,6 @@
 
   <name>${artifactId}</name>
 
-  <properties>
-    <java.version>9</java.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-
   <build>
     <defaultGoal>clean package</defaultGoal>
     <plugins>
@@ -29,8 +24,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.13.0</version>
         <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
+          <source>9</source>
+          <target>9</target>
         </configuration>
       </plugin>
       <plugin>
@@ -47,11 +42,5 @@
         </executions>
       </plugin>
     </plugins>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-      </resource>
-    </resources>
   </build>
 </project>
