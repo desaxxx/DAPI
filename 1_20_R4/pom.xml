@@ -5,7 +5,6 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>1_20_R4</artifactId>
-  <version>${parent.version}</version>
   <packaging>jar</packaging>
 
   <parent>
@@ -13,8 +12,6 @@
     <artifactId>DAPI</artifactId>
     <version>1.2.5</version>
   </parent>
-
-  <name>1.20.6</name> <!-- Used at plugin section below -->
 
   <dependencies>
     <dependency>
