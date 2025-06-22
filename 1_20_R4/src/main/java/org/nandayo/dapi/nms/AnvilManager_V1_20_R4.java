@@ -49,9 +49,10 @@ public class AnvilManager_V1_20_R4 extends AnvilWrapper {
     @Override
     void openMenu(@NotNull Player p, @NotNull MenuAnvilWrapper menu, @Nullable String title) {
         EntityPlayer player = handle(p);
-        player.cb = (MenuAnvil) menu;
+        MenuAnvil menuAnvil = (MenuAnvil) menu;
+        player.cb = menuAnvil;
         sendOpenScreenPacket(p, menu, title);
-        player.a((Container) menu); /* SlotListener */
+        player.a(menuAnvil); /* SlotListener */
     }
 
     @Override

@@ -9,15 +9,15 @@ import net.minecraft.world.inventory.ContainerAnvil;
 import net.minecraft.world.inventory.Containers;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import org.bukkit.craftbukkit.v1_21_R4.CraftWorld;
-import org.bukkit.craftbukkit.v1_21_R4.block.CraftBlock;
-import org.bukkit.craftbukkit.v1_21_R4.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_21_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_21_R2.block.CraftBlock;
+import org.bukkit.craftbukkit.v1_21_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class AnvilManager_V1_21_R4 extends AnvilWrapper {
+public class AnvilManager_V1_21_R2 extends AnvilWrapper {
 
     private EntityPlayer handle(@NotNull Player p) {
         return ((CraftPlayer) p).getHandle();
@@ -27,7 +27,7 @@ public class AnvilManager_V1_21_R4 extends AnvilWrapper {
     @Override
     public <I extends InventoryView> I openInventory(@NotNull Player p, @NotNull String title) {
         EntityPlayer player = handle(p);
-        player.o(); /* closeContainer(). */
+        player.p(); /* closeContainer(). */
 
         /* Create new MenuAnvil */
         MenuAnvil menu = (MenuAnvil) createMenuAnvil(p, title);
@@ -44,7 +44,7 @@ public class AnvilManager_V1_21_R4 extends AnvilWrapper {
         EntityPlayer player = handle(p);
         return new MenuAnvil(
                 player.nextContainerCounter(),
-                player.gj(),
+                player.gi(),
                 ContainerAccess.a(((CraftWorld) p.getWorld()).getHandle(), ((CraftBlock) p.getLocation().getBlock()).getPosition()),
                 title
         );
@@ -54,7 +54,7 @@ public class AnvilManager_V1_21_R4 extends AnvilWrapper {
     void openMenu(@NotNull Player p, @NotNull MenuAnvilWrapper menu, @Nullable String title) {
         EntityPlayer player = handle(p);
         MenuAnvil menuAnvil = (MenuAnvil) menu;
-        player.bR = menuAnvil;
+        player.cd = menuAnvil;
         sendOpenScreenPacket(p, menu, title);
         player.a(menuAnvil); /* SlotListener */
     }
