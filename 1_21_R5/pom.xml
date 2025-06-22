@@ -5,7 +5,6 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>1_21_R5</artifactId>
-  <version>${parent.version}</version>
   <packaging>jar</packaging>
 
   <parent>

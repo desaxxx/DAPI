@@ -15,7 +15,7 @@ import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class AnvilManager extends AnvilWrapper {
+public class AnvilManager_V1_21_R5 extends AnvilWrapper {
 
     private ServerPlayer handle(@NotNull Player p) {
         return ((CraftPlayer) p).getHandle();

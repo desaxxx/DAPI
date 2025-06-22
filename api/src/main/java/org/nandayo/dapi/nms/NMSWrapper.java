@@ -15,7 +15,7 @@ public class NMSWrapper {
     static private AnvilWrapper anvilWrapper;
     static public AnvilWrapper getAnvilWrapper() {
         if (anvilWrapper != null) return anvilWrapper;
-        String className = NMSWrapper.class.getPackageName() + ".AnvilManager";
+        String className = NMSWrapper.class.getPackageName() + ".AnvilManager_" + getNMSVersion().name();
         try {
             return anvilWrapper = (AnvilWrapper) Class.forName(className).getDeclaredConstructor().newInstance();
         } catch (Exception e) {
