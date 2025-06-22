@@ -14,8 +14,6 @@
     <version>1.2.5</version>
   </parent>
 
-  <name>${artifactId}</name>
-
   <build>
     <defaultGoal>clean package</defaultGoal>
     <plugins>
