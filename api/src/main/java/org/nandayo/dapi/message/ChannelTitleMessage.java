@@ -51,4 +51,11 @@ public class ChannelTitleMessage extends ChannelMessage implements Cloneable {
     public ChannelTitleMessage clone() {
         return (ChannelTitleMessage) super.clone();
     }
+
+    @Override
+    public ChannelMessage replace(@NotNull String key, @NotNull String value) {
+        super.replace(key, value);
+        this.secondaryMessage = secondaryMessage.replace(key, value);
+        return this;
+    }
 }

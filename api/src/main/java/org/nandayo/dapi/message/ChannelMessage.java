@@ -26,4 +26,9 @@ public class ChannelMessage implements Cloneable {
             throw new AssertionError();
         }
     }
+
+    public ChannelMessage replace(@NotNull String key, @NotNull String value) {
+        this.message = this.message.replace(key, value);
+        return this;
+    }
 }
