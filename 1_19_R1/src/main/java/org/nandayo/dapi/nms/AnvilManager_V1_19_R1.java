@@ -9,16 +9,16 @@ import net.minecraft.world.inventory.ContainerAnvil;
 import net.minecraft.world.inventory.Containers;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import org.bukkit.craftbukkit.v1_21_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_21_R1.block.CraftBlock;
-import org.bukkit.craftbukkit.v1_21_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_19_R1.block.CraftBlock;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("unused")
-public class AnvilManager_V1_21_R1 extends AnvilWrapper {
+public class AnvilManager_V1_19_R1 extends AnvilWrapper {
 
     private EntityPlayer handle(@NotNull Player p) {
         return ((CraftPlayer) p).getHandle();
@@ -27,7 +27,7 @@ public class AnvilManager_V1_21_R1 extends AnvilWrapper {
     @Override
     public <I extends InventoryView> I openInventory(@NotNull Player p, @NotNull String title) {
         EntityPlayer player = handle(p);
-        player.s(); /* closeContainer(). */
+        player.q(); /* closeContainer(). */
 
         /* Create new MenuAnvil */
         MenuAnvil menu = (MenuAnvil) createMenuAnvil(p, title);
@@ -44,7 +44,7 @@ public class AnvilManager_V1_21_R1 extends AnvilWrapper {
         EntityPlayer player = handle(p);
         return new MenuAnvil(
                 player.nextContainerCounter(),
-                player.fY(), /* PlayerInventory */
+                player.fA(), /* PlayerInventory */
                 ContainerAccess.a(((CraftWorld) p.getWorld()).getHandle(), ((CraftBlock) p.getLocation().getBlock()).getPosition()),
                 title
         );
@@ -54,7 +54,7 @@ public class AnvilManager_V1_21_R1 extends AnvilWrapper {
     void openMenu(@NotNull Player p, @NotNull MenuAnvilWrapper menu, @Nullable String title) {
         EntityPlayer player = handle(p);
         MenuAnvil menuAnvil = (MenuAnvil) menu;
-        player.cd = menuAnvil;
+        player.bU = menuAnvil;
         sendOpenScreenPacket(p, menu, title);
         player.a(menuAnvil); /* SlotListener */
     }
@@ -63,16 +63,15 @@ public class AnvilManager_V1_21_R1 extends AnvilWrapper {
     void sendOpenScreenPacket(@NotNull Player p, @NotNull MenuAnvilWrapper menu, @Nullable String title) {
         EntityPlayer player = handle(p);
         MenuAnvil menuAnvil = (MenuAnvil) menu;
-        player.c.b(new PacketPlayOutOpenWindow(
+        player.b.a(new PacketPlayOutOpenWindow(
                 menuAnvil.j,
-                Containers.i,
+                Containers.h,
                 title == null ? null : IChatBaseComponent.a(title)
         ));
     }
 
 
     static private class MenuAnvil extends ContainerAnvil implements MenuAnvilWrapper {
-
 
         public MenuAnvil(int containerId, PlayerInventory playerinventory, ContainerAccess containeraccess, @Nullable String title) {
             super(containerId, playerinventory, containeraccess);
@@ -81,11 +80,11 @@ public class AnvilManager_V1_21_R1 extends AnvilWrapper {
         }
 
         @Override
-        public void m() { /* createResult() */
+        public void l() { /* createResult() */
             Slot resultSlot = b(0); /* getSlot() */
-            ItemStack result = resultSlot.g(); /* getItem() */
-            if(result.e()) { /* isEmpty() */
-                resultSlot.f(b(0).g().s()); /* getSlot(i).getItem().cloneItemStack() */
+            ItemStack result = resultSlot.e(); /* getItem() */
+            if(result.b()) { /* isEmpty() */
+                resultSlot.e(b(0).e().o()); /* getSlot(i).getItem().cloneItemStack() */
             }
             w.a(0); /* cost.set() */
             d(); /* broadcastChanges() */
