@@ -37,6 +37,10 @@ public class ChannelTitleMessage extends ChannelMessage implements Cloneable {
         this.fadeOutTicks = fadeOutTicks;
     }
 
+    static public ChannelTitleMessage fromParent(@NotNull ChannelMessage message) {
+        return new ChannelTitleMessage(message.getMessage());
+    }
+
     @Override
     public void insertPrefix() {
         super.insertPrefix();

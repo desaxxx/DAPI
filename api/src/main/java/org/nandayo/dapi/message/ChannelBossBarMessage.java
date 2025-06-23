@@ -32,6 +32,10 @@ public class ChannelBossBarMessage extends ChannelMessage implements Cloneable {
         super(message);
     }
 
+    static public ChannelBossBarMessage fromParent(@NotNull ChannelMessage message) {
+        return new ChannelBossBarMessage(message.getMessage());
+    }
+
     @Override
     public ChannelBossBarMessage clone() {
         return (ChannelBossBarMessage) super.clone();

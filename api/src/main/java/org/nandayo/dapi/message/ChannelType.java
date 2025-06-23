@@ -36,8 +36,8 @@ public abstract class ChannelType {
     static public final ChannelType TITLE = new ChannelType() {
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
-            if(!(receiver instanceof Player) || !(message instanceof ChannelTitleMessage)) return;
-            ChannelTitleMessage titleMessage = (ChannelTitleMessage) message;
+            if(!(receiver instanceof Player)) return;
+            ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
             ((Player) receiver).sendTitle(HexUtil.parse(message.getMessage()), "", titleMessage.getFadeInTicks(), titleMessage.getStayTicks(), titleMessage.getFadeOutTicks());
         }
     };
@@ -45,8 +45,8 @@ public abstract class ChannelType {
     static public final ChannelType SUBTITLE = new ChannelType() {
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
-            if(!(receiver instanceof Player) || !(message instanceof ChannelTitleMessage)) return;
-            ChannelTitleMessage titleMessage = (ChannelTitleMessage) message;
+            if(!(receiver instanceof Player)) return;
+            ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
             ((Player) receiver).sendTitle(HexUtil.parse(message.getMessage()), "", titleMessage.getFadeInTicks(), titleMessage.getStayTicks(), titleMessage.getFadeOutTicks());
         }
     };
@@ -54,8 +54,8 @@ public abstract class ChannelType {
     static public final ChannelType TITLE_AND_SUBTITLE = new ChannelType() {
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
-            if(!(receiver instanceof Player) || !(message instanceof ChannelTitleMessage)) return;
-            ChannelTitleMessage titleMessage = (ChannelTitleMessage) message;
+            if(!(receiver instanceof Player)) return;
+            ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
             ((Player) receiver).sendTitle(HexUtil.parse(message.getMessage()), HexUtil.parse(titleMessage.getSecondaryMessage()), titleMessage.getFadeInTicks(), titleMessage.getStayTicks(), titleMessage.getFadeOutTicks());
         }
     };
@@ -64,8 +64,8 @@ public abstract class ChannelType {
         @SuppressWarnings("UnstableApiUsage")
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
-            if(!(receiver instanceof Player) || !(message instanceof ChannelBossBarMessage)) return;
-            ChannelBossBarMessage bossBarMessage = (ChannelBossBarMessage) message;
+            if(!(receiver instanceof Player)) return;
+            ChannelBossBarMessage bossBarMessage = message instanceof ChannelBossBarMessage ? (ChannelBossBarMessage) message : ChannelBossBarMessage.fromParent(message);
             Player player = (Player) receiver;
 
             KeyedBossBar bossBar = Bukkit.createBossBar(new NamespacedKey("dapi","bossbar_message_" + player.getUniqueId()), HexUtil.parse(message.getMessage()), bossBarMessage.getColor(), bossBarMessage.getStyle(), bossBarMessage.getFlags());
