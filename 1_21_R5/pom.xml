@@ -10,7 +10,7 @@
   <parent>
     <groupId>org.nandayo</groupId>
     <artifactId>DAPI</artifactId>
-    <version>1.2.5</version>
+    <version>1.2.5-BETA</version>
   </parent>
 
   <build>
@@ -91,7 +91,7 @@
     <dependency>
       <groupId>org.nandayo</groupId>
       <artifactId>api</artifactId>
-      <version>1.2.5</version>
+      <version>1.2.5-BETA</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
