@@ -1,31 +1,34 @@
 package org.nandayo.dapi.nms;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.ClientboundOpenScreenPacket;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.AnvilMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.MenuType;
+import net.minecraft.network.chat.IChatBaseComponent;
+import net.minecraft.network.protocol.game.PacketPlayOutOpenWindow;
+import net.minecraft.server.level.EntityPlayer;
+import net.minecraft.world.entity.player.PlayerInventory;
+import net.minecraft.world.inventory.ContainerAccess;
+import net.minecraft.world.inventory.ContainerAnvil;
+import net.minecraft.world.inventory.Containers;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import org.bukkit.craftbukkit.v1_21_R5.CraftWorld;
+import org.bukkit.craftbukkit.v1_21_R5.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_21_R5.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@SuppressWarnings("unused")
 public class AnvilManager_V1_21_R5 extends AnvilWrapper {
 
-    private ServerPlayer handle(@NotNull Player p) {
+    private EntityPlayer handle(@NotNull Player p) {
         return ((CraftPlayer) p).getHandle();
     }
 
 
     @Override
     public <I extends InventoryView> I openInventory(@NotNull Player p, @NotNull String title) {
-        ServerPlayer player = handle(p);
-        player.closeContainer(); /* Close the open menu. */
+        EntityPlayer player = handle(p);
+        player.p(); /* closeContainer(). */
 
         /* Create new MenuAnvil */
         MenuAnvil menu = (MenuAnvil) createMenuAnvil(p, title);
@@ -39,54 +42,54 @@ public class AnvilManager_V1_21_R5 extends AnvilWrapper {
 
     @Override
     MenuAnvilWrapper createMenuAnvil(@NotNull Player p, @Nullable String title) {
-        ServerPlayer player = handle(p);
+        EntityPlayer player = handle(p);
         return new MenuAnvil(
                 player.nextContainerCounter(),
-                player.getInventory(),
-                ContainerLevelAccess.create(player.level(), player.blockPosition()),
+                player.gs(),
+                ContainerAccess.a(((CraftWorld) p.getWorld()).getHandle(), ((CraftBlock) p.getLocation().getBlock()).getPosition()),
                 title
         );
     }
 
     @Override
     void openMenu(@NotNull Player p, @NotNull MenuAnvilWrapper menu, @Nullable String title) {
-        ServerPlayer player = handle(p);
+        EntityPlayer player = handle(p);
         MenuAnvil menuAnvil = (MenuAnvil) menu;
-        player.containerMenu = menuAnvil;
+        player.cn = menuAnvil;
         sendOpenScreenPacket(p, menu, title);
-        player.initMenu(menuAnvil); /* SlotListener */
+        player.a(menuAnvil); /* SlotListener */
     }
 
     @Override
     void sendOpenScreenPacket(@NotNull Player p, @NotNull MenuAnvilWrapper menu, @Nullable String title) {
-        ServerPlayer player = handle(p);
+        EntityPlayer player = handle(p);
         MenuAnvil menuAnvil = (MenuAnvil) menu;
-        player.connection.send(new ClientboundOpenScreenPacket(
-                menuAnvil.containerId,
-                MenuType.ANVIL,
-                title == null ? null : Component.literal(title)
+        player.g.b(new PacketPlayOutOpenWindow(
+                menuAnvil.l,
+                Containers.i,
+                title == null ? null : IChatBaseComponent.a(title)
         ));
     }
 
 
-    static private class MenuAnvil extends AnvilMenu implements MenuAnvilWrapper {
+    static private class MenuAnvil extends ContainerAnvil implements MenuAnvilWrapper {
 
-        public MenuAnvil(int i, Inventory playerinventory, ContainerLevelAccess containeraccess, @Nullable String title) {
+        public MenuAnvil(int i, PlayerInventory playerinventory, ContainerAccess containeraccess, @Nullable String title) {
             super(i, playerinventory, containeraccess);
             checkReachable = false;
-            if(title != null) setTitle(Component.literal(title)); /* title is null by default */
+            if(title != null) setTitle(IChatBaseComponent.a(title)); /* title is null by default */
         }
 
         @Override
-        public void createResult() {
-            Slot resultSlot = getSlot(RESULT_SLOT);
-            ItemStack result = resultSlot.getItem();
-            if(result.isEmpty()) {
-                resultSlot.set(getSlot(INPUT_SLOT).getItem().copy());
+        public void l() { /* createResult() */
+            Slot resultSlot = b(2); /* getSlot() */
+            ItemStack result = resultSlot.g(); /* getItem() */
+            if(result.f()) { /* isEmpty() */
+                resultSlot.f(b(0).g().g()); /* getSlot(i).getItem().copy() */
             }
-            cost.set(0);
-            broadcastChanges();
-            sendAllDataToRemote();
+            y.a(0); /* cost.set(i) */
+            d(); /* broadcastChanges() */
+            b(); /* sendAllDataToRemote() */
         }
     }
 }
