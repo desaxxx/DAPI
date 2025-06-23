@@ -69,6 +69,7 @@ public abstract class ChannelType {
             Player player = (Player) receiver;
 
             KeyedBossBar bossBar = Bukkit.createBossBar(new NamespacedKey("dapi","bossbar_message_" + player.getUniqueId()), HexUtil.parse(message.getMessage()), bossBarMessage.getColor(), bossBarMessage.getStyle(), bossBarMessage.getFlags());
+            bossBar.setProgress(bossBarMessage.getProgress());
             bossBar.addPlayer(player);
 
             // removal

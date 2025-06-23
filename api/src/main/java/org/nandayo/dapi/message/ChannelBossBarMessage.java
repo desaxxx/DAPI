@@ -14,22 +14,29 @@ public class ChannelBossBarMessage extends ChannelMessage implements Cloneable {
     private @NotNull BarColor color = BarColor.BLUE;
     private @NotNull BarStyle style = BarStyle.SOLID;
     private @NotNull BarFlag[] flags = new BarFlag[0];
+    private double progress = 1.0;
 
-    public ChannelBossBarMessage(@NotNull String message, int stayTicks, @NotNull BarColor color, @NotNull BarStyle style, @NotNull BarFlag... flags) {
+    public ChannelBossBarMessage(@NotNull String message, int stayTicks, double progress, @NotNull BarColor color, @NotNull BarStyle style, @NotNull BarFlag... flags) {
         super(message);
         this.stayTicks = Math.max(1, stayTicks);
+        progress(progress);
         this.color = color;
         this.style = style;
         this.flags = flags;
     }
 
-    public ChannelBossBarMessage(@NotNull String message, int stayTicks) {
+    public ChannelBossBarMessage(@NotNull String message, int stayTicks, double progress) {
         super(message);
         this.stayTicks = Math.max(1, stayTicks);
+        progress(progress);
     }
 
     public ChannelBossBarMessage(@NotNull String message) {
         super(message);
+    }
+
+    public void progress(double progress) {
+        this.progress = Math.max(0, Math.min(1, progress));
     }
 
     static public ChannelBossBarMessage fromParent(@NotNull ChannelMessage message) {
