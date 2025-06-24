@@ -20,26 +20,26 @@ This API is being designed by me and for my plugins. Still, you can also use it 
 ```
 <repository>
   <id>jitpack.io</id>
-	<url>https://jitpack.io</url>
+  <url>https://jitpack.io</url>
 </repository>
 
 <dependency>
   <groupId>com.github.desaxxx</groupId>
-	<artifactId>DAPI</artifactId>
-	<version>LATEST.RELEASE.TAG</version>
+  <artifactId>DAPI</artifactId>
+  <version>LATEST.RELEASE.TAG</version>
 </dependency>
  ```
 ### Gradle
 ```
 dependencyResolutionManagement {
-	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-	repositories {
-	  mavenCentral()
-		maven { url 'https://jitpack.io' }
-	}
+  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+  repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+  }
 }
 
 dependencies {
-	implementation 'com.github.desaxxx:DAPI:LATEST.RELEASE.TAG'
+  implementation 'com.github.desaxxx:DAPI:LATEST.RELEASE.TAG'
 }
 ```
