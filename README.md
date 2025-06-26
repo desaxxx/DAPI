@@ -43,3 +43,32 @@ dependencies {
   implementation 'com.github.desaxxx:DAPI:LATEST.RELEASE.TAG'
 }
 ```
+### Shading (Necessary)
+```
+<build>
+  <defaultGoal>clean install</defaultGoal>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-shade-plugin</artifactId>
+      <version>3.6.0</version>
+      <executions>
+        <execution>
+          <phase>package</phase>
+          <goals>
+            <goal>shade</goal>
+          </goals>
+          <configuration>
+            <relocations>
+              <relocation>
+                <pattern>com.github.desaxxx.DAPI</pattern>
+                <shadedPattern>PATH.TO.YOUR.PACKAGE</shadedPattern>
+              </relocation>
+            </relocations>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
+```
