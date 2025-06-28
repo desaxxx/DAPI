@@ -9,6 +9,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.nandayo.dapi.DAPI;
+import org.nandayo.dapi.HexUtil;
 import org.nandayo.dapi.guimanager.button.AbstractButton;
 import org.nandayo.dapi.guimanager.MenuType;
 import org.nandayo.dapi.guimanager.button.SingleSlotButton;
@@ -42,7 +43,7 @@ public class Menu extends AbstractMenu {
     protected final void createInventory(@NotNull MenuType menuType, @NotNull String title) {
         this.menuType = menuType;
         this.title = title;
-        this.inventory = menuType.createInventory(title);
+        this.inventory = menuType.createInventory(HexUtil.parse(title));
     }
 
     @Override

@@ -2,7 +2,7 @@ package org.nandayo.dapi;
 
 public class DAPIException extends RuntimeException {
 
-    DAPIException(String message) {
+    public DAPIException(String message) {
         super(message);
     }
 }

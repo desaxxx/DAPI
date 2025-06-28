@@ -1,6 +1,6 @@
 package org.nandayo.dapi.nms;
 
-import org.nandayo.dapi.Util;
+import org.nandayo.dapi.DAPIException;
 import org.nandayo.dapi.Wrapper;
 
 @SuppressWarnings("unused")
@@ -19,8 +19,7 @@ public class NMSWrapper {
         try {
             return anvilWrapper = (AnvilWrapper) Class.forName(className).getDeclaredConstructor().newInstance();
         } catch (Exception e) {
-            Util.log("[DAPI] Couldn't create AnvilManager from class name " + className);
+            throw new DAPIException("Couldn't create AnvilManager from class name " + className);
         }
-        return null;
     }
 }

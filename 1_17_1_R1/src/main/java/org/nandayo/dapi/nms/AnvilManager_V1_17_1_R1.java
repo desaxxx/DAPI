@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("unused")
-public class AnvilManager_V1_17_R1 extends AnvilWrapper {
+public class AnvilManager_V1_17_1_R1 extends AnvilWrapper {
 
     private EntityPlayer handle(@NotNull Player p) {
         return ((CraftPlayer) p).getHandle();
@@ -80,7 +80,7 @@ public class AnvilManager_V1_17_R1 extends AnvilWrapper {
         }
 
         @Override
-        public void i() { /* createResult() */
+        public void l() { /* createResult() */
             Slot resultSlot = getSlot(0); /* getSlot() */
             ItemStack result = resultSlot.getItem(); /* getItem() */
             if(result.isEmpty()) { /* isEmpty() */

@@ -5,6 +5,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -20,6 +21,6 @@ public abstract class SingleSlotButton extends AbstractButton {
 
     @Override
     final public @NotNull Set<Integer> getSlots() {
-        return Set.of(getSlot());
+        return new HashSet<>(Set.of(getSlot()));
     }
 }

@@ -14,6 +14,7 @@ import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@SuppressWarnings("unused")
 public class AnvilManager_V1_20_R4 extends AnvilWrapper {
 
     private EntityPlayer handle(@NotNull Player p) {
