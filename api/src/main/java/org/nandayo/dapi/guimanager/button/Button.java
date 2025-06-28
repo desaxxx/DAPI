@@ -5,6 +5,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @SuppressWarnings("unused")
@@ -12,6 +13,11 @@ import java.util.Set;
 public abstract class Button extends AbstractButton {
 
     abstract public @NotNull Set<Integer> getSlots();
+
+    @Override
+    final public @NotNull Set<Integer> newSetSlots() {
+        return new HashSet<>(getSlots());
+    }
 
     abstract public @Nullable ItemStack getItem();
 

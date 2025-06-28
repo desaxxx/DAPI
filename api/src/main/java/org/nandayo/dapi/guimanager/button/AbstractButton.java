@@ -16,12 +16,16 @@ public abstract class AbstractButton {
         return new HashSet<>();
     }
 
+    public @NotNull Set<Integer> newSetSlots() {
+        return new HashSet<>(getSlots());
+    }
+
     final public boolean matchesSlot(int slot) {
         return getSlots().contains(slot);
     }
 
     final public void removeSlot(int slot) {
-        getSlots().remove(slot);
+        newSetSlots().remove(slot);
     }
 
     public @Nullable ItemStack getItem() {

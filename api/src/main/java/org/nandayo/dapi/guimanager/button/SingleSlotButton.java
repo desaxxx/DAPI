@@ -23,4 +23,9 @@ public abstract class SingleSlotButton extends AbstractButton {
     final public @NotNull Set<Integer> getSlots() {
         return new HashSet<>(Set.of(getSlot()));
     }
+
+    @Override
+    final public @NotNull Set<Integer> newSetSlots() {
+        return new HashSet<>(getSlots());
+    }
 }
