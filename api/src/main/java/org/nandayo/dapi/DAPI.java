@@ -23,7 +23,7 @@ public final class DAPI {
         // no construction
     }
 
-    static public final String VERSION = "1.2.5-BETA";
+    static public final String VERSION = "1.2.5";
     static public final String GUI_METADATA_KEY = "DAPI_GUI_" + Util.generateRandomLowerCaseString(8);
 
 
@@ -55,7 +55,7 @@ public final class DAPI {
     @Nullable
     static private String findPluginName() {
         ClassLoader loader = DAPI.class.getClassLoader();
-        for(String pluginFile : List.of("paper-plugin.yml", "plugin.yml")) {
+        for(String pluginFile : List.of("plugin.yml","paper-plugin.yml")) {
             try {
                 InputStream stream = loader.getResourceAsStream(pluginFile);
                 if(stream == null) continue;

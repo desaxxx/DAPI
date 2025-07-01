@@ -40,6 +40,5 @@ public abstract class AnvilWrapper {
 
 
     interface MenuAnvilWrapper {
-
     }
 }

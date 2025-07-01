@@ -68,7 +68,8 @@ public abstract class ChannelType {
             ChannelBossBarMessage bossBarMessage = message instanceof ChannelBossBarMessage ? (ChannelBossBarMessage) message : ChannelBossBarMessage.fromParent(message);
             Player player = (Player) receiver;
 
-            KeyedBossBar bossBar = Bukkit.createBossBar(new NamespacedKey("dapi","bossbar_message_" + player.getUniqueId()), HexUtil.parse(message.getMessage()), bossBarMessage.getColor(), bossBarMessage.getStyle(), bossBarMessage.getFlags());
+            NamespacedKey randomKey = new NamespacedKey("dapi","bossbar_message_" + Util.generateRandomString(8));
+            KeyedBossBar bossBar = Bukkit.createBossBar(randomKey, HexUtil.parse(message.getMessage()), bossBarMessage.getColor(), bossBarMessage.getStyle(), bossBarMessage.getFlags());
             bossBar.setProgress(bossBarMessage.getProgress());
             bossBar.addPlayer(player);
 
