@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import org.bukkit.craftbukkit.v1_21_R5.CraftWorld;
 import org.bukkit.craftbukkit.v1_21_R5.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_21_R5.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_21_R5.inventory.view.CraftAnvilView;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
@@ -161,5 +162,12 @@ public class AnvilManager_V1_21_R5 extends AnvilWrapper {
          */
         //@Override
         //public void a(EntityHuman entityHuman, IInventory iInventory) {}
+
+
+        @Override
+        public <I extends InventoryView> I getInventoryView() {
+            //noinspection unchecked
+            return (I) getBukkitView();
+        }
     }
 }

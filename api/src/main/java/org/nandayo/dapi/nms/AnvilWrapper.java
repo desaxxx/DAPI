@@ -49,5 +49,6 @@ public abstract class AnvilWrapper {
 
 
     public interface MenuAnvilWrapper {
+        <I extends InventoryView> I getInventoryView();
     }
 }

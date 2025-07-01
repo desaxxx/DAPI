@@ -96,5 +96,11 @@ public class AnvilManager_V1_19_R3 extends AnvilWrapper {
             d(); /* broadcastChanges() */
             b(); /* sendAllDataToRemote() */
         }
+
+        @Override
+        public <I extends InventoryView> I getInventoryView() {
+            //noinspection unchecked
+            return (I) getBukkitView();
+        }
     }
 }

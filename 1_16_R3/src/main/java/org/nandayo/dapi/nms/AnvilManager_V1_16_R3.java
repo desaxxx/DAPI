@@ -86,5 +86,11 @@ public class AnvilManager_V1_16_R3 extends AnvilWrapper {
             levelCost.set(0);
             c(); /* broadcastChanges() */
         }
+
+        @Override
+        public <I extends InventoryView> I getInventoryView() {
+            //noinspection unchecked
+            return (I) getBukkitView();
+        }
     }
 }
