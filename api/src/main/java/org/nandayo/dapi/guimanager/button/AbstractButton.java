@@ -12,20 +12,22 @@ import java.util.Set;
 @SuppressWarnings("unused")
 public abstract class AbstractButton {
 
-    public @NotNull Set<Integer> getSlots() {
-        return new HashSet<>();
+    protected @NotNull Set<Integer> getSlots() {
+        return Set.of();
     }
 
-    public @NotNull Set<Integer> newSetSlots() {
-        return new HashSet<>(getSlots());
+    protected final @NotNull Set<Integer> slots = new HashSet<>();
+    public @NotNull Set<Integer> updatedMutableSlots() {
+        if(slots.isEmpty()) slots.addAll(getSlots());
+        return slots;
     }
 
     final public boolean matchesSlot(int slot) {
-        return getSlots().contains(slot);
+        return updatedMutableSlots().contains(slot);
     }
 
     final public void removeSlot(int slot) {
-        newSetSlots().remove(slot);
+        updatedMutableSlots().remove(slot);
     }
 
     public @Nullable ItemStack getItem() {

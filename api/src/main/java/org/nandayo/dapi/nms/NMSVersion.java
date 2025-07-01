@@ -27,7 +27,7 @@ public enum NMSVersion {
     V1_21_R2(212,213),
     V1_21_R3(214),
     V1_21_R4(215),
-    V1_21_R5(216);
+    V1_21_R5(216,217);
 
     NMSVersion(int... minecraftVersions) {
         this.minecraftVersions = minecraftVersions;

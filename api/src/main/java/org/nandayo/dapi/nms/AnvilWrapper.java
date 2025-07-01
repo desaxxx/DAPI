@@ -11,8 +11,17 @@ public abstract class AnvilWrapper {
      * Open an anvil menu to the player.
      * @param p BukkitPlayer
      * @param title Title of the menu
+     * @return InventoryView
      */
     abstract public <I extends InventoryView> I openInventory(@NotNull Player p, @NotNull String title);
+
+    /**
+     * Open an anvil menu to the player from given MenuAnvilWrapper.
+     * @param p BukkitPlayer
+     * @param menu AnvilMenuWrapper
+     * @return InventoryView
+     */
+    abstract public <I extends InventoryView> I openInventory(@NotNull Player p, @NotNull MenuAnvilWrapper menu);
 
     /**
      * Create a MenuAnvilWrapper.
@@ -20,7 +29,7 @@ public abstract class AnvilWrapper {
      * @param title Title of the menu
      * @return new MenuAnvilWrapper
      */
-    abstract MenuAnvilWrapper createMenuAnvil(@NotNull Player p, @Nullable String title);
+    abstract public MenuAnvilWrapper createMenuAnvil(@NotNull Player p, @Nullable String title);
 
     /**
      * Copy of necessary part of method ServerPlayer#openMenu(MenuProvider).
@@ -39,6 +48,6 @@ public abstract class AnvilWrapper {
     abstract void sendOpenScreenPacket(@NotNull Player p, @NotNull MenuAnvilWrapper menu, @Nullable String title);
 
 
-    interface MenuAnvilWrapper {
+    public interface MenuAnvilWrapper {
     }
 }

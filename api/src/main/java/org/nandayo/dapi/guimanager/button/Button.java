@@ -12,11 +12,12 @@ import java.util.Set;
 @Getter
 public abstract class Button extends AbstractButton {
 
-    abstract public @NotNull Set<Integer> getSlots();
+    abstract protected @NotNull Set<Integer> getSlots();
 
     @Override
-    final public @NotNull Set<Integer> newSetSlots() {
-        return new HashSet<>(getSlots());
+    final public @NotNull Set<Integer> updatedMutableSlots() {
+        if(slots.isEmpty()) slots.addAll(getSlots());
+        return slots;
     }
 
     abstract public @Nullable ItemStack getItem();

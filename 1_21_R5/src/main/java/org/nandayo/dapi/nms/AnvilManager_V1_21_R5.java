@@ -5,10 +5,7 @@ import net.minecraft.network.protocol.game.PacketPlayOutOpenWindow;
 import net.minecraft.server.level.EntityPlayer;
 import net.minecraft.world.entity.player.EntityHuman;
 import net.minecraft.world.entity.player.PlayerInventory;
-import net.minecraft.world.inventory.ContainerAccess;
-import net.minecraft.world.inventory.ContainerAnvil;
-import net.minecraft.world.inventory.Containers;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import org.bukkit.craftbukkit.v1_21_R5.CraftWorld;
 import org.bukkit.craftbukkit.v1_21_R5.block.CraftBlock;
@@ -26,19 +23,26 @@ public class AnvilManager_V1_21_R5 extends AnvilWrapper {
     }
 
 
+    @Override
+    public <I extends InventoryView> I openInventory(@NotNull Player p, @NotNull String title) {
+        /* Create new MenuAnvil */
+        MenuAnvil menu = (MenuAnvil) createMenuAnvil(p, title);
+        return openInventory(p, menu);
+    }
+
     /*
      * EntityPlayer#p()     -> EntityPlayer#closeContainer()
      */
     @Override
-    public <I extends InventoryView> I openInventory(@NotNull Player p, @NotNull String title) {
+    public <I extends InventoryView> I openInventory(@NotNull Player p, @NotNull MenuAnvilWrapper menuWrapper) {
         EntityPlayer player = handle(p);
         player.p();
 
-        /* Create new MenuAnvil */
-        MenuAnvil menu = (MenuAnvil) createMenuAnvil(p, title);
+        /* Typecast MenuAnvilWrapper to MenuAnvil */
+        MenuAnvil menu = (MenuAnvil) menuWrapper;
 
         /* Open the MenuAnvil to the player */
-        openMenu(p, menu, title);
+        openMenu(p, menuWrapper, menu.getTitle().getString());
 
         //noinspection unchecked
         return (I) menu.getBukkitView();
@@ -49,7 +53,7 @@ public class AnvilManager_V1_21_R5 extends AnvilWrapper {
      * ContainerAccess#a(World, BlockPosition)      -> ContainerAccess#create(World, BlockPosition)
      */
     @Override
-    MenuAnvilWrapper createMenuAnvil(@NotNull Player p, @Nullable String title) {
+    public MenuAnvilWrapper createMenuAnvil(@NotNull Player p, @Nullable String title) {
         EntityPlayer player = handle(p);
         return new MenuAnvil(
                 player.nextContainerCounter(),

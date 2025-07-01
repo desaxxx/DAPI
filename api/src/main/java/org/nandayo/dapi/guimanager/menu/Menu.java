@@ -49,7 +49,7 @@ public class Menu extends AbstractMenu {
     @Override
     protected final <T extends AbstractButton> void addButton(@NotNull T button) {
         // Remove the old button from overridden slot.
-        for(Integer slot : button.getSlots()) {
+        for(Integer slot : button.updatedMutableSlots()) {
             removeButton(slot);
         }
 
@@ -98,7 +98,7 @@ public class Menu extends AbstractMenu {
 
     private void uploadButtons(@NotNull Inventory inv) {
         for(AbstractButton abstractButton : getAbstractButtons()) {
-            for(int slot : abstractButton.getSlots()) {
+            for(int slot : abstractButton.updatedMutableSlots()) {
                 inv.setItem(slot , abstractButton.getItem());
             }
         }

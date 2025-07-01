@@ -40,7 +40,21 @@ public class AnvilManager_V1_17_1_R1 extends AnvilWrapper {
     }
 
     @Override
-    MenuAnvilWrapper createMenuAnvil(@NotNull Player p, @Nullable String title) {
+    public <I extends InventoryView> I openInventory(@NotNull Player p, @NotNull MenuAnvilWrapper menuWrapper) {
+        EntityPlayer player = handle(p);
+        player.closeInventory(); /* closeContainer(). */
+
+        MenuAnvil menu = (MenuAnvil) menuWrapper;
+
+        /* Open the MenuAnvil to the player */
+        openMenu(p, menu, menu.getTitle().getString());
+
+        //noinspection unchecked
+        return (I) menu.getBukkitView();
+    }
+
+    @Override
+    public MenuAnvilWrapper createMenuAnvil(@NotNull Player p, @Nullable String title) {
         EntityPlayer player = handle(p);
         return new MenuAnvil(
                 player.nextContainerCounter(),
