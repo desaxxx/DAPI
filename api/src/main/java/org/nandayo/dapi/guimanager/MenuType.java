@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
+import org.nandayo.dapi.nms.NMSWrapper;
 
 @Getter
 @SuppressWarnings("unused")

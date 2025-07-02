@@ -1,14 +1,18 @@
 package org.nandayo.dapi.guimanager.menu;
 
+import com.google.common.collect.ImmutableList;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.nandayo.dapi.DAPI;
 import org.nandayo.dapi.guimanager.button.AbstractButton;
 import org.nandayo.dapi.guimanager.button.SingleSlotButton;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -17,7 +21,12 @@ import java.util.function.Function;
 @SuppressWarnings("unused")
 public abstract class AbstractMenu {
 
-    abstract protected List<AbstractButton> getButtons();
+    private final @NotNull List<AbstractButton> abstractButtons = new ArrayList<>();
+    private @Nullable Inventory inventory;
+
+    protected List<AbstractButton> getButtons() {
+        return ImmutableList.copyOf(abstractButtons);
+    }
 
     /**
      * Check if the slot is a menu button.
@@ -34,7 +43,7 @@ public abstract class AbstractMenu {
      * @return AbstractButton
      */
     public @Nullable AbstractButton getButton(int slot) {
-        return getButtons().stream()
+        return this.abstractButtons.stream()
                 .filter(b -> b.matchesSlot(slot))
                 .findFirst()
                 .orElse(null);
@@ -45,21 +54,53 @@ public abstract class AbstractMenu {
      * Available buttons are: Button, LazyButton.
      * @param button AbstractButton
      */
-    abstract protected <T extends AbstractButton> void addButton(@NotNull T button);
+    protected void addButton(@NotNull AbstractButton button) {
+        // Remove the old button from overridden slot.
+        for(Integer slot : button.updatedMutableSlots()) {
+            removeButton(slot);
+        }
+
+        this.abstractButtons.add(button);
+    }
 
     /**
      * Remove a button from the buttons list.
      * @param button AbstractButton
      */
-    abstract protected void removeButton(@NotNull AbstractButton button);
+    protected void removeButton(@NotNull AbstractButton button) {
+        this.abstractButtons.remove(button);
+    }
 
     /**
      * Remove a button from given slot or remove the slot from slots of the button in case it has multiple slots.
      * @param slot Integer
+     * @return The button that contains the given slot
      */
-    abstract protected void removeButton(int slot);
+    @Nullable
+    protected AbstractButton removeButton(int slot) {
+        AbstractButton abstractButton = getButton(slot);
+        if(abstractButton != null) {
+            abstractButton.removeSlot(slot);
+        }
+        return abstractButton;
+    }
 
-    abstract public Inventory getInventory();
+    /**
+     * Get the inventory of the Menu.
+     * @return Inventory if created one, else {@code null}.
+     */
+    @Nullable
+    public Inventory getInventory() {
+        return this.inventory;
+    }
+
+    /**
+     * Set the inventory of the Menu.
+     * @param inventory Inventory
+     */
+    protected void setInventory(@NotNull Inventory inventory) {
+       this.inventory = inventory;
+    }
 
     /**
      * Get item on inventory from given slot.
@@ -80,6 +121,40 @@ public abstract class AbstractMenu {
         if(getInventory() == null) return;
         getInventory().setItem(slot, item);
     }
+
+    /**
+     * Display the menu to a player.
+     * @param player Player
+     */
+    protected void displayTo(@NotNull Player player) {
+        if(inventory == null) return;
+
+        uploadBackgroundButtons(inventory);
+        uploadButtons(inventory);
+
+        player.openInventory(inventory);
+        player.setMetadata(DAPI.GUI_METADATA_KEY, new FixedMetadataValue(DAPI.getPlugin(), this));
+    }
+
+    protected final void uploadBackgroundButtons(@NotNull Inventory inv) {
+        for(int i = 0; i < inv.getSize(); i++) {
+            SingleSlotButton singleSlotButton = backgroundButtonFunction().apply(i);
+            if(singleSlotButton == null || getButton(i) != null) continue;
+            addButton(singleSlotButton);
+        }
+    }
+
+    protected final void uploadButtons(@NotNull Inventory inv) {
+        for(AbstractButton abstractButton : getButtons()) {
+            for(int slot : abstractButton.updatedMutableSlots()) {
+                inv.setItem(slot , abstractButton.getItem());
+            }
+        }
+    }
+
+
+
+
 
     /**
      * Set empty slots modifiable or not.
@@ -108,10 +183,4 @@ public abstract class AbstractMenu {
     public BiConsumer<PlayerInventory, Integer> onPlayerInventoryClick() {
         return (playerInventory, slot) -> {};
     }
-
-    /**
-     * Display the menu to a player.
-     * @param p Player
-     */
-    abstract protected void displayTo(@NotNull Player p);
 }

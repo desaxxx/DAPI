@@ -82,17 +82,16 @@ public class AnvilManager_V1_18_R1 extends AnvilWrapper {
         public MenuAnvil(int containerId, PlayerInventory playerinventory, ContainerAccess containeraccess, @Nullable String title) {
             super(containerId, playerinventory, containeraccess);
             checkReachable = false;
-            if(title != null) setTitle(IChatBaseComponent.a(title));
+            setTitle(IChatBaseComponent.a(title));
+            w.a(0);
         }
 
         @Override
         public void l() { /* createResult() */
             Slot resultSlot = a(0); /* getSlot() */
-            ItemStack result = resultSlot.e(); /* getItem() */
-            if(result.b()) { /* isEmpty() */
+            if(resultSlot.e().b()) { /* getItem(), isEmpty() */
                 resultSlot.d(a(0).e().m()); /* setItem(stack), getSlot(i).getItem().cloneItemStack() */
             }
-            w.a(0); /* cost.set() */
             d(); /* broadcastChanges() */
             b(); /* sendAllDataToRemote() */
         }

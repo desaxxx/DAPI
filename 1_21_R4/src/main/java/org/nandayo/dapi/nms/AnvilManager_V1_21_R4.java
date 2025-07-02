@@ -3,6 +3,8 @@ package org.nandayo.dapi.nms;
 import net.minecraft.network.chat.IChatBaseComponent;
 import net.minecraft.network.protocol.game.PacketPlayOutOpenWindow;
 import net.minecraft.server.level.EntityPlayer;
+import net.minecraft.world.IInventory;
+import net.minecraft.world.entity.player.EntityHuman;
 import net.minecraft.world.entity.player.PlayerInventory;
 import net.minecraft.world.inventory.ContainerAccess;
 import net.minecraft.world.inventory.ContainerAnvil;
@@ -82,20 +84,28 @@ public class AnvilManager_V1_21_R4 extends AnvilWrapper {
         public MenuAnvil(int i, PlayerInventory playerinventory, ContainerAccess containeraccess, @Nullable String title) {
             super(i, playerinventory, containeraccess);
             checkReachable = false;
-            if(title != null) setTitle(IChatBaseComponent.a(title)); /* title is null by default */
+            setTitle(IChatBaseComponent.a(title)); /* title is null by default */
+            y.a(0); /* cost.set(i) */
         }
 
         @Override
         public void l() { /* createResult() */
             Slot resultSlot = b(2); /* getSlot() */
-            ItemStack result = resultSlot.g(); /* getItem() */
-            if(result.f()) { /* isEmpty() */
+            if(resultSlot.g().f()) { /* getItem(), isEmpty() */
                 resultSlot.f(b(0).g().v()); /* getSlot(i).getItem().copy() */
             }
-            y.a(0); /* cost.set(i) */
             d(); /* broadcastChanges() */
             b(); /* sendAllDataToRemote() */
         }
+
+        @Override
+        protected void a(EntityHuman entityHuman, ItemStack itemstack) {}
+
+        @Override
+        public void a(EntityHuman entityHuman) {}
+
+        @Override
+        protected void a(EntityHuman entityHuman, IInventory iinventory) {}
 
         @Override
         public <I extends InventoryView> I getInventoryView() {

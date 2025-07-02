@@ -16,9 +16,11 @@ public abstract class AbstractButton {
         return Set.of();
     }
 
-    protected final @NotNull Set<Integer> slots = new HashSet<>();
-    public @NotNull Set<Integer> updatedMutableSlots() {
-        if(slots.isEmpty()) slots.addAll(getSlots());
+    protected Set<Integer> slots;
+    public final @NotNull Set<Integer> updatedMutableSlots() {
+        if(slots == null) {
+            slots = new HashSet<>(getSlots());
+        }
         return slots;
     }
 

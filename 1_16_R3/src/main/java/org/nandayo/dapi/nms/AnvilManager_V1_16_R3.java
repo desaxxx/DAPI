@@ -62,7 +62,7 @@ public class AnvilManager_V1_16_R3 extends AnvilWrapper {
         player.playerConnection.sendPacket(new PacketPlayOutOpenWindow(
                 menuAnvil.windowId,
                 Containers.ANVIL,
-                title == null ? null : new ChatComponentText(title)
+                new ChatComponentText(title)
         ));
     }
 
@@ -73,19 +73,35 @@ public class AnvilManager_V1_16_R3 extends AnvilWrapper {
         public MenuAnvil(int containerId, PlayerInventory playerinventory, ContainerAccess containeraccess, @Nullable String title) {
             super(containerId, playerinventory, containeraccess);
             checkReachable = false;
-            if(title != null) setTitle(new ChatComponentText(title));
+            setTitle(new ChatComponentText(title));
+            levelCost.set(0);
         }
 
         @Override
         public void e() { /* createResult() */
             Slot resultSlot = getSlot(2);
-            ItemStack result = resultSlot.getItem();
-            if(result.isEmpty()) {
+            if(resultSlot.getItem().isEmpty()) {
                 resultSlot.set(getSlot(0).getItem().cloneItemStack());
             }
-            levelCost.set(0);
             c(); /* broadcastChanges() */
         }
+
+        /*
+         * a(EntityHuman, ItemStack)                -> onTake() returns ItemStack before 1_16_R3
+         */
+        @Override
+        protected ItemStack a(EntityHuman entityHuman, ItemStack itemstack) {
+            return itemstack;
+        }
+
+        @Override
+        public void b(EntityHuman entityHuman) {}
+
+        /*
+         * a(EntityHuman, World, IInventory)        -> clearContainer() contains World parameter before 1_16_R3
+         */
+        @Override
+        protected void a(EntityHuman entityhuman, World world, IInventory iinventory) {}
 
         @Override
         public <I extends InventoryView> I getInventoryView() {

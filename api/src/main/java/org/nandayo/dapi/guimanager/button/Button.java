@@ -14,12 +14,6 @@ public abstract class Button extends AbstractButton {
 
     abstract protected @NotNull Set<Integer> getSlots();
 
-    @Override
-    final public @NotNull Set<Integer> updatedMutableSlots() {
-        if(slots.isEmpty()) slots.addAll(getSlots());
-        return slots;
-    }
-
     abstract public @Nullable ItemStack getItem();
 
     // AbstractButton supplies onClick() and isModifiable()

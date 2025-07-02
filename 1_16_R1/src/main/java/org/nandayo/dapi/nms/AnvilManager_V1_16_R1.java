@@ -3,7 +3,6 @@ package org.nandayo.dapi.nms;
 import net.minecraft.server.v1_16_R1.*;
 import org.bukkit.craftbukkit.v1_16_R1.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_16_R1.inventory.CraftInventoryView;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
@@ -74,19 +73,35 @@ public class AnvilManager_V1_16_R1 extends AnvilWrapper {
         public MenuAnvil(int containerId, PlayerInventory playerinventory, ContainerAccess containeraccess, @Nullable String title) {
             super(containerId, playerinventory, containeraccess);
             checkReachable = false;
-            if(title != null) setTitle(new ChatComponentText(title));
+            setTitle(new ChatComponentText(title));
+            levelCost.set(0);
         }
 
         @Override
         public void e() { /* createResult() */
             Slot resultSlot = getSlot(2);
-            ItemStack result = resultSlot.getItem();
-            if(result.isEmpty()) {
+            if(resultSlot.getItem().isEmpty()) {
                 resultSlot.set(getSlot(0).getItem().cloneItemStack());
             }
-            levelCost.set(0);
             c(); /* broadcastChanges() */
         }
+
+        /*
+         * a(EntityHuman, ItemStack)                -> onTake() returns ItemStack before 1_16_R3
+         */
+        @Override
+        protected ItemStack a(EntityHuman entityHuman, ItemStack itemstack) {
+            return itemstack;
+        }
+
+        @Override
+        public void b(EntityHuman entityHuman) {}
+
+        /*
+         * a(EntityHuman, World, IInventory)        -> clearContainer() contains World parameter before 1_16_R3
+         */
+        @Override
+        protected void a(EntityHuman entityhuman, World world, IInventory iinventory) {}
 
         @Override
         public <I extends InventoryView> I getInventoryView() {

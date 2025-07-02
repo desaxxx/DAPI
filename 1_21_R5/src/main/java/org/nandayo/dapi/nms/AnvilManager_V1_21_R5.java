@@ -3,6 +3,7 @@ package org.nandayo.dapi.nms;
 import net.minecraft.network.chat.IChatBaseComponent;
 import net.minecraft.network.protocol.game.PacketPlayOutOpenWindow;
 import net.minecraft.server.level.EntityPlayer;
+import net.minecraft.world.IInventory;
 import net.minecraft.world.entity.player.EntityHuman;
 import net.minecraft.world.entity.player.PlayerInventory;
 import net.minecraft.world.inventory.*;
@@ -113,6 +114,7 @@ public class AnvilManager_V1_21_R5 extends AnvilWrapper {
 
         /*
          * a(EntityHuman, ItemStack) -> onTake(EntityHuman, ItemStack)
+         *
          * What it originally does:
          *   Remove experience from player
          *   Empty input slot and subtract items from 2nd slot as repair cost
@@ -124,6 +126,7 @@ public class AnvilManager_V1_21_R5 extends AnvilWrapper {
 
         /*
          * l()              -> createResult()
+         *
          * It creates a result ItemStack based on conditions of player, items on input slots.
          * These are not needed as we only use it for getting a user input.
          *
@@ -146,16 +149,25 @@ public class AnvilManager_V1_21_R5 extends AnvilWrapper {
         }
 
         /*
-         * a(EntityHuman)           -> ContainerAnvilAbstract#removed(EntityHuman)
-         * Makes the cursor item of player drop or return to player on container close caused by the server
-         * and makes the items on inputs slots to drop or return to player.
+         * a(EntityHuman)            -> ContainerAnvilAbstract#removed(EntityHuman)
          *
-         * The only method that calls Container#clearContainer() is this method so we don't need to override it as well.
+         * Makes the cursor item of player and items on input slots drop or return to player on container close caused by server.
          *
          * We override it to cancel these actions.
          */
         @Override
         public void a(EntityHuman entityHuman) {}
+
+        /*
+         * a(EntityHuman, IInventory)   -> Container#clearInventory(EntityHuman, IInventory)
+         *
+         * Makes the items on input slots to drop or return to player.
+         * This method is also called under ContainerAnvilAbstract#removed() method.
+         *
+         * We override it to cancel this action.
+         */
+        @Override
+        protected void a(EntityHuman entityhuman, IInventory iinventory) {}
 
         @Override
         public <I extends InventoryView> I getInventoryView() {

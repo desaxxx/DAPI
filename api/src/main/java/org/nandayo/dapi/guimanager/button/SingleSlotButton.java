@@ -23,10 +23,4 @@ public abstract class SingleSlotButton extends AbstractButton {
     final protected @NotNull Set<Integer> getSlots() {
         return Set.of(getSlot());
     }
-
-    @Override
-    final public @NotNull Set<Integer> updatedMutableSlots() {
-        if(slots.isEmpty()) slots.addAll(getSlots());
-        return slots;
-    }
 }
