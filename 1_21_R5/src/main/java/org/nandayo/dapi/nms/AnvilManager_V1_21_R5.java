@@ -131,38 +131,31 @@ public class AnvilManager_V1_21_R5 extends AnvilWrapper {
          * Slot#g()         -> Slot#getItem()
          * Slot#f()         -> Slot#set()
          * ItemStack#f()    -> ItemStack#isEmpty()
-         * ItemStack#g()    -> ItemStack#copy()
+         * ItemStack#v()    -> ItemStack#copy()
          * d()              -> broadcastChanges()
          * b()              -> sendAllDataToRemote()
          */
         @Override
         public void l() {
             Slot resultSlot = b(2);
-            ItemStack result = resultSlot.g();
-            if(result.f()) {
-                resultSlot.f(b(0).g().g());
+            if(resultSlot.g().f()) {
+                resultSlot.f(b(0).g().v());
             }
             d();
             b();
         }
 
         /*
-         * a(EntityHuman)           -> removed(EntityHuman)
-         * Makes the cursor item of player drop or return to player on container close caused by the server.
-         * We override it to cancel that action.
+         * a(EntityHuman)           -> ContainerAnvilAbstract#removed(EntityHuman)
+         * Makes the cursor item of player drop or return to player on container close caused by the server
+         * and makes the items on inputs slots to drop or return to player.
+         *
+         * The only method that calls Container#clearContainer() is this method so we don't need to override it as well.
+         *
+         * We override it to cancel these actions.
          */
         @Override
         public void a(EntityHuman entityHuman) {}
-
-        /*
-         * a(EntityHuman, IInventory) -> clearContainer(EntityHuman, IInventory)
-         * Makes the items in the container drop or return to player.
-         * We override it to cancel that action.
-         * The overriding is still being investigated whether necessary or not.
-         */
-        //@Override
-        //public void a(EntityHuman entityHuman, IInventory iInventory) {}
-
 
         @Override
         public <I extends InventoryView> I getInventoryView() {

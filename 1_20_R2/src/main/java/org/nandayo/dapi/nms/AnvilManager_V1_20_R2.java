@@ -90,7 +90,7 @@ public class AnvilManager_V1_20_R2 extends AnvilWrapper {
             Slot resultSlot = b(0); /* getSlot() */
             ItemStack result = resultSlot.e(); /* getItem() */
             if(result.b()) { /* isEmpty() */
-                resultSlot.e(b(0).e().c()); /* getSlot(i).getItem().cloneItemStack() */
+                resultSlot.e(b(0).e().p()); /* getSlot(i).getItem().cloneItemStack() */
             }
             w.a(0); /* cost.set() */
             d(); /* broadcastChanges() */

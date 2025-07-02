@@ -89,11 +89,6 @@ public class AnvilManager_V1_16_R1 extends AnvilWrapper {
         }
 
         @Override
-        public CraftInventoryView getBukkitView() {
-            return super.getBukkitView();
-        }
-
-        @Override
         public <I extends InventoryView> I getInventoryView() {
             //noinspection unchecked
             return (I) getBukkitView();
