@@ -4,9 +4,12 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.nandayo.dapi.DAPI;
+import org.nandayo.dapi.nms.AnvilWrapper;
 import org.nandayo.dapi.nms.NMSWrapper;
 
 @ApiStatus.Experimental
@@ -16,6 +19,8 @@ public class AnvilMenu extends AbstractMenu {
 
     static private final @NotNull String DEFAULT_TITLE = "Menu";
 
+    private @Nullable AnvilWrapper.MenuAnvilWrapper menuAnvilWrapper;
+
 
     /**
      * Create anvil inventory with a title.
@@ -23,15 +28,20 @@ public class AnvilMenu extends AbstractMenu {
      * @param title String
      */
     protected final void createInventory(@NotNull Player player, @NotNull String title) {
-        setInventory(NMSWrapper.getAnvilWrapper().createMenuAnvil(player, title).getInventoryView().getTopInventory());
+        menuAnvilWrapper = NMSWrapper.getAnvilWrapper().createMenuAnvil(player, title);
+        setInventory(menuAnvilWrapper.getInventoryView().getTopInventory());
     }
 
     @Override
     protected final void displayTo(@NotNull Player player) {
-        if(getInventory() == null) {
+        if(getInventory() == null || menuAnvilWrapper == null) {
             createInventory(player, DEFAULT_TITLE);
         }
-        super.displayTo(player);
+        uploadBackgroundButtons();
+        uploadButtons();
+
+        NMSWrapper.getAnvilWrapper().openInventory(player, menuAnvilWrapper); // different from AbstractMenu
+        player.setMetadata(DAPI.GUI_METADATA_KEY, new FixedMetadataValue(DAPI.getPlugin(), this));
     }
 
     @Nullable

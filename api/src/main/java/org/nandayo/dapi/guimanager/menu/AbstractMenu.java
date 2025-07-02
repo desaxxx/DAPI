@@ -129,25 +129,27 @@ public abstract class AbstractMenu {
     protected void displayTo(@NotNull Player player) {
         if(inventory == null) return;
 
-        uploadBackgroundButtons(inventory);
-        uploadButtons(inventory);
+        uploadBackgroundButtons();
+        uploadButtons();
 
         player.openInventory(inventory);
         player.setMetadata(DAPI.GUI_METADATA_KEY, new FixedMetadataValue(DAPI.getPlugin(), this));
     }
 
-    protected final void uploadBackgroundButtons(@NotNull Inventory inv) {
-        for(int i = 0; i < inv.getSize(); i++) {
+    protected void uploadBackgroundButtons() {
+        if(inventory == null) return;
+        for(int i = 0; i < inventory.getSize(); i++) {
             SingleSlotButton singleSlotButton = backgroundButtonFunction().apply(i);
             if(singleSlotButton == null || getButton(i) != null) continue;
             addButton(singleSlotButton);
         }
     }
 
-    protected final void uploadButtons(@NotNull Inventory inv) {
+    protected void uploadButtons() {
+        if(inventory == null) return;
         for(AbstractButton abstractButton : getButtons()) {
             for(int slot : abstractButton.updatedMutableSlots()) {
-                inv.setItem(slot , abstractButton.getItem());
+                inventory.setItem(slot , abstractButton.getItem());
             }
         }
     }
