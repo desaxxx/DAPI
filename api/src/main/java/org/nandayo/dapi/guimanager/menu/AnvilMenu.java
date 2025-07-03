@@ -29,7 +29,7 @@ public class AnvilMenu extends AbstractMenu {
      */
     protected final void createInventory(@NotNull Player player, @NotNull String title) {
         menuAnvilWrapper = NMSWrapper.getAnvilWrapper().createMenuAnvil(player, title);
-        setInventory(menuAnvilWrapper.getInventoryView().getTopInventory());
+        setInventory(menuAnvilWrapper.getInventory());
     }
 
     @Override

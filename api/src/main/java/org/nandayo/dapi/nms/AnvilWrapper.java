@@ -1,6 +1,7 @@
 package org.nandayo.dapi.nms;
 
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -49,6 +50,13 @@ public abstract class AnvilWrapper {
 
 
     public interface MenuAnvilWrapper {
-        <I extends InventoryView> I getInventoryView();
+
+        /**
+         * Get the inventory of the AnvilMenu.
+         * Switched from inventory view to inventory since InventoryView was an abstract class before 1.19.4,
+         * and it was going to be a hassle to use reflection and all.
+         * @return Inventory
+         */
+        Inventory getInventory();
     }
 }

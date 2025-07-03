@@ -4,6 +4,7 @@ import net.minecraft.server.v1_16_R3.*;
 import org.bukkit.craftbukkit.v1_16_R3.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -104,9 +105,8 @@ public class AnvilManager_V1_16_R3 extends AnvilWrapper {
         protected void a(EntityHuman entityhuman, World world, IInventory iinventory) {}
 
         @Override
-        public <I extends InventoryView> I getInventoryView() {
-            //noinspection unchecked
-            return (I) getBukkitView();
+        public Inventory getInventory() {
+            return getBukkitView().getTopInventory();
         }
     }
 }
