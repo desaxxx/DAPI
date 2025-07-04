@@ -2,7 +2,6 @@ package org.nandayo.dapi.nms;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,7 +13,7 @@ public abstract class AnvilWrapper {
      * @param title Title of the menu
      * @return InventoryView
      */
-    abstract public <I extends InventoryView> I openInventory(@NotNull Player p, @NotNull String title);
+    abstract public Inventory openInventory(@NotNull Player p, @NotNull String title);
 
     /**
      * Open an anvil menu to the player from given MenuAnvilWrapper.
@@ -22,7 +21,7 @@ public abstract class AnvilWrapper {
      * @param menu AnvilMenuWrapper
      * @return InventoryView
      */
-    abstract public <I extends InventoryView> I openInventory(@NotNull Player p, @NotNull MenuAnvilWrapper menu);
+    abstract public Inventory openInventory(@NotNull Player p, @NotNull MenuAnvilWrapper menu);
 
     /**
      * Create a MenuAnvilWrapper.

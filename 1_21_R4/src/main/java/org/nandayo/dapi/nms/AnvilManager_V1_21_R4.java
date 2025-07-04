@@ -16,10 +16,10 @@ import org.bukkit.craftbukkit.v1_21_R4.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_21_R4.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@SuppressWarnings("unused")
 public class AnvilManager_V1_21_R4 extends AnvilWrapper {
 
     private EntityPlayer handle(@NotNull Player p) {
@@ -28,14 +28,14 @@ public class AnvilManager_V1_21_R4 extends AnvilWrapper {
 
 
     @Override
-    public <I extends InventoryView> I openInventory(@NotNull Player p, @NotNull String title) {
+    public Inventory openInventory(@NotNull Player p, @NotNull String title) {
         /* Create new MenuAnvil */
         MenuAnvil menu = (MenuAnvil) createMenuAnvil(p, title);
         return openInventory(p, menu);
     }
 
     @Override
-    public <I extends InventoryView> I openInventory(@NotNull Player p, @NotNull MenuAnvilWrapper menuWrapper) {
+    public Inventory openInventory(@NotNull Player p, @NotNull MenuAnvilWrapper menuWrapper) {
         EntityPlayer player = handle(p);
         player.o(); /* closeContainer(). */
 
@@ -44,8 +44,7 @@ public class AnvilManager_V1_21_R4 extends AnvilWrapper {
         /* Open the MenuAnvil to the player */
         openMenu(p, menu, menu.getTitle().getString());
 
-        //noinspection unchecked
-        return (I) menu.getBukkitView();
+        return menu.getInventory();
     }
 
     @Override

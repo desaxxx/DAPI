@@ -11,10 +11,8 @@ import net.minecraft.world.item.ItemStack;
 import org.bukkit.craftbukkit.v1_21_R5.CraftWorld;
 import org.bukkit.craftbukkit.v1_21_R5.block.CraftBlock;
 import org.bukkit.craftbukkit.v1_21_R5.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_21_R5.inventory.view.CraftAnvilView;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,7 +25,7 @@ public class AnvilManager_V1_21_R5 extends AnvilWrapper {
 
 
     @Override
-    public <I extends InventoryView> I openInventory(@NotNull Player p, @NotNull String title) {
+    public Inventory openInventory(@NotNull Player p, @NotNull String title) {
         /* Create new MenuAnvil */
         MenuAnvil menu = (MenuAnvil) createMenuAnvil(p, title);
         return openInventory(p, menu);
@@ -37,7 +35,7 @@ public class AnvilManager_V1_21_R5 extends AnvilWrapper {
      * EntityPlayer#p()     -> EntityPlayer#closeContainer()
      */
     @Override
-    public <I extends InventoryView> I openInventory(@NotNull Player p, @NotNull MenuAnvilWrapper menuWrapper) {
+    public Inventory openInventory(@NotNull Player p, @NotNull MenuAnvilWrapper menuWrapper) {
         EntityPlayer player = handle(p);
         player.p();
 
@@ -47,8 +45,7 @@ public class AnvilManager_V1_21_R5 extends AnvilWrapper {
         /* Open the MenuAnvil to the player */
         openMenu(p, menuWrapper, menu.getTitle().getString());
 
-        //noinspection unchecked
-        return (I) menu.getBukkitView();
+        return menu.getInventory();
     }
 
     /*
