@@ -75,8 +75,8 @@ public abstract class YAMLRegistry {
         return config;
     }
 
-    abstract void onLoad();
-    abstract void onUnload();
+    abstract public void onLoad();
+    abstract public void onUnload();
 
 
 

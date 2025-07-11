@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 /**
- * Only supports 1.16.1 - 1.21.6.<br>
+ * Only supports 1.16.1 - 1.21.7.<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
@@ -2589,6 +2589,8 @@ public enum DSound {
     @DInfo(since = "1.21")
     MUSIC_DISC_CREATOR_MUSIC_BOX("music_disc.creator_music_box"),
     MUSIC_DISC_FAR("music_disc.far"),
+    @DInfo(since = "1.21.7")
+    MUSIC_DISC_LAVA_CHICKEN("music_disc.lava_chicken"),
     MUSIC_DISC_MALL("music_disc.mall"),
     MUSIC_DISC_MELLOHI("music_disc.mellohi"),
     @DInfo(since = "1.18")

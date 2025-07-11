@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Only supports 1.16.1 - 1.21.6.<br>
+ * Only supports 1.16.1 - 1.21.7.<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
@@ -1134,6 +1134,8 @@ public enum DMaterial {
     @DInfo(since = "1.21")
     MUSIC_DISC_CREATOR_MUSIC_BOX,
     MUSIC_DISC_FAR,
+    @DInfo(since = "1.21.7")
+    MUSIC_DISC_LAVA_CHICKEN,
     MUSIC_DISC_MALL,
     MUSIC_DISC_MELLOHI,
     @DInfo(since = "1.18")
