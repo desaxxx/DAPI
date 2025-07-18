@@ -1,16 +1,11 @@
 package org.nandayo.dapi.message;
 
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
-import org.bukkit.boss.KeyedBossBar;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.dapi.DAPI;
-import org.nandayo.dapi.HexUtil;
 import org.nandayo.dapi.Util;
+import org.nandayo.dapi.service.AdventureService;
 
 @SuppressWarnings("unused")
 public abstract class ChannelType {
@@ -20,16 +15,17 @@ public abstract class ChannelType {
     static public final ChannelType CHAT = new ChannelType() {
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
-            receiver.sendMessage(HexUtil.parse(message.getMessage()));
+            message.replaceHexColors();
+            AdventureService.sendMessage(receiver, message);
         }
     };
 
     static public final ChannelType ACTION_BAR = new ChannelType() {
-        @SuppressWarnings("deprecation")
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
-            ((Player) receiver).spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(HexUtil.parse(message.getMessage())));
+            message.replaceHexColors();
+            AdventureService.sendActionBar((Player) receiver, message);
         }
     };
 
@@ -38,7 +34,8 @@ public abstract class ChannelType {
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
             ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
-            ((Player) receiver).sendTitle(HexUtil.parse(message.getMessage()), "", titleMessage.getFadeInTicks(), titleMessage.getStayTicks(), titleMessage.getFadeOutTicks());
+            titleMessage.replaceHexColors();
+            AdventureService.sendTitle((Player) receiver, titleMessage, this);
         }
     };
 
@@ -47,7 +44,8 @@ public abstract class ChannelType {
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
             ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
-            ((Player) receiver).sendTitle(HexUtil.parse(message.getMessage()), "", titleMessage.getFadeInTicks(), titleMessage.getStayTicks(), titleMessage.getFadeOutTicks());
+            titleMessage.replaceHexColors();
+            AdventureService.sendTitle((Player) receiver, titleMessage, this);
         }
     };
 
@@ -56,28 +54,18 @@ public abstract class ChannelType {
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
             ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
-            ((Player) receiver).sendTitle(HexUtil.parse(message.getMessage()), HexUtil.parse(titleMessage.getSecondaryMessage()), titleMessage.getFadeInTicks(), titleMessage.getStayTicks(), titleMessage.getFadeOutTicks());
+            titleMessage.replaceHexColors();
+            AdventureService.sendTitle((Player) receiver, titleMessage, this);
         }
     };
 
     static public final ChannelType BOSS_BAR = new ChannelType() {
-        @SuppressWarnings("UnstableApiUsage")
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
             ChannelBossBarMessage bossBarMessage = message instanceof ChannelBossBarMessage ? (ChannelBossBarMessage) message : ChannelBossBarMessage.fromParent(message);
             Player player = (Player) receiver;
-
-            NamespacedKey randomKey = new NamespacedKey("dapi","bossbar_message_" + Util.generateRandomString(8));
-            KeyedBossBar bossBar = Bukkit.createBossBar(randomKey, HexUtil.parse(message.getMessage()), bossBarMessage.getColor(), bossBarMessage.getStyle(), bossBarMessage.getFlags());
-            bossBar.setProgress(bossBarMessage.getProgress());
-            bossBar.addPlayer(player);
-
-            // removal
-            Bukkit.getScheduler().runTaskLater(DAPI.getPlugin(), () -> {
-                bossBar.removePlayer(((Player) receiver));
-                Bukkit.removeBossBar(bossBar.getKey());
-            }, bossBarMessage.getStayTicks());
+            AdventureService.showBossBar(player, bossBarMessage);
         }
     };
 

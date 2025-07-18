@@ -80,6 +80,19 @@ public final class DAPI {
     }
 
 
+    static private Boolean paper;
+    static public boolean isPaper() {
+        if(paper != null) return paper;
+        try {
+            Class.forName("com.destroystokyo.paper.PaperConfig");
+            paper = true;
+        } catch (Exception ignored) {
+            paper = false;
+        }
+        return paper;
+    }
+
+
 
     /**
      * Set missing arguments message for > ALL < subcommands.

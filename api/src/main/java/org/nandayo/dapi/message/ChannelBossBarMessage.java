@@ -1,6 +1,7 @@
 package org.nandayo.dapi.message;
 
 import lombok.Getter;
+import net.kyori.adventure.text.Component;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
@@ -24,27 +25,37 @@ public class ChannelBossBarMessage extends ChannelMessage implements Cloneable {
         this.style = style;
         this.flags = flags;
     }
+    public ChannelBossBarMessage(@NotNull Component message, int stayTicks, double progress, @NotNull BarColor color, @NotNull BarStyle style, @NotNull BarFlag... flags) {
+        this(miniMessage.serialize(message), stayTicks, progress, color, style, flags);
+    }
 
     public ChannelBossBarMessage(@NotNull String message, int stayTicks, double progress) {
         super(message);
         this.stayTicks = Math.max(1, stayTicks);
         progress(progress);
     }
+    public ChannelBossBarMessage(@NotNull Component message, int stayTicks, double progress) {
+        this(miniMessage.serialize(message), stayTicks, progress);
+    }
 
     public ChannelBossBarMessage(@NotNull String message) {
         super(message);
     }
-
-    public void progress(double progress) {
-        this.progress = Math.max(0, Math.min(1, progress));
+    public ChannelBossBarMessage(@NotNull Component message) {
+        this(miniMessage.serialize(message));
     }
 
     static public ChannelBossBarMessage fromParent(@NotNull ChannelMessage message) {
-        return new ChannelBossBarMessage(message.getMessage());
+        return new ChannelBossBarMessage(message.getRawMessage());
     }
 
     @Override
     public ChannelBossBarMessage clone() {
         return (ChannelBossBarMessage) super.clone();
+    }
+
+
+    public void progress(double progress) {
+        this.progress = Math.max(0, Math.min(1, progress));
     }
 }
