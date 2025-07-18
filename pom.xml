@@ -69,12 +69,8 @@
                                 <shadedPattern>org.nandayo.dapi.bstats</shadedPattern>
                             </relocation>
                             <relocation>
-                                <pattern>net.kyori.adventure-platform-bukkit</pattern>
-                                <shadedPattern>org.nandayo.dapi.adventure.bukkit</shadedPattern>
-                            </relocation>
-                            <relocation>
-                                <pattern>net.kyori.adventure-text-minimessage</pattern>
-                                <shadedPattern>org.nandayo.dapi.adventure.minimessage</shadedPattern>
+                                <pattern>net.kyori.adventure</pattern>
+                                <shadedPattern>org.nandayo.dapi.adventure</shadedPattern>
                             </relocation>
                         </relocations>
                     </configuration>
