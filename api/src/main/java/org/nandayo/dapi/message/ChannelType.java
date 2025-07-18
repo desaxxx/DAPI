@@ -15,7 +15,7 @@ public abstract class ChannelType {
     static public final ChannelType CHAT = new ChannelType() {
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
-            message.replaceHexColors();
+            message.replacePlaceholders();
             AdventureService.sendMessage(receiver, message);
         }
     };
@@ -24,7 +24,7 @@ public abstract class ChannelType {
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
-            message.replaceHexColors();
+            message.replacePlaceholders();
             AdventureService.sendActionBar((Player) receiver, message);
         }
     };
@@ -34,7 +34,7 @@ public abstract class ChannelType {
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
             ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
-            titleMessage.replaceHexColors();
+            titleMessage.replacePlaceholders();
             AdventureService.sendTitle((Player) receiver, titleMessage, this);
         }
     };
@@ -44,7 +44,7 @@ public abstract class ChannelType {
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
             ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
-            titleMessage.replaceHexColors();
+            titleMessage.replacePlaceholders();
             AdventureService.sendTitle((Player) receiver, titleMessage, this);
         }
     };
@@ -54,7 +54,7 @@ public abstract class ChannelType {
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
             ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
-            titleMessage.replaceHexColors();
+            titleMessage.replacePlaceholders();
             AdventureService.sendTitle((Player) receiver, titleMessage, this);
         }
     };
@@ -64,8 +64,8 @@ public abstract class ChannelType {
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
             ChannelBossBarMessage bossBarMessage = message instanceof ChannelBossBarMessage ? (ChannelBossBarMessage) message : ChannelBossBarMessage.fromParent(message);
-            Player player = (Player) receiver;
-            AdventureService.showBossBar(player, bossBarMessage);
+            bossBarMessage.replacePlaceholders();
+            AdventureService.showBossBar((Player) receiver, bossBarMessage);
         }
     };
 

@@ -71,9 +71,9 @@ public class ChannelTitleMessage extends ChannelMessage implements Cloneable {
     }
 
     @Override
-    public ChannelTitleMessage replaceHexColors() {
-        super.replaceHexColors();
-        this.rawSecondaryMessage = HexUtil.replacer(rawSecondaryMessage);
+    public ChannelTitleMessage replacePlaceholders() {
+        super.replacePlaceholders();
+        this.rawSecondaryMessage = HexUtil.replacePlaceholders(rawSecondaryMessage);
         return this;
     }
 
