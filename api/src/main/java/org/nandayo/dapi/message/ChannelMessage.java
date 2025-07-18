@@ -39,7 +39,7 @@ public class ChannelMessage implements Cloneable {
     }
 
     public ChannelMessage replaceHexColors() {
-        this.rawMessage = HexUtil.parse(rawMessage);
+        this.rawMessage = HexUtil.replacer(rawMessage);
         return this;
     }
 

@@ -88,6 +88,12 @@
 <!--            <id>spigotmc-repo</id>-->
 <!--            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>-->
 <!--        </repository>-->
+        <!-- '-repo' may need to be added to the id-->
+        <!-- papermc 1.21.6 requires java21 -->
+        <repository>
+            <id>papermc-repo</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
         <repository>
             <id>nms-repo</id>
             <url>https://repo.codemc.org/repository/nms/</url>
@@ -95,12 +101,6 @@
         <repository>
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
-        </repository>
-        <!-- '-repo' may need to be added to the id-->
-        <!-- papermc 1.21.6 requires java21 -->
-        <repository>
-            <id>papermc-repo</id>
-            <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
     </repositories>
 

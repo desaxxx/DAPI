@@ -29,10 +29,11 @@ public enum NMSVersion {
     V1_21_R4(215),
     V1_21_R5(216,217,218);
 
+    private final int[] minecraftVersions;
     NMSVersion(int... minecraftVersions) {
         this.minecraftVersions = minecraftVersions;
     }
-    private final int[] minecraftVersions;
+    static private final NMSVersion LATEST = NMSVersion.V1_21_R5;
 
     public String removeV() {
         return name().replace("V","");
@@ -49,6 +50,6 @@ public enum NMSVersion {
     }
 
     static public NMSVersion findVersion(int minecraftVersion) {
-        return VERSION_MAP.getOrDefault(minecraftVersion, V1_21_R5);
+        return VERSION_MAP.getOrDefault(minecraftVersion, LATEST);
     }
 }

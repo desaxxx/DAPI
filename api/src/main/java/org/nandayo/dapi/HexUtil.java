@@ -37,12 +37,15 @@ public class HexUtil {
     public static Map<String, String> placeholders = new HashMap<>();
 
     public static String parse(@NotNull String text) {
-        if (text.isEmpty()) return "";
+        return color(replacer(text));
+    }
+
+    public static String replacer(@NotNull String text) {
+        if(text.isEmpty()) return text;
         String out = text;
-        for(String placeholder : placeholders.keySet()) {
-            String value = placeholders.get(placeholder);
-            out = out.replace(placeholder, value);
+        for(Map.Entry<String, String> entry : placeholders.entrySet()) {
+            out = out.replace(entry.getKey(), entry.getValue());
         }
-        return color(out);
+        return out;
     }
 }
