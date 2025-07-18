@@ -37,14 +37,6 @@
       <id>papermc-repo</id>
       <url>https://repo.papermc.io/repository/maven-public/</url>
     </repository>
-    <repository>
-      <id>nms-repo</id>
-      <url>https://repo.codemc.org/repository/nms/</url>
-    </repository>
-    <repository>
-      <id>sonatype</id>
-      <url>https://oss.sonatype.org/content/groups/public/</url>
-    </repository>
   </repositories>
 
   <dependencies>
