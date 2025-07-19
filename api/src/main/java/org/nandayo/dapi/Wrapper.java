@@ -26,7 +26,7 @@ public class Wrapper {
     static private int fetchVersion() {
         String[] ver = Bukkit.getBukkitVersion().split("-")[0].split("\\.");
         if(ver.length < 2) {
-            Util.log("{WARN}DAPI: Could not fetch server version!");
+            Util.logInternal("Could not fetch server version!");
             return 165;
         }
         int major = 0;
@@ -63,7 +63,7 @@ public class Wrapper {
      * AttributeModifier change -> 1.21<br>
      * EquipmentSlotGroup addition -> 1.20.5
      */
-    @SuppressWarnings({"unchecked", "rawtypes", "UnstableApiUsage"})
+    @SuppressWarnings({"unchecked", "rawtypes"})
     static private void setupArmorAttributeModifier() {
         if(minecraftVersion >= 213) {
             armorAttribute = Attribute.ARMOR;

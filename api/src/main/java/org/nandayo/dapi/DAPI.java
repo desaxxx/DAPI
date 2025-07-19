@@ -24,25 +24,21 @@ public final class DAPI {
         // no construction
     }
 
+    static public final String VERSION = "1.2.6";
+    static public final String GUI_METADATA_KEY = "DAPI_GUI_" + Util.generateRandomLowerCaseString(8);
+
 
     static private boolean init = false;
     static private void init() {
         if(init) return;
         init = true;
         if(!RelocateService.isDAPIRelocated()) {
-            Util.log("[DAPI] DAPI was not relocated. It is recommended to relocate it to avoid potential conflicts with other plugins that also include DAPI.");
+            Util.logInternal("DAPI was not relocated. It is recommended to relocate it to avoid potential conflicts with other plugins that also include DAPI.");
         }
         if(RelocateService.isbStatsRelocated()) {
             registerMetrics();
         }
-        if(!RelocateService.isKyoriRelocated()) {
-            Util.log("[DAPI] Kyori Adventure was not relocated. You will have issues using Component-based classes like ChannelMessage.");
-        }
     }
-
-
-    static public final String VERSION = "1.2.6";
-    static public final String GUI_METADATA_KEY = "DAPI_GUI_" + Util.generateRandomLowerCaseString(8);
 
 
     static public void registerMenuListener() {
@@ -94,9 +90,9 @@ public final class DAPI {
         try {
             Metrics metrics = new Metrics(plugin, 24974);
             metrics.addCustomChart(new SimplePie("dapi_version", () -> VERSION));
-            Util.log("[DAPI] Registered bStats metrics for DAPI using plugin '" + plugin.getName() + "'.");
+            Util.logInternal("Registered bStats metrics for DAPI using plugin '" + plugin.getName() + "'.");
         } catch (Exception e) {
-            Util.log("[DAPI] Failed to register bStats metrics for DAPI using plugin '" + plugin.getName() + "'. " + e);
+            Util.logInternal("Failed to register bStats metrics for DAPI using plugin '" + plugin.getName() + "'. " + e);
         }
     }
 
@@ -106,11 +102,10 @@ public final class DAPI {
         if(paper != null) return paper;
         try {
             Class.forName("com.destroystokyo.paper.PaperConfig");
-            paper = true;
+            return paper = true;
         } catch (Exception ignored) {
-            paper = false;
+            return paper = false;
         }
-        return paper;
     }
 
 

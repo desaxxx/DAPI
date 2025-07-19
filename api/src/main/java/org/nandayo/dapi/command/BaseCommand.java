@@ -24,7 +24,7 @@ public abstract class BaseCommand implements CommandExecutor, TabCompleter {
     public <T extends JavaPlugin> void register(@NotNull T plugin) {
         PluginCommand command = plugin.getCommand(command());
         if (command == null) {
-            Util.log("DAPI: Command '/" + command() + "' was not found.");
+            Util.logInternal("Command '/" + command() + "' was not found.");
             return;
         }
         command.setExecutor(this);
@@ -32,12 +32,12 @@ public abstract class BaseCommand implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public final boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
+    public final boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] strings) {
         return onCommand(commandSender, strings);
     }
 
     @Override
-    public final @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
+    public final @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] strings) {
         return onTabComplete(commandSender, strings);
     }
 }

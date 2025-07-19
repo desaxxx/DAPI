@@ -70,7 +70,7 @@ public abstract class YAMLRegistry {
         try {
             config.load(file);
         } catch (Exception e) {
-            Util.log(String.format("Couldn't load YAML configuration '%s'!", file.getName()));
+            Util.logInternal(String.format("Couldn't load YAML configuration '%s'!", file.getName()));
         }
         return config;
     }
