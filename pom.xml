@@ -66,11 +66,11 @@
                         <relocations>
                             <relocation>
                                 <pattern>org.bstats</pattern>
-                                <shadedPattern>org.nandayo.dapi.bstats</shadedPattern>
+                                <shadedPattern>org.nandayo.dapi.shaded.bstats</shadedPattern>
                             </relocation>
                             <relocation>
-                                <pattern>net.kyori.adventure</pattern>
-                                <shadedPattern>org.nandayo.dapi.adventure</shadedPattern>
+                                <pattern>net.kyori</pattern>
+                                <shadedPattern>org.nandayo.dapi.shaded.kyori</shadedPattern>
                             </relocation>
                         </relocations>
                     </configuration>

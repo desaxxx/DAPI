@@ -11,6 +11,7 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.nandayo.dapi.guimanager.MenuListener;
+import org.nandayo.dapi.service.RelocateService;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -28,11 +29,15 @@ public final class DAPI {
     static private void init() {
         if(init) return;
         init = true;
-        final String defaultPackage = new String(new byte[] { 'o','r','g','.','n','a','n','d','a','y','o','.','d','a','p','i'});
-        if(DAPI.class.getPackage().getName().equals(defaultPackage)) {
-            Util.log("DAPI was not relocated. It is recommended to relocate it to avoid potential conflicts with other plugins that also include DAPI.");
+        if(!RelocateService.isDAPIRelocated()) {
+            Util.log("[DAPI] DAPI was not relocated. It is recommended to relocate it to avoid potential conflicts with other plugins that also include DAPI.");
         }
-        registerMetrics();
+        if(RelocateService.isbStatsRelocated()) {
+            registerMetrics();
+        }
+        if(!RelocateService.isKyoriRelocated()) {
+            Util.log("[DAPI] Kyori Adventure was not relocated. You will have issues using Component-based classes like ChannelMessage.");
+        }
     }
 
 
@@ -91,7 +96,7 @@ public final class DAPI {
             metrics.addCustomChart(new SimplePie("dapi_version", () -> VERSION));
             Util.log("[DAPI] Registered bStats metrics for DAPI using plugin '" + plugin.getName() + "'.");
         } catch (Exception e) {
-            Util.log("[DAPI] Failed to register bStats metrics for DAPI using plugin '" + plugin.getName() + "'. Skipping it.");
+            Util.log("[DAPI] Failed to register bStats metrics for DAPI using plugin '" + plugin.getName() + "'. " + e);
         }
     }
 
