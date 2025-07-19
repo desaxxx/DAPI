@@ -33,9 +33,9 @@ public abstract class YAMLRegistry {
     protected void loadFile() {
         String path = filePath();
         File file = new File(plugin.getDataFolder(), path);
-        if (!file.getParentFile().exists()) {
-            //noinspection ResultOfMethodCallIgnored
-            file.getParentFile().mkdirs();
+        if(!file.exists()) {
+            if (!file.getParentFile().exists()) //noinspection ResultOfMethodCallIgnored
+                file.getParentFile().mkdirs();
             saveDefaultResource();
         }
         this.file = file;
