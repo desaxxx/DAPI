@@ -23,6 +23,19 @@ public final class DAPI {
         // no construction
     }
 
+
+    static private boolean init = false;
+    static private void init() {
+        if(init) return;
+        init = true;
+        final String defaultPackage = new String(new byte[] { 'o','r','g','.','n','a','n','d','a','y','o','.','d','a','p','i'});
+        if(DAPI.class.getPackage().getName().equals(defaultPackage)) {
+            Util.log("DAPI was not relocated. It is recommended to relocate it to avoid potential conflicts with other plugins that also include DAPI.");
+        }
+        registerMetrics();
+    }
+
+
     static public final String VERSION = "1.2.6";
     static public final String GUI_METADATA_KEY = "DAPI_GUI_" + Util.generateRandomLowerCaseString(8);
 
@@ -41,7 +54,7 @@ public final class DAPI {
         Plugin foundPlugin = Bukkit.getPluginManager().getPlugin(pluginName);
         if(foundPlugin == null) throw new DAPIException("Plugin not found with name '" + pluginName + "'!");
         plugin = foundPlugin;
-        registerMetrics();
+        init();
         return plugin;
     }
 
@@ -70,13 +83,16 @@ public final class DAPI {
 
 
     static private boolean metricsRegistered = false;
-
     static private void registerMetrics() {
         if(metricsRegistered) return;
         metricsRegistered = true;
-        Util.log("[DAPI] Registering metrics for DAPI using plugin '" + plugin.getName() + "'.");
-        Metrics metrics = new Metrics(plugin, 24974);
-        metrics.addCustomChart(new SimplePie("dapi_version", () -> VERSION));
+        try {
+            Metrics metrics = new Metrics(plugin, 24974);
+            metrics.addCustomChart(new SimplePie("dapi_version", () -> VERSION));
+            Util.log("[DAPI] Registered bStats metrics for DAPI using plugin '" + plugin.getName() + "'.");
+        } catch (Exception e) {
+            Util.log("[DAPI] Failed to register bStats metrics for DAPI using plugin '" + plugin.getName() + "'. Skipping it.");
+        }
     }
 
 
