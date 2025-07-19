@@ -19,6 +19,7 @@ import org.bukkit.boss.KeyedBossBar;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.nandayo.dapi.ColorizeType;
 import org.nandayo.dapi.DAPI;
 import org.nandayo.dapi.Util;
 import org.nandayo.dapi.Wrapper;
@@ -77,13 +78,13 @@ public class AdventureService {
      */
     static public void sendMessage(@NotNull CommandSender receiver, @NotNull ChannelMessage message) {
         if(DAPI.isPaper()) {
-            receiver.sendMessage(message.getMessage());
+            receiver.sendMessage(message.colorize(ColorizeType.MINI_MESSAGE).getMessage());
         }else if(isBukkitAudiencesSupported()) {
             getAudiences().ifPresent(audiences ->
-                    audiences.sender(receiver).sendMessage(message.getMessage())
+                    audiences.sender(receiver).sendMessage(message.colorize(ColorizeType.MINI_MESSAGE).getMessage())
             );
         }else {
-            receiver.sendMessage(message.getRawMessage());
+            receiver.sendMessage(message.colorize(ColorizeType.LEGACY).getRawMessage());
         }
     }
 
@@ -94,14 +95,14 @@ public class AdventureService {
      */
     static public void sendActionBar(@NotNull Player player, @NotNull ChannelMessage message) {
         if(DAPI.isPaper()) {
-            player.sendActionBar(message.getMessage());
+            player.sendActionBar(message.colorize(ColorizeType.MINI_MESSAGE).getMessage());
         }else if(isBukkitAudiencesSupported()) {
             getAudiences().ifPresent(audiences ->
-                audiences.player(player).sendActionBar(message.getMessage())
+                audiences.player(player).sendActionBar(message.colorize(ColorizeType.MINI_MESSAGE).getMessage())
             );
         }else {
             //noinspection deprecation
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message.getRawMessage()));
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message.colorize(ColorizeType.LEGACY).getRawMessage()));
         }
     }
 
@@ -114,14 +115,15 @@ public class AdventureService {
      */
     static public void sendTitle(@NotNull Player player, @NotNull ChannelTitleMessage titleMessage, @NotNull ChannelType type) {
         if(DAPI.isPaper()) {
-            player.showTitle(AdventureService.createTitle(titleMessage, type));
+            player.showTitle(AdventureService.createTitle(titleMessage.colorize(ColorizeType.MINI_MESSAGE), type));
         }else if(isBukkitAudiencesSupported()) {
             getAudiences().ifPresent(audiences ->
-                audiences.player(player).showTitle(AdventureService.createTitle(titleMessage, type))
+                audiences.player(player).showTitle(AdventureService.createTitle(titleMessage.colorize(ColorizeType.MINI_MESSAGE), type))
             );
         }else {
+            ChannelTitleMessage ttMessage = titleMessage.colorize(ColorizeType.LEGACY);
             //noinspection deprecation
-            player.sendTitle(titleMessage.getRawMessage(), titleMessage.getRawSecondaryMessage(), titleMessage.getFadeInTicks(), titleMessage.getStayTicks(), titleMessage.getFadeOutTicks());
+            player.sendTitle(ttMessage.getRawMessage(), ttMessage.getRawSecondaryMessage(), ttMessage.getFadeInTicks(), ttMessage.getStayTicks(), ttMessage.getFadeOutTicks());
         }
     }
 
@@ -146,42 +148,45 @@ public class AdventureService {
      */
     static public void showBossBar(@NotNull Player player, @NotNull ChannelBossBarMessage bossBarMessage) {
         if(DAPI.isPaper()) {
-            BossBar adventureBossBar = BossBar.bossBar(bossBarMessage.getMessage(),
-                    (float) bossBarMessage.getProgress(),
-                    Parser.parseBarColor(bossBarMessage.getColor()),
-                    Parser.parseBarStyle(bossBarMessage.getStyle()),
-                    Parser.parseBarFlags(bossBarMessage.getFlags()));
+            ChannelBossBarMessage bbMessage = bossBarMessage.colorize(ColorizeType.MINI_MESSAGE);
+            BossBar adventureBossBar = BossBar.bossBar(bbMessage.getMessage(),
+                    (float) bbMessage.getProgress(),
+                    Parser.parseBarColor(bbMessage.getColor()),
+                    Parser.parseBarStyle(bbMessage.getStyle()),
+                    Parser.parseBarFlags(bbMessage.getFlags()));
             player.showBossBar(adventureBossBar);
 
             // removal
             Bukkit.getScheduler().runTaskLater(DAPI.getPlugin(), () ->
                 player.hideBossBar(adventureBossBar)
-            , bossBarMessage.getStayTicks());
+            , bbMessage.getStayTicks());
         }else if(isBukkitAudiencesSupported()) {
+            ChannelBossBarMessage bbMessage = bossBarMessage.colorize(ColorizeType.MINI_MESSAGE);
             getAudiences().ifPresent(audiences -> {
                 Audience audience = audiences.player(player);
-                BossBar adventureBossBar = BossBar.bossBar(bossBarMessage.getMessage(),
-                        (float) bossBarMessage.getProgress(),
-                        Parser.parseBarColor(bossBarMessage.getColor()),
-                        Parser.parseBarStyle(bossBarMessage.getStyle()),
-                        Parser.parseBarFlags(bossBarMessage.getFlags()));
+                BossBar adventureBossBar = BossBar.bossBar(bbMessage.getMessage(),
+                        (float) bbMessage.getProgress(),
+                        Parser.parseBarColor(bbMessage.getColor()),
+                        Parser.parseBarStyle(bbMessage.getStyle()),
+                        Parser.parseBarFlags(bbMessage.getFlags()));
                 audience.showBossBar(adventureBossBar);
 
                 // removal
                 Bukkit.getScheduler().runTaskLater(DAPI.getPlugin(), () ->
                     audience.hideBossBar(adventureBossBar)
-                , bossBarMessage.getStayTicks());
+                , bbMessage.getStayTicks());
             });
         }else {
+            ChannelBossBarMessage bbMessage = bossBarMessage.colorize(ColorizeType.LEGACY);
             NamespacedKey key = new NamespacedKey("dapi", "boss_bar_" + Util.generateRandomLowerCaseString(8));
-            KeyedBossBar bossBar = Bukkit.createBossBar(key, bossBarMessage.getRawMessage(), bossBarMessage.getColor(), bossBarMessage.getStyle(), bossBarMessage.getFlags());
+            KeyedBossBar bossBar = Bukkit.createBossBar(key, bbMessage.getRawMessage(), bbMessage.getColor(), bbMessage.getStyle(), bbMessage.getFlags());
             bossBar.addPlayer(player);
 
             // removal
             Bukkit.getScheduler().runTaskLater(DAPI.getPlugin(), () -> {
                 bossBar.removePlayer(player);
                 Bukkit.removeBossBar(key);
-            }, bossBarMessage.getStayTicks());
+            }, bbMessage.getStayTicks());
         }
     }
 

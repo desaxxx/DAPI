@@ -6,10 +6,12 @@ import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
 import org.jetbrains.annotations.NotNull;
+import org.nandayo.dapi.ColorizeType;
+import org.nandayo.dapi.Util;
 
 @Getter
 @SuppressWarnings("unused")
-public class ChannelBossBarMessage extends ChannelMessage implements Cloneable {
+public class ChannelBossBarMessage extends ChannelMessage {
 
     private int stayTicks = 60;
     private @NotNull BarColor color = BarColor.BLUE;
@@ -20,7 +22,7 @@ public class ChannelBossBarMessage extends ChannelMessage implements Cloneable {
     public ChannelBossBarMessage(@NotNull String message, int stayTicks, double progress, @NotNull BarColor color, @NotNull BarStyle style, @NotNull BarFlag... flags) {
         super(message);
         this.stayTicks = Math.max(1, stayTicks);
-        progress(progress);
+        this.progress = Math.max(0.0F, Math.min(1.0F, progress));
         this.color = color;
         this.style = style;
         this.flags = flags;
@@ -32,7 +34,7 @@ public class ChannelBossBarMessage extends ChannelMessage implements Cloneable {
     public ChannelBossBarMessage(@NotNull String message, int stayTicks, double progress) {
         super(message);
         this.stayTicks = Math.max(1, stayTicks);
-        progress(progress);
+        this.progress = Math.max(0.0F, Math.min(1.0F, progress));
     }
     public ChannelBossBarMessage(@NotNull Component message, int stayTicks, double progress) {
         this(miniMessage.serialize(message), stayTicks, progress);
@@ -46,16 +48,32 @@ public class ChannelBossBarMessage extends ChannelMessage implements Cloneable {
     }
 
     static public ChannelBossBarMessage fromParent(@NotNull ChannelMessage message) {
-        return new ChannelBossBarMessage(message.getRawMessage());
+        return new ChannelBossBarMessage(message.rawMessage);
+    }
+
+    
+    
+    @Override
+    public ChannelBossBarMessage copy() {
+        return new ChannelBossBarMessage(rawMessage, stayTicks, progress, color, style, flags);
+    }
+
+    public ChannelBossBarMessage progress(double progress) {
+        return new ChannelBossBarMessage(rawMessage, stayTicks, progress, color, style, flags);
     }
 
     @Override
-    public ChannelBossBarMessage clone() {
-        return (ChannelBossBarMessage) super.clone();
+    public ChannelBossBarMessage insertPrefix() {
+        return new ChannelBossBarMessage(Util.PREFIX + rawMessage, stayTicks, progress, color, style, flags);
     }
 
+    @Override
+    public ChannelBossBarMessage colorize(ColorizeType colorizeType) {
+        return new ChannelBossBarMessage(colorizeType.apply(rawMessage), stayTicks, progress, color, style, flags);
+    }
 
-    public void progress(double progress) {
-        this.progress = Math.max(0, Math.min(1, progress));
+    @Override
+    public ChannelBossBarMessage replace(String key, String value) {
+        return new ChannelBossBarMessage(rawMessage.replace(key, value), stayTicks, progress, color, style, flags);
     }
 }

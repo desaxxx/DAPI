@@ -3,12 +3,12 @@ package org.nandayo.dapi.message;
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.dapi.HexUtil;
+import org.nandayo.dapi.ColorizeType;
 import org.nandayo.dapi.Util;
 
 @Getter
 @SuppressWarnings("unused")
-public class ChannelTitleMessage extends ChannelMessage implements Cloneable {
+public class ChannelTitleMessage extends ChannelMessage {
 
     private @NotNull String rawSecondaryMessage = "";
     private int fadeInTicks = 10;
@@ -52,40 +52,32 @@ public class ChannelTitleMessage extends ChannelMessage implements Cloneable {
     }
 
     static public ChannelTitleMessage fromParent(@NotNull ChannelMessage message) {
-        return new ChannelTitleMessage(message.getRawMessage());
+        return new ChannelTitleMessage(message.rawMessage);
     }
 
 
 
     @Override
-    public ChannelTitleMessage clone() {
-        return (ChannelTitleMessage) super.clone();
+    public ChannelTitleMessage copy() {
+        return new ChannelTitleMessage(rawMessage, rawSecondaryMessage, fadeInTicks, stayTicks, fadeOutTicks);
     }
-
-
-    @Override
-    public ChannelTitleMessage insertPrefix() {
-        super.insertPrefix();
-        this.rawSecondaryMessage = Util.PREFIX + rawSecondaryMessage;
-        return this;
-    }
-
-    @Override
-    public ChannelTitleMessage replacePlaceholders() {
-        super.replacePlaceholders();
-        this.rawSecondaryMessage = HexUtil.replacePlaceholders(rawSecondaryMessage);
-        return this;
-    }
-
-    @Override
-    public ChannelTitleMessage replace(@NotNull String key, @NotNull String value) {
-        super.replace(key, value);
-        this.rawSecondaryMessage = rawSecondaryMessage.replace(key, value);
-        return this;
-    }
-
 
     public Component getSecondaryMessage() {
         return miniMessage.deserialize(rawSecondaryMessage);
+    }
+
+    @Override
+    public ChannelTitleMessage insertPrefix() {
+        return new ChannelTitleMessage(Util.PREFIX + rawMessage, Util.PREFIX + rawSecondaryMessage, fadeInTicks, stayTicks, fadeOutTicks);
+    }
+
+    @Override
+    public ChannelTitleMessage colorize(ColorizeType colorizeType) {
+        return new ChannelTitleMessage(colorizeType.apply(rawMessage), colorizeType.apply(rawSecondaryMessage), fadeInTicks, stayTicks, fadeOutTicks);
+    }
+
+    @Override
+    public ChannelTitleMessage replace(String key, String value) {
+        return new ChannelTitleMessage(rawMessage.replace(key, value), rawSecondaryMessage.replace(key, value), fadeInTicks, stayTicks, fadeOutTicks);
     }
 }

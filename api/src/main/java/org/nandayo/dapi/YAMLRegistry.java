@@ -33,30 +33,28 @@ public abstract class YAMLRegistry {
     protected void loadFile() {
         String path = filePath();
         File file = new File(plugin.getDataFolder(), path);
-        if (!file.exists()) {
+        if (!file.getParentFile().exists()) {
             //noinspection ResultOfMethodCallIgnored
-            file.mkdirs();
-            saveDefaultResource(path);
+            file.getParentFile().mkdirs();
+            saveDefaultResource();
         }
         this.file = file;
     }
 
     /**
      * Get the InputStream of the given path.
-     * @param path Path of the requested file
      * @return InputStream
      */
-    private InputStream getDefaultResource(@NotNull String path) {
-        return plugin.getResource(path);
+    private InputStream getDefaultResource() {
+        return plugin.getResource(filePath());
     }
 
     /**
      * Save default resource of the given path.
-     * @param path Path of the requested file
      */
-    private void saveDefaultResource(@NotNull String path) {
-        if(getDefaultResource(path) != null) {
-            plugin.saveResource(path, false);
+    private void saveDefaultResource() {
+        if(getDefaultResource() != null) {
+            plugin.saveResource(filePath(), false);
         }
     }
 
