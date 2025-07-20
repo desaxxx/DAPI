@@ -2,6 +2,7 @@ package org.nandayo.dapi;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
@@ -26,6 +27,8 @@ public final class DAPI {
 
     static public final String VERSION = "1.2.7";
     static public final String GUI_METADATA_KEY = "DAPI_GUI_" + Util.generateRandomLowerCaseString(8);
+    @Getter
+    static private final MiniMessage miniMessage = MiniMessage.miniMessage();
 
 
     static private boolean init = false;
@@ -47,7 +50,6 @@ public final class DAPI {
 
 
     static private Plugin plugin;
-
     @NotNull
     static public Plugin getPlugin() {
         if(plugin != null) return plugin;
@@ -96,17 +98,6 @@ public final class DAPI {
         }
     }
 
-
-    static private Boolean paper;
-    static public boolean isPaper() {
-        if(paper != null) return paper;
-        try {
-            Class.forName("com.destroystokyo.paper.PaperConfig");
-            return paper = true;
-        } catch (Exception ignored) {
-            return paper = false;
-        }
-    }
 
 
 

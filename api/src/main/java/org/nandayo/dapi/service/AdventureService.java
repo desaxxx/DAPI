@@ -1,6 +1,5 @@
 package org.nandayo.dapi.service;
 
-import lombok.Getter;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
@@ -34,8 +33,7 @@ import java.util.Set;
 
 @SuppressWarnings("unused")
 public class AdventureService {
-    @Getter
-    static private final MiniMessage miniMessage = MiniMessage.miniMessage();
+    static private final MiniMessage miniMessage = DAPI.getMiniMessage();
 
 
     static public boolean isBukkitAudiencesSupported() {
@@ -77,14 +75,14 @@ public class AdventureService {
      * @param message ChannelMessage
      */
     static public void sendMessage(@NotNull CommandSender receiver, @NotNull ChannelMessage message) {
-        if(DAPI.isPaper()) {
+        if(Platform.isPaperFork()) {
             receiver.sendMessage(message.colorize(ColorizeType.MINI_MESSAGE).getMessage());
         }else if(isBukkitAudiencesSupported()) {
             getAudiences().ifPresent(audiences ->
                     audiences.sender(receiver).sendMessage(message.colorize(ColorizeType.MINI_MESSAGE).getMessage())
             );
         }else {
-            receiver.sendMessage(message.colorize(ColorizeType.LEGACY).getRawMessage());
+            receiver.sendMessage(message.colorize(ColorizeType.LEGACY).getMessage());
         }
     }
 
@@ -94,7 +92,7 @@ public class AdventureService {
      * @param message ChannelMessage
      */
     static public void sendActionBar(@NotNull Player player, @NotNull ChannelMessage message) {
-        if(DAPI.isPaper()) {
+        if(Platform.isPaperFork()) {
             player.sendActionBar(message.colorize(ColorizeType.MINI_MESSAGE).getMessage());
         }else if(isBukkitAudiencesSupported()) {
             getAudiences().ifPresent(audiences ->
@@ -114,7 +112,7 @@ public class AdventureService {
      * @param type ChannelType
      */
     static public void sendTitle(@NotNull Player player, @NotNull ChannelTitleMessage titleMessage, @NotNull ChannelType type) {
-        if(DAPI.isPaper()) {
+        if(Platform.isPaperFork()) {
             player.showTitle(AdventureService.createTitle(titleMessage.colorize(ColorizeType.MINI_MESSAGE), type));
         }else if(isBukkitAudiencesSupported()) {
             getAudiences().ifPresent(audiences ->
@@ -147,7 +145,7 @@ public class AdventureService {
      * @param bossBarMessage ChannelBossBarMessage
      */
     static public void showBossBar(@NotNull Player player, @NotNull ChannelBossBarMessage bossBarMessage) {
-        if(DAPI.isPaper()) {
+        if(Platform.isPaperFork()) {
             ChannelBossBarMessage bbMessage = bossBarMessage.colorize(ColorizeType.MINI_MESSAGE);
             BossBar adventureBossBar = BossBar.bossBar(bbMessage.getMessage(),
                     (float) bbMessage.getProgress(),

@@ -3,12 +3,13 @@ package org.nandayo.dapi.message;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.nandayo.dapi.ColorizeType;
-import org.nandayo.dapi.service.AdventureService;
+import org.nandayo.dapi.DAPI;
 
 @SuppressWarnings("unused")
 public interface IChannelMessage {
-    MiniMessage miniMessage = AdventureService.getMiniMessage();
+    MiniMessage miniMessage = DAPI.getMiniMessage();
 
+    String getRawMessage();
     Component getMessage();
 
     IChannelMessage copy();

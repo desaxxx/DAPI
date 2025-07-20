@@ -64,13 +64,7 @@ public abstract class YAMLRegistry {
      */
     @NotNull
     protected FileConfiguration getConfiguration() {
-        YamlConfiguration config = new YamlConfiguration();
-        try {
-            config.load(file);
-        } catch (Exception e) {
-            Util.logInternal(String.format("Couldn't load YAML configuration '%s'!", file.getName()));
-        }
-        return config;
+        return YamlConfiguration.loadConfiguration(file);
     }
 
     abstract public void onLoad();
