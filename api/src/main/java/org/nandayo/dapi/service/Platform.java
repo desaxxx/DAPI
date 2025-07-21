@@ -5,14 +5,14 @@ import org.jetbrains.annotations.NotNull;
 
 public class Platform {
 
-    static private Type type;
+    static private Platform.Type type;
 
     /**
      * Get the platform type of running server.
      * @return Platform.Type
      */
     @NotNull
-    static public Type getPlatform() {
+    static public Platform.Type getType() {
         if(type != null) return type;
         String serverName = Bukkit.getServer().getName();
         switch (serverName.toLowerCase()) {
@@ -34,7 +34,7 @@ public class Platform {
      * @return Whether paper or not.
      */
     static public boolean isPaper() {
-        return getPlatform() == Type.PAPER;
+        return getType() == Type.PAPER;
     }
 
     /**
@@ -42,7 +42,7 @@ public class Platform {
      * @return Whether purpur or not.
      */
     static public boolean isPurpur() {
-        return getPlatform() == Type.PURPUR;
+        return getType() == Type.PURPUR;
     }
 
     /**
@@ -50,7 +50,7 @@ public class Platform {
      * @return Whether pufferfish or not.
      */
     static public boolean isPufferfish() {
-        return getPlatform() == Type.PUFFERFISH;
+        return getType() == Type.PUFFERFISH;
     }
 
     /**
@@ -58,7 +58,7 @@ public class Platform {
      * @return Whether spigot or not.
      */
     static public boolean isSpigot() {
-        return getPlatform() == Type.SPIGOT;
+        return getType() == Type.SPIGOT;
     }
 
     /**

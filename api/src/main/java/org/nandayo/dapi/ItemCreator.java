@@ -109,16 +109,12 @@ public class ItemCreator {
 
     /**
      * Set name of the item stack using component.
-     * <b>NOTE:</b> This will lead to {@link #name(String)} with MiniMessage serializer if the server
-     * is not running on Paper or any of its fork.
+     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
      * @param name Component
      * @return ItemCreator.
      */
     public ItemCreator namePaper(@Nullable Component name) {
-        if(hasMeta()) {
-            if(!Platform.isPaperFork()) {
-                return name(name == null ? null : miniMessage.serialize(name));
-            }
+        if(hasMeta() && Platform.isPaperFork()) {
             meta.displayName(name);
         }
         return this;
@@ -126,8 +122,7 @@ public class ItemCreator {
 
     /**
      * Set name of the item stack using component.
-     * <b>NOTE:</b> This will lead to {@link #name(String)} with MiniMessage serializer if the server
-     * is not running on Paper or any of its fork.
+     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
      * @param nameSupplier Supplier of Component
      * @return ItemCreator
      */
@@ -199,16 +194,12 @@ public class ItemCreator {
 
     /**
      * Set lore of the item stack using list of component.<br>
-     * <b>NOTE:</b> This will lead to {@link #lore(List)} with MiniMessage serializer if the server
-     * is not running on Paper or any of its fork.
+     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
      * @param lore Component list
      * @return ItemCreator
      */
     public ItemCreator lorePaper(@Nullable List<Component> lore) {
-        if(hasMeta()) {
-            if(!Platform.isPaperFork()) {
-                return lore(lore == null ? null : lore.stream().map(l -> l == null ? null : miniMessage.serialize(l)).collect(Collectors.toList()));
-            }
+        if(hasMeta() && Platform.isPaperFork()) {
             meta.lore(lore);
         }
         return this;
@@ -216,8 +207,7 @@ public class ItemCreator {
 
     /**
      * Set lore of the item stack using component.
-     * <b>NOTE:</b> This will lead to {@link #lore(List)} with MiniMessage serializer if the server
-     * is not running on Paper or any of its fork.
+     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
      * @param lore Components
      * @return ItemCreator
      */
@@ -227,8 +217,7 @@ public class ItemCreator {
 
     /**
      * Set lore of the item stack using component supplier.
-     * <b>NOTE:</b> This will lead to {@link #lore(List)} with MiniMessage serializer if the server
-     * is not running on Paper or any of its fork.
+     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
      * @param loreSupplier Supplier of Component list
      * @return ItemCreator
      */
@@ -306,18 +295,13 @@ public class ItemCreator {
 
     /**
      * Add lines to lore of the item stack.
-     * <b>NOTE:</b> This will lead to {@link #addLore(List)} with MiniMessage serializer if the server
-     * is not running on Paper or any of its fork.
+     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
      * @param lore Component list
      * @return ItemCreator
      */
     public ItemCreator addLorePaper(List<Component> lore) {
         Validate.validate(lore != null, "Lore to be added cannot be null!");
-        if(hasMeta()) {
-            if(!Platform.isPaperFork()) {
-                return addLore(lore.stream().map(l -> l == null ? null : miniMessage.serialize(l)).collect(Collectors.toList()));
-            }
-
+        if(hasMeta() && Platform.isPaperFork()) {
             List<Component> existingLore = meta.lore() != null ? new ArrayList<>(meta.lore()) : new ArrayList<>();
             List<Component> newLore = new ArrayList<>(lore);
             existingLore.addAll(newLore);
@@ -328,8 +312,7 @@ public class ItemCreator {
 
     /**
      * Add lines to lore of the item stack.
-     * <b>NOTE:</b> This will lead to {@link #addLore(List)} with MiniMessage serializer if the server
-     * is not running on Paper or any of its fork.
+     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
      * @param lore Components
      * @return ItemCreator
      */
@@ -339,8 +322,7 @@ public class ItemCreator {
 
     /**
      * Add lines to lore of the item stack using supplier.
-     * <b>NOTE:</b> This will lead to {@link #addLore(List)} with MiniMessage serializer if the server
-     * is not running on Paper or any of its fork.
+     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
      * @param loreSupplier Supplier of Component List
      * @return ItemCreator
      */
