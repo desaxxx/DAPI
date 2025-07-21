@@ -61,7 +61,7 @@ dependencies {
           <configuration>
             <relocations>
               <relocation>
-                <pattern>com.github.desaxxx.DAPI</pattern>
+                <pattern>org.nandayo.dapi</pattern>
                 <shadedPattern>PATH.TO.YOUR.PACKAGE</shadedPattern>
               </relocation>
             </relocations>
