@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.dapi.HexUtil;
+import org.nandayo.dapi.util.HexUtil;
 import org.nandayo.dapi.guimanager.MenuType;
 
 @SuppressWarnings("unused")

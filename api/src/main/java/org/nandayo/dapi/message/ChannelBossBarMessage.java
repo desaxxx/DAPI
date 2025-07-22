@@ -6,8 +6,8 @@ import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.dapi.ColorizeType;
-import org.nandayo.dapi.Util;
+import org.nandayo.dapi.util.ColorizeType;
+import org.nandayo.dapi.util.Util;
 import org.nandayo.dapi.model.MiniString;
 import org.nandayo.dapi.util.Validate;
 

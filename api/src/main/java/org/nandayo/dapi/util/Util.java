@@ -1,4 +1,4 @@
-package org.nandayo.dapi;
+package org.nandayo.dapi.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;

@@ -2,7 +2,7 @@ package org.nandayo.dapi.service;
 
 import org.bstats.bukkit.Metrics;
 import org.nandayo.dapi.DAPI;
-import org.nandayo.dapi.Util;
+import org.nandayo.dapi.util.Util;
 
 public class RelocateService {
 

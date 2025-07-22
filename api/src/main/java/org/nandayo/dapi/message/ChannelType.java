@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.dapi.Util;
+import org.nandayo.dapi.util.Util;
 import org.nandayo.dapi.service.AdventureService;
 
 @SuppressWarnings("unused")

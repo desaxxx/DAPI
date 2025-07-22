@@ -16,6 +16,8 @@ public class Platform {
         if(type != null) return type;
         String serverName = Bukkit.getServer().getName();
         switch (serverName.toLowerCase()) {
+            case "leaf":
+                return type = Type.LEAF;
             case "paper":
                 return type = Type.PAPER;
             case "purpur":
@@ -27,6 +29,14 @@ public class Platform {
             default:
                 return type = Type.OTHER;
         }
+    }
+
+    /**
+     * Check if the server is running on Leaf.
+     * @return Whether leaf or not.
+     */
+    static public boolean isLeaf() {
+        return getType() == Type.LEAF;
     }
 
     /**
@@ -66,13 +76,22 @@ public class Platform {
      * @return Whether paper or any of its fork.
      */
     static public boolean isPaperFork() {
-        return isPaper() || isPurpur() || isPufferfish();
+        if(isPaper() || isPurpur() || isPufferfish() || isLeaf()) return true;
+        if(isSpigot()) return false;
+        // for case Platform.Type#OTHER
+        try {
+            Class.forName("com.destroystokyo.paper.PaperConfig");
+            return true;
+        } catch (ClassNotFoundException ignored) {
+            return false;
+        }
     }
 
 
 
 
     public enum Type {
+        LEAF,
         PAPER,
         PUFFERFISH,
         PURPUR,

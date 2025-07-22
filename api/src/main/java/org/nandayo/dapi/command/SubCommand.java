@@ -3,7 +3,7 @@ package org.nandayo.dapi.command;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.nandayo.dapi.DAPI;
-import org.nandayo.dapi.HexUtil;
+import org.nandayo.dapi.util.HexUtil;
 
 @SuppressWarnings("unused")
 public abstract class SubCommand {

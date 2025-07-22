@@ -3,8 +3,8 @@ package org.nandayo.dapi.message;
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.dapi.ColorizeType;
-import org.nandayo.dapi.Util;
+import org.nandayo.dapi.util.ColorizeType;
+import org.nandayo.dapi.util.Util;
 import org.nandayo.dapi.model.MiniString;
 import org.nandayo.dapi.util.Validate;
 

@@ -1,4 +1,4 @@
-package org.nandayo.dapi;
+package org.nandayo.dapi.util;
 
 public enum ColorizeType {
     LEGACY,

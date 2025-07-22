@@ -13,6 +13,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.nandayo.dapi.guimanager.MenuListener;
 import org.nandayo.dapi.service.RelocateService;
+import org.nandayo.dapi.util.DAPIException;
+import org.nandayo.dapi.util.Util;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,7 +27,7 @@ public final class DAPI {
         // no construction
     }
 
-    static public final String VERSION = "1.2.8";
+    static public final String VERSION = "1.2.9";
     static public final String GUI_METADATA_KEY = "DAPI_GUI_" + Util.generateRandomLowerCaseString(8);
     @Getter
     static private final MiniMessage miniMessage = MiniMessage.miniMessage();

@@ -1,7 +1,7 @@
 package org.nandayo.dapi.nms;
 
-import org.nandayo.dapi.DAPIException;
-import org.nandayo.dapi.Wrapper;
+import org.nandayo.dapi.util.DAPIException;
+import org.nandayo.dapi.util.Wrapper;
 
 @SuppressWarnings("unused")
 public class NMSWrapper {

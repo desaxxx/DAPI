@@ -1,4 +1,4 @@
-package org.nandayo.dapi;
+package org.nandayo.dapi.service;
 
 import com.google.common.collect.ImmutableList;
 import lombok.Getter;

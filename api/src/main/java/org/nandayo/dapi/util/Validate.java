@@ -1,7 +1,6 @@
 package org.nandayo.dapi.util;
 
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.dapi.DAPIException;
 
 public class Validate {
 

@@ -2,7 +2,7 @@ package org.nandayo.dapi.object;
 
 import org.bukkit.Sound;
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.dapi.Wrapper;
+import org.nandayo.dapi.util.Wrapper;
 import org.nandayo.dapi.object.annotation.DDeprecated;
 import org.nandayo.dapi.object.annotation.DInfo;
 import org.nandayo.dapi.object.annotation.DRenamed;

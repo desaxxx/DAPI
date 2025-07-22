@@ -1,4 +1,4 @@
-package org.nandayo.dapi;
+package org.nandayo.dapi.util;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -14,9 +14,9 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.nandayo.dapi.DAPI;
 import org.nandayo.dapi.model.MiniString;
 import org.nandayo.dapi.service.Platform;
-import org.nandayo.dapi.util.Validate;
 
 import java.util.ArrayList;
 import java.util.List;
