@@ -4,8 +4,8 @@ import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.jetbrains.annotations.NotNull;
-import org.nandayo.dapi.util.ColorizeType;
 import org.nandayo.dapi.DAPI;
+import org.nandayo.dapi.util.ColorizeType;
 import org.nandayo.dapi.util.Validate;
 
 import java.util.List;

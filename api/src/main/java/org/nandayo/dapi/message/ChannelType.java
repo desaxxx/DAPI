@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.nandayo.dapi.util.Util;
-import org.nandayo.dapi.service.AdventureService;
+import org.nandayo.dapi.service.BukkitAdventureService;
 
 @SuppressWarnings("unused")
 public abstract class ChannelType {
@@ -15,7 +15,7 @@ public abstract class ChannelType {
     static public final ChannelType CHAT = new ChannelType() {
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
-            AdventureService.sendMessage(receiver, message);
+            BukkitAdventureService.sendMessage(receiver, message);
         }
     };
 
@@ -23,7 +23,7 @@ public abstract class ChannelType {
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
-            AdventureService.sendActionBar((Player) receiver, message);
+            BukkitAdventureService.sendActionBar((Player) receiver, message);
         }
     };
 
@@ -32,7 +32,7 @@ public abstract class ChannelType {
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
             ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
-            AdventureService.sendTitle((Player) receiver, titleMessage, this);
+            BukkitAdventureService.sendTitle((Player) receiver, titleMessage, this);
         }
     };
 
@@ -41,7 +41,7 @@ public abstract class ChannelType {
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
             ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
-            AdventureService.sendTitle((Player) receiver, titleMessage, this);
+            BukkitAdventureService.sendTitle((Player) receiver, titleMessage, this);
         }
     };
 
@@ -50,7 +50,7 @@ public abstract class ChannelType {
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
             ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
-            AdventureService.sendTitle((Player) receiver, titleMessage, this);
+            BukkitAdventureService.sendTitle((Player) receiver, titleMessage, this);
         }
     };
 
@@ -59,7 +59,7 @@ public abstract class ChannelType {
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
             ChannelBossBarMessage bossBarMessage = message instanceof ChannelBossBarMessage ? (ChannelBossBarMessage) message : ChannelBossBarMessage.fromParent(message);
-            AdventureService.showBossBar((Player) receiver, bossBarMessage);
+            BukkitAdventureService.showBossBar((Player) receiver, bossBarMessage);
         }
     };
 

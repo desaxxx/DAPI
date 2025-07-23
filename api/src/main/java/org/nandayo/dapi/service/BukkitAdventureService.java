@@ -32,7 +32,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @SuppressWarnings("unused")
-public class AdventureService {
+public class BukkitAdventureService {
     static private final MiniMessage miniMessage = DAPI.getMiniMessage();
 
 
@@ -113,10 +113,10 @@ public class AdventureService {
      */
     static public void sendTitle(@NotNull Player player, @NotNull ChannelTitleMessage titleMessage, @NotNull ChannelType type) {
         if(Platform.isPaperFork()) {
-            player.showTitle(AdventureService.createTitle(titleMessage.colorize(ColorizeType.MINI_MESSAGE), type));
+            player.showTitle(BukkitAdventureService.createTitle(titleMessage.colorize(ColorizeType.MINI_MESSAGE), type));
         }else if(isBukkitAudiencesSupported()) {
             getAudiences().ifPresent(audiences ->
-                audiences.player(player).showTitle(AdventureService.createTitle(titleMessage.colorize(ColorizeType.MINI_MESSAGE), type))
+                audiences.player(player).showTitle(BukkitAdventureService.createTitle(titleMessage.colorize(ColorizeType.MINI_MESSAGE), type))
             );
         }else {
             ChannelTitleMessage ttMessage = titleMessage.colorize(ColorizeType.LEGACY);
