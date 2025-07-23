@@ -1,5 +1,6 @@
 # DAPI (Desa API)
-This API is being designed by me and for my plugins. Still, you can also use it on your plugins.
+This API is being designed by me and for my plugins. Still, you can also use it on your plugins.\
+![](https://www.codefactor.io/Content/badges/APlus.svg)
 
 ## Features
 - **Menu Manager**: Easily create and manage your Minecraft GUIs with this class. (Chest menus, and soon Anvil menu)
