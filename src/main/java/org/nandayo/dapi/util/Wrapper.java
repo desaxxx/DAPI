@@ -5,12 +5,12 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.Locale;
 
 @SuppressWarnings("unused")
@@ -95,14 +95,14 @@ public class Wrapper {
 
     /**
      * Creating a version-compat PotionMeta.<br>
-     * setBasePotionType(NotNull) -> 1.20.2<br>
-     * setBasePotionType(Nullable) -> 1.20.5<br>
      * setDurationScale() -> 1.21.5 spigot only so removing it...
+     * PotionData is marked forRemoval in Paper -> 1.20.6<br>
+     * setBasePotionType(Nullable) -> 1.20.5<br>
+     * setBasePotionType(NotNull) -> 1.20.2<br>
      * @param meta PotionMeta
      * @param potionType PotionType
      * @param color Color
      */
-    @SuppressWarnings({"removal"})
     static public void editPotionMeta(@NotNull PotionMeta meta, @Nullable PotionType potionType, @Nullable Color color) {
         if (minecraftVersion >= 205) {
             meta.setBasePotionType(potionType);
@@ -111,14 +111,25 @@ public class Wrapper {
             if(potionType != null) meta.setBasePotionType(potionType);
         }
         else {
-            if(potionType != null) meta.setBasePotionData(new PotionData(potionType));
+            if(potionType != null) {
+                try {
+                    Class<?> potionDataClass = Class.forName("org.bukkit.potion.PotionData");
+                    Object potionData = potionDataClass.getConstructor(PotionType.class).newInstance(potionType);
+
+                    Method setBasePotionDataMethod = meta.getClass().getMethod("setBasePotionData", potionDataClass);
+                    //noinspection JavaReflectionInvocation
+                    setBasePotionDataMethod.invoke(meta, potionData);
+                } catch (Exception ignored) {}
+            }
+            // PotionData is marked forRemoval.
+            //if (potionType != null) meta.setBasePotionData(new PotionData(potionType));
         }
         meta.setColor(color);
     }
 
     /**
      * Get the sound from given key. Only works for minecraft sounds.<br>
-     * MC 1.16.4+ : Using Registry.SOUNDS<br>
+     * MC 1.16.4+ : Using {@link Registry#SOUNDS}<br>
      * MC 1.16.1-1.16.3 : Sound class was an enum, so accessing the requested field with reflection.
      * @param key Key of the sound
      * @return Sound if found, else {@code null}.
@@ -129,7 +140,7 @@ public class Wrapper {
             return Registry.SOUNDS.get(NamespacedKey.minecraft(key));
         }
         else {
-            try {
+            try { // TODO: I don't think this works as wanted.
                 return (Sound) Enum.valueOf((Class<Enum>) Class.forName("org.bukkit.Sound"), key.replace(".","_").toUpperCase(Locale.ENGLISH));
             } catch (Exception ignored) {}
         }

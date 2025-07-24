@@ -294,8 +294,8 @@ public enum DEntityType {
     //</editor-fold>
 
 
-    @SuppressWarnings("deprecation")
     DEntityType() {
+        //noinspection UnstableApiUsage
         this.entityType = EntityType.fromName(this.name());
     }
 
