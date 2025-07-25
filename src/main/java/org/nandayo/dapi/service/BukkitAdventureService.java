@@ -1,7 +1,6 @@
 package org.nandayo.dapi.service;
 
 import net.kyori.adventure.bossbar.BossBar;
-import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
 import org.bukkit.boss.BarColor;
@@ -32,7 +31,7 @@ public class BukkitAdventureService {
     static public boolean isBukkitAudiencesSupported() {
         return false;
     }
-    static public Optional<BukkitAudiences> getAudiences() {
+    static public Optional<Object> getAudiences() {
         return Optional.empty();
     }
     static public void createAudiences() {}
