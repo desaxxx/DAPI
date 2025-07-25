@@ -19,11 +19,13 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-@SuppressWarnings("unused")
-/*
+/**
  * Bukkit-platform doesn't bundle MiniMessage. As use of MiniString requires that,
  * dropping MiniMessage support for Spigot.
+ * @deprecated Bukkit Audience is removed due internal problems. Other methods are
+ * transferred to {@link AdventureService}
  */
+@SuppressWarnings("unused")
 @Deprecated(since = "1.3.0-BETA", forRemoval = true)
 public class BukkitAdventureService {
 
