@@ -5,7 +5,8 @@ This API is being designed by me and for my plugins. Still, you can also use it 
 ## Features
 - **Menu Manager**: Easily create and manage your Minecraft GUIs with this class. (Chest menus, and soon Anvil menu)
 > [!IMPORTANT]
-> In order to register menu events. You need to use `DAPI.registerMenuListener()` on your plugin start.
+> In order to register menu events. You need to use `DAPI.registerMenuListener()` on your plugin start.\
+> AnvilMenu requires another repository to be added as well. See [AnvilMenu](https://github.com/desaxxx/AnvilMenu/tree/main)
 - **HexUtil**: Translate RGB colors on your string with pattern <#RRGGBB> (Planning to add other patterns)
 - **ItemCreator**: Easily create ItemStack with this builder, it has multiple methods to apply data to your created itemstack.
 - **ChannelType & ChannelMessages**: Easily send messages to player/console on which channel you want — CHAT, ACTION_BAR, TITLE, BOSS_BAR...
