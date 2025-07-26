@@ -10,7 +10,7 @@ This API is being designed by me and for my plugins. Still, you can also use it 
 - **HexUtil**: Translate RGB colors on your string with pattern <#RRGGBB> (Planning to add other patterns)
 - **ItemCreator**: Easily create ItemStack with this builder, it has multiple methods to apply data to your created itemstack.
 - **ChannelType & ChannelMessages**: Easily send messages to player/console on which channel you want — CHAT, ACTION_BAR, TITLE, BOSS_BAR...
-- **DObjects**, such as DMaterial, DSound, DEntityType to support version compatibility between 1.16.1 - 1.21.x. (Not all Minecraft objects are present, see [them](https://github.com/desaxxx/DAPI/tree/main/api/src/main/java/org/nandayo/dapi/object))
+- **DObjects**, such as DMaterial, DSound, DEntityType to support version compatibility between 1.16.1 - 1.21.x. (Not all Minecraft objects are present, see [them](https://github.com/desaxxx/DAPI/tree/main/src/main/java/org/nandayo/dapi/object))
 - **Util**: Offers many methods such as log() to log any message to console, tell() to send basic message to players, PREFIX to set up prefix for the DAPI to use on log() and tell() methods, generateRandomString() to do what is literally says.
 - *And other small classes needs you to figure out?*
 
