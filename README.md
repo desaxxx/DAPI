@@ -64,7 +64,8 @@ dependencies {
             <relocations>
               <relocation>
                 <pattern>org.nandayo.dapi</pattern>
-                <shadedPattern>PATH.TO.YOUR.PACKAGE</shadedPattern>
+                <!-- Replace [YOUR.PACKAGE.PATH] with your own package. E.g. net.example.myproject -->
+                <shadedPattern>[YOUR.PACKAGE.PATH].shaded.dapi</shadedPattern>
               </relocation>
             </relocations>
           </configuration>
