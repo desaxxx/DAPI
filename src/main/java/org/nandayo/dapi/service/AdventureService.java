@@ -8,11 +8,9 @@ import net.kyori.adventure.util.Ticks;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.KeyedBossBar;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -22,7 +20,6 @@ import org.nandayo.dapi.message.ChannelMessage;
 import org.nandayo.dapi.message.ChannelTitleMessage;
 import org.nandayo.dapi.message.ChannelType;
 import org.nandayo.dapi.util.ColorizeType;
-import org.nandayo.dapi.util.Util;
 import org.nandayo.dapi.util.Validate;
 
 import java.util.HashSet;
@@ -86,7 +83,7 @@ public final class AdventureService {
      */
     static public void sendMessage(@NotNull CommandSender receiver, @NotNull ChannelMessage message) {
         // getMessage uses MiniString#asComponent which requires MiniMessage.
-        if(AdventureService.isMiniMessageSupported()) {             
+        if(AdventureService.isMiniMessageSupported()) {
             receiver.sendMessage(message.colorize(ColorizeType.MINI_MESSAGE).getMessage());
         }else {
             receiver.sendMessage(message.colorize(ColorizeType.LEGACY).getRawMessage());
@@ -166,15 +163,11 @@ public final class AdventureService {
                     ,bbMessage.getStayTicks());
         }else {
             ChannelBossBarMessage bbMessage = bossBarMessage.colorize(ColorizeType.LEGACY);
-            NamespacedKey key = new NamespacedKey("dapi", "boss_bar_" + Util.generateRandomLowerCaseString(8));
-            KeyedBossBar bossBar = Bukkit.createBossBar(key, bbMessage.getRawMessage(), bbMessage.getColor(), bbMessage.getStyle(), bbMessage.getFlags());
-            bossBar.addPlayer(player);
+            org.bukkit.boss.BossBar bb = Bukkit.createBossBar(bbMessage.getRawMessage(), bbMessage.getColor(), bbMessage.getStyle(), bbMessage.getFlags());
+            bb.addPlayer(player);
 
             // removal of BossBar
-            Bukkit.getScheduler().runTaskLater(DAPI.getPlugin(), () -> {
-                bossBar.removePlayer(player);
-                Bukkit.removeBossBar(key);
-            }, bbMessage.getStayTicks());
+            Bukkit.getScheduler().runTaskLater(DAPI.getPlugin(), bb::removeAll, bbMessage.getStayTicks());
         }
     }
 

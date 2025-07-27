@@ -11,11 +11,11 @@ import java.util.regex.Pattern;
 @SuppressWarnings({"deprecation","unused"})
 public class HexUtil {
     private static final Pattern COLORIZE_PATTERN = Pattern.compile(
-            "<(#[0-9A-F]{6}|aqua|black|blue|bold|dark_(aqua|blue|gray|green|purple|red)|gray|gold|green|italic|light_purple|obfuscated|red|reset|strikethrough|underline|white|yellow)>",
+            "<(#[0-9A-F]{6}|aqua|black|blue|bold|dark_(aqua|blue|gray|green|purple|red)|gray|gold|green|italic|light_purple|obfuscated|red|reset|strikethrough|underline|white|yellow)>|&(?<hex>#[0-9A-F]{6})",
             Pattern.CASE_INSENSITIVE
     );
     private static final Pattern LEGACY_COLOR_CODE_PATTERN = Pattern.compile("§([0-9A-FK-OR])", Pattern.CASE_INSENSITIVE);
-    private static final Pattern LEGACY_HEX_COLOR_PATTERN = Pattern.compile("§x(§[0-9A-F]){6}", Pattern.CASE_INSENSITIVE);
+    private static final Pattern LEGACY_HEX_COLOR_PATTERN = Pattern.compile("§x(§[0-9A-F]){6}|&#[0-9A-F]{6}", Pattern.CASE_INSENSITIVE);
 
 
     @NotNull
@@ -25,14 +25,15 @@ public class HexUtil {
         final Matcher matcher = COLORIZE_PATTERN.matcher(text);
         while (matcher.find()) {
             try {
-                String original = matcher.group();
-                String hex = matcher.group(1); // -> #ffffff
-                ChatColor chatColor = ChatColor.of(hex);
+                String original = matcher.group(); // <#RRGGBB>, <aqua>, &#RRGGBB
+                String color = matcher.group(1);
+                color = color != null ? color : matcher.group("hex");
+                ChatColor chatColor = ChatColor.of(color);
 
                 if (chatColor != null) {
                     text = text.replace(original, chatColor.toString()); // toString() -> e.g. §a
                 }
-            } catch (IllegalArgumentException ignored) { }
+            } catch (IllegalArgumentException ignored) {}
         }
 
         return ChatColor.translateAlternateColorCodes('&', text);
@@ -46,7 +47,7 @@ public class HexUtil {
 
         // Don't translate <#RRGGBB> or <namedColor>
 
-        // Translate §x§f§f§f§f§f§f to <#ffffff>, this should be handled before #legacyToMini()
+        // Translate §x§f§f§f§f§f§f and &#ffffff to <#ffffff>, this should be handled before #legacyToMiniMessage()
         text = legacyHexToMiniMessage(text);
         // Translate §a, §b etc. to <green>, <aqua> etc.
         text = legacyToMiniMessage(text);
@@ -56,7 +57,7 @@ public class HexUtil {
 
     /**
      * Translates Minecraft HEX style to MiniMessage HEX format<br>
-     * §x§f§f§f§f§f§f -> <#ffffff>
+     * §x§f§f§f§f§f§f | &#ffffff -> <#ffffff>
      * @param text Text to translate
      * @return Result
      */
@@ -66,8 +67,8 @@ public class HexUtil {
 
         final Matcher matcher = LEGACY_HEX_COLOR_PATTERN.matcher(text);
         while(matcher.find()) {
-            String original = matcher.group(); // -> §x§f§f§f§f§f§f
-            String hex = original.replace("§","").substring(1); // -> xffffff, -> ffffff
+            String original = matcher.group(); // -> §x§f§f§f§f§f§f | &#ffffff
+            String hex = original.replace("§","").replace("&","").substring(1); // -> xffffff | #ffffff -> ffffff
             text = text.replace(original, "<#" + hex + ">"); // -> <#fffff>
         }
         return text;
