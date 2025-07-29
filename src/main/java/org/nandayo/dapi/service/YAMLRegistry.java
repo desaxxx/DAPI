@@ -1,6 +1,5 @@
 package org.nandayo.dapi.service;
 
-import com.google.common.collect.ImmutableList;
 import lombok.Getter;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -10,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Getter
@@ -76,11 +76,11 @@ public abstract class YAMLRegistry {
     static private final @NotNull List<YAMLRegistry> REGISTRIES = new ArrayList<>();
 
     /**
-     * Get immutable list of YAMLRegistries.
+     * Get unmodifiable list of {@link #REGISTRIES}.
      * @return List of YAMLRegistry
      */
     static public List<YAMLRegistry> getRegistries() {
-        return ImmutableList.copyOf(REGISTRIES);
+        return Collections.unmodifiableList(REGISTRIES);
     }
 
     /**

@@ -8,9 +8,11 @@ import net.kyori.adventure.util.Ticks;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.KeyedBossBar;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -20,6 +22,7 @@ import org.nandayo.dapi.message.ChannelMessage;
 import org.nandayo.dapi.message.ChannelTitleMessage;
 import org.nandayo.dapi.message.ChannelType;
 import org.nandayo.dapi.util.ColorizeType;
+import org.nandayo.dapi.util.Util;
 import org.nandayo.dapi.util.Validate;
 
 import java.util.HashSet;
@@ -74,7 +77,7 @@ public final class AdventureService {
     }
 
 
-    
+
     /**
      * Send message to a CommandSender with available option. (Audience or default)
      * @param receiver Message receiver
@@ -98,7 +101,7 @@ public final class AdventureService {
      */
     static public void sendActionBar(@NotNull Player player, @NotNull ChannelMessage message) {
         // getMessage uses MiniString#asComponent which requires MiniMessage.
-        if(AdventureService.isMiniMessageSupported()) {             
+        if(AdventureService.isMiniMessageSupported()) {
             player.sendActionBar(message.colorize(ColorizeType.MINI_MESSAGE).getMessage());
         }else {
             //noinspection deprecation
@@ -116,7 +119,7 @@ public final class AdventureService {
      */
     static public void sendTitle(@NotNull Player player, @NotNull ChannelTitleMessage titleMessage, @NotNull ChannelType type) {
         // getMessage uses MiniString#asComponent which requires MiniMessage.
-        if(AdventureService.isMiniMessageSupported()) {             
+        if(AdventureService.isMiniMessageSupported()) {
             player.showTitle(createTitle(titleMessage.colorize(ColorizeType.MINI_MESSAGE), type));
         }else {
             ChannelTitleMessage ttMessage = titleMessage.colorize(ColorizeType.LEGACY);
@@ -149,26 +152,50 @@ public final class AdventureService {
     static public void showBossBar(@NotNull Player player, @NotNull ChannelBossBarMessage bossBarMessage) {
         // getMessage uses MiniString#asComponent which requires MiniMessage.
         if(AdventureService.isMiniMessageSupported()) {
-            ChannelBossBarMessage bbMessage = bossBarMessage.colorize(ColorizeType.MINI_MESSAGE);
-            BossBar adventureBossBar = BossBar.bossBar(bbMessage.getMessage(),
-                    (float) bbMessage.getProgress(),
-                    Parser.parseBarColor(bbMessage.getColor()),
-                    Parser.parseBarStyle(bbMessage.getStyle()),
-                    Parser.parseBarFlags(bbMessage.getFlags()));
-            player.showBossBar(adventureBossBar);
-
-            // removal of BossBar
-            Bukkit.getScheduler().runTaskLater(DAPI.getPlugin(), () ->
-                    player.hideBossBar(adventureBossBar)
-                    ,bbMessage.getStayTicks());
+            showAdventureBossBar(player, bossBarMessage);
         }else {
-            ChannelBossBarMessage bbMessage = bossBarMessage.colorize(ColorizeType.LEGACY);
-            org.bukkit.boss.BossBar bb = Bukkit.createBossBar(bbMessage.getRawMessage(), bbMessage.getColor(), bbMessage.getStyle(), bbMessage.getFlags());
-            bb.addPlayer(player);
-
-            // removal of BossBar
-            Bukkit.getScheduler().runTaskLater(DAPI.getPlugin(), bb::removeAll, bbMessage.getStayTicks());
+            showBukkitBossBar(player, bossBarMessage);
         }
+    }
+
+    /**
+     * Show {@link BossBar Adventure BossBar} to the player with {@link ChannelBossBarMessage}.
+     * @param player Player
+     * @param bossBarMessage ChannelBossBarMessage
+     * @since 1.3.1
+     */
+    static private void showAdventureBossBar(@NotNull Player player, @NotNull ChannelBossBarMessage bossBarMessage) {
+        ChannelBossBarMessage bbMessage = bossBarMessage.colorize(ColorizeType.MINI_MESSAGE);
+        BossBar adventureBossBar = BossBar.bossBar(bbMessage.getMessage(),
+                (float) bbMessage.getProgress(),
+                Parser.parseBarColor(bbMessage.getColor()),
+                Parser.parseBarStyle(bbMessage.getStyle()),
+                Parser.parseBarFlags(bbMessage.getFlags()));
+        player.showBossBar(adventureBossBar);
+
+        // removal of BossBar
+        Bukkit.getScheduler().runTaskLater(DAPI.getPlugin(), () ->
+                        player.hideBossBar(adventureBossBar)
+                ,bbMessage.getStayTicks());
+    }
+
+    /**
+     * Show {@link KeyedBossBar Bukkit BossBar} to the player with {@link ChannelBossBarMessage}.
+     * @param player Player
+     * @param bossBarMessage ChannelBossBarMessage
+     * @since 1.3.1
+     */
+    static private void showBukkitBossBar(@NotNull Player player, @NotNull ChannelBossBarMessage bossBarMessage) {
+        ChannelBossBarMessage bbMessage = bossBarMessage.colorize(ColorizeType.LEGACY);
+        NamespacedKey key = new NamespacedKey("dapi","boss_bar_" + Util.generateRandomLowerCaseString(8));
+        KeyedBossBar bb = Bukkit.createBossBar(key, bbMessage.getRawMessage(), bbMessage.getColor(), bbMessage.getStyle(), bbMessage.getFlags());
+        bb.addPlayer(player);
+
+        // removal of BossBar
+        Bukkit.getScheduler().runTaskLater(DAPI.getPlugin(), () -> {
+            bb.removePlayer(player);
+            Bukkit.removeBossBar(key);
+        }, bbMessage.getStayTicks());
     }
 
 

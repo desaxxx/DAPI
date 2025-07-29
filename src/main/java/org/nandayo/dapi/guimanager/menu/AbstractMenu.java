@@ -1,6 +1,5 @@
 package org.nandayo.dapi.guimanager.menu;
 
-import com.google.common.collect.ImmutableList;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -13,6 +12,7 @@ import org.nandayo.dapi.guimanager.button.AbstractButton;
 import org.nandayo.dapi.guimanager.button.SingleSlotButton;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -25,7 +25,7 @@ public abstract class AbstractMenu {
     private @Nullable Inventory inventory;
 
     protected List<AbstractButton> getButtons() {
-        return ImmutableList.copyOf(abstractButtons);
+        return Collections.unmodifiableList(abstractButtons);
     }
 
     /**
