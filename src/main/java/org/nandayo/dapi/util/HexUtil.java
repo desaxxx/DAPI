@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 @SuppressWarnings({"deprecation","unused"})
 public class HexUtil {
+    private static final String COLOR_REGEX = "(?i)(aqua|black|blue|dark_(aqua|blue|gray|green|purple|red)|gray|gold|green|light_purple|red|white|yellow|#[0-9a-f]{6})";
     private static final Pattern COLORIZE_PATTERN = Pattern.compile(
             "<(#[0-9A-F]{6}|aqua|black|blue|bold|dark_(aqua|blue|gray|green|purple|red)|gray|gold|green|italic|light_purple|obfuscated|red|reset|strikethrough|underline|white|yellow)>|&(?<hex>#[0-9A-F]{6})",
             Pattern.CASE_INSENSITIVE
@@ -27,7 +28,7 @@ public class HexUtil {
             try {
                 String original = matcher.group(); // <#RRGGBB>, <aqua>, &#RRGGBB
                 String color = matcher.group(1);
-                color = color != null ? color : matcher.group("hex");
+                color = color != null ? color : matcher.group("hex"); // #RRGGBB, aqua
                 ChatColor chatColor = ChatColor.of(color);
 
                 if (chatColor != null) {
@@ -49,7 +50,8 @@ public class HexUtil {
 
         // Translate §x§f§f§f§f§f§f and &#ffffff to <#ffffff>, this should be handled before #legacyToMiniMessage()
         text = legacyHexToMiniMessage(text);
-        // Translate §a, §b etc. to <green>, <aqua> etc.
+        // Translate §a, §b to <reset><green>, <reset><aqua>
+        //           §l, §r to <bold>, <reset>
         text = legacyToMiniMessage(text);
 
         return text;
@@ -92,7 +94,12 @@ public class HexUtil {
             ChatColor chatColor = ChatColor.getByChar(code); // WHITE
             if(chatColor != null) {
                 String name = chatColor.getName().equals("underline") ? "underlined" : chatColor.getName(); // white
-                text = text.replace(original, "<" + name + ">"); // -> <white>
+                String replacement = "<" + name + ">";
+                if(name.matches(COLOR_REGEX)) {
+                    // adding <reset> since legacy colors additionally resets decoration after color change.
+                    replacement = "<reset>" + replacement;
+                }
+                text = text.replace(original, replacement); // -> <reset><white> or <bold>
             }
         }
         return text;

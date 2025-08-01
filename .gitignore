@@ -5,7 +5,6 @@
 # Build output folders
 **/out/
 **/target/
-.src/test/
 
 # Maven generated files
 **/dependency-reduced-pom.xml

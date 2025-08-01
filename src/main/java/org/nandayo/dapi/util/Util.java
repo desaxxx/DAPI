@@ -2,6 +2,7 @@ package org.nandayo.dapi.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
@@ -26,6 +27,7 @@ public class Util {
      * Log messages to console with dapi prefix. For internal use.
      * @param msg Messages
      */
+    @ApiStatus.Internal
     static public void logInternal(String... msg) {
         for(String s : msg) {
             Bukkit.getConsoleSender().sendMessage(HexUtil.parse(PREFIX + DAPI_PREFIX + s));
