@@ -67,6 +67,9 @@ public abstract class YAMLRegistry {
         return YamlConfiguration.loadConfiguration(file);
     }
 
+    abstract public boolean isLoaded();
+    abstract public void setLoaded(boolean loaded);
+
     abstract public void onLoad();
     abstract public void onUnload();
 

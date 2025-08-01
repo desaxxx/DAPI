@@ -49,6 +49,7 @@ public class HexUtil {
         // Don't translate <#RRGGBB> or <namedColor>
 
         // Translate §x§f§f§f§f§f§f and &#ffffff to <#ffffff>, this should be handled before #legacyToMiniMessage()
+        // TODO: need to add <reset> before hex colors, <#RRGGBB>(?), &#RRGGBB
         text = legacyHexToMiniMessage(text);
         // Translate §a, §b to <reset><green>, <reset><aqua>
         //           §l, §r to <bold>, <reset>
