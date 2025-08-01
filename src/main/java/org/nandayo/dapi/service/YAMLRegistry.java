@@ -102,6 +102,7 @@ public abstract class YAMLRegistry {
      */
     static public void unloadRegistries() {
         for (YAMLRegistry registry : REGISTRIES) {
+            if(!registry.isLoaded()) continue;
             registry.onUnload();
         }
     }
