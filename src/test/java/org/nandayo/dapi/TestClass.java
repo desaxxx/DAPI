@@ -9,5 +9,9 @@ public class TestClass {
     void testColors() {
         String s1 = "<aqua>Aqua, <light_purple>Light purple, <dark_blue>Dark blue, <#ff00bb>Hex-1, &#cc44ffHex-2, <italic>Italic, <bold>Bold, &nUnderline, &6Orange, &rReset, &0Black, &cRed, &6Another orange, &kObfuscate, &mStrikethrough";
         System.out.println(HexUtil.colorToMiniMessage(s1));
+
+        String gradientText = "<#A1D2DB>Hellooo :></#3342C7>";
+        System.out.println(HexUtil.colorize(gradientText));
+        System.out.println(HexUtil.colorToMiniMessage(gradientText));
     }
 }
