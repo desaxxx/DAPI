@@ -61,7 +61,7 @@ public final class AdventureService {
      * @since 1.3.0-BETA
      */
     static public void validateMiniMessage() {
-        Validate.validate(isMiniMessageSupported(), "MiniMessage is not supported on this Minecraft version!");
+        Validate.validate(isMiniMessageSupported(), "MiniMessage is not supported on this server.");
     }
 
     static private Object miniMessage;

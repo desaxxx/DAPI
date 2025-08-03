@@ -9,15 +9,33 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @since 1.0, relocated since 1.3.0
+ */
 @SuppressWarnings({"deprecation","unused"})
 public class HexUtil {
+    /**
+     * @since 1.3.2
+     */
     private static final String COLOR_REGEX = "(?i)(aqua|black|blue|dark_(aqua|blue|gray|green|purple|red)|gray|gold|green|light_purple|red|white|yellow|#[0-9a-f]{6})";
+    /**
+     * @since 1.2.6
+     */
     private static final Pattern COLORIZE_PATTERN = Pattern.compile(
             "<(#[0-9A-F]{6}|aqua|black|blue|bold|dark_(aqua|blue|gray|green|purple|red)|gray|gold|green|italic|light_purple|obfuscated|red|reset|strikethrough|underline|white|yellow)>|&(?<hex>#[0-9A-F]{6})",
             Pattern.CASE_INSENSITIVE
     );
+    /**
+     * @since 1.3.2
+     */
     private static final Pattern GRADIENT_PATTERN = Pattern.compile("<(#[0-9A-F]{6})>(.*?)</(#[0-9A-F]{6})>", Pattern.CASE_INSENSITIVE);
+    /**
+     * @since 1.2.7
+     */
     private static final Pattern LEGACY_COLOR_CODE_PATTERN = Pattern.compile("§([0-9A-FK-OR])", Pattern.CASE_INSENSITIVE);
+    /**
+     * @since 1.2.7
+     */
     private static final Pattern LEGACY_HEX_COLOR_PATTERN = Pattern.compile("§x(§[0-9A-F]){6}|&#[0-9A-F]{6}", Pattern.CASE_INSENSITIVE);
 
 
@@ -25,6 +43,12 @@ public class HexUtil {
     // Legacy Start
     // =================
 
+    /**
+     * Translate the colors to legacy pattern.
+     * @param text Text to translate
+     * @return Translated text
+     * @since 1.2.7
+     */
     @NotNull
     static public String colorize(String text) {
         if (text == null || text.isEmpty()) return "";
@@ -78,6 +102,14 @@ public class HexUtil {
         return text;
     }
 
+    /**
+     * Interpolate the colors with given ratio.
+     * @param start Start color
+     * @param end End color
+     * @param ratio Ratio
+     * @return Color
+     * @since 1.3.2
+     */
     static private Color interpolate(Color start, Color end, float ratio) {
         int red = (int) (start.getRed() + ratio * (end.getRed() - start.getRed()));
         int green = (int) (start.getGreen() + ratio * (end.getGreen() - start.getGreen()));
@@ -94,6 +126,12 @@ public class HexUtil {
     // MiniMessage Start
     // =================
 
+    /**
+     * Translate colors to MiniMessage pattern.
+     * @param text Text to translate
+     * @return Translated text
+     * @since 1.2.7
+     */
     @NotNull
     public static String colorToMiniMessage(String text) {
         if (text == null || text.isEmpty()) return "";
@@ -106,7 +144,7 @@ public class HexUtil {
         // Don't translate <#RRGGBB> or <namedColor>
 
         // Translate §x§f§f§f§f§f§f and &#ffffff to <#ffffff>, this should be handled before #legacyToMiniMessage()
-        // TODO: need to add <reset> before hex colors, <#RRGGBB>(?), &#RRGGBB
+        // TODO: need to add <reset> before hex colors, <#RRGGBB>(?not sure), &#RRGGBB
         text = legacyHexToMiniMessage(text);
         // Translate §a, §b to <reset><green>, <reset><aqua>
         //           §l, §r to <bold>, <reset>
@@ -120,6 +158,7 @@ public class HexUtil {
      * §x§f§f§f§f§f§f | &#ffffff -> <#ffffff>
      * @param text Text to translate
      * @return Result
+     * @since 1.2.7
      */
     @NotNull
     static public String legacyHexToMiniMessage(String text) {
@@ -139,6 +178,7 @@ public class HexUtil {
      * §f -> <white>
      * @param text Text to translate
      * @return Result
+     * @since 1.2.7
      */
     @NotNull
     static public String legacyToMiniMessage(String text) {
@@ -168,13 +208,16 @@ public class HexUtil {
     // =================
 
 
-
+    /**
+     * @since 1.2.7
+     */
     static public Map<String, String> PLACEHOLDERS = new HashMap<>();
 
     /**
      * Replace placeholders in the text, then colorize it.
      * @param text Text to replace and colorize
      * @return Result
+     * @since Unknown
      */
     static public String parse(String text) {
         return colorize(replacePlaceholders(text));
@@ -184,6 +227,7 @@ public class HexUtil {
      * Replace placeholders in the text.
      * @param text Text to replace
      * @return Result
+     * @since 1.2.6
      */
     static public String replacePlaceholders(String text) {
         if(text == null || text.isEmpty()) return "";
