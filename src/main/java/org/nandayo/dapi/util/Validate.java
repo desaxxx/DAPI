@@ -39,4 +39,13 @@ public class Validate {
     static public <T> T validateReturn(@NotNull ThrowingSupplier<T> supplier, @NotNull String errorMessage) {
         return validateReturn(supplier, errorMessage, false);
     }
+
+
+    @NotNull
+    public static <T> T notNull(T object, @NotNull String errorMessage) {
+        if(object == null) {
+            throw new DAPIException(errorMessage);
+        }
+        return object;
+    }
 }

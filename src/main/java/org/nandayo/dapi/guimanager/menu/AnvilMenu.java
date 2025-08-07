@@ -5,14 +5,12 @@ import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.nandayo.anvilmenu.nms.AnvilWrapper;
 import org.nandayo.anvilmenu.nms.NMSWrapper;
 import org.nandayo.dapi.DAPI;
 
-@ApiStatus.Experimental
 @Getter(AccessLevel.PROTECTED)
 @SuppressWarnings("unused")
 public class AnvilMenu extends AbstractMenu {

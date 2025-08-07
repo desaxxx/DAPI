@@ -26,7 +26,7 @@ public final class DAPI {
         // no construction
     }
 
-    static public final String VERSION = "1.3.2";
+    static public final String VERSION = "1.3.3";
     static public final String GUI_METADATA_KEY = "DAPI_GUI_" + Util.generateRandomLowerCaseString(8);
 
 
