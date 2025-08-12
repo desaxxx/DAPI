@@ -21,8 +21,6 @@ public class StyleTranslator {
     private static final Pattern LEGACY_STYLE_PATTERN = Pattern.compile("§([0-9A-Fa-fK-Ok-oRr])");
     private static final Pattern LEGACY_HEX_COLOR_PATTERN = Pattern.compile("§x((§[0-9A-Fa-f]){6})");
 
-    private static final String MINI_MESSAGE_RESET = DDecoration.RESET.getMiniMessageFormat();
-
 
     //================
     // Appliers
@@ -101,7 +99,7 @@ public class StyleTranslator {
     /**
      * Adapt legacy colors to MiniMessage format.
      * @param input Text with color codes like {@code §a}, {@code §b}
-     * @return Text with MiniMessage color format like {@code <reset><green>}, {@code <reset><aqua>}
+     * @return Text with MiniMessage color format like {@code <green>}, {@code <aqua>}
      * @since 1.3.4
      */
     @NotNull
@@ -117,7 +115,7 @@ public class StyleTranslator {
             try {
                 DColor color = DColor.getByLegacyCode(c);
                 if(color != null) {
-                    output = output.replace(original, MINI_MESSAGE_RESET + color.getMiniMessageFormat());
+                    output = output.replace(original, DDecoration.MINI_MESSAGE_CLEAR + color.getMiniMessageFormat());
                 }
             } catch (Exception ignored) {}
         }
@@ -127,7 +125,7 @@ public class StyleTranslator {
     /**
      * Adapt legacy hex colors to MiniMessage format.
      * @param input Text with hex color codes like {@code §x§a§a§f§d§5§5}
-     * @return Text with MiniMessage hex color format like {@code <reset><#aafd55>}
+     * @return Text with MiniMessage hex color format like {@code <#aafd55>}
      * @since 1.3.4
      */
     @NotNull
@@ -143,7 +141,7 @@ public class StyleTranslator {
 
             try {
                 DColor color = DColor.of(DColor.MINIMESSAGE_HEX_CHAR + hex);
-                output = output.replace(original, MINI_MESSAGE_RESET + color.getMiniMessageFormat());
+                output = output.replace(original, DDecoration.MINI_MESSAGE_CLEAR + color.getMiniMessageFormat());
             }catch (Exception ignored) {}
         }
         return output;
@@ -178,7 +176,7 @@ public class StyleTranslator {
     /**
      * Adapt legacy style to MiniMessage format.
      * @param input Text with styles like {@code §a}, {@code §b}, {@code §k}, {@code §l}
-     * @return Text with MiniMessage decoration format like {@code <reset><green>}, {@code <reset><aqua>}, {@code <obfuscated>}, {@code <bold>}
+     * @return Text with MiniMessage decoration format like {@code <green>}, {@code <aqua>}, {@code <obfuscated>}, {@code <bold>}
      * @since 1.3.4
      */
     @NotNull
@@ -194,7 +192,7 @@ public class StyleTranslator {
             try {
                 DColor color = DColor.getByLegacyCode(style);
                 if(color != null) {
-                    output = output.replace(original, MINI_MESSAGE_RESET + color.getMiniMessageFormat());
+                    output = output.replace(original, DDecoration.MINI_MESSAGE_CLEAR + color.getMiniMessageFormat());
                 } else {
                     DDecoration decoration = DDecoration.getByLegacyCode(style);
                     if(decoration != null) {

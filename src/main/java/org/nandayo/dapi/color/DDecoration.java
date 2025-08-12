@@ -16,6 +16,7 @@ import java.util.Map;
 @ApiStatus.Experimental
 public class DDecoration implements DStyle {
     public static final String LEGACY_DECORATION_CODES = "KLMNOR";
+    public static final String MINI_MESSAGE_CLEAR = "<!b><!i><!obf><!st><!u>";
 
     private static final Map<String, DDecoration> LEGACY_CODE_MAP = new HashMap<>();
     private static final Map<String, DDecoration> MINIMESSAGE_FORMAT_MAP = new HashMap<>();
