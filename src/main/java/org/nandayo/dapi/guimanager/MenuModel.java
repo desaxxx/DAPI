@@ -35,7 +35,7 @@ public class MenuModel {
     }
 
     @NotNull
-    static public <T extends ConfigurationSection> MenuModel read(@NotNull T section, boolean readItems) {
+    public static <T extends ConfigurationSection> MenuModel read(@NotNull T section, boolean readItems) {
         String id = section.getString("id", Util.generateRandomLowerCaseString(4));
         String title = section.getString("title","Default Title");
         int rows = Math.min(6, Math.max(1, section.getInt("rows")));
@@ -62,7 +62,7 @@ public class MenuModel {
     }
 
     @NotNull
-    static public <T extends ConfigurationSection> MenuModel read(@NotNull T section) {
+    public static <T extends ConfigurationSection> MenuModel read(@NotNull T section) {
         return read(section, true);
     }
 }

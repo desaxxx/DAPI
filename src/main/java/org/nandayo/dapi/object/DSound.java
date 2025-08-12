@@ -2739,8 +2739,8 @@ public enum DSound {
 
     //
 
-    static public final @NotNull DSound[] VALUES = values();
-    static private final @NotNull HashMap<String, DSound> NAME_MAP = new HashMap<>();
+    public static final @NotNull DSound[] VALUES = values();
+    private static final @NotNull HashMap<String, DSound> NAME_MAP = new HashMap<>();
 
     static {
         for(DSound dSound : VALUES) {
@@ -2748,11 +2748,11 @@ public enum DSound {
         }
     }
 
-    static public DSound getByName(@NotNull String name) {
+    public static DSound getByName(@NotNull String name) {
         return NAME_MAP.get(name);
     }
 
-    static public DSound getByKey(@NotNull String key) {
+    public static DSound getByKey(@NotNull String key) {
         return NAME_MAP.get(key.replace(".","_").toUpperCase(Locale.ENGLISH));
     }
 }

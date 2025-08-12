@@ -18,7 +18,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public class MiniString {
-    static private final String ITALIC_FALSE = "<!italic>";
+    private static final String ITALIC_FALSE = "<!italic>";
 
     @Getter
     private final @NotNull String rawText;

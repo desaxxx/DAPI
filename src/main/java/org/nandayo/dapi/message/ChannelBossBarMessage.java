@@ -72,7 +72,7 @@ public class ChannelBossBarMessage extends ChannelMessage {
         super(message);
     }
 
-    static public ChannelBossBarMessage fromParent(ChannelMessage message) {
+    public static ChannelBossBarMessage fromParent(ChannelMessage message) {
         return new ChannelBossBarMessage(message.message);
     }
 

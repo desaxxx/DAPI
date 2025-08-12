@@ -14,5 +14,5 @@ public abstract class BaseMessage {
         this.path = path;
     }
 
-    static public final BaseMessage EXAMPLE = new BaseMessage("example") {};
+    public static final BaseMessage EXAMPLE = new BaseMessage("example") {};
 }

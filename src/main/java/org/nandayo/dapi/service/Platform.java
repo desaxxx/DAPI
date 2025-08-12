@@ -5,14 +5,14 @@ import org.jetbrains.annotations.NotNull;
 
 public class Platform {
 
-    static private Platform.Type type;
+    private static Platform.Type type;
 
     /**
      * Get the platform type of running server.
      * @return Platform.Type
      */
     @NotNull
-    static public Platform.Type getType() {
+    public static Platform.Type getType() {
         if(type != null) return type;
         String serverName = Bukkit.getServer().getName();
         switch (serverName.toLowerCase()) {
@@ -35,7 +35,7 @@ public class Platform {
      * Check if the server is running on Leaf.
      * @return Whether leaf or not.
      */
-    static public boolean isLeaf() {
+    public static boolean isLeaf() {
         return getType() == Type.LEAF;
     }
 
@@ -43,7 +43,7 @@ public class Platform {
      * Check if the server is running Paper.
      * @return Whether paper or not.
      */
-    static public boolean isPaper() {
+    public static boolean isPaper() {
         return getType() == Type.PAPER;
     }
 
@@ -51,7 +51,7 @@ public class Platform {
      * Check if the server is running Purpur.
      * @return Whether purpur or not.
      */
-    static public boolean isPurpur() {
+    public static boolean isPurpur() {
         return getType() == Type.PURPUR;
     }
 
@@ -59,7 +59,7 @@ public class Platform {
      * Check if the server is running PufferFish.
      * @return Whether pufferfish or not.
      */
-    static public boolean isPufferfish() {
+    public static boolean isPufferfish() {
         return getType() == Type.PUFFERFISH;
     }
 
@@ -67,7 +67,7 @@ public class Platform {
      * Check if the server is running Spigot.
      * @return Whether spigot or not.
      */
-    static public boolean isSpigot() {
+    public static boolean isSpigot() {
         return getType() == Type.SPIGOT;
     }
 
@@ -75,7 +75,7 @@ public class Platform {
      * Check if the server is running Paper or any of its fork.
      * @return Whether paper or any of its fork.
      */
-    static public boolean isPaperFork() {
+    public static boolean isPaperFork() {
         if(isPaper() || isPurpur() || isPufferfish() || isLeaf()) return true;
         if(isSpigot()) return false;
         // for case Platform.Type#OTHER

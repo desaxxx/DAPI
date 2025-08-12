@@ -4,13 +4,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class Validate {
 
-    static public void validate(boolean b, @NotNull String errorMessage) {
+    public static void validate(boolean b, @NotNull String errorMessage) {
         if(!b) {
             throw new DAPIException(errorMessage);
         }
     }
 
-    static public void validate(@NotNull ThrowingSupplier<Boolean> supplier, @NotNull String errorMessage, boolean log) {
+    public static void validate(@NotNull ThrowingSupplier<Boolean> supplier, @NotNull String errorMessage, boolean log) {
         try {
             if(!supplier.get()) {
                 throw new DAPIException(errorMessage);
@@ -21,12 +21,12 @@ public class Validate {
         }
     }
 
-    static public void validate(@NotNull ThrowingSupplier<Boolean> supplier, @NotNull String errorMessage) {
+    public static void validate(@NotNull ThrowingSupplier<Boolean> supplier, @NotNull String errorMessage) {
         validate(supplier, errorMessage, false);
     }
 
     @NotNull
-    static public <T> T validateReturn(@NotNull ThrowingSupplier<T> supplier, @NotNull String errorMessage, boolean log) {
+    public static <T> T validateReturn(@NotNull ThrowingSupplier<T> supplier, @NotNull String errorMessage, boolean log) {
         try {
             return supplier.get();
         }catch (Exception e) {
@@ -36,7 +36,7 @@ public class Validate {
     }
 
     @NotNull
-    static public <T> T validateReturn(@NotNull ThrowingSupplier<T> supplier, @NotNull String errorMessage) {
+    public static <T> T validateReturn(@NotNull ThrowingSupplier<T> supplier, @NotNull String errorMessage) {
         return validateReturn(supplier, errorMessage, false);
     }
 

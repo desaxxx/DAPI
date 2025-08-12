@@ -12,14 +12,14 @@ public abstract class ChannelType {
 
     private ChannelType() {}
 
-    static public final ChannelType CHAT = new ChannelType() {
+    public static final ChannelType CHAT = new ChannelType() {
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             AdventureService.sendMessage(receiver, message);
         }
     };
 
-    static public final ChannelType ACTION_BAR = new ChannelType() {
+    public static final ChannelType ACTION_BAR = new ChannelType() {
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
@@ -27,7 +27,7 @@ public abstract class ChannelType {
         }
     };
 
-    static public final ChannelType TITLE = new ChannelType() {
+    public static final ChannelType TITLE = new ChannelType() {
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
@@ -36,7 +36,7 @@ public abstract class ChannelType {
         }
     };
 
-    static public final ChannelType SUBTITLE = new ChannelType() {
+    public static final ChannelType SUBTITLE = new ChannelType() {
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
@@ -45,7 +45,7 @@ public abstract class ChannelType {
         }
     };
 
-    static public final ChannelType TITLE_AND_SUBTITLE = new ChannelType() {
+    public static final ChannelType TITLE_AND_SUBTITLE = new ChannelType() {
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
@@ -54,7 +54,7 @@ public abstract class ChannelType {
         }
     };
 
-    static public final ChannelType BOSS_BAR = new ChannelType() {
+    public static final ChannelType BOSS_BAR = new ChannelType() {
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;

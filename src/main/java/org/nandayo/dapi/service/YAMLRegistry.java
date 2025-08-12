@@ -76,13 +76,13 @@ public abstract class YAMLRegistry {
 
 
 
-    static private final @NotNull List<YAMLRegistry> REGISTRIES = new ArrayList<>();
+    private static final @NotNull List<YAMLRegistry> REGISTRIES = new ArrayList<>();
 
     /**
      * Get unmodifiable list of {@link #REGISTRIES}.
      * @return List of YAMLRegistry
      */
-    static public List<YAMLRegistry> getRegistries() {
+    public static List<YAMLRegistry> getRegistries() {
         return Collections.unmodifiableList(REGISTRIES);
     }
 
@@ -90,7 +90,7 @@ public abstract class YAMLRegistry {
      * Runs the method {@link #onLoad()} for ALL YAMLRegistries.
      * @apiNote Recommended to use on start of the run-time.
      */
-    static public void loadRegistries() {
+    public static void loadRegistries() {
         for (YAMLRegistry registry : REGISTRIES) {
             registry.onLoad();
         }
@@ -100,7 +100,7 @@ public abstract class YAMLRegistry {
      * Runs the method {@link #onUnload()} for ALL YAMLRegistries.
      * @apiNote Recommended to use before stop of the run-time.
      */
-    static public void unloadRegistries() {
+    public static void unloadRegistries() {
         for (YAMLRegistry registry : REGISTRIES) {
             if(!registry.isLoaded()) continue;
             registry.onUnload();

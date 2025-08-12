@@ -39,7 +39,7 @@ public class ItemCreator {
      * @param itemStack ItemStack
      * @return new ItemCreator
      */
-    static public ItemCreator of(ItemStack itemStack) {
+    public static ItemCreator of(ItemStack itemStack) {
         return new ItemCreator(itemStack);
     }
 
@@ -48,7 +48,7 @@ public class ItemCreator {
      * @param material Material
      * @return new ItemCreator
      */
-    static public ItemCreator of(Material material) {
+    public static ItemCreator of(Material material) {
         Validate.validate(material != null, "Material cannot be null!");
         return new ItemCreator(new ItemStack(material));
     }

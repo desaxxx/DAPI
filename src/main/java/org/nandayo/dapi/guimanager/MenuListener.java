@@ -17,7 +17,7 @@ import java.util.UUID;
 
 public class MenuListener implements Listener {
 
-    static private final @NotNull HashMap<UUID, Long> LAST_SHIFT_CLICK = new HashMap<>();
+    private static final @NotNull HashMap<UUID, Long> LAST_SHIFT_CLICK = new HashMap<>();
 
     /**
      * Listening to click on DAPI GUI.

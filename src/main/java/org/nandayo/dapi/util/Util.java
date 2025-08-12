@@ -10,14 +10,14 @@ import java.util.Random;
 @SuppressWarnings("unused")
 public class Util {
 
-    static public String PREFIX = "";
-    static public String DAPI_PREFIX = "[DAPI] ";
+    public static String PREFIX = "";
+    public static String DAPI_PREFIX = "[DAPI] ";
 
     /**
      * Log messages to console with prefix {@link Util#PREFIX}.
      * @param msg Messages
      */
-    static public void log(String... msg) {
+    public static void log(String... msg) {
         for(String s : msg) {
             Bukkit.getConsoleSender().sendMessage(HexUtil.parse(PREFIX + s));
         }
@@ -28,7 +28,7 @@ public class Util {
      * @param msg Messages
      */
     @ApiStatus.Internal
-    static public void logInternal(String... msg) {
+    public static void logInternal(String... msg) {
         for(String s : msg) {
             Bukkit.getConsoleSender().sendMessage(HexUtil.parse(PREFIX + DAPI_PREFIX + s));
         }
@@ -39,7 +39,7 @@ public class Util {
      * @param receiver Message receiver
      * @param messages Messages
      */
-    static public void tell(@NotNull CommandSender receiver, @NotNull String... messages) {
+    public static void tell(@NotNull CommandSender receiver, @NotNull String... messages) {
         for(String m : messages) {
             receiver.sendMessage(HexUtil.parse(Util.PREFIX + m));
         }
@@ -50,7 +50,7 @@ public class Util {
      * @param length Length of the desired string
      * @return String
      */
-    static public String generateRandomLowerCaseString(int length) {
+    public static String generateRandomLowerCaseString(int length) {
         String chars = "abcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
@@ -65,7 +65,7 @@ public class Util {
      * @param length Length of the desired string
      * @return String
      */
-    static public String generateRandomUpperCaseString(int length) {
+    public static String generateRandomUpperCaseString(int length) {
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
@@ -80,7 +80,7 @@ public class Util {
      * @param length Length of the desired string
      * @return String
      */
-    static public String generateRandomString(int length) {
+    public static String generateRandomString(int length) {
         String chars = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
@@ -90,7 +90,7 @@ public class Util {
         return sb.toString();
     }
 
-    static public int parseInt(String str, int def) {
+    public static int parseInt(String str, int def) {
         try {
             return Integer.parseInt(str);
         } catch (NumberFormatException e) {

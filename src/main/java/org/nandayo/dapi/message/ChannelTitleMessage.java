@@ -81,7 +81,7 @@ public class ChannelTitleMessage extends ChannelMessage {
         this.fadeOutTicks = fadeOutTicks;
     }
 
-    static public ChannelTitleMessage fromParent(ChannelMessage message) {
+    public static ChannelTitleMessage fromParent(ChannelMessage message) {
         return new ChannelTitleMessage(message.message);
     }
 

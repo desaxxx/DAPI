@@ -60,7 +60,7 @@ public class BoundingBox {
     }
 
     @NotNull
-    static public BoundingBox fromString(@NotNull String str) {
+    public static BoundingBox fromString(@NotNull String str) {
         String[] split = str.split(",");
         String worldName = split[0];
 

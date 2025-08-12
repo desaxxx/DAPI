@@ -26,12 +26,12 @@ public final class DAPI {
         // no construction
     }
 
-    static public final String VERSION = "1.3.3";
-    static public final String GUI_METADATA_KEY = "DAPI_GUI_" + Util.generateRandomLowerCaseString(8);
+    public static final String VERSION = "1.3.3";
+    public static final String GUI_METADATA_KEY = "DAPI_GUI_" + Util.generateRandomLowerCaseString(8);
 
 
-    static private boolean init = false;
-    static private void init() {
+    private static boolean init = false;
+    private static void init() {
         if(init) return;
         init = true;
         if(!RelocateService.isDAPIRelocated()) {
@@ -43,14 +43,14 @@ public final class DAPI {
     }
 
 
-    static public void registerMenuListener() {
+    public static void registerMenuListener() {
         Bukkit.getPluginManager().registerEvents(new MenuListener(), getPlugin());
     }
 
 
-    static private Plugin plugin;
+    private static Plugin plugin;
     @NotNull
-    static public Plugin getPlugin() {
+    public static Plugin getPlugin() {
         if(plugin != null) return plugin;
         String pluginName = forcePluginName();
         Plugin foundPlugin = Bukkit.getPluginManager().getPlugin(pluginName);
@@ -61,14 +61,14 @@ public final class DAPI {
     }
 
     @NotNull
-    static private String forcePluginName() {
+    private static String forcePluginName() {
         String pluginName = findPluginName();
         if(pluginName != null) return pluginName;
         throw new DAPIException("Plugin name not found! To developer who uses DAPI, please check your plugin file (either 'plugin.yml' or 'paper-plugin.yml') and ensure it has 'name' key there.");
     }
 
     @Nullable
-    static private String findPluginName() {
+    private static String findPluginName() {
         ClassLoader loader = DAPI.class.getClassLoader();
         for(String pluginFile : List.of("plugin.yml","paper-plugin.yml")) {
             try {
@@ -84,8 +84,8 @@ public final class DAPI {
     }
 
 
-    static private boolean metricsRegistered = false;
-    static private void registerMetrics() {
+    private static boolean metricsRegistered = false;
+    private static void registerMetrics() {
         if(metricsRegistered) return;
         metricsRegistered = true;
         try {
@@ -116,5 +116,5 @@ public final class DAPI {
     @Getter
     @Setter
     @Deprecated(since = "1.2.5", forRemoval = true)
-    static public @NotNull String missingArgsMsg = "";
+    public static @NotNull String missingArgsMsg = "";
 }

@@ -28,37 +28,37 @@ import java.util.Set;
 @Deprecated(since = "1.3.0-BETA", forRemoval = true)
 public class BukkitAdventureService {
 
-    static public boolean isBukkitAudiencesSupported() {
+    public static boolean isBukkitAudiencesSupported() {
         return false;
     }
-    static public Optional<Object> getAudiences() {
+    public static Optional<Object> getAudiences() {
         return Optional.empty();
     }
-    static public void createAudiences() {}
-    static public void closeAudiences() {}
-    static public void sendMessage(@NotNull CommandSender receiver, @NotNull ChannelMessage message) {}
-    static public void sendActionBar(@NotNull Player player, @NotNull ChannelMessage message) {}
-    static public void sendTitle(@NotNull Player player, @NotNull ChannelTitleMessage titleMessage, @NotNull ChannelType type) {}
-    static private Title createTitle(@NotNull ChannelTitleMessage titleMessage, @NotNull ChannelType type) {
+    public static void createAudiences() {}
+    public static void closeAudiences() {}
+    public static void sendMessage(@NotNull CommandSender receiver, @NotNull ChannelMessage message) {}
+    public static void sendActionBar(@NotNull Player player, @NotNull ChannelMessage message) {}
+    public static void sendTitle(@NotNull Player player, @NotNull ChannelTitleMessage titleMessage, @NotNull ChannelType type) {}
+    private static Title createTitle(@NotNull ChannelTitleMessage titleMessage, @NotNull ChannelType type) {
         return Title.title(Component.empty(), Component.empty());
     }
-    static public void showBossBar(@NotNull Player player, @NotNull ChannelBossBarMessage bossBarMessage) {}
+    public static void showBossBar(@NotNull Player player, @NotNull ChannelBossBarMessage bossBarMessage) {}
 
     @Deprecated(since = "1.3.0-BETA", forRemoval = true)
-    static private class Parser {
+    private static class Parser {
 
-        static public BossBar.Color parseBarColor(BarColor color) {
+        public static BossBar.Color parseBarColor(BarColor color) {
             return BossBar.Color.BLUE;
         }
 
-        static public BossBar.Overlay parseBarStyle(@NotNull BarStyle style) {
+        public static BossBar.Overlay parseBarStyle(@NotNull BarStyle style) {
             return BossBar.Overlay.PROGRESS;
         }
 
-        static public Set<BossBar.Flag> parseBarFlags(@NotNull BarFlag... flags) {
+        public static Set<BossBar.Flag> parseBarFlags(@NotNull BarFlag... flags) {
             return new HashSet<>();
         }
-        static public BossBar.Flag parseBarFlag(@NotNull BarFlag flag) {
+        public static BossBar.Flag parseBarFlag(@NotNull BarFlag flag) {
             return BossBar.Flag.DARKEN_SCREEN;
         }
     }

@@ -34,7 +34,7 @@ import java.util.Set;
  */
 public final class AdventureService {
 
-    static private Boolean miniMessageSupported;
+    private static Boolean miniMessageSupported;
     /**
      * Check if MiniMessage is supported based on its existence on default package which is
      * {@code net.kyori.adventure.text.minimessage.MiniMessage}.
@@ -46,7 +46,7 @@ public final class AdventureService {
      * @return whether it's supported or not
      * @since 1.3.0-BETA
      */
-    static public boolean isMiniMessageSupported() {
+    public static boolean isMiniMessageSupported() {
         if(miniMessageSupported != null) return miniMessageSupported;
         try {
             Class.forName("net.kyori.adventure.text.minimessage.MiniMessage");
@@ -60,18 +60,18 @@ public final class AdventureService {
      * Validates MiniMessage supporting.
      * @since 1.3.0-BETA
      */
-    static public void validateMiniMessage() {
+    public static void validateMiniMessage() {
         Validate.validate(isMiniMessageSupported(), "MiniMessage is not supported on this server.");
     }
 
-    static private Object miniMessage;
+    private static Object miniMessage;
     /**
      * Get MiniMessage instance.<br>
      * <b>NOTE:</b> Check if MiniMessage is supported before using this via {@link #isMiniMessageSupported()}.
      * @return MiniMessage
      * @since 1.3.0-BETA
      */
-    static public MiniMessage getMiniMessage() {
+    public static MiniMessage getMiniMessage() {
         if(miniMessage == null) miniMessage = MiniMessage.miniMessage();
         return (MiniMessage) miniMessage;
     }
@@ -84,7 +84,7 @@ public final class AdventureService {
      * @param message ChannelMessage
      * @since 1.3.0-BETA
      */
-    static public void sendMessage(@NotNull CommandSender receiver, @NotNull ChannelMessage message) {
+    public static void sendMessage(@NotNull CommandSender receiver, @NotNull ChannelMessage message) {
         // getMessage uses MiniString#asComponent which requires MiniMessage.
         if(AdventureService.isMiniMessageSupported()) {
             receiver.sendMessage(message.colorize(ColorizeType.MINI_MESSAGE).getMessage());
@@ -99,7 +99,7 @@ public final class AdventureService {
      * @param message ChannelMessage
      * @since 1.3.0-BETA
      */
-    static public void sendActionBar(@NotNull Player player, @NotNull ChannelMessage message) {
+    public static void sendActionBar(@NotNull Player player, @NotNull ChannelMessage message) {
         // getMessage uses MiniString#asComponent which requires MiniMessage.
         if(AdventureService.isMiniMessageSupported()) {
             player.sendActionBar(message.colorize(ColorizeType.MINI_MESSAGE).getMessage());
@@ -117,7 +117,7 @@ public final class AdventureService {
      * @param type ChannelType
      * @since 1.3.0-BETA
      */
-    static public void sendTitle(@NotNull Player player, @NotNull ChannelTitleMessage titleMessage, @NotNull ChannelType type) {
+    public static void sendTitle(@NotNull Player player, @NotNull ChannelTitleMessage titleMessage, @NotNull ChannelType type) {
         // getMessage uses MiniString#asComponent which requires MiniMessage.
         if(AdventureService.isMiniMessageSupported()) {
             player.showTitle(createTitle(titleMessage.colorize(ColorizeType.MINI_MESSAGE), type));
@@ -135,7 +135,7 @@ public final class AdventureService {
      * @return Title
      * @since 1.3.0-BETA
      */
-    static private Title createTitle(@NotNull ChannelTitleMessage titleMessage, @NotNull ChannelType type) {
+    private static Title createTitle(@NotNull ChannelTitleMessage titleMessage, @NotNull ChannelType type) {
         Component titleComponent = type == ChannelType.TITLE || type == ChannelType.TITLE_AND_SUBTITLE ? titleMessage.getMessage() : Component.empty();
         Component subtitleComponent = type == ChannelType.SUBTITLE || type == ChannelType.TITLE_AND_SUBTITLE ? titleMessage.getSecondaryMessage() : Component.empty();
         return Title.title(titleComponent, subtitleComponent,
@@ -149,7 +149,7 @@ public final class AdventureService {
      * @param bossBarMessage ChannelBossBarMessage
      * @since 1.3.0-BETA
      */
-    static public void showBossBar(@NotNull Player player, @NotNull ChannelBossBarMessage bossBarMessage) {
+    public static void showBossBar(@NotNull Player player, @NotNull ChannelBossBarMessage bossBarMessage) {
         // getMessage uses MiniString#asComponent which requires MiniMessage.
         if(AdventureService.isMiniMessageSupported()) {
             showAdventureBossBar(player, bossBarMessage);
@@ -164,7 +164,7 @@ public final class AdventureService {
      * @param bossBarMessage ChannelBossBarMessage
      * @since 1.3.1
      */
-    static private void showAdventureBossBar(@NotNull Player player, @NotNull ChannelBossBarMessage bossBarMessage) {
+    private static void showAdventureBossBar(@NotNull Player player, @NotNull ChannelBossBarMessage bossBarMessage) {
         ChannelBossBarMessage bbMessage = bossBarMessage.colorize(ColorizeType.MINI_MESSAGE);
         BossBar adventureBossBar = BossBar.bossBar(bbMessage.getMessage(),
                 (float) bbMessage.getProgress(),
@@ -185,7 +185,7 @@ public final class AdventureService {
      * @param bossBarMessage ChannelBossBarMessage
      * @since 1.3.1
      */
-    static private void showBukkitBossBar(@NotNull Player player, @NotNull ChannelBossBarMessage bossBarMessage) {
+    private static void showBukkitBossBar(@NotNull Player player, @NotNull ChannelBossBarMessage bossBarMessage) {
         ChannelBossBarMessage bbMessage = bossBarMessage.colorize(ColorizeType.LEGACY);
         NamespacedKey key = new NamespacedKey("dapi","boss_bar_" + Util.generateRandomLowerCaseString(8));
         KeyedBossBar bb = Bukkit.createBossBar(key, bbMessage.getRawMessage(), bbMessage.getColor(), bbMessage.getStyle(), bbMessage.getFlags());
@@ -205,7 +205,7 @@ public final class AdventureService {
      * Parser for some Bukkit objects to Adventure object.
      * @since 1.3.0-BETA
      */
-    static public final class Parser {
+    public static final class Parser {
 
         /**
          * Parse a {@link BarColor Bukkit BarColor} to {@link BossBar.Color Adventure BossBar.Color}.
@@ -213,7 +213,7 @@ public final class AdventureService {
          * @return BossBar.Color
          * @since 1.3.0-BETA
          */
-        static public BossBar.Color parseBarColor(BarColor color) {
+        public static BossBar.Color parseBarColor(BarColor color) {
             try {
                 return BossBar.Color.valueOf(color.name());
             } catch (IllegalArgumentException e) {
@@ -227,7 +227,7 @@ public final class AdventureService {
          * @return BossBar.Overlay
          * @since 1.3.0-BETA
          */
-        static public BossBar.Overlay parseBarStyle(@NotNull BarStyle style) {
+        public static BossBar.Overlay parseBarStyle(@NotNull BarStyle style) {
             switch (style) {
                 case SEGMENTED_6:
                     return BossBar.Overlay.NOTCHED_6;
@@ -248,7 +248,7 @@ public final class AdventureService {
          * @return Set of BossBar.Flag
          * @since 1.3.0-BETA
          */
-        static public Set<BossBar.Flag> parseBarFlags(@NotNull BarFlag... flags) {
+        public static Set<BossBar.Flag> parseBarFlags(@NotNull BarFlag... flags) {
             Set<BossBar.Flag> set = new HashSet<>();
             for (BarFlag flag : flags) {
                 set.add(parseBarFlag(flag));
@@ -262,7 +262,7 @@ public final class AdventureService {
          * @return BossBar.Flag
          * @since 1.3.0-BETA
          */
-        static public BossBar.Flag parseBarFlag(@NotNull BarFlag flag) {
+        public static BossBar.Flag parseBarFlag(@NotNull BarFlag flag) {
             switch (flag) {
                 case PLAY_BOSS_MUSIC:
                     return BossBar.Flag.PLAY_BOSS_MUSIC;

@@ -15,7 +15,7 @@ import org.nandayo.dapi.DAPI;
 @SuppressWarnings("unused")
 public class AnvilMenu extends AbstractMenu {
 
-    static private final @NotNull String DEFAULT_TITLE = "Menu";
+    private static final @NotNull String DEFAULT_TITLE = "Menu";
 
     private @Nullable AnvilWrapper.MenuAnvilWrapper menuAnvilWrapper;
 

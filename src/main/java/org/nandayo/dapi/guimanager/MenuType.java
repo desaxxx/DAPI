@@ -12,7 +12,7 @@ public abstract class MenuType {
     abstract public @NotNull Inventory createInventory(@NotNull String title);
 
 
-    static public final MenuType CHEST_1_ROW = new MenuType() {
+    public static final MenuType CHEST_1_ROW = new MenuType() {
         @Override
         @NotNull
         public Inventory createInventory(@NotNull String title) {
@@ -20,7 +20,7 @@ public abstract class MenuType {
         }
     };
 
-    static public final MenuType CHEST_2_ROWS = new MenuType() {
+    public static final MenuType CHEST_2_ROWS = new MenuType() {
         @Override
         @NotNull
         public Inventory createInventory(@NotNull String title) {
@@ -28,7 +28,7 @@ public abstract class MenuType {
         }
     };
 
-    static public final MenuType CHEST_3_ROWS = new MenuType() {
+    public static final MenuType CHEST_3_ROWS = new MenuType() {
         @Override
         @NotNull
         public Inventory createInventory(@NotNull String title) {
@@ -36,7 +36,7 @@ public abstract class MenuType {
         }
     };
 
-    static public final MenuType CHEST_4_ROWS = new MenuType() {
+    public static final MenuType CHEST_4_ROWS = new MenuType() {
         @Override
         @NotNull
         public Inventory createInventory(@NotNull String title) {
@@ -44,7 +44,7 @@ public abstract class MenuType {
         }
     };
 
-    static public final MenuType CHEST_5_ROWS = new MenuType() {
+    public static final MenuType CHEST_5_ROWS = new MenuType() {
         @Override
         @NotNull
         public Inventory createInventory(@NotNull String title) {
@@ -52,7 +52,7 @@ public abstract class MenuType {
         }
     };
 
-    static public final MenuType CHEST_6_ROWS = new MenuType() {
+    public static final MenuType CHEST_6_ROWS = new MenuType() {
         @Override
         @NotNull
         public Inventory createInventory(@NotNull String title) {

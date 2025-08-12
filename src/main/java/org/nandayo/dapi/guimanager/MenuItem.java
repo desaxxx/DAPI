@@ -30,7 +30,7 @@ public class MenuItem {
     }
 
     @NotNull
-    static public <T extends ConfigurationSection> MenuItem read(@NotNull T section) {
+    public static <T extends ConfigurationSection> MenuItem read(@NotNull T section) {
         Material material = Material.getMaterial(section.getString("material",""));
         String name = section.getString("name","");
         List<String> lore = section.getStringList("lore");

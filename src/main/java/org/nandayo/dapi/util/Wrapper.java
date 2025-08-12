@@ -16,14 +16,14 @@ import java.util.Locale;
 @SuppressWarnings("unused")
 public class Wrapper {
 
-    static private int minecraftVersion = -1;
+    private static int minecraftVersion = -1;
 
-    static public int getMinecraftVersion() {
+    public static int getMinecraftVersion() {
         if(minecraftVersion != -1) return minecraftVersion;
         return minecraftVersion = fetchVersion();
     }
 
-    static private int fetchVersion() {
+    private static int fetchVersion() {
         String[] ver = Bukkit.getBukkitVersion().split("-")[0].split("\\.");
         if(ver.length < 2) {
             Util.logInternal("Could not fetch server version!");
@@ -43,15 +43,15 @@ public class Wrapper {
         return major * 10 + minor;
     }
 
-    static private Attribute armorAttribute;
-    static private AttributeModifier attributeModifier;
+    private static Attribute armorAttribute;
+    private static AttributeModifier attributeModifier;
 
-    static public Attribute getArmorAttribute() {
+    public static Attribute getArmorAttribute() {
         if(armorAttribute != null) return armorAttribute;
         setupArmorAttributeModifier();
         return armorAttribute;
     }
-    static public AttributeModifier getArmorAttributeModifier() {
+    public static AttributeModifier getArmorAttributeModifier() {
         if(attributeModifier != null) return attributeModifier;
         setupArmorAttributeModifier();
         return attributeModifier;
@@ -64,7 +64,7 @@ public class Wrapper {
      * EquipmentSlotGroup addition -> 1.20.5
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
-    static private void setupArmorAttributeModifier() {
+    private static void setupArmorAttributeModifier() {
         if(minecraftVersion >= 213) {
             armorAttribute = Attribute.ARMOR;
             attributeModifier = new AttributeModifier(new NamespacedKey("dapi", "foo"), 0, AttributeModifier.Operation.MULTIPLY_SCALAR_1, EquipmentSlotGroup.ANY);
@@ -103,7 +103,7 @@ public class Wrapper {
      * @param potionType PotionType
      * @param color Color
      */
-    static public void editPotionMeta(@NotNull PotionMeta meta, @Nullable PotionType potionType, @Nullable Color color) {
+    public static void editPotionMeta(@NotNull PotionMeta meta, @Nullable PotionType potionType, @Nullable Color color) {
         if (minecraftVersion >= 205) {
             meta.setBasePotionType(potionType);
         }
@@ -135,7 +135,7 @@ public class Wrapper {
      * @return Sound if found, else {@code null}.
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
-    static public Sound getSound(@NotNull String key) {
+    public static Sound getSound(@NotNull String key) {
         if(minecraftVersion >= 164) {
             return Registry.SOUNDS.get(NamespacedKey.minecraft(key));
         }
