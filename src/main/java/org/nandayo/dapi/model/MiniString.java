@@ -7,18 +7,14 @@ import org.nandayo.dapi.service.AdventureService;
 import org.nandayo.dapi.util.ColorizeType;
 import org.nandayo.dapi.util.Validate;
 
-import java.util.List;
-
 /**
  * Represents a MiniMessage helper model. Holds raw text of given String or serialized Component.
  * You can access the raw text with {@link #getRawText()} and deserialize to Component again with {@link #asComponent()}.
- * <b>CAUTION:</b>
  *
  * @since 1.2.9
  */
 @SuppressWarnings("unused")
 public class MiniString {
-    private static final String ITALIC_FALSE = "<!italic>";
 
     @Getter
     private final @NotNull String rawText;
@@ -71,17 +67,13 @@ public class MiniString {
 
 
     /**
-     * Return a component from raw text using MiniMessage deserializer.<br>
-     * <p>
-     *     Italic decoration is off by default to override {@link org.bukkit.inventory.meta.ItemMeta#displayName(Component)}
-     *     and {@link org.bukkit.inventory.meta.ItemMeta#lore(List)} which makes it true by default.
-     * </p>
+     * Return a component from raw text using MiniMessage deserializer.
      * @return Component
      * @since 1.2.9
      */
     @NotNull
     public Component asComponent() {
         AdventureService.validateMiniMessage();
-        return AdventureService.getMiniMessage().deserialize(ITALIC_FALSE + rawText);
+        return AdventureService.getMiniMessage().deserialize(rawText);
     }
 }
