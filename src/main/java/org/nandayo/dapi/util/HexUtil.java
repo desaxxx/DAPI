@@ -74,7 +74,7 @@ public class HexUtil {
      */
     @Deprecated(since = "1.3.4", forRemoval = true)
     private static String applyGradient(String input) {
-        return input == null ? "" : input;
+        return StyleTranslator.applyGradient(input);
     }
 
     /**
@@ -119,7 +119,7 @@ public class HexUtil {
     @Deprecated(since = "1.3.4", forRemoval = true)
     @NotNull
     public static String legacyHexToMiniMessage(String input) {
-        return input == null ? "" : input;
+        return StyleTranslator.adaptHexLegacyToMiniMessage(input);
     }
 
     /**
@@ -128,8 +128,8 @@ public class HexUtil {
      */
     @Deprecated(since = "1.3.4", forRemoval = true)
     @NotNull
-    public static String legacyToMiniMessage(String text) {
-        return text == null ? "" : text;
+    public static String legacyToMiniMessage(String input) {
+        return StyleTranslator.adaptLegacyToMiniMessage(input);
     }
 
     // =================
