@@ -18,7 +18,7 @@ import java.util.Objects;
 @SuppressWarnings("unused")
 public class DColor implements DStyle {
     public static final String LEGACY_COLOR_CODES = "0123456789ABCDEF";
-    public static final char LEGACY_HEX_CHAR = 'X';
+    public static final char LEGACY_HEX_CHAR = 'x';
     public static final char MINIMESSAGE_HEX_CHAR = '#';
 
     private static final Map<String, DColor> LEGACY_CODE_MAP = new HashMap<>();

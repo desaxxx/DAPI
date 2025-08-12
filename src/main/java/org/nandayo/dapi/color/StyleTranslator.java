@@ -13,13 +13,13 @@ import java.util.regex.Pattern;
 @ApiStatus.Experimental
 public class StyleTranslator {
 
-    private static final Pattern CUSTOM_GRADIENT_PATTERN = Pattern.compile("<(#[0-9A-F]{6})>(.*?)</(#[0-9A-F]{6})>", Pattern.CASE_INSENSITIVE);
-    private static final Pattern CUSTOM_HEX_PATTERN = Pattern.compile("&(#[0-9A-F]{6})", Pattern.CASE_INSENSITIVE);
+    private static final Pattern CUSTOM_GRADIENT_PATTERN = Pattern.compile("<(#[0-9A-Fa-f]{6})>(.*?)</(#[0-9A-Fa-f]{6})>");
+    private static final Pattern CUSTOM_HEX_PATTERN = Pattern.compile("&(#[0-9A-Fa-f]{6})");
 
-    private static final Pattern LEGACY_COLOR_PATTERN = Pattern.compile("§([0-9A-F])", Pattern.CASE_INSENSITIVE);
-    private static final Pattern LEGACY_DECORATION_PATTERN = Pattern.compile("§([K-OR])", Pattern.CASE_INSENSITIVE);
-    private static final Pattern LEGACY_STYLE_PATTERN = Pattern.compile("§([0-9A-FK-OR])", Pattern.CASE_INSENSITIVE);
-    private static final Pattern LEGACY_HEX_COLOR_PATTERN = Pattern.compile("§X((§[0-9A-F]){6})", Pattern.CASE_INSENSITIVE);
+    private static final Pattern LEGACY_COLOR_PATTERN = Pattern.compile("§([0-9A-Fa-f])");
+    private static final Pattern LEGACY_DECORATION_PATTERN = Pattern.compile("§([K-Ok-oRr])");
+    private static final Pattern LEGACY_STYLE_PATTERN = Pattern.compile("§([0-9A-Fa-fK-Ok-oRr])");
+    private static final Pattern LEGACY_HEX_COLOR_PATTERN = Pattern.compile("§x((§[0-9A-Fa-f]){6})");
 
 
     //================
@@ -29,7 +29,7 @@ public class StyleTranslator {
     /**
      * Apply gradient to given text.
      * @param input {@code <#RRGGBB>}content{@code </#RRGGBB>}
-     * @return {@code §X§R§R§G§G§B§B}c{@code §X§R§R§G§G§B§B}o{@code §X§R§R§G§G§B§B}n{@code §X§R§R§G§G§B§B}t{@code §X§R§R§G§G§B§B}e{@code §X§R§R§G§G§B§B}n{@code §X§R§R§G§G§B§B}t
+     * @return {@code §x§R§R§G§G§B§B}c{@code §x§R§R§G§G§B§B}o{@code §x§R§R§G§G§B§B}n{@code §x§R§R§G§G§B§B}t{@code §x§R§R§G§G§B§B}e{@code §x§R§R§G§G§B§B}n{@code §x§R§R§G§G§B§B}t
      * @since 1.3.4
      */
     @NotNull
@@ -52,7 +52,7 @@ public class StyleTranslator {
                 for(int i = 0; i < content.length(); i++) {
                     float ratio = (float) i / Math.max(1.0f, content.length() - 1);
                     DColor color = DColor.interpolate(startColor, endColor, ratio);
-                    builder.append(color.insertLegacyStyleChar()).append(content.charAt(i)); // -> §X§R§R§G§G§B§Bc
+                    builder.append(color.insertLegacyStyleChar()).append(content.charAt(i)); // -> §x§R§R§G§G§B§Bc
                 }
                 output = output.replace(original, builder.toString());
             } catch (Exception ignored) {}
@@ -63,7 +63,7 @@ public class StyleTranslator {
     /**
      * Apply custom hex to given text.
      * @param input {@code &#RRGGBB}content
-     * @return {@code §X§R§R§G§G§B§B}content
+     * @return {@code §x§R§R§G§G§B§B}content
      * @since 1.3.4
      */
     @NotNull
@@ -74,11 +74,11 @@ public class StyleTranslator {
         final Matcher matcher = CUSTOM_HEX_PATTERN.matcher(output);
         while (matcher.find()) {
             String original = matcher.group(); // -> &#RRGGBB
-            String rgb = matcher.group(1); // -> #RRGGBB
+            String hex = matcher.group(1); // -> #RRGGBB
 
             try {
-                DColor color = DColor.of(rgb);
-                output = output.replace(original, color.insertLegacyStyleChar()); // -> §X§R§R§G§G§B§B
+                DColor color = DColor.of(hex);
+                output = output.replace(original, color.insertLegacyStyleChar()); // -> §x§R§R§G§G§B§B
             } catch (Exception ignored) {}
         }
         return output;
@@ -216,7 +216,7 @@ public class StyleTranslator {
         String output = input;
 
         // order is important
-        output = adaptHexLegacyToMiniMessage(output); // §X§R§R§G§G§B§B -> <#RRGGBB>
+        output = adaptHexLegacyToMiniMessage(output); // §x§R§R§G§G§B§B -> <#RRGGBB>
         output = adaptStyleLegacyToMiniMessage(output); // §a, §b, §k, §l, §r -> <green>, <aqua>, <obfuscated>, <bold>, <reset>
 
         return output;

@@ -1,6 +1,7 @@
 package org.nandayo.dapi;
 
 import org.junit.jupiter.api.Test;
+import org.nandayo.dapi.color.DColor;
 import org.nandayo.dapi.color.StyleTranslator;
 import org.nandayo.dapi.util.HexUtil;
 
@@ -18,5 +19,14 @@ public class TestClass {
         String gradientText = "<#A1D2DB>Hellooo :></#3342C7>";
         System.out.println(HexUtil.colorize(gradientText));
         System.out.println(HexUtil.colorToMiniMessage(gradientText));
+
+        try {
+            String g = "&#a9e871Hi!";
+            System.out.println(HexUtil.colorize(g));
+            DColor greenish = DColor.of("#a9e871");
+            System.out.println("Greenish color: " + greenish.getColor());
+        }catch (Exception e) {
+            System.out.println("Problem getting the color greenish.");
+        }
     }
 }

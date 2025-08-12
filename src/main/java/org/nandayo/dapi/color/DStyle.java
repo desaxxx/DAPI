@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public interface DStyle {
     char LEGACY_STYLE_CHAR = '§';
     char LEGACY_ALTERNATIVE_STYLE_CHAR = '&';
-    String LEGACY_STYLE_CODES = "0123456789ABCDEFKLMNORXabcdefklmnorx";
+    String LEGACY_STYLE_CODES = "0123456789ABCDEFKLMNORabcdefklmnorx";
 
     String insertLegacyStyleChar();
 
