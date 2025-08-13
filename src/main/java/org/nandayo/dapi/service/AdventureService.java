@@ -51,7 +51,7 @@ public final class AdventureService {
         try {
             Class.forName("net.kyori.adventure.text.minimessage.MiniMessage");
             return miniMessageSupported = true;
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             return miniMessageSupported = false;
         }
     }

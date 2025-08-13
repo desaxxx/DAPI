@@ -61,6 +61,7 @@ public class HexUtil {
         if (input == null || input.isEmpty()) return "";
         String output = input;
 
+        // order is important
         output = StyleTranslator.applyGradient(output);
         output = StyleTranslator.applyCustomHex(output);
         output = DStyle.applyAlternativeStyleChar(output, '&');
