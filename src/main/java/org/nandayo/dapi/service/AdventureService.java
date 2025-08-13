@@ -49,7 +49,7 @@ public final class AdventureService {
     public static boolean isMiniMessageSupported() {
         if(miniMessageSupported != null) return miniMessageSupported;
         try {
-            Class.forName("net.kyori.adventure.text.minimessage.MiniMessage");
+            Class.forName("net.kyori.adventure.text.minimessage.MiniMessage", false, AdventureService.class.getClassLoader());
             return miniMessageSupported = true;
         } catch (Exception e) {
             return miniMessageSupported = false;
