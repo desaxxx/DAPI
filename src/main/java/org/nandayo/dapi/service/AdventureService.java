@@ -48,12 +48,15 @@ public final class AdventureService {
      */
     public static boolean isMiniMessageSupported() {
         if(miniMessageSupported != null) return miniMessageSupported;
-        try {
-            Class.forName("net.kyori.adventure.text.minimessage.MiniMessage", false, AdventureService.class.getClassLoader());
-            return miniMessageSupported = true;
-        } catch (Exception e) {
-            return miniMessageSupported = false;
-        }
+        String path = "net/kyori/adventure/text/minimessage/MiniMessage.class";
+        ClassLoader loader = AdventureService.class.getClassLoader();
+        return miniMessageSupported = loader.getResource(path) != null;
+//        try {
+//            Class.forName("net.kyori.adventure.text.minimessage.MiniMessage", false, AdventureService.class.getClassLoader());
+//            return miniMessageSupported = true;
+//        } catch (Exception e) {
+//            return miniMessageSupported = false;
+//        }
     }
 
     /**
