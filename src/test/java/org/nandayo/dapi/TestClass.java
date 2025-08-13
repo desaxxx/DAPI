@@ -16,9 +16,13 @@ public class TestClass {
         System.out.println(StyleTranslator.applyCustomHex(customHex));
         System.out.println(HexUtil.colorize(customHex));
 
-        String gradientText = "<#A1D2DB>Hellooo :></#3342C7>";
+        String gradientText = "<&#A1D2DB>Hellooo :></&#3342C7>";
         System.out.println(HexUtil.colorize(gradientText));
         System.out.println(HexUtil.colorToMiniMessage(gradientText));
+
+        String gradientText2 = "<#A1D2DB>Hellooo :></#3342C7>";
+        System.out.println(HexUtil.colorize(gradientText2));
+        System.out.println(HexUtil.colorToMiniMessage(gradientText2));
 
         try {
             String g = "&#a9e871Hi!";

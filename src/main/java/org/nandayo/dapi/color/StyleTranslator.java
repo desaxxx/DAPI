@@ -13,7 +13,9 @@ import java.util.regex.Pattern;
 @ApiStatus.Experimental
 public class StyleTranslator {
 
-    private static final Pattern CUSTOM_GRADIENT_PATTERN = Pattern.compile("<(#[0-9A-Fa-f]{6})>(.*?)</(#[0-9A-Fa-f]{6})>");
+    private static final Pattern CUSTOM_GRADIENT_PATTERN = Pattern.compile("<&(#[0-9A-Fa-f]{6})>(.*?)</&(#[0-9A-Fa-f]{6})>");
+    @ApiStatus.Obsolete
+    private static final Pattern CUSTOM_GRADIENT_PATTERN_2 = Pattern.compile("<(#[0-9A-Fa-f]{6})>(.*?)</(#[0-9A-Fa-f]{6})>");
     private static final Pattern CUSTOM_HEX_PATTERN = Pattern.compile("&(#[0-9A-Fa-f]{6})");
 
     private static final Pattern LEGACY_COLOR_PATTERN = Pattern.compile("§([0-9A-Fa-f])");
@@ -37,7 +39,28 @@ public class StyleTranslator {
         if(input == null || input.isEmpty()) return "";
         String output = input;
 
-        final Matcher matcher = CUSTOM_GRADIENT_PATTERN.matcher(output);
+        Matcher matcher = CUSTOM_GRADIENT_PATTERN.matcher(output);
+        while (matcher.find()) {
+            String original = matcher.group();  // -> <&#RRGGBB>content</&#RRGGBB>
+            String start = matcher.group(1);    // start #RRGGBB
+            String content = matcher.group(2);  // content
+            String end = matcher.group(3);      // end #RRGGBB
+
+            try {
+                DColor startColor = DColor.of(start);
+                DColor endColor = DColor.of(end);
+
+                StringBuilder builder = new StringBuilder();
+                for(int i = 0; i < content.length(); i++) {
+                    float ratio = (float) i / Math.max(1.0f, content.length() - 1);
+                    DColor color = DColor.interpolate(startColor, endColor, ratio);
+                    builder.append(color.insertLegacyStyleChar()).append(content.charAt(i)); // -> §x§R§R§G§G§B§Bc
+                }
+                output = output.replace(original, builder.toString());
+            } catch (Exception ignored) {}
+        }
+
+        matcher = CUSTOM_GRADIENT_PATTERN_2.matcher(output);
         while (matcher.find()) {
             String original = matcher.group();  // -> <#RRGGBB>content</#RRGGBB>
             String start = matcher.group(1);    // start #RRGGBB
