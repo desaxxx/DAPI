@@ -1,13 +1,13 @@
 package org.nandayo.dapi.message;
 
-import net.kyori.adventure.text.Component;
+import org.nandayo.dapi.service.AdventureProvider;
 import org.nandayo.dapi.util.ColorizeType;
 
 @SuppressWarnings("unused")
 public interface IChannelMessage {
 
     String getRawMessage();
-    Component getMessage();
+    AdventureProvider.ComponentProvider getMessage();
 
     IChannelMessage copy();
     IChannelMessage insertPrefix();

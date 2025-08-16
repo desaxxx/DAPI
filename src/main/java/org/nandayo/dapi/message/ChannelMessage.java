@@ -3,6 +3,7 @@ package org.nandayo.dapi.message;
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
+import org.nandayo.dapi.service.AdventureProvider;
 import org.nandayo.dapi.util.ColorizeType;
 import org.nandayo.dapi.util.Util;
 import org.nandayo.dapi.model.MiniString;
@@ -41,7 +42,7 @@ public class ChannelMessage implements IChannelMessage {
     }
 
     @Override
-    public Component getMessage() {
+    public AdventureProvider.ComponentProvider getMessage() {
         return message.asComponent();
     }
 

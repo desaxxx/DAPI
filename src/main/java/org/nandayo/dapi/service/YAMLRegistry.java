@@ -98,6 +98,7 @@ public abstract class YAMLRegistry {
 
     /**
      * Runs the method {@link #onUnload()} for ALL YAMLRegistries.
+     * The <b>Registry</b> won't be unloaded unless {@link #isLoaded()} returns true.
      * @apiNote Recommended to use before stop of the run-time.
      */
     public static void unloadRegistries() {

@@ -2,7 +2,6 @@ package org.nandayo.dapi.service;
 
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.title.Title;
 import net.kyori.adventure.util.Ticks;
 import net.md_5.bungee.api.ChatMessageType;
@@ -75,16 +74,18 @@ public final class AdventureService {
         Validate.validate(isMiniMessageSupported(), "MiniMessage is not supported on this server.");
     }
 
+    @Deprecated(since = "1.3.4", forRemoval = true)
     private static Object miniMessage;
     /**
      * Get MiniMessage instance.<br>
      * <b>NOTE:</b> Check if MiniMessage is supported before using this via {@link #isMiniMessageSupported()}.
      * @return MiniMessage
      * @since 1.3.0-BETA
+     * @deprecated in favor of {@link AdventureProvider#getMiniMessage()}
      */
-    public static MiniMessage getMiniMessage() {
-        if(miniMessage == null) miniMessage = MiniMessage.miniMessage();
-        return (MiniMessage) miniMessage;
+    @Deprecated(since = "1.3.4", forRemoval = true)
+    public static Object getMiniMessage() {
+        return AdventureProvider.getMiniMessage();
     }
 
 
@@ -98,7 +99,7 @@ public final class AdventureService {
     public static void sendMessage(@NotNull CommandSender receiver, @NotNull ChannelMessage message) {
         // getMessage uses MiniString#asComponent which requires MiniMessage.
         if(AdventureService.isMiniMessageSupported()) {
-            receiver.sendMessage(message.colorize(ColorizeType.MINI_MESSAGE).getMessage());
+            receiver.sendMessage(message.colorize(ColorizeType.MINI_MESSAGE).getMessage().get());
         }else {
             receiver.sendMessage(message.colorize(ColorizeType.LEGACY).getRawMessage());
         }
@@ -113,7 +114,7 @@ public final class AdventureService {
     public static void sendActionBar(@NotNull Player player, @NotNull ChannelMessage message) {
         // getMessage uses MiniString#asComponent which requires MiniMessage.
         if(AdventureService.isMiniMessageSupported()) {
-            player.sendActionBar(message.colorize(ColorizeType.MINI_MESSAGE).getMessage());
+            player.sendActionBar(message.colorize(ColorizeType.MINI_MESSAGE).getMessage().get());
         }else {
             //noinspection deprecation
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message.colorize(ColorizeType.LEGACY).getRawMessage()));
@@ -147,8 +148,8 @@ public final class AdventureService {
      * @since 1.3.0-BETA
      */
     private static Title createTitle(@NotNull ChannelTitleMessage titleMessage, @NotNull ChannelType type) {
-        Component titleComponent = type == ChannelType.TITLE || type == ChannelType.TITLE_AND_SUBTITLE ? titleMessage.getMessage() : Component.empty();
-        Component subtitleComponent = type == ChannelType.SUBTITLE || type == ChannelType.TITLE_AND_SUBTITLE ? titleMessage.getSecondaryMessage() : Component.empty();
+        Component titleComponent = type == ChannelType.TITLE || type == ChannelType.TITLE_AND_SUBTITLE ? titleMessage.getMessage().get() : Component.empty();
+        Component subtitleComponent = type == ChannelType.SUBTITLE || type == ChannelType.TITLE_AND_SUBTITLE ? titleMessage.getSecondaryMessage().get() : Component.empty();
         return Title.title(titleComponent, subtitleComponent,
                 Title.Times.times(Ticks.duration(titleMessage.getFadeInTicks()), Ticks.duration(titleMessage.getStayTicks()), Ticks.duration(titleMessage.getFadeOutTicks())));
     }
@@ -177,7 +178,7 @@ public final class AdventureService {
      */
     private static void showAdventureBossBar(@NotNull Player player, @NotNull ChannelBossBarMessage bossBarMessage) {
         ChannelBossBarMessage bbMessage = bossBarMessage.colorize(ColorizeType.MINI_MESSAGE);
-        BossBar adventureBossBar = BossBar.bossBar(bbMessage.getMessage(),
+        BossBar adventureBossBar = BossBar.bossBar(bbMessage.getMessage().get(),
                 (float) bbMessage.getProgress(),
                 Parser.parseBarColor(bbMessage.getColor()),
                 Parser.parseBarStyle(bbMessage.getStyle()),

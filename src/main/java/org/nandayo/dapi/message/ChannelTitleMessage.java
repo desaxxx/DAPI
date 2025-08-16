@@ -3,6 +3,7 @@ package org.nandayo.dapi.message;
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
+import org.nandayo.dapi.service.AdventureProvider;
 import org.nandayo.dapi.util.ColorizeType;
 import org.nandayo.dapi.util.Util;
 import org.nandayo.dapi.model.MiniString;
@@ -95,7 +96,7 @@ public class ChannelTitleMessage extends ChannelMessage {
     public String getRawSecondaryMessage() {
         return secondaryMessage.getRawText();
     }
-    public Component getSecondaryMessage() {
+    public AdventureProvider.ComponentProvider getSecondaryMessage() {
         return secondaryMessage.asComponent();
     }
 

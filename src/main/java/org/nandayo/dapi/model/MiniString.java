@@ -3,6 +3,7 @@ package org.nandayo.dapi.model;
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
+import org.nandayo.dapi.service.AdventureProvider;
 import org.nandayo.dapi.service.AdventureService;
 import org.nandayo.dapi.util.ColorizeType;
 import org.nandayo.dapi.util.Validate;
@@ -20,14 +21,15 @@ public class MiniString {
     private final @NotNull String rawText;
 
     public MiniString(String text) {
-        Validate.validate(text != null, "MiniString text cannot be null!");
+        Validate.notNull(text, "MiniString text cannot be null!");
         this.rawText = text;
     }
 
-    public MiniString(Component component) {
+    public MiniString(Object component) {
+        Validate.notNull(component, "MiniString component cannot be null!");
         AdventureService.validateMiniMessage();
-        Validate.validate(component != null, "MiniString component cannot be null!");
-        this.rawText = AdventureService.getMiniMessage().serialize(component);
+        Validate.validate(component instanceof Component, "Object is not a Component.");
+        this.rawText = AdventureProvider.getMiniMessage().serialize((Component) component);
     }
 
 
@@ -72,8 +74,8 @@ public class MiniString {
      * @since 1.2.9
      */
     @NotNull
-    public Component asComponent() {
+    public AdventureProvider.ComponentProvider asComponent() {
         AdventureService.validateMiniMessage();
-        return AdventureService.getMiniMessage().deserialize(rawText);
+        return AdventureProvider.createComponentProvider(rawText);
     }
 }

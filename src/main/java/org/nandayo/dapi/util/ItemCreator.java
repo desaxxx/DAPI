@@ -136,7 +136,7 @@ public class ItemCreator {
      */
     public ItemCreator nameMini(@Nullable MiniString name) {
         if(AdventureService.isMiniMessageSupported()) {
-            return namePaper(name == null ? null : name.colorize(ColorizeType.MINI_MESSAGE).asComponent());
+            return namePaper(name == null ? null : name.colorize(ColorizeType.MINI_MESSAGE).asComponent().get());
         }else {
             return name(name == null ? null : name.colorize(ColorizeType.LEGACY).getRawText());
         }
@@ -230,7 +230,7 @@ public class ItemCreator {
      */
     public ItemCreator loreMini(@Nullable List<MiniString> lore) {
         if(AdventureService.isMiniMessageSupported()) {
-            return lorePaper(lore == null ? null : lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.MINI_MESSAGE).asComponent()).collect(Collectors.toList()));
+            return lorePaper(lore == null ? null : lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.MINI_MESSAGE).asComponent().get()).collect(Collectors.toList()));
         }else {
             return lore(lore == null ? null : lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.LEGACY).getRawText()).collect(Collectors.toList()));
         }
@@ -336,7 +336,7 @@ public class ItemCreator {
     public ItemCreator addLoreMini(List<MiniString> lore) {
         Validate.validate(lore != null, "Lore to be added cannot be null!");
         if(AdventureService.isMiniMessageSupported()) {
-            return addLorePaper(lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.MINI_MESSAGE).asComponent()).collect(Collectors.toList()));
+            return addLorePaper(lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.MINI_MESSAGE).asComponent().get()).collect(Collectors.toList()));
         }else {
             return addLore(lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.LEGACY).getRawText()).collect(Collectors.toList()));
         }
