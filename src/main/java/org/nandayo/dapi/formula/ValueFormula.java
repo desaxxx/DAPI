@@ -3,19 +3,15 @@ package org.nandayo.dapi.formula;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
-
 /**
  * <pre>
  * value_formula:
  *   type: simple
- *   mode: total
  *   formula: "100 + (level ^ 2) * 5"
  *   variables: [ "level" ]
  *
  * value_formula:
  *   type: conditional
- *   mode: per_level
  *   conditions:
  *     - condition: "level <= 10"
  *       formula: "level * 10"
@@ -27,7 +23,6 @@ import java.util.Map;
  *
  * value_formula:
  *   type: table
- *   mode: per_level
  *   values:
  *     1: 90
  *     2: 100
@@ -40,12 +35,8 @@ import java.util.Map;
  */
 public interface ValueFormula extends ExpressionModifier, ConfigurationSerializable {
 
-
-    interface Factory {
-        @NotNull
-        static ValueFormula create(Map<String, Object> map) {
-            return ValueFormulaImpl.create(map);
-        }
+    static @NotNull Factory factory() {
+        return ValueFormulaImpl.FACTORY;
     }
 
     @Override

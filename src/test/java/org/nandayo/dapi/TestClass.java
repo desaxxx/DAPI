@@ -47,7 +47,7 @@ public class TestClass {
         map.put("formula", "100 * level + 50");
         map.put("variables", List.of("level"));
 
-        ValueFormula formula = ValueFormula.Factory.create(map);
+        ValueFormula formula = ValueFormula.factory().create(map);
         assertEquals(150d, formula.setVariable("level", 1).evaluate());
         assertEquals(250d, formula.setVariable("level", 2).evaluate());
         assertEquals(350d, formula.setVariable("level", 3).evaluate());
@@ -63,7 +63,7 @@ public class TestClass {
         map.put("conditions", conditions);
         map.put("variables", List.of("level"));
 
-        ValueFormula formula = ValueFormula.Factory.create(map);
+        ValueFormula formula = ValueFormula.factory().create(map);
         assertEquals(10d, formula.setVariable("level", 1).evaluate());
         assertEquals(20d, formula.setVariable("level", 2).evaluate());
         assertEquals(30d, formula.setVariable("level", 3).evaluate());
@@ -82,7 +82,7 @@ public class TestClass {
         values.put("3", 40);
         map.put("values", values);
 
-        ValueFormula formula = ValueFormula.Factory.create(map);
+        ValueFormula formula = ValueFormula.factory().create(map);
         assertEquals(10d, formula.setVariable("level", 1).evaluate());
         assertEquals(23d, formula.setVariable("level", 2).evaluate());
         assertEquals(40d, formula.setVariable("level", 3).evaluate());

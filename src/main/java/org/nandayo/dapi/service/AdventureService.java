@@ -24,7 +24,6 @@ import org.nandayo.dapi.message.ChannelType;
 import org.nandayo.dapi.util.ColorizeType;
 import org.nandayo.dapi.util.Util;
 import org.nandayo.dapi.util.Validate;
-import org.nandayo.dapi.util.Wrapper;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -35,9 +34,20 @@ import java.util.Set;
  */
 public final class AdventureService {
 
+    private static Boolean adventureSupported;
+    public static boolean isAdventureSupported() {
+        if (adventureSupported != null) return adventureSupported;
+        try {
+            Class.forName("net.kyori.adventure.Adventure");
+            return adventureSupported = true;
+        } catch (ClassNotFoundException e) {
+            return adventureSupported = false;
+        }
+    }
+
     private static Boolean miniMessageSupported;
     /**
-     * Check if MiniMessage is supported based server platform.
+     * Check if MiniMessage is supported based on server platform.
      * <p>
      *     Additional info:<br>
      *     Spigot doesn't bundle Adventure - no MiniMessage by default.<br>
@@ -48,13 +58,13 @@ public final class AdventureService {
      */
     public static boolean isMiniMessageSupported() {
         if(miniMessageSupported != null) return miniMessageSupported;
-        return miniMessageSupported = Platform.isPaperFork() && Wrapper.getMinecraftVersion() >= 182;
-//        try {
-//            Class.forName("net.kyori.adventure.text.minimessage.MiniMessage", false, AdventureService.class.getClassLoader());
-//            return miniMessageSupported = true;
-//        } catch (Exception e) {
-//            return miniMessageSupported = false;
-//        }
+        if(!isAdventureSupported()) return miniMessageSupported = false;
+        try {
+            Class.forName("net.kyori.adventure.text.minimessage.MiniMessage", false, AdventureService.class.getClassLoader());
+            return miniMessageSupported = true;
+        } catch (Exception e) {
+            return miniMessageSupported = false;
+        }
     }
 
     /**

@@ -52,6 +52,11 @@ class TableValueFormulaImpl extends ValueFormulaImpl {
                 table.put(Integer.parseInt(entry.getKey()), Double.parseDouble(entry.getValue().toString()));
             } catch (NumberFormatException | NullPointerException ignored) {}
         }
+        return of(table);
+    }
+
+    @NotNull
+    public static TableValueFormulaImpl of(Map<Integer, Double> table) {
         return new TableValueFormulaImpl(table);
     }
 

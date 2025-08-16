@@ -12,6 +12,9 @@ import java.util.Map;
  */
 abstract class ValueFormulaImpl implements ValueFormula {
 
+    public static final Factory FACTORY = FactoryImpl.createFactory();
+
+
     @NotNull
     public static ValueFormula create(Map<String, Object> map) {
         Validate.notNull(map, "Map cannot be null.");
@@ -27,7 +30,6 @@ abstract class ValueFormulaImpl implements ValueFormula {
                 throw new DAPIException("Invalid formula type.");
         }
     }
-
 
     @NotNull
     public static Type getType(String type) {

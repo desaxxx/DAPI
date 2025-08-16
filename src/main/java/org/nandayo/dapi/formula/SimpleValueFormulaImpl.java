@@ -17,7 +17,7 @@ class SimpleValueFormulaImpl extends ValueFormulaImpl {
     private final @NotNull Set<String> variables;
     private final @NotNull Expression expression;
 
-    protected SimpleValueFormulaImpl(String formula, Set<String> variables) {
+    private SimpleValueFormulaImpl(String formula, Set<String> variables) {
         Validate.notNull(formula, "Formula cannot be null.");
         Validate.notNull(variables, "Variables cannot be null.");
 
@@ -52,6 +52,11 @@ class SimpleValueFormulaImpl extends ValueFormulaImpl {
         Validate.notNull(map, "Map cannot be null.");
         String formula = (String) map.get("formula");
         Set<String> variables = new HashSet<>((Collection<String>) map.get("variables"));
+        return of(formula, variables);
+    }
+
+    @NotNull
+    public static SimpleValueFormulaImpl of(String formula, Set<String> variables) {
         return new SimpleValueFormulaImpl(formula, variables);
     }
 

@@ -52,6 +52,11 @@ class ConditionalValueFormulaImpl extends ValueFormulaImpl {
         for (Map<String, Object> cMap : conditions) {
             conditionals.add(Conditional.deserialize(cMap, variables));
         }
+        return of(conditionals, variables);
+    }
+
+    @NotNull
+    public static ConditionalValueFormulaImpl of(List<Conditional> conditionals, Set<String> variables) {
         return new ConditionalValueFormulaImpl(conditionals, variables);
     }
 
