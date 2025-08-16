@@ -24,6 +24,7 @@ import org.nandayo.dapi.message.ChannelType;
 import org.nandayo.dapi.util.ColorizeType;
 import org.nandayo.dapi.util.Util;
 import org.nandayo.dapi.util.Validate;
+import org.nandayo.dapi.util.Wrapper;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -36,8 +37,7 @@ public final class AdventureService {
 
     private static Boolean miniMessageSupported;
     /**
-     * Check if MiniMessage is supported based on its existence on default package which is
-     * {@code net.kyori.adventure.text.minimessage.MiniMessage}.
+     * Check if MiniMessage is supported based server platform.
      * <p>
      *     Additional info:<br>
      *     Spigot doesn't bundle Adventure - no MiniMessage by default.<br>
@@ -48,9 +48,7 @@ public final class AdventureService {
      */
     public static boolean isMiniMessageSupported() {
         if(miniMessageSupported != null) return miniMessageSupported;
-        String path = "net/kyori/adventure/text/minimessage/MiniMessage.class";
-        ClassLoader loader = AdventureService.class.getClassLoader();
-        return miniMessageSupported = loader.getResource(path) != null;
+        return miniMessageSupported = Platform.isPaperFork() && Wrapper.getMinecraftVersion() >= 182;
 //        try {
 //            Class.forName("net.kyori.adventure.text.minimessage.MiniMessage", false, AdventureService.class.getClassLoader());
 //            return miniMessageSupported = true;

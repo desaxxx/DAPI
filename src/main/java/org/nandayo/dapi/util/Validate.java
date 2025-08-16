@@ -48,4 +48,15 @@ public class Validate {
         }
         return object;
     }
+
+    public static void notNull(Object object1, Object object2, @NotNull String errorMessage) {
+        if(object1 == null || object2 == null) {
+            throw new DAPIException(errorMessage);
+        }
+    }
+    public static void notNull(Object object1, Object object2, Object object3, @NotNull String errorMessage) {
+        if(object1 == null || object2 == null || object3 == null) {
+            throw new DAPIException(errorMessage);
+        }
+    }
 }

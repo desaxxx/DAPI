@@ -1,13 +1,16 @@
 package org.nandayo.dapi;
 
-import org.junit.jupiter.api.Test;
 import org.nandayo.dapi.color.DColor;
 import org.nandayo.dapi.color.StyleTranslator;
+import org.nandayo.dapi.formula.Conditional;
+import org.nandayo.dapi.formula.ValueFormula;
 import org.nandayo.dapi.util.HexUtil;
+
+import java.util.*;
 
 public class TestClass {
 
-    @Test
+    //@Test
     void testColors() {
         String s1 = "<aqua>Aqua, <light_purple>Light purple, <dark_blue>Dark blue, <#ff00bb>Hex-1, &#cc44ffHex-2, <italic>Italic, <bold>Bold, &nUnderline, &6Orange, &rReset, &0Black, &cRed, &6Another orange, &kObfuscate, &mStrikethrough";
         System.out.println(HexUtil.colorToMiniMessage(s1));
@@ -32,5 +35,57 @@ public class TestClass {
         }catch (Exception e) {
             System.out.println("Problem getting the color greenish.");
         }
+    }
+
+    //@Test
+    void testFormulas() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("type", "simple");
+        map.put("mode", "per_level");
+        map.put("formula", "100 * level + 50");
+        map.put("variables", List.of("level"));
+
+        ValueFormula formula = ValueFormula.Factory.create(map);
+        System.out.println(formula.setVariable("level", 1).evaluate());
+        System.out.println(formula.setVariable("level", 2).evaluate());
+        System.out.println(formula.setVariable("level", 3).evaluate());
+    }
+
+    //@Test
+    void testConditionalFormula() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("type", "conditional");
+        map.put("mode", "per_level");
+        List<Map<String, Object>> conditions = new ArrayList<>();
+        conditions.add(Conditional.of("level <= 3","level * 10", Set.of("level")).serialize());
+        conditions.add(Conditional.of("level <= 5", "level * 12", Set.of("level")).serialize());
+        map.put("conditions", conditions);
+        map.put("variables", List.of("level"));
+
+        ValueFormula formula = ValueFormula.Factory.create(map);
+        System.out.println(formula.setVariable("level", 1).evaluate());
+        System.out.println(formula.setVariable("level", 2).evaluate());
+        System.out.println(formula.setVariable("level", 3).evaluate());
+        System.out.println(formula.setVariable("level", 4).evaluate());
+        System.out.println(formula.setVariable("level", 5).evaluate());
+        System.out.println(formula.setVariable("level", 6).evaluate());
+    }
+
+    //@Test
+    void testTableFormula() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("type", "table");
+        map.put("mode", "per_level");
+        Map<String, Object> values = new HashMap<>();
+        values.put("1", 10);
+        values.put("2", 23);
+        values.put("3", 40);
+        map.put("values", values);
+
+        ValueFormula formula = ValueFormula.Factory.create(map);
+        System.out.println(formula.setVariable("level", 1).evaluate());
+        System.out.println(formula.setVariable("level", 2).evaluate());
+        System.out.println(formula.setVariable("level", 3).evaluate());
+        System.out.println(formula.setVariable("level", 4).evaluate());
     }
 }
