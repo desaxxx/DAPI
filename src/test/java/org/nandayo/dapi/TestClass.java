@@ -1,5 +1,6 @@
 package org.nandayo.dapi;
 
+import org.junit.jupiter.api.Test;
 import org.nandayo.dapi.color.DColor;
 import org.nandayo.dapi.color.StyleTranslator;
 import org.nandayo.dapi.formula.Conditional;
@@ -7,6 +8,8 @@ import org.nandayo.dapi.formula.ValueFormula;
 import org.nandayo.dapi.util.HexUtil;
 
 import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestClass {
 
@@ -37,25 +40,23 @@ public class TestClass {
         }
     }
 
-    //@Test
+    @Test
     void testFormulas() {
         Map<String, Object> map = new HashMap<>();
         map.put("type", "simple");
-        map.put("mode", "per_level");
         map.put("formula", "100 * level + 50");
         map.put("variables", List.of("level"));
 
         ValueFormula formula = ValueFormula.Factory.create(map);
-        System.out.println(formula.setVariable("level", 1).evaluate());
-        System.out.println(formula.setVariable("level", 2).evaluate());
-        System.out.println(formula.setVariable("level", 3).evaluate());
+        assertEquals(150d, formula.setVariable("level", 1).evaluate());
+        assertEquals(250d, formula.setVariable("level", 2).evaluate());
+        assertEquals(350d, formula.setVariable("level", 3).evaluate());
     }
 
-    //@Test
+    @Test
     void testConditionalFormula() {
         Map<String, Object> map = new HashMap<>();
         map.put("type", "conditional");
-        map.put("mode", "per_level");
         List<Map<String, Object>> conditions = new ArrayList<>();
         conditions.add(Conditional.of("level <= 3","level * 10", Set.of("level")).serialize());
         conditions.add(Conditional.of("level <= 5", "level * 12", Set.of("level")).serialize());
@@ -63,19 +64,18 @@ public class TestClass {
         map.put("variables", List.of("level"));
 
         ValueFormula formula = ValueFormula.Factory.create(map);
-        System.out.println(formula.setVariable("level", 1).evaluate());
-        System.out.println(formula.setVariable("level", 2).evaluate());
-        System.out.println(formula.setVariable("level", 3).evaluate());
-        System.out.println(formula.setVariable("level", 4).evaluate());
-        System.out.println(formula.setVariable("level", 5).evaluate());
-        System.out.println(formula.setVariable("level", 6).evaluate());
+        assertEquals(10d, formula.setVariable("level", 1).evaluate());
+        assertEquals(20d, formula.setVariable("level", 2).evaluate());
+        assertEquals(30d, formula.setVariable("level", 3).evaluate());
+        assertEquals(48d, formula.setVariable("level", 4).evaluate());
+        assertEquals(60d, formula.setVariable("level", 5).evaluate());
+        assertEquals(Double.MAX_VALUE, formula.setVariable("level", 6).evaluate());
     }
 
-    //@Test
+    @Test
     void testTableFormula() {
         Map<String, Object> map = new HashMap<>();
         map.put("type", "table");
-        map.put("mode", "per_level");
         Map<String, Object> values = new HashMap<>();
         values.put("1", 10);
         values.put("2", 23);
@@ -83,9 +83,9 @@ public class TestClass {
         map.put("values", values);
 
         ValueFormula formula = ValueFormula.Factory.create(map);
-        System.out.println(formula.setVariable("level", 1).evaluate());
-        System.out.println(formula.setVariable("level", 2).evaluate());
-        System.out.println(formula.setVariable("level", 3).evaluate());
-        System.out.println(formula.setVariable("level", 4).evaluate());
+        assertEquals(10d, formula.setVariable("level", 1).evaluate());
+        assertEquals(23d, formula.setVariable("level", 2).evaluate());
+        assertEquals(40d, formula.setVariable("level", 3).evaluate());
+        assertEquals(Double.MAX_VALUE, formula.setVariable("level", 4).evaluate());
     }
 }
