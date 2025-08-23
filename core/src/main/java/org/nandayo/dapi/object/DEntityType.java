@@ -295,7 +295,7 @@ public enum DEntityType {
 
 
     DEntityType() {
-        //noinspection UnstableApiUsage
+        //noinspection deprecation
         this.entityType = EntityType.fromName(this.name());
     }
 

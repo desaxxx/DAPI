@@ -6,7 +6,7 @@ import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
 @Getter
-@SuppressWarnings({"unused", "deprecation"}) // deprecation due Component support of Paper
+@SuppressWarnings({"unused"})
 public abstract class MenuType {
 
     abstract public @NotNull Inventory createInventory(@NotNull String title);

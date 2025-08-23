@@ -8,6 +8,7 @@ import org.nandayo.dapi.object.annotation.DRenamed;
 
 @ApiStatus.Experimental
 @ApiStatus.Internal
+@SuppressWarnings("unused")
 public enum DAttribute {
 
     @DDeprecated(since = "1.21.3")
