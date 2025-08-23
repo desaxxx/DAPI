@@ -4,6 +4,7 @@ import net.kyori.adventure.platform.bukkit.MinecraftComponentSerializer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.nandayo.dapi.util.DAPIException;
 import org.nandayo.dapi.util.Wrapper;
@@ -11,6 +12,7 @@ import org.nandayo.dapi.util.Wrapper;
 import java.lang.reflect.Field;
 import java.util.List;
 
+@ApiStatus.Experimental
 final class SpigotItemMetaHandler implements ItemMetaHandler {
     public static final SpigotItemMetaHandler INSTANCE = new SpigotItemMetaHandler();
     private SpigotItemMetaHandler() {}
