@@ -13,7 +13,7 @@ import java.util.List;
 public interface ItemMetaHandler {
 
     static ItemMetaHandler getInstance() {
-        return ItemMetaHandlerProvider.INSTANCE;
+        return null;
     }
 
     void name(ItemMeta meta, Component component);
