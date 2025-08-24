@@ -5,17 +5,18 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 interface ConstantInfo extends Comparable<ConstantInfo> {
 
     @NotNull String sinceVersion();
-    @Nullable String key();
+    @NotNull String key();
 
     @Nullable ConstantInfo parent();
-    @Nullable String deprecatedKey();
 
-    boolean moveIn();
-    @Nullable Set<ConstantInfo> childrenToMove();
+    @Nullable KeyChange keyChange();
+
+    @Nullable KeyRemoval keyRemoval();
 
     @Nullable Depends depends();
 
@@ -41,9 +42,10 @@ interface ConstantInfo extends Comparable<ConstantInfo> {
                 .build();
     }
 
-    static Optional<ConstantInfo> find(Node node, Collection<ConstantInfo> constants) {
+    static List<ConstantInfo> find(Node node, List<ConstantInfo> constants) {
         return constants.stream()
                 .filter(constant -> constant.matches(node))
-                .findFirst();
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList());
     }
 }

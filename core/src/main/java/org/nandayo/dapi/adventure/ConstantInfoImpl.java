@@ -18,9 +18,8 @@ class ConstantInfoImpl<T,R> implements ConstantInfo {
     private @NotNull String key = "---";
 
     private @Nullable ConstantInfo parent = null;
-    private @Nullable String deprecatedKey = null;
-    private boolean moveIn = false;
-    private @Nullable Set<ConstantInfo> childrenToMove = null;
+    private @Nullable KeyChange keyChange = null;
+    private @Nullable KeyRemoval keyRemoval = null;
     private @Nullable Depends depends = null;
     private @Nullable Function<T, R> valueFunction = null;
     public ConstantInfoImpl(){}
@@ -32,7 +31,7 @@ class ConstantInfoImpl<T,R> implements ConstantInfo {
     }
 
     @Override
-    public @Nullable String key() {
+    public @NotNull String key() {
         return key;
     }
 
@@ -42,18 +41,13 @@ class ConstantInfoImpl<T,R> implements ConstantInfo {
     }
 
     @Override
-    public @Nullable String deprecatedKey() {
-        return deprecatedKey;
+    public @Nullable KeyChange keyChange() {
+        return keyChange;
     }
 
     @Override
-    public boolean moveIn() {
-        return moveIn;
-    }
-
-    @Override
-    public @Nullable Set<ConstantInfo> childrenToMove() {
-        return childrenToMove;
+    public @Nullable KeyRemoval keyRemoval() {
+        return keyRemoval;
     }
 
     @Override
@@ -70,6 +64,17 @@ class ConstantInfoImpl<T,R> implements ConstantInfo {
     @Override
     public boolean matches(Node node) {
         String nodeParentKey = node.getParent() == null ? null : node.getParent().getKey();
+        ConstantInfo parent = parent();
+        /*
+         * If the parent is deprecated and has move in enabled, use the grandparent.
+         * Example: SHOW_ENTITY_ID_VALUE, HOVER_EVENT_CONTENTS
+         */
+        if(parent != null && keyRemoval != null && keyRemoval.moveIn() && keyRemoval.childrenToMove().contains(this)) {
+            parent = parent.parent();
+        }
+
+
+        // Check key and parent key equality.
         return key.equals(node.getKey())
                 && ((parent == null && nodeParentKey == null) || (parent != null && Objects.equals(parent.key(), nodeParentKey)));
     }
@@ -77,10 +82,14 @@ class ConstantInfoImpl<T,R> implements ConstantInfo {
 
     @Override
     public String toString() {
-        return String.format("ConstantInfoImpl[ parent: %s, key: %s, deprecatedKey: %s ]",
+        if(keyRemoval != null) {
+            return String.format("Constant[ parent %s, deprecatedKey: %s ]",
+                    (parent == null ? "null" : parent.key()),
+                    keyRemoval.deprecatedKey());
+        }
+        return String.format("Constant[ parent: %s, key: %s ]",
                 (parent == null ? "null" : parent.key()),
-                key,
-                deprecatedKey);
+                key);
     }
 
 
@@ -101,30 +110,57 @@ class ConstantInfoImpl<T,R> implements ConstantInfo {
             constantInfo.setSinceVersion(sinceVersion);
             return this;
         }
+
         public Builder<T,R> parent(ConstantInfo parent) {
             constantInfo.setParent(parent);
             return this;
         }
-        public Builder<T,R> deprecatedKey(String deprecatedKey) {
-            constantInfo.setDeprecatedKey(deprecatedKey);
+
+        public Builder<T,R> keyChange(String deprecatedKey, String newKey) {
+            constantInfo.setKeyChange(new KeyChange() {
+                @Override
+                public @NotNull String deprecatedKey() {
+                    return deprecatedKey;
+                }
+
+                @Override
+                public @NotNull String newKey() {
+                    return newKey;
+                }
+            });
             return this;
         }
+
         public Builder<T,R> key(String key) {
             constantInfo.setKey(key);
             return this;
         }
-        public Builder<T,R> moveIn(boolean moveIn) {
-            constantInfo.setMoveIn(moveIn);
+
+        public Builder<T,R> keyRemoval(String deprecatedKey, boolean moveIn, Set<ConstantInfo> childrenToMove) {
+            constantInfo.setKeyRemoval(new KeyRemoval() {
+                @Override
+                public @NotNull String deprecatedKey() {
+                    return deprecatedKey;
+                }
+
+                @Override
+                public boolean moveIn() {
+                    return moveIn;
+                }
+
+                @Override
+                public @NotNull Set<ConstantInfo> childrenToMove() {
+                    return childrenToMove;
+                }
+            });
             return this;
         }
-        public Builder<T,R> childrenToMove(Set<ConstantInfo> childrenToMove) {
-            constantInfo.setChildrenToMove(childrenToMove);
-            return this;
-        }
+
         public Builder<T,R> depends(Depends depends) {
             constantInfo.setDepends(depends);
             return this;
         }
+
         public Builder<T,R> valueFunction(Function<T, R> valueFunction) {
             constantInfo.setValueFunction(valueFunction);
             return this;

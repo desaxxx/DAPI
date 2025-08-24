@@ -2,12 +2,10 @@ package org.nandayo.dapi.adventure;
 
 import com.google.gson.*;
 import org.jetbrains.annotations.ApiStatus;
-import org.nandayo.dapi.util.DAPIException;
 import org.nandayo.dapi.util.Util;
 import org.nandayo.dapi.util.Validate;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @since 1.4.0
@@ -28,48 +26,46 @@ public class ComponentTreeConstantsAdapter {
     // since 4.21.0
     // https://github.com/KyoriPowered/adventure/commit/5346fc54d9f802b7a8eacb7e3f479db5f7769d4d
     private static final ConstantInfo CLICK_EVENT           = new ConstantInfoImpl.Builder<>().sinceVersion("4.21.0")
-            .deprecatedKey("clickEvent")
-            .key("click_event").build();
+            .key("click_event")
+            .keyChange("clickEvent", "click_event").build();
     private static final ConstantInfo CLICK_EVENT_URL       = new ConstantInfoImpl.Builder<>().sinceVersion("4.21.0")
             .parent(CLICK_EVENT)
-            .deprecatedKey("value")
-            .key("url").build();
+            .key("url")
+            .keyChange("value", "url").build();
     private static final ConstantInfo CLICK_EVENT_PATH      = new ConstantInfoImpl.Builder<>().sinceVersion("4.21.0")
             .parent(CLICK_EVENT)
-            .deprecatedKey("value")
-            .key("path").build();
+            .key("path")
+            .keyChange("value", "path").build();
     private static final ConstantInfo CLICK_EVENT_COMMAND   = new ConstantInfoImpl.Builder<>().sinceVersion("4.21.0")
             .parent(CLICK_EVENT)
-            .deprecatedKey("value")
-            .key("command").build();
+            .key("command")
+            .keyChange("value", "command").build();
     private static final ConstantInfo CLICK_EVENT_PAGE      = new ConstantInfoImpl.Builder<>().sinceVersion("4.21.0")
             .parent(CLICK_EVENT)
-            .deprecatedKey("value")
-            .key("page").build();
+            .key("page")
+            .keyChange("value", "page").build();
     private static final ConstantInfo HOVER_EVENT           = new ConstantInfoImpl.Builder<>().sinceVersion("4.21.0")
-            .deprecatedKey("hoverEvent")
-            .key("hover_event").build();
+            .key("hover_event")
+            .keyChange("hoverEvent", "hover_event").build();
     /**
      * This was used instead of {@link #SHOW_ENTITY_UUID} before 4.21.0
      * It took the place of {@link #SHOW_ENTITY_TYPE} as {@link #SHOW_ENTITY_UUID} is added.
      */
     private static final ConstantInfo SHOW_ENTITY_ID        = new ConstantInfoImpl.Builder<>().sinceVersion("4.21.0")
             .parent(HOVER_EVENT)
-            .deprecatedKey("type")
-            .key("id").build();
+            .key("id")
+            .keyChange("type", "id").build();
     private static final ConstantInfo SHOW_ENTITY_TYPE      = new ConstantInfoImpl.Builder<>().sinceVersion("4.21.0")
             .parent(HOVER_EVENT)
-            .deprecatedKey("type").build();
+            .keyRemoval("type", false, Set.of()).build();
     private static final ConstantInfo SHOW_ENTITY_UUID      = new ConstantInfoImpl.Builder<>().sinceVersion("4.21.0")
             .parent(HOVER_EVENT)
-            .deprecatedKey("id")
             .key("uuid")
+            .keyChange("id", "uuid")
             .depends(() -> Set.of(SHOW_ENTITY_ID)).build();
     private static final ConstantInfo HOVER_EVENT_CONTENTS  = new ConstantInfoImpl.Builder<>().sinceVersion("4.21.0")
             .parent(HOVER_EVENT)
-            .deprecatedKey("contents")
-            .moveIn(true)
-            .childrenToMove(Set.of(SHOW_ENTITY_ID, SHOW_ENTITY_TYPE))
+            .keyRemoval("contents", true, Set.of(SHOW_ENTITY_ID, SHOW_ENTITY_TYPE))
             .depends(() -> Set.of(SHOW_ENTITY_ID, SHOW_ENTITY_TYPE)).build();
 
 
@@ -146,70 +142,68 @@ public class ComponentTreeConstantsAdapter {
 
             while (!deque.isEmpty()) {
                 Node child = deque.pop();
-                debug("Searching child " + child);
+                debug("[1] Searching constant for child " + child);
                 traverseJson(child, relatedConstants); // traverse child first
 
                 JsonElement childElementCopy = GsonHelper.deepCopy(child.getElement());
 
-                Optional<ConstantInfo> constantOpt = ConstantInfo.find(child, relatedConstants);
-                if(constantOpt.isPresent()) {
-                    ConstantInfo constant = constantOpt.get();
-                    debug("  Found constant for the child.");
+                List<ConstantInfo> constants = ConstantInfo.find(child, relatedConstants);
+                for(ConstantInfo constant : constants) {
+                    debug("  [2] Found constant for the child. " + constant);
                     if(loadedConstants.contains(constant)) {
-                        debug("  This constant is already loaded, skipping...");
-                        continue;
+                        debug("  [2.1] This constant is already loaded, skipping...");
+                        break;
                     }
 
                     // Check for dependence
                     Depends depends = constant.depends();
                     if(depends != null) {
-                        debug("  A dependant constant.");
+                        debug("  [2.2] A dependant constant.");
                         Set<ConstantInfo> dependants = depends.dependantsWithin(relatedConstants);
                         if(!loadedConstants.containsAll(dependants)) {
-                            debug("    Dependant constants wasn't loaded, so sending " + child + " to the last of the line.");
+                            debug("    [3] Dependant constants wasn't loaded, sending the child to last of the line.");
                             deque.addLast(child);
-                            continue;
+                            break;
                         }
-                        debug("    It doesn't have a dependent constant or it's already loaded.");
+                        debug("    [3] It doesn't have a dependent constant or it's already loaded.");
                     }
-                    try {
-                        String deprecatedKey = constant.deprecatedKey();
-                        debug("    Changing " + child.getKey() + " to " + deprecatedKey);
-                        child.changeKey(deprecatedKey, true);
-                    } catch (DAPIException ignored) {}
+                    KeyChange keyChange = constant.keyChange();
+                    if(keyChange != null) {
+                        debug("  [2.3] Key change found, changing to '" + keyChange.deprecatedKey() + "'");
+                        child.changeKey(keyChange.deprecatedKey(), true);
+                    }
 
                     // Schedule parent move event
-                    ConstantInfo parentConstant = findParentConstant(constant, relatedConstants);
-                    if(parentConstant != null && !loadedConstants.contains(parentConstant)) { // so that another child doesn't run it again.
-                        debug("  A parent constant that contains the child, scheduling.");
-                        parentRunnable = () -> {
-                            if(parentConstant.moveIn()) {
-                                debug("    Moving in.");
-                                String parentDeprecatedKey = parentConstant.deprecatedKey();
-                                if(parentDeprecatedKey == null) {
-                                    debug("    Deprecated key is null, skipping.");
-                                }else {
-                                    Node newParent = current.makeChild(parentConstant.deprecatedKey(), new JsonObject());
+                    if(parentRunnable == null) {
+                        ConstantInfo parentConstant = findParentConstant(constant, relatedConstants);
+                        if (parentConstant != null && !loadedConstants.contains(parentConstant)) { // so that another child doesn't run it again.
+                            debug("  [2.4] A parent constant found. " + parentConstant);
+                            parentRunnable = () -> {
+                                KeyRemoval keyRemoval = parentConstant.keyRemoval();
+                                if (keyRemoval != null && keyRemoval.moveIn()) {
+                                    debug("    [3] Moving in children of parent constant.");
+                                    String parentDeprecatedKey = keyRemoval.deprecatedKey();
+                                    Node newParent = current.makeChild(keyRemoval.deprecatedKey(), new JsonObject());
                                     if (newParent == null) {
-                                        debug("    Failed to make new parent, skipping");
+                                        debug("      [4] Failed to make new parent, skipping");
                                     } else {
-                                        moveInObject(current, newParent, parentConstant);
+                                        moveInObject(current, newParent, keyRemoval);
                                     }
+                                } else {
+                                    child.destroy();
+                                    debug("    [3] Move in is disabled, destroying.");
                                 }
-                            }else {
-                                child.destroy();
-                                debug("    Move in is disabled, destroying.");
-                            }
-                        };
-                        // mark parent constant as loaded
-                        loadedConstants.add(parentConstant);
+                            };
+                            // mark parent constant as loaded
+                            loadedConstants.add(parentConstant);
+                        }
                     }
                     // Mark the child constant as loaded
                     loadedConstants.add(constant);
                 }
             }
             if(parentRunnable != null) {
-                debug("    Running parent constant runnable.");
+                debug("    [3] Running parent constant runnable.");
                 parentRunnable.run();
             }
         }
@@ -236,18 +230,53 @@ public class ComponentTreeConstantsAdapter {
         }
     }
 
-    private void moveInObject(Node current, Node newParent, ConstantInfo parentConstant) {
-        Set<ConstantInfo> childrenToMove = parentConstant.childrenToMove();
-        childrenToMove = childrenToMove == null ? new HashSet<>() : childrenToMove;
-        Set<String> childrenNames = childrenToMove.stream().map(ConstantInfo::key).collect(Collectors.toSet());
+    // Collect first :c todo
+    private void traverseJsonCollect(Node current, List<ConstantInfo> relatedConstants, Map<Node, List<ConstantInfo>> map) {
+        JsonElement curr = current.getElement();
+        if (curr.isJsonObject()) {
+            JsonObject obj = curr.getAsJsonObject();
+            Deque<Node> deque = new ArrayDeque<>(current.getChildrenOr(new ArrayList<>()));
+
+            while (!deque.isEmpty()) {
+                Node child = deque.pop();
+                debug("[1] Searching constant for child " + child);
+                traverseJson(child, relatedConstants); // traverse child first
+
+                JsonElement childElementCopy = GsonHelper.deepCopy(child.getElement());
+
+                List<ConstantInfo> constants = ConstantInfo.find(child, relatedConstants);
+                map.put(child, constants);
+                for(ConstantInfo constant : constants) {
+                    ConstantInfo parentConstant = findParentConstant(constant, relatedConstants);
+                    if(parentConstant != null) {
+                        map.getOrDefault(current, new ArrayList<>()).add(parentConstant);
+                    }
+                }
+            }
+        }
+        else if (curr.isJsonArray()) {
+            JsonArray arr = curr.getAsJsonArray();
+            for (int i = 0; i < arr.size(); i++) {
+                JsonElement childElement = arr.get(i);
+                traverseJson(new Node(current, null, i, childElement), relatedConstants);
+            }
+        }
+    }
+
+
+
+
+    private void moveInObject(Node current, Node newParent, KeyRemoval keyRemoval) {
         JsonElement curr = current.getElement();
         JsonElement parent = newParent.getElement();
         if(!curr.isJsonObject() || !parent.isJsonObject()) return;
 
         for(Node child : current.getChildrenOr(new ArrayList<>())) {
-            if(!childrenNames.contains(child.getKey())) continue;
-            child.moveToObject(newParent);
-            debug("    Moved in " + child + " to " + parent);
+            for(ConstantInfo constant : keyRemoval.childrenToMove()) {
+                if(!constant.matches(child)) continue;
+                child.moveToObject(newParent);
+                debug("    [3] Moved in " + child + " to " + parent);
+            }
         }
     }
 
@@ -258,7 +287,7 @@ public class ComponentTreeConstantsAdapter {
 
         for(Node child : current.getChildrenOr(new ArrayList<>())) {
             child.moveToArray(newParent);
-            debug("    Moved in keys " + child + " to " + parent);
+            debug("    [3] Moved in keys " + child + " to " + parent);
         }
     }
 
@@ -278,8 +307,8 @@ public class ComponentTreeConstantsAdapter {
     private ConstantInfo findParentConstant(ConstantInfo child, Collection<ConstantInfo> relatedConstants) {
         return relatedConstants.stream()
                 .filter(constant -> {
-                    Set<ConstantInfo> children = constant.childrenToMove();
-                    return children != null && children.contains(child);
+                    KeyRemoval keyRemoval = constant.keyRemoval();
+                    return keyRemoval != null && keyRemoval.childrenToMove().contains(child);
                 })
                 .findFirst().orElse(null);
     }

@@ -1,5 +1,7 @@
 package org.nandayo.dapi.message;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.boss.KeyedBossBar;
@@ -26,7 +28,8 @@ public abstract class ChannelType {
         @Override
         public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
             if(!(receiver instanceof Player)) return;
-            receiver.sendMessage(message.colorize(ColorizeType.LEGACY).getRawMessage());
+            //noinspection deprecation
+            ((Player) receiver).spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message.colorize(ColorizeType.LEGACY).getRawMessage()));
         }
     };
 
@@ -36,7 +39,7 @@ public abstract class ChannelType {
             if(!(receiver instanceof Player)) return;
             ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
             ChannelTitleMessage ttMessage = titleMessage.colorize(ColorizeType.LEGACY);
-            ((Player) receiver).sendTitle(ttMessage.getRawMessage(), ttMessage.getRawSecondaryMessage(), ttMessage.getFadeInTicks(), ttMessage.getStayTicks(), ttMessage.getFadeOutTicks());
+            ((Player) receiver).sendTitle(ttMessage.getRawMessage(), "", ttMessage.getFadeInTicks(), ttMessage.getStayTicks(), ttMessage.getFadeOutTicks());
         }
     };
 
@@ -46,7 +49,7 @@ public abstract class ChannelType {
             if(!(receiver instanceof Player)) return;
             ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
             ChannelTitleMessage ttMessage = titleMessage.colorize(ColorizeType.LEGACY);
-            ((Player) receiver).sendTitle(ttMessage.getRawMessage(), ttMessage.getRawSecondaryMessage(), ttMessage.getFadeInTicks(), ttMessage.getStayTicks(), ttMessage.getFadeOutTicks());
+            ((Player) receiver).sendTitle("", ttMessage.getRawSecondaryMessage(), ttMessage.getFadeInTicks(), ttMessage.getStayTicks(), ttMessage.getFadeOutTicks());
         }
     };
 
