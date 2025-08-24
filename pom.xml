@@ -41,7 +41,7 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>org.nandayo.dapi.bstats</shadedPattern>
+                            <shadedPattern>org.nandayo.dapi.shaded.bstats</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
