@@ -6,11 +6,13 @@ import org.nandayo.dapi.util.Util;
 
 public class RelocateService {
 
+    private static final String DAPI_DEFAULT_PACKAGE = "org.nan".concat("dayo.dapi");
+    private static final String BSTATS_DEFAULT_PACKAGE = "org.nan".concat("dayo.dapi.bstats");
+
     private static Boolean DAPIRelocated;
     public static boolean isDAPIRelocated() {
         if(DAPIRelocated != null) return DAPIRelocated;
-        final String defaultPackage = new String(new byte[] { 'o','r','g','.','n','a','n','d','a','y','o','.','d','a','p','i'});
-        if(DAPI.class.getPackage().getName().equals(defaultPackage)) {
+        if(DAPI.class.getPackage().getName().equals(DAPI_DEFAULT_PACKAGE)) {
             Util.logInternal("DAPI was not relocated. It is recommended to relocate it to avoid potential conflicts with other plugins that also include DAPI.");
             return DAPIRelocated = false;
         }else {
@@ -21,8 +23,7 @@ public class RelocateService {
     private static Boolean bStatsRelocated;
     public static boolean isbStatsRelocated() {
         if(bStatsRelocated != null) return bStatsRelocated;
-        final String defaultPackage = new String(new byte[] { 'o','r','g','.','b','s','t','a','t','s','.','b','u','k','k','i','t'});
-        return bStatsRelocated = !Metrics.class.getPackage().getName().equals(defaultPackage);
+        return bStatsRelocated = !Metrics.class.getPackage().getName().equals(BSTATS_DEFAULT_PACKAGE);
     }
 
 //    private static Boolean kyoriRelocated;
