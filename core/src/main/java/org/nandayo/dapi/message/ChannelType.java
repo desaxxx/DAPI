@@ -19,71 +19,76 @@ public abstract class ChannelType {
 
     public static final ChannelType CHAT = new ChannelType() {
         @Override
-        public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
+        public void send(@NotNull CommandSender receiver, @NotNull ChannelMessage message) {
             receiver.sendMessage(message.colorize(ColorizeType.LEGACY).getRawMessage());
         }
     };
 
     public static final ChannelType ACTION_BAR = new ChannelType() {
         @Override
-        public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
+        public void send(@NotNull CommandSender receiver, @NotNull ChannelMessage message) {
             if(!(receiver instanceof Player)) return;
+            Player player = (Player) receiver;
             //noinspection deprecation
-            ((Player) receiver).spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message.colorize(ColorizeType.LEGACY).getRawMessage()));
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message.colorize(ColorizeType.LEGACY).getRawMessage()));
         }
     };
 
     public static final ChannelType TITLE = new ChannelType() {
         @Override
-        public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
+        public void send(@NotNull CommandSender receiver, @NotNull ChannelMessage message) {
             if(!(receiver instanceof Player)) return;
-            ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
-            ChannelTitleMessage ttMessage = titleMessage.colorize(ColorizeType.LEGACY);
-            ((Player) receiver).sendTitle(ttMessage.getRawMessage(), "", ttMessage.getFadeInTicks(), ttMessage.getStayTicks(), ttMessage.getFadeOutTicks());
+            Player player = (Player) receiver;
+
+            ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message, true);
+            player.sendTitle(titleMessage.getRawMessage(), "", titleMessage.getFadeInTicks(), titleMessage.getStayTicks(), titleMessage.getFadeOutTicks());
         }
     };
 
     public static final ChannelType SUBTITLE = new ChannelType() {
         @Override
-        public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
+        public void send(@NotNull CommandSender receiver, @NotNull ChannelMessage message) {
             if(!(receiver instanceof Player)) return;
-            ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
-            ChannelTitleMessage ttMessage = titleMessage.colorize(ColorizeType.LEGACY);
-            ((Player) receiver).sendTitle("", ttMessage.getRawSecondaryMessage(), ttMessage.getFadeInTicks(), ttMessage.getStayTicks(), ttMessage.getFadeOutTicks());
+            Player player = (Player) receiver;
+
+            ChannelTitleMessage titleMessage = (message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message,false)).colorize(ColorizeType.LEGACY);
+            player.sendTitle("", titleMessage.getRawSecondaryMessage(), titleMessage.getFadeInTicks(), titleMessage.getStayTicks(), titleMessage.getFadeOutTicks());
         }
     };
 
     public static final ChannelType TITLE_AND_SUBTITLE = new ChannelType() {
         @Override
-        public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
+        public void send(@NotNull CommandSender receiver, @NotNull ChannelMessage message) {
             if(!(receiver instanceof Player)) return;
-            ChannelTitleMessage titleMessage = message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message);
-            ChannelTitleMessage ttMessage = titleMessage.colorize(ColorizeType.LEGACY);
-            ((Player) receiver).sendTitle(ttMessage.getRawMessage(), ttMessage.getRawSecondaryMessage(), ttMessage.getFadeInTicks(), ttMessage.getStayTicks(), ttMessage.getFadeOutTicks());
+            Player player = (Player) receiver;
+
+            ChannelTitleMessage titleMessage = (message instanceof ChannelTitleMessage ? (ChannelTitleMessage) message : ChannelTitleMessage.fromParent(message,true)).colorize(ColorizeType.LEGACY);
+            player.sendTitle(titleMessage.getRawMessage(), titleMessage.getRawSecondaryMessage(), titleMessage.getFadeInTicks(), titleMessage.getStayTicks(), titleMessage.getFadeOutTicks());
         }
     };
 
     public static final ChannelType BOSS_BAR = new ChannelType() {
         @Override
-        public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message) {
+        public void send(@NotNull CommandSender receiver, @NotNull ChannelMessage message) {
             if(!(receiver instanceof Player)) return;
-            ChannelBossBarMessage bossBarMessage = message instanceof ChannelBossBarMessage ? (ChannelBossBarMessage) message : ChannelBossBarMessage.fromParent(message);
-            ChannelBossBarMessage bbMessage = bossBarMessage.colorize(ColorizeType.LEGACY);
+            Player player = (Player) receiver;
+
+            ChannelBossBarMessage bossBarMessage = (message instanceof ChannelBossBarMessage ? (ChannelBossBarMessage) message : ChannelBossBarMessage.fromParent(message)).colorize(ColorizeType.LEGACY);
             @SuppressWarnings("UnstableApiUsage")
             NamespacedKey key = new NamespacedKey("dapi","boss_bar_" + Util.generateRandomLowerCaseString(8));
-            KeyedBossBar bb = Bukkit.createBossBar(key, bbMessage.getRawMessage(), bbMessage.getColor(), bbMessage.getStyle(), bbMessage.getFlags());
-            bb.addPlayer((Player) receiver);
+            KeyedBossBar bb = Bukkit.createBossBar(key, bossBarMessage.getRawMessage(), bossBarMessage.getColor(), bossBarMessage.getStyle(), bossBarMessage.getFlags());
+            bb.addPlayer(player);
 
             // removal of BossBar
             Bukkit.getScheduler().runTaskLater(DAPI.getPlugin(), () -> {
-                bb.removePlayer((Player) receiver);
+                bb.removePlayer(player);
                 Bukkit.removeBossBar(key);
-            }, bbMessage.getStayTicks());
+            }, bossBarMessage.getStayTicks());
         }
     };
 
 
-    abstract public <T extends ChannelMessage> void send(@NotNull CommandSender receiver, @NotNull T message);
+    abstract public void send(@NotNull CommandSender receiver, @NotNull ChannelMessage message);
 
 
     public final void send(@NotNull CommandSender receiver, @NotNull String message) {
@@ -95,7 +100,7 @@ public abstract class ChannelType {
      * @param receiver Player/Console
      * @param message Message
      */
-    public final <T extends ChannelMessage> void sendWithPrefix(@NotNull CommandSender receiver, @NotNull T message) {
+    public final void sendWithPrefix(@NotNull CommandSender receiver, @NotNull ChannelMessage message) {
         send(receiver, message.insertPrefix());
     }
 
@@ -113,7 +118,7 @@ public abstract class ChannelType {
      * @param message Message
      * @param includeConsole whether send the message to console or not.
      */
-    public final <T extends ChannelMessage> void sendAll(@NotNull T message, boolean includeConsole) {
+    public final void sendAll(@NotNull ChannelMessage message, boolean includeConsole) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             send(player, message);
         }
@@ -134,7 +139,7 @@ public abstract class ChannelType {
      * @param message Message
      * @param includeConsole whether send the message to console or not.
      */
-    public final <T extends ChannelMessage> void sendAllWithPrefix(@NotNull T message, boolean includeConsole) {
+    public final void sendAllWithPrefix(@NotNull ChannelMessage message, boolean includeConsole) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             sendWithPrefix(player, message);
         }

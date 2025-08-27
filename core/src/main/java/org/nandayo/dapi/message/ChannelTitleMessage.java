@@ -50,6 +50,11 @@ public class ChannelTitleMessage extends ChannelMessage {
     protected ChannelTitleMessage(MiniString message) {
         super(message);
     }
+    protected ChannelTitleMessage(MiniString message, MiniString secondaryMessage) {
+        super(message);
+        Validate.validate(secondaryMessage != null, "Secondary message cannot be null!");
+        this.secondaryMessage = secondaryMessage.copy();
+    }
 
     public ChannelTitleMessage(String message) {
         super(message);
@@ -85,8 +90,12 @@ public class ChannelTitleMessage extends ChannelMessage {
         this.fadeOutTicks = fadeOutTicks;
     }
 
-    public static ChannelTitleMessage fromParent(ChannelMessage message) {
-        return new ChannelTitleMessage(message.message);
+    public static ChannelTitleMessage fromParent(ChannelMessage message, boolean isTitle) {
+        if(isTitle) {
+            return new ChannelTitleMessage(message.message);
+        }else {
+            return new ChannelTitleMessage(new MiniString(""), message.message);
+        }
     }
 
 
