@@ -39,8 +39,16 @@
                 <createDependencyReducedPom>false</createDependencyReducedPom>
                 <relocations>
                     <relocation>
-                        <pattern>net.kyori.adventure</pattern>
-                        <shadedPattern>org.nandayo.dapi.shaded.adventure</shadedPattern>
+                        <pattern>net.kyori</pattern>
+                        <shadedPattern>org.nandayo.dapi.shaded.kyori</shadedPattern>
+                    </relocation>
+                    <relocation>
+                        <pattern>net.objecthunter</pattern>
+                        <shadedPattern>org.nandayo.dapi.shaded.objecthunter</shadedPattern>
+                    </relocation>
+                    <relocation>
+                        <pattern>org.bstats</pattern>
+                        <shadedPattern>org.nandayo.dapi.shaded.bstats</shadedPattern>
                     </relocation>
                 </relocations>
             </configuration>
@@ -105,6 +113,12 @@
           <groupId>net.objecthunter</groupId>
           <artifactId>exp4j</artifactId>
           <version>0.4.8</version>
+          <scope>compile</scope>
+      </dependency>
+      <dependency>
+          <groupId>org.bstats</groupId>
+          <artifactId>bstats-bukkit</artifactId>
+          <version>3.1.0</version>
           <scope>compile</scope>
       </dependency>
   </dependencies>
