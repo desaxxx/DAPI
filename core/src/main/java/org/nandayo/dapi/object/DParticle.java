@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Only supports 1.16.1 - 1.21.7<br>
+ * Only supports 1.16.1 - 1.21.9<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)
  */
@@ -215,6 +215,8 @@ public enum DParticle {
     BLOCK_CRACK,
     @DDeprecated(since = "1.20.5")
     BLOCK_DUST,
+    @DInfo(since = "1.21.9")
+    COPPER_FIRE_FLAME,
     @DDeprecated(since = "1.20.5")
     CRIT_MAGIC,
     @DDeprecated(since = "1.20.5")

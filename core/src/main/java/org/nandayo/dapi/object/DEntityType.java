@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Only supports 1.16.1 - 1.21.7.<br>
+ * Only supports 1.16.1 - 1.21.9.<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
@@ -65,6 +65,8 @@ public enum DEntityType {
     COD,
     @DRenamed(since = "1.20.5", from = "MINECART_COMMAND")
     COMMAND_BLOCK_MINECART,
+    @DInfo(since = "1.21.9")
+    COPPER_GOLEM,
     COW,
     @DInfo(since = "1.21.2")
     CREAKING,
@@ -146,6 +148,8 @@ public enum DEntityType {
     MANGROVE_BOAT,
     @DInfo(since = "1.21.2")
     MANGROVE_CHEST_BOAT,
+    @DInfo(since = "1.21.9")
+    MANNEQUIN,
     @DInfo(since = "1.17")
     MARKER,
     MINECART,

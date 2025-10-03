@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 /**
- * Only supports 1.16.1 - 1.21.7.<br>
+ * Only supports 1.16.1 - 1.21.9.<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
@@ -392,12 +392,34 @@ public enum DSound {
     BLOCK_COPPER_BULB_TURN_OFF("block.copper_bulb.turn_off"),
     @DInfo(since = "1.21")
     BLOCK_COPPER_BULB_TURN_ON("block.copper_bulb.turn_on"),
+    @DInfo(since = "1.21.9")
+    BLOCK_COPPER_CHEST_CLOSE("block.copper_chest.close"),
+    @DInfo(since = "1.21.9")
+    BLOCK_COPPER_CHEST_OPEN("block.copper_chest.open"),
+    @DInfo(since = "1.21.9")
+    BLOCK_COPPER_CHEST_OXIDIZED_CLOSE("block.copper_chest_oxidized.close"),
+    @DInfo(since = "1.21.9")
+    BLOCK_COPPER_CHEST_OXIDIZED_OPEN("block.copper_chest_oxidized.open"),
+    @DInfo(since = "1.21.9")
+    BLOCK_COPPER_CHEST_WEATHERED_CLOSE("block.copper_chest_weathered.close"),
+    @DInfo(since = "1.21.9")
+    BLOCK_COPPER_CHEST_WEATHERED_OPEN("block.copper_chest_weathered.open"),
     @DInfo(since = "1.21")
     BLOCK_COPPER_DOOR_CLOSE("block.copper_door.close"),
     @DInfo(since = "1.21")
     BLOCK_COPPER_DOOR_OPEN("block.copper_door.open"),
     @DInfo(since = "1.17")
     BLOCK_COPPER_FALL("block.copper.fall"),
+    @DInfo(since = "1.21.9")
+    BLOCK_COPPER_GOLEM_STATUE_BREAK("block.copper_golem_statue.break"),
+    @DInfo(since = "1.21.9")
+    BLOCK_COPPER_GOLEM_STATUE_FALL("block.copper_golem_statue.fall"),
+    @DInfo(since = "1.21.9")
+    BLOCK_COPPER_GOLEM_STATUE_HIT("block.copper_golem_statue.hit"),
+    @DInfo(since = "1.21.9")
+    BLOCK_COPPER_GOLEM_STATUE_PLACE("block.copper_golem_statue.place"),
+    @DInfo(since = "1.21.9")
+    BLOCK_COPPER_GOLEM_STATUE_STEP("block.copper_golem_statue.step"),
     @DInfo(since = "1.21")
     BLOCK_COPPER_GRATE_BREAK("block.copper_grate.break"),
     @DInfo(since = "1.21")
@@ -1116,6 +1138,28 @@ public enum DSound {
     BLOCK_SCULK_VEIN_PLACE("block.sculk_vein.place"),
     @DInfo(since = "1.19")
     BLOCK_SCULK_VEIN_STEP("block.sculk_vein.step"),
+    @DInfo(since = "1.21.9")
+    BLOCK_SHELF_ACTIVATE("block.shelf.activate"),
+    @DInfo(since = "1.21.9")
+    BLOCK_SHELF_BREAK("block.shelf.break"),
+    @DInfo(since = "1.21.9")
+    BLOCK_SHELF_DEACTIVATE("block.shelf.deactivate"),
+    @DInfo(since = "1.21.9")
+    BLOCK_SHELF_FALL("block.shelf.fall"),
+    @DInfo(since = "1.21.9")
+    BLOCK_SHELF_HIT("block.shelf.hit"),
+    @DInfo(since = "1.21.9")
+    BLOCK_SHELF_MULTI_SWAP("block.shelf.multi_swap"),
+    @DInfo(since = "1.21.9")
+    BLOCK_SHELF_PLACE("block.shelf.place"),
+    @DInfo(since = "1.21.9")
+    BLOCK_SHELF_PLACE_ITEM("block.shelf.place_item"),
+    @DInfo(since = "1.21.9")
+    BLOCK_SHELF_SINGLE_SWAP("block.shelf.single_swap"),
+    @DInfo(since = "1.21.9")
+    BLOCK_SHELF_STEP("block.shelf.step"),
+    @DInfo(since = "1.21.9")
+    BLOCK_SHELF_TAKE_ITEM("block.shelf.take_item"),
     @DInfo(since = "1.16.1")
     BLOCK_SHROOMLIGHT_BREAK("block.shroomlight.break"),
     @DInfo(since = "1.16.1")
@@ -1564,6 +1608,44 @@ public enum DSound {
     ENTITY_COD_DEATH("entity.cod.death"),
     ENTITY_COD_FLOP("entity.cod.flop"),
     ENTITY_COD_HURT("entity.cod.hurt"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_BECOME_STATUE("entity.copper_golem_become_statue"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_DEATH("entity.copper_golem.death"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_HURT("entity.copper_golem.hurt"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_ITEM_DROP("entity.copper_golem.item_drop"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_ITEM_NO_DROP("entity.copper_golem.item_no_drop"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_NO_ITEM_GET("entity.copper_golem.no_item_get"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_NO_ITEM_NO_GET("entity.copper_golem.no_item_no_get"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_OXIDIZED_DEATH("entity.copper_golem_oxidized.death"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_OXIDIZED_HURT("entity.copper_golem_oxidized.hurt"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_OXIDIZED_SPIN("entity.copper_golem_oxidized.spin"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_OXIDIZED_STEP("entity.copper_golem_oxidized.step"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_SHEAR("entity.copper_golem.shear"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_SPAWN("entity.copper_golem.spawn"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_SPIN("entity.copper_golem.spin"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_STEP("entity.copper_golem.step"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_WEATHERED_DEATH("entity.copper_golem_weathered.death"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_WEATHERED_HURT("entity.copper_golem_weathered.hurt"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_WEATHERED_SPIN("entity.copper_golem_weathered.spin"),
+    @DInfo(since = "1.21.9")
+    ENTITY_COPPER_GOLEM_WEATHERED_STEP("entity.copper_golem_weathered.step"),
     ENTITY_COW_AMBIENT("entity.cow.ambient"),
     ENTITY_COW_DEATH("entity.cow.death"),
     ENTITY_COW_HURT("entity.cow.hurt"),
@@ -2426,6 +2508,8 @@ public enum DSound {
     @DInfo(since = "1.19.4")
     INTENTIONALLY_EMPTY("intentionally_empty"),
     ITEM_ARMOR_EQUIP_CHAIN("item.armor.equip_chain"),
+    @DInfo(since = "1.21.9")
+    ITEM_ARMOR_EQUIP_COPPER("item.armor.equip_copper"),
     ITEM_ARMOR_EQUIP_DIAMOND("item.armor.equip_diamond"),
     ITEM_ARMOR_EQUIP_ELYTRA("item.armor.equip_elytra"),
     ITEM_ARMOR_EQUIP_GENERIC("item.armor.equip_generic"),
@@ -2671,6 +2755,8 @@ public enum DSound {
     UI_TOAST_CHALLENGE_COMPLETE("ui.toast.challenge_complete"),
     UI_TOAST_IN("ui.toast.in"),
     UI_TOAST_OUT("ui.toast.out"),
+    @DInfo(since = "1.21.9")
+    WEATHER_END_FLASH("weather.end_flash"),
     WEATHER_RAIN("weather.rain"),
     WEATHER_RAIN_ABOVE("weather.rain.above"),
     //</editor-fold>

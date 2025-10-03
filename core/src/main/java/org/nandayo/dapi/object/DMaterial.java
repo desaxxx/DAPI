@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Only supports 1.16.1 - 1.21.7.<br>
+ * Only supports 1.16.1 - 1.21.9.<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
@@ -31,6 +31,8 @@ public enum DMaterial {
     ACACIA_PLANKS,
     ACACIA_PRESSURE_PLATE,
     ACACIA_SAPLING,
+    @DInfo(since = "1.21.9")
+    ACACIA_SHELF,
     ACACIA_SLAB,
     ACACIA_STAIRS,
     ACACIA_TRAPDOOR,
@@ -108,6 +110,8 @@ public enum DMaterial {
     @DInfo(since = "1.19.3")
     BAMBOO_RAFT,
     BAMBOO_SAPLING,
+    @DInfo(since = "1.21.9")
+    BAMBOO_SHELF,
     @DInfo(since = "1.19.3")
     BAMBOO_SIGN,
     @DInfo(since = "1.19.3")
@@ -152,6 +156,8 @@ public enum DMaterial {
     BIRCH_PLANKS,
     BIRCH_PRESSURE_PLATE,
     BIRCH_SAPLING,
+    @DInfo(since = "1.21.9")
+    BIRCH_SHELF,
     BIRCH_SIGN,
     BIRCH_SLAB,
     BIRCH_STAIRS,
@@ -315,7 +321,6 @@ public enum DMaterial {
     CAVE_VINES,
     @DInfo(since = "1.17")
     CAVE_VINES_PLANT,
-    CHAIN,
     CHAINMAIL_BOOTS,
     CHAINMAIL_CHESTPLATE,
     CHAINMAIL_HELMET,
@@ -346,6 +351,8 @@ public enum DMaterial {
     CHERRY_PRESSURE_PLATE,
     @DInfo(since = "1.19.4")
     CHERRY_SAPLING,
+    @DInfo(since = "1.21.9")
+    CHERRY_SHELF,
     @DInfo(since = "1.19.4")
     CHERRY_SIGN,
     @DInfo(since = "1.19.4")
@@ -429,18 +436,56 @@ public enum DMaterial {
     COOKED_RABBIT,
     COOKED_SALMON,
     COOKIE,
+    @DInfo(since = "1.21.9")
+    COPPER_AXE,
+    @DInfo(since = "1.21.9")
+    COPPER_BARS,
     COPPER_BLOCK,
+    @DInfo(since = "1.21.9")
+    COPPER_BOOTS,
     @DInfo(since = "1.20.3")
     COPPER_BULB,
+    @DInfo(since = "1.21.9")
+    COPPER_CHAIN,
+    @DInfo(since = "1.21.9")
+    COPPER_CHEST,
+    @DInfo(since = "1.21.9")
+    COPPER_CHESTPLATE,
     @DInfo(since = "1.20.3")
     COPPER_DOOR,
+    @DInfo(since = "1.21.9")
+    COPPER_GOLEM_SPAWN_EGG,
+    @DInfo(since = "1.21.9")
+    COPPER_GOLEM_STATUE,
     @DInfo(since = "1.20.3")
     COPPER_GRATE,
+    @DInfo(since = "1.21.9")
+    COPPER_HELMET,
+    @DInfo(since = "1.21.9")
+    COPPER_HOE,
+    @DInfo(since = "1.21.9")
+    COPPER_HORSE_ARMOR,
     COPPER_INGOT,
+    @DInfo(since = "1.21.9")
+    COPPER_LANTERN,
+    @DInfo(since = "1.21.9")
+    COPPER_LEGGINGS,
+    @DInfo(since = "1.21.9")
+    COPPER_NUGGET,
     @DInfo(since = "1.17")
     COPPER_ORE,
+    @DInfo(since = "1.21.9")
+    COPPER_PICKAXE,
+    @DInfo(since = "1.21.9")
+    COPPER_SHOVEL,
+    @DInfo(since = "1.21.9")
+    COPPER_SWORD,
+    @DInfo(since = "1.21.9")
+    COPPER_TORCH,
     @DInfo(since = "1.20.3")
     COPPER_TRAPDOOR,
+    @DInfo(since = "1.21.9")
+    COPPER_WALL_TORCH,
     CORNFLOWER,
     COW_SPAWN_EGG,
     @DInfo(since = "1.17")
@@ -473,6 +518,8 @@ public enum DMaterial {
     CRIMSON_PLANKS,
     CRIMSON_PRESSURE_PLATE,
     CRIMSON_ROOTS,
+    @DInfo(since = "1.21.9")
+    CRIMSON_SHELF,
     CRIMSON_SIGN,
     CRIMSON_SLAB,
     CRIMSON_STAIRS,
@@ -529,6 +576,8 @@ public enum DMaterial {
     DARK_OAK_PLANKS,
     DARK_OAK_PRESSURE_PLATE,
     DARK_OAK_SAPLING,
+    @DInfo(since = "1.21.9")
+    DARK_OAK_SHELF,
     DARK_OAK_SIGN,
     DARK_OAK_SLAB,
     DARK_OAK_STAIRS,
@@ -674,12 +723,22 @@ public enum DMaterial {
     EXPOSED_CHISELED_COPPER,
     @DInfo(since = "1.17")
     EXPOSED_COPPER,
+    @DInfo(since = "1.21.9")
+    EXPOSED_COPPER_BARS,
     @DInfo(since = "1.20.3")
     EXPOSED_COPPER_BULB,
+    @DInfo(since = "1.21.9")
+    EXPOSED_COPPER_CHAIN,
+    @DInfo(since = "1.21.9")
+    EXPOSED_COPPER_CHEST,
     @DInfo(since = "1.20.3")
     EXPOSED_COPPER_DOOR,
+    @DInfo(since = "1.21.9")
+    EXPOSED_COPPER_GOLEM_STATUE,
     @DInfo(since = "1.20.3")
     EXPOSED_COPPER_GRATE,
+    @DInfo(since = "1.21.9")
+    EXPOSED_COPPER_LANTERN,
     @DInfo(since = "1.20.3")
     EXPOSED_COPPER_TRAPDOOR,
     @DInfo(since = "1.17")
@@ -688,6 +747,8 @@ public enum DMaterial {
     EXPOSED_CUT_COPPER_SLAB,
     @DInfo(since = "1.17")
     EXPOSED_CUT_COPPER_STAIRS,
+    @DInfo(since = "1.21.9")
+    EXPOSED_LIGHTNING_ROD,
     @DInfo(since = "1.19.4")
     EYE_ARMOR_TRIM_SMITHING_TEMPLATE,
     FARMLAND,
@@ -872,6 +933,8 @@ public enum DMaterial {
     IRON_BARS,
     IRON_BLOCK,
     IRON_BOOTS,
+    @DRenamed(since = "1.21.9", from = "CHAIN")
+    IRON_CHAIN,
     IRON_CHESTPLATE,
     IRON_DOOR,
     @DInfo(since = "1.19.3")
@@ -904,6 +967,8 @@ public enum DMaterial {
     JUNGLE_PLANKS,
     JUNGLE_PRESSURE_PLATE,
     JUNGLE_SAPLING,
+    @DInfo(since = "1.21.9")
+    JUNGLE_SHELF,
     JUNGLE_SIGN,
     JUNGLE_SLAB,
     JUNGLE_STAIRS,
@@ -1065,6 +1130,8 @@ public enum DMaterial {
     MANGROVE_PROPAGULE,
     @DInfo(since = "1.19")
     MANGROVE_ROOTS,
+    @DInfo(since = "1.21.9")
+    MANGROVE_SHELF,
     @DInfo(since = "1.19")
     MANGROVE_SIGN,
     @DInfo(since = "1.19")
@@ -1197,6 +1264,8 @@ public enum DMaterial {
     OAK_PLANKS,
     OAK_PRESSURE_PLATE,
     OAK_SAPLING,
+    @DInfo(since = "1.21.9")
+    OAK_SHELF,
     OAK_SIGN,
     OAK_SLAB,
     OAK_STAIRS,
@@ -1243,12 +1312,22 @@ public enum DMaterial {
     OXIDIZED_CHISELED_COPPER,
     @DInfo(since = "1.17")
     OXIDIZED_COPPER,
+    @DInfo(since = "1.21.9")
+    OXIDIZED_COPPER_BARS,
     @DInfo(since = "1.20.3")
     OXIDIZED_COPPER_BULB,
+    @DInfo(since = "1.21.9")
+    OXIDIZED_COPPER_CHAIN,
+    @DInfo(since = "1.21.9")
+    OXIDIZED_COPPER_CHEST,
     @DInfo(since = "1.20.3")
     OXIDIZED_COPPER_DOOR,
+    @DInfo(since = "1.21.9")
+    OXIDIZED_COPPER_GOLEM_STATUE,
     @DInfo(since = "1.20.3")
     OXIDIZED_COPPER_GRATE,
+    @DInfo(since = "1.21.9")
+    OXIDIZED_COPPER_LANTERN,
     @DInfo(since = "1.20.3")
     OXIDIZED_COPPER_TRAPDOOR,
     @DInfo(since = "1.17")
@@ -1257,6 +1336,8 @@ public enum DMaterial {
     OXIDIZED_CUT_COPPER_SLAB,
     @DInfo(since = "1.17")
     OXIDIZED_CUT_COPPER_STAIRS,
+    @DInfo(since = "1.21.9")
+    OXIDIZED_LIGHTNING_ROD,
     PACKED_ICE,
     @DInfo(since = "1.19")
     PACKED_MUD,
@@ -1291,6 +1372,8 @@ public enum DMaterial {
     PALE_OAK_PRESSURE_PLATE,
     @DInfo(since = "1.21.2")
     PALE_OAK_SAPLING,
+    @DInfo(since = "1.21.9")
+    PALE_OAK_SHELF,
     @DInfo(since = "1.21.2")
     PALE_OAK_SIGN,
     @DInfo(since = "1.21.2")
@@ -1714,6 +1797,8 @@ public enum DMaterial {
     SPRUCE_PLANKS,
     SPRUCE_PRESSURE_PLATE,
     SPRUCE_SAPLING,
+    @DInfo(since = "1.21.9")
+    SPRUCE_SHELF,
     SPRUCE_SIGN,
     SPRUCE_SLAB,
     SPRUCE_STAIRS,
@@ -1885,6 +1970,8 @@ public enum DMaterial {
     WARPED_PLANKS,
     WARPED_PRESSURE_PLATE,
     WARPED_ROOTS,
+    @DInfo(since = "1.21.9")
+    WARPED_SHELF,
     WARPED_SIGN,
     WARPED_SLAB,
     WARPED_STAIRS,
@@ -1900,14 +1987,24 @@ public enum DMaterial {
     WATER_CAULDRON,
     @DInfo(since = "1.20.3")
     WAXED_CHISELED_COPPER,
+    @DInfo(since = "1.21.9")
+    WAXED_COPPER_BARS,
     @DInfo(since = "1.17")
     WAXED_COPPER_BLOCK,
     @DInfo(since = "1.20.3")
     WAXED_COPPER_BULB,
+    @DInfo(since = "1.21.9")
+    WAXED_COPPER_CHAIN,
+    @DInfo(since = "1.21.9")
+    WAXED_COPPER_CHEST,
     @DInfo(since = "1.20.3")
     WAXED_COPPER_DOOR,
+    @DInfo(since = "1.21.9")
+    WAXED_COPPER_GOLEM_STATUE,
     @DInfo(since = "1.20.3")
     WAXED_COPPER_GRATE,
+    @DInfo(since = "1.21.9")
+    WAXED_COPPER_LANTERN,
     @DInfo(since = "1.20.3")
     WAXED_COPPER_TRAPDOOR,
     @DInfo(since = "1.17")
@@ -1920,12 +2017,22 @@ public enum DMaterial {
     WAXED_EXPOSED_CHISELED_COPPER,
     @DInfo(since = "1.17")
     WAXED_EXPOSED_COPPER,
+    @DInfo(since = "1.21.9")
+    WAXED_EXPOSED_COPPER_BARS,
     @DInfo(since = "1.20.3")
     WAXED_EXPOSED_COPPER_BULB,
+    @DInfo(since = "1.21.9")
+    WAXED_EXPOSED_COPPER_CHAIN,
+    @DInfo(since = "1.21.9")
+    WAXED_EXPOSED_COPPER_CHEST,
     @DInfo(since = "1.20.3")
     WAXED_EXPOSED_COPPER_DOOR,
+    @DInfo(since = "1.21.9")
+    WAXED_EXPOSED_COPPER_GOLEM_STATUE,
     @DInfo(since = "1.20.3")
     WAXED_EXPOSED_COPPER_GRATE,
+    @DInfo(since = "1.21.9")
+    WAXED_EXPOSED_COPPER_LANTERN,
     @DInfo(since = "1.20.3")
     WAXED_EXPOSED_COPPER_TRAPDOOR,
     @DInfo(since = "1.17")
@@ -1934,16 +2041,30 @@ public enum DMaterial {
     WAXED_EXPOSED_CUT_COPPER_SLAB,
     @DInfo(since = "1.17")
     WAXED_EXPOSED_CUT_COPPER_STAIRS,
+    @DInfo(since = "1.21.9")
+    WAXED_EXPOSED_LIGHTNING_ROD,
+    @DInfo(since = "1.21.9")
+    WAXED_LIGHTNING_ROD,
     @DInfo(since = "1.20.3")
     WAXED_OXIDIZED_CHISELED_COPPER,
     @DInfo(since = "1.17")
     WAXED_OXIDIZED_COPPER,
+    @DInfo(since = "1.21.9")
+    WAXED_OXIDIZED_COPPER_BARS,
     @DInfo(since = "1.20.3")
     WAXED_OXIDIZED_COPPER_BULB,
+    @DInfo(since = "1.21.9")
+    WAXED_OXIDIZED_COPPER_CHAIN,
+    @DInfo(since = "1.21.9")
+    WAXED_OXIDIZED_COPPER_CHEST,
     @DInfo(since = "1.20.3")
     WAXED_OXIDIZED_COPPER_DOOR,
+    @DInfo(since = "1.21.9")
+    WAXED_OXIDIZED_COPPER_GOLEM_STATUE,
     @DInfo(since = "1.20.3")
     WAXED_OXIDIZED_COPPER_GRATE,
+    @DInfo(since = "1.21.9")
+    WAXED_OXIDIZED_COPPER_LANTERN,
     @DInfo(since = "1.20.3")
     WAXED_OXIDIZED_COPPER_TRAPDOOR,
     @DInfo(since = "1.17")
@@ -1952,16 +2073,28 @@ public enum DMaterial {
     WAXED_OXIDIZED_CUT_COPPER_SLAB,
     @DInfo(since = "1.17")
     WAXED_OXIDIZED_CUT_COPPER_STAIRS,
+    @DInfo(since = "1.21.9")
+    WAXED_OXIDIZED_LIGHTNING_ROD,
     @DInfo(since = "1.20.3")
     WAXED_WEATHERED_CHISELED_COPPER,
     @DInfo(since = "1.17")
     WAXED_WEATHERED_COPPER,
+    @DInfo(since = "1.21.9")
+    WAXED_WEATHERED_COPPER_BARS,
     @DInfo(since = "1.20.3")
     WAXED_WEATHERED_COPPER_BULB,
+    @DInfo(since = "1.21.9")
+    WAXED_WEATHERED_COPPER_CHAIN,
+    @DInfo(since = "1.21.9")
+    WAXED_WEATHERED_COPPER_CHEST,
     @DInfo(since = "1.20.3")
     WAXED_WEATHERED_COPPER_DOOR,
+    @DInfo(since = "1.21.9")
+    WAXED_WEATHERED_COPPER_GOLEM_STATUE,
     @DInfo(since = "1.20.3")
     WAXED_WEATHERED_COPPER_GRATE,
+    @DInfo(since = "1.21.9")
+    WAXED_WEATHERED_COPPER_LANTERN,
     @DInfo(since = "1.20.3")
     WAXED_WEATHERED_COPPER_TRAPDOOR,
     @DInfo(since = "1.17")
@@ -1970,18 +2103,30 @@ public enum DMaterial {
     WAXED_WEATHERED_CUT_COPPER_SLAB,
     @DInfo(since = "1.17")
     WAXED_WEATHERED_CUT_COPPER_STAIRS,
+    @DInfo(since = "1.21.9")
+    WAXED_WEATHERED_LIGHTNING_ROD,
     @DInfo(since = "1.20")
     WAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE,
     @DInfo(since = "1.20.3")
     WEATHERED_CHISELED_COPPER,
     @DInfo(since = "1.17")
     WEATHERED_COPPER,
+    @DInfo(since = "1.21.9")
+    WEATHERED_COPPER_BARS,
     @DInfo(since = "1.20.3")
     WEATHERED_COPPER_BULB,
+    @DInfo(since = "1.21.9")
+    WEATHERED_COPPER_CHAIN,
+    @DInfo(since = "1.21.9")
+    WEATHERED_COPPER_CHEST,
     @DInfo(since = "1.20.3")
     WEATHERED_COPPER_DOOR,
+    @DInfo(since = "1.21.9")
+    WEATHERED_COPPER_GOLEM_STATUE,
     @DInfo(since = "1.20.3")
     WEATHERED_COPPER_GRATE,
+    @DInfo(since = "1.21.9")
+    WEATHERED_COPPER_LANTERN,
     @DInfo(since = "1.20.3")
     WEATHERED_COPPER_TRAPDOOR,
     @DInfo(since = "1.17")
@@ -1990,6 +2135,8 @@ public enum DMaterial {
     WEATHERED_CUT_COPPER_SLAB,
     @DInfo(since = "1.17")
     WEATHERED_CUT_COPPER_STAIRS,
+    @DInfo(since = "1.21.9")
+    WEATHERED_LIGHTNING_ROD,
     WEEPING_VINES,
     WEEPING_VINES_PLANT,
     WET_SPONGE,
@@ -2071,6 +2218,8 @@ public enum DMaterial {
     //</editor-fold>
 
     //<editor-fold desc="Deprecated" defaultstate="collapsed">
+    @DDeprecated(since = "1.21.9")
+    CHAIN,
     @DDeprecated(since = "1.17")
     GRASS_PATH,
     @DInfo(since = "1.19.4")
