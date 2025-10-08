@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.nandayo.dapi.guimanager.MenuListener;
@@ -115,6 +116,6 @@ public final class DAPI {
      */
     @Getter
     @Setter
-    @Deprecated(since = "1.2.5", forRemoval = true)
+    @ApiStatus.Obsolete(since = "1.2.5")
     public static @NotNull String missingArgsMsg = "";
 }

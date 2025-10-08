@@ -1,7 +1,6 @@
 package org.nandayo.dapi;
 
 import org.junit.jupiter.api.Test;
-import org.nandayo.dapi.adventure.ComponentJTest;
 import org.nandayo.dapi.color.DColor;
 import org.nandayo.dapi.color.StyleTranslator;
 import org.nandayo.dapi.formula.Conditional;
@@ -90,9 +89,9 @@ public class TestClass {
         assertEquals(Double.MAX_VALUE, formula.setVariable("level", 4).evaluate());
     }
 
-    @Test
-    void compTest() {
-        System.out.println("Expected");
-        System.out.println(ComponentJTest.SERIALIZER.serialize(ComponentJTest.v4_24_0__1_21_8));
-    }
+//    @Test
+//    void compTest() {
+//        System.out.println("Expected");
+//        System.out.println(ComponentJTest.SERIALIZER.serialize(ComponentJTest.v4_24_0__1_21_8));
+//    }
 }
