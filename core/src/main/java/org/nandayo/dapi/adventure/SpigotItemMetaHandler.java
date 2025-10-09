@@ -68,7 +68,7 @@ final class SpigotItemMetaHandler implements ItemMetaHandler {
      */
     @NotNull
     private Object serializeComponent(Component component) {
-        if(Wrapper.getMinecraftVersion() >= 205) {
+        if(Wrapper.getMinecraftVersion() >= 2005) {
             return GsonComponentSerializer.gson().serialize(component); // String
         }else {
             //noinspection UnstableApiUsage
@@ -84,7 +84,7 @@ final class SpigotItemMetaHandler implements ItemMetaHandler {
      */
     @NotNull
     private Component deserializeComponent(Object obj) {
-        if(Wrapper.getMinecraftVersion() >= 205) {
+        if(Wrapper.getMinecraftVersion() >= 2005) {
             return GsonComponentSerializer.gson().deserialize((String) obj);
         }else {
             //noinspection UnstableApiUsage

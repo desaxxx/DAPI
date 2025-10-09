@@ -24,23 +24,8 @@ public class Wrapper {
     }
 
     private static int fetchVersion() {
-        String[] ver = Bukkit.getBukkitVersion().split("-")[0].split("\\.");
-        if(ver.length < 2) {
-            Util.logInternal("Could not fetch server version!");
-            return 165;
-        }
-        int major = 0;
-        try {
-            major = Integer.parseInt(ver[1]);
-        } catch (NumberFormatException ignored) {}
-        int minor = 0;
-        if(ver.length >= 3) {
-            try {
-                minor = Integer.parseInt(ver[2]);
-            } catch (NumberFormatException ignored) {}
-        }
-
-        return major * 10 + minor;
+        String ver = Bukkit.getBukkitVersion().split("-")[0];
+        return VersionUtil.intify(ver);
     }
 
     private static Attribute armorAttribute;
@@ -65,11 +50,11 @@ public class Wrapper {
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     private static void setupArmorAttributeModifier() {
-        if(minecraftVersion >= 213) {
+        if(minecraftVersion >= 2103) {
             armorAttribute = Attribute.ARMOR;
             attributeModifier = new AttributeModifier(new NamespacedKey("dapi", "foo"), 0, AttributeModifier.Operation.MULTIPLY_SCALAR_1, EquipmentSlotGroup.ANY);
         }
-        else if(minecraftVersion >= 210) {
+        else if(minecraftVersion >= 2100) {
             try {
                 Class<?> attributeClass = Class.forName("org.bukkit.attribute.Attribute");
                 armorAttribute = (Attribute) Enum.valueOf((Class<Enum>) attributeClass, "GENERIC_ARMOR");
@@ -104,10 +89,10 @@ public class Wrapper {
      * @param color Color
      */
     public static void editPotionMeta(@NotNull PotionMeta meta, @Nullable PotionType potionType, @Nullable Color color) {
-        if (minecraftVersion >= 205) {
+        if (minecraftVersion >= 2005) {
             meta.setBasePotionType(potionType);
         }
-        else if(minecraftVersion >= 202) {
+        else if(minecraftVersion >= 2002) {
             if(potionType != null) meta.setBasePotionType(potionType);
         }
         else {
@@ -136,7 +121,7 @@ public class Wrapper {
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static Sound getSound(@NotNull String key) {
-        if(minecraftVersion >= 164) {
+        if(minecraftVersion >= 1604) {
             return Registry.SOUNDS.get(NamespacedKey.minecraft(key));
         }
         else {
