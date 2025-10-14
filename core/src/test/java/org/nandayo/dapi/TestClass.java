@@ -6,6 +6,7 @@ import org.nandayo.dapi.color.StyleTranslator;
 import org.nandayo.dapi.formula.Conditional;
 import org.nandayo.dapi.formula.ValueFormula;
 import org.nandayo.dapi.util.HexUtil;
+import org.nandayo.dapi.util.VersionUtil;
 
 import java.util.*;
 
@@ -94,4 +95,13 @@ public class TestClass {
 //        System.out.println("Expected");
 //        System.out.println(ComponentJTest.SERIALIZER.serialize(ComponentJTest.v4_24_0__1_21_8));
 //    }
+
+    @Test
+    void testVersionUtil() {
+        assertEquals(2110, VersionUtil.intify("21.10"));
+        assertEquals(1802, VersionUtil.intify("18.2"));
+        assertEquals(10803, VersionUtil.intify("1.8.3"));
+        assertEquals("1.21.10", VersionUtil.stringify(12110));
+        assertEquals("18.1", VersionUtil.stringify(1801));
+    }
 }
