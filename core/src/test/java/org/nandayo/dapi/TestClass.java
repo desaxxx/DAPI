@@ -103,5 +103,6 @@ public class TestClass {
         assertEquals(10803, VersionUtil.intify("1.8.3"));
         assertEquals("1.21.10", VersionUtil.stringify(12110));
         assertEquals("18.1", VersionUtil.stringify(1801));
+        assertEquals("4.41.3.29", VersionUtil.stringify(4410329));
     }
 }
