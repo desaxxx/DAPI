@@ -25,7 +25,9 @@ public class Wrapper {
 
     private static int fetchVersion() {
         String ver = Bukkit.getBukkitVersion().split("-")[0];
-        return VersionUtil.intify(ver.substring(2)); // 1.21.10 -> 21.10 -> 2110
+        // 1.21.10  -> 21.10    -> 2110
+        // 1.19     -> 19       -> 1900
+        return VersionUtil.intify(ver.substring(2), 2);
     }
 
     private static Attribute armorAttribute;
