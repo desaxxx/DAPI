@@ -1,7 +1,6 @@
 package org.nandayo.dapi.message;
 
 import lombok.Getter;
-import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
 import org.nandayo.dapi.util.ColorizeType;
 import org.nandayo.dapi.util.Util;
@@ -37,7 +36,7 @@ public class ChannelTitleMessage extends ChannelMessage {
         this.fadeOutTicks = fadeOutTicks;
     }
     @Deprecated(since = "1.4.0", forRemoval = true)
-    public ChannelTitleMessage(Component message, Component secondaryMessage, int fadeInTicks, int stayTicks, int fadeOutTicks) {
+    public ChannelTitleMessage(Object message, Object secondaryMessage, int fadeInTicks, int stayTicks, int fadeOutTicks) {
         super("");
         Validate.validate(secondaryMessage != null, "Secondary message cannot be null!");
 
@@ -60,7 +59,7 @@ public class ChannelTitleMessage extends ChannelMessage {
         super(message);
     }
     @Deprecated(since = "1.4.0", forRemoval = true)
-    public ChannelTitleMessage(Component message) {
+    public ChannelTitleMessage(Object message) {
         super("");
     }
 
@@ -70,7 +69,7 @@ public class ChannelTitleMessage extends ChannelMessage {
         this.secondaryMessage = new MiniString(secondaryMessage);
     }
     @Deprecated(since = "1.4.0", forRemoval = true)
-    public ChannelTitleMessage(Component message, Component secondaryMessage) {
+    public ChannelTitleMessage(Object message, Object secondaryMessage) {
         super("");
         Validate.validate(secondaryMessage != null, "Secondary message cannot be null!");
         this.secondaryMessage = new MiniString("");
@@ -83,7 +82,7 @@ public class ChannelTitleMessage extends ChannelMessage {
         this.fadeOutTicks = fadeOutTicks;
     }
     @Deprecated(since = "1.4.0", forRemoval = true)
-    public ChannelTitleMessage(Component message, int fadeInTicks, int stayTicks, int fadeOutTicks) {
+    public ChannelTitleMessage(Object message, int fadeInTicks, int stayTicks, int fadeOutTicks) {
         super("");
         this.fadeInTicks = fadeInTicks;
         this.stayTicks = stayTicks;
@@ -109,7 +108,7 @@ public class ChannelTitleMessage extends ChannelMessage {
         return secondaryMessage.getRawText();
     }
     @Deprecated(since = "1.4.0", forRemoval = true)
-    public Component getSecondaryMessage() {
+    public Object getSecondaryMessage() {
         return null;
     }
 

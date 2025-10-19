@@ -1,6 +1,5 @@
 package org.nandayo.dapi.util;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -109,7 +108,7 @@ public class ItemCreator {
      * @return ItemCreator.
      */
     @Deprecated(since = "1.4.0")
-    public ItemCreator namePaper(@Nullable Component name) {
+    public ItemCreator namePaper(@Nullable Object name) {
         return this;
     }
 
@@ -119,7 +118,8 @@ public class ItemCreator {
      * @param nameSupplier Supplier of Component
      * @return ItemCreator
      */
-    public ItemCreator namePaper(Supplier<@Nullable Component> nameSupplier) {
+    @Deprecated(since = "1.4.0")
+    public ItemCreator namePaper(Supplier<@Nullable Object> nameSupplier) {
         Validate.validate(nameSupplier != null, "Name supplier cannot be null!");
         return namePaper(nameSupplier.get());
     }
@@ -129,6 +129,7 @@ public class ItemCreator {
      * @param name MiniString
      * @return ItemCreator
      */
+    @Deprecated(since = "1.4.0")
     public ItemCreator nameMini(@Nullable MiniString name) {
         return name(name == null ? null : name.colorize(ColorizeType.LEGACY).getRawText());
     }
@@ -138,6 +139,7 @@ public class ItemCreator {
      * @param name Supplier of MiniString
      * @return ItemCreator
      */
+    @Deprecated(since = "1.4.0")
     public ItemCreator nameMini(Supplier<@Nullable MiniString> name) {
         Validate.validate(name != null, "Name supplier cannot be null!");
         return nameMini(name.get());
@@ -186,7 +188,7 @@ public class ItemCreator {
      * @return ItemCreator
      */
     @Deprecated(since = "1.4.0")
-    public ItemCreator lorePaper(@Nullable List<Component> lore) {
+    public ItemCreator lorePaper(@Nullable List<Object> lore) {
         return this;
     }
 
@@ -196,7 +198,8 @@ public class ItemCreator {
      * @param lore Components
      * @return ItemCreator
      */
-    public ItemCreator lorePaper(Component @Nullable... lore) {
+    @Deprecated(since = "1.4.0")
+    public ItemCreator lorePaper(Object @Nullable... lore) {
         return lorePaper(lore == null ? null : List.of(lore));
     }
 
@@ -206,7 +209,8 @@ public class ItemCreator {
      * @param loreSupplier Supplier of Component list
      * @return ItemCreator
      */
-    public ItemCreator lorePaper(Supplier<@Nullable List<Component>> loreSupplier) {
+    @Deprecated(since = "1.4.0")
+    public ItemCreator lorePaper(Supplier<@Nullable List<Object>> loreSupplier) {
         return lorePaper(loreSupplier == null ? null : loreSupplier.get());
     }
 
@@ -215,6 +219,7 @@ public class ItemCreator {
      * @param lore String list
      * @return ItemCreator
      */
+    @Deprecated(since = "1.4.0")
     public ItemCreator loreMini(@Nullable List<MiniString> lore) {
         return lore(lore == null ? null : lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.LEGACY).getRawText()).collect(Collectors.toList()));
     }
@@ -224,6 +229,7 @@ public class ItemCreator {
      * @param lore Components
      * @return ItemCreator
      */
+    @Deprecated(since = "1.4.0")
     public ItemCreator loreMini(MiniString @Nullable... lore) {
         return loreMini(lore == null ? null : List.of(lore));
     }
@@ -233,6 +239,7 @@ public class ItemCreator {
      * @param loreSupplier Supplier of Component list
      * @return ItemCreator
      */
+    @Deprecated(since = "1.4.0")
     public ItemCreator loreMini(Supplier<@Nullable List<MiniString>> loreSupplier) {
         return loreMini(loreSupplier == null ? null : loreSupplier.get());
     }
@@ -279,7 +286,7 @@ public class ItemCreator {
      * @return ItemCreator
      */
     @Deprecated(since = "1.4.0")
-    public ItemCreator addLorePaper(List<Component> lore) {
+    public ItemCreator addLorePaper(List<Object> lore) {
         Validate.validate(lore != null, "Lore to be added cannot be null!");
         return this;
     }
@@ -290,7 +297,8 @@ public class ItemCreator {
      * @param lore Components
      * @return ItemCreator
      */
-    public ItemCreator addLorePaper(Component... lore) {
+    @Deprecated(since = "1.4.0")
+    public ItemCreator addLorePaper(Object... lore) {
         return addLorePaper(List.of(lore));
     }
 
@@ -300,7 +308,8 @@ public class ItemCreator {
      * @param loreSupplier Supplier of Component List
      * @return ItemCreator
      */
-    public ItemCreator addLorePaper(Supplier<List<Component>> loreSupplier) {
+    @Deprecated(since = "1.4.0")
+    public ItemCreator addLorePaper(Supplier<List<Object>> loreSupplier) {
         return addLorePaper(loreSupplier == null ? null : loreSupplier.get());
     }
 
@@ -309,6 +318,7 @@ public class ItemCreator {
      * @param lore MiniString list
      * @return ItemCreator
      */
+    @Deprecated(since = "1.4.0")
     public ItemCreator addLoreMini(List<MiniString> lore) {
         return addLore(lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.LEGACY).getRawText()).collect(Collectors.toList()));
     }
@@ -318,6 +328,7 @@ public class ItemCreator {
      * @param lore MiniStrings
      * @return ItemCreator
      */
+    @Deprecated(since = "1.4.0")
     public ItemCreator addLoreMini(MiniString... lore) {
         return addLoreMini(List.of(lore));
     }
@@ -327,8 +338,9 @@ public class ItemCreator {
      * @param loreSupplier Supplier of MiniMessage List
      * @return ItemCreator
      */
+    @Deprecated(since = "1.4.0")
     public ItemCreator addLoreMini(Supplier<List<MiniString>> loreSupplier) {
-        return addLoreMini(loreSupplier == null ? null : loreSupplier.get());
+        return addLoreMini(loreSupplier == null ? new ArrayList<>() : loreSupplier.get());
     }
 
     /**

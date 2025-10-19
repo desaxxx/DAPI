@@ -84,36 +84,36 @@
       </dependency>
 
       <!-- Adventure -->
-      <dependency>
-          <groupId>net.kyori</groupId>
-          <artifactId>adventure-api</artifactId>
-          <version>4.23.0</version>
-          <scope>compile</scope>
-      </dependency>
-      <dependency>
-          <groupId>net.kyori</groupId>
-          <artifactId>adventure-platform-bukkit</artifactId>
-          <version>4.4.1</version>
-          <scope>compile</scope>
-      </dependency>
-      <dependency>
-          <groupId>net.kyori</groupId>
-          <artifactId>adventure-text-minimessage</artifactId>
-          <version>4.23.0</version>
-          <scope>compile</scope>
-      </dependency>
+<!--      <dependency>-->
+<!--          <groupId>net.kyori</groupId>-->
+<!--          <artifactId>adventure-api</artifactId>-->
+<!--          <version>4.23.0</version>-->
+<!--          <scope>compile</scope>-->
+<!--      </dependency>-->
+<!--      <dependency>-->
+<!--          <groupId>net.kyori</groupId>-->
+<!--          <artifactId>adventure-platform-bukkit</artifactId>-->
+<!--          <version>4.4.1</version>-->
+<!--          <scope>compile</scope>-->
+<!--      </dependency>-->
+<!--      <dependency>-->
+<!--          <groupId>net.kyori</groupId>-->
+<!--          <artifactId>adventure-text-minimessage</artifactId>-->
+<!--          <version>4.23.0</version>-->
+<!--          <scope>compile</scope>-->
+<!--      </dependency>-->
 
       <dependency>
           <groupId>com.github.desaxxx</groupId>
           <artifactId>AnvilMenu</artifactId>
-          <version>0.1.2</version>
+          <version>0.3</version>
           <scope>provided</scope>
       </dependency>
       <dependency>
           <groupId>net.objecthunter</groupId>
           <artifactId>exp4j</artifactId>
           <version>0.4.8</version>
-          <scope>compile</scope>
+          <scope>provided</scope>
       </dependency>
       <dependency>
           <groupId>org.bstats</groupId>

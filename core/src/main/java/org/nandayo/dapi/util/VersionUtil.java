@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  * This class allows for the normalization of versions to a fixed number of parts,
  * which is essential for reliable version comparisons.
  *
- * @since 1.4.3
+ * @since 1.5
  */
 public class VersionUtil {
 

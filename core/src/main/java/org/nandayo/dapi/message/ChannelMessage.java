@@ -1,7 +1,6 @@
 package org.nandayo.dapi.message;
 
 import lombok.Getter;
-import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.NotNull;
 import org.nandayo.dapi.util.ColorizeType;
 import org.nandayo.dapi.util.Util;
@@ -24,7 +23,7 @@ public class ChannelMessage implements IChannelMessage {
         this.message = new MiniString(message);
     }
     @Deprecated(since = "1.4.0", forRemoval = true)
-    public ChannelMessage(Component message) {
+    public ChannelMessage(Object message) {
         Validate.validate(message != null, "Message cannot be null!");
         this.message = new MiniString("");
     }
@@ -43,7 +42,7 @@ public class ChannelMessage implements IChannelMessage {
 
     @Override
     @Deprecated(since = "1.4.0", forRemoval = true)
-    public Component getMessage() {
+    public Object getMessage() {
         return null;
     }
 

@@ -1,7 +1,6 @@
 package org.nandayo.dapi.model;
 
 import lombok.Getter;
-import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.nandayo.dapi.util.ColorizeType;
@@ -14,7 +13,7 @@ import org.nandayo.dapi.util.Validate;
  * @since 1.2.9
  */
 @SuppressWarnings("unused")
-@ApiStatus.Experimental
+@ApiStatus.Obsolete(since = "1.5")
 public class MiniString {
 
     @Getter
@@ -26,7 +25,7 @@ public class MiniString {
     }
 
     @Deprecated(since = "1.4.0", forRemoval = true)
-    public MiniString(Component component) {
+    public MiniString(Object component) {
         this.rawText = "";
     }
 
@@ -72,7 +71,7 @@ public class MiniString {
      * @since 1.2.9
      */
     @Deprecated(since = "1.4.0", forRemoval = true)
-    public Component asComponent() {
+    public Object asComponent() {
         return null;
     }
 }
