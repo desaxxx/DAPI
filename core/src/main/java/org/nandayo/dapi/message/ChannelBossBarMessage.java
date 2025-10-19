@@ -10,8 +10,6 @@ import org.nandayo.dapi.util.Util;
 import org.nandayo.dapi.model.MiniString;
 import org.nandayo.dapi.util.Validate;
 
-import java.awt.*;
-
 @Getter
 @SuppressWarnings("unused")
 public class ChannelBossBarMessage extends ChannelMessage {
@@ -39,7 +37,7 @@ public class ChannelBossBarMessage extends ChannelMessage {
         this.flags = flags;
     }
     @Deprecated(since = "1.4.0")
-    public ChannelBossBarMessage(Component message, int stayTicks, double progress, BarColor color, BarStyle style, BarFlag... flags) {
+    public ChannelBossBarMessage(Object message, int stayTicks, double progress, BarColor color, BarStyle style, BarFlag... flags) {
         super("");
         Validate.validate(color != null, "BarColor cannot be null!");
         Validate.validate(style != null, "BarStyle cannot be null!");
@@ -58,7 +56,7 @@ public class ChannelBossBarMessage extends ChannelMessage {
         this.progress = Math.max(0.0F, Math.min(1.0F, progress));
     }
     @Deprecated(since = "1.4.0")
-    public ChannelBossBarMessage(Component message, int stayTicks, double progress) {
+    public ChannelBossBarMessage(Object message, int stayTicks, double progress) {
         super("");
         this.stayTicks = Math.max(1, stayTicks);
         this.progress = Math.max(0.0F, Math.min(1.0F, progress));
@@ -72,7 +70,7 @@ public class ChannelBossBarMessage extends ChannelMessage {
         super(message);
     }
     @Deprecated(since = "1.4.0")
-    public ChannelBossBarMessage(Component message) {
+    public ChannelBossBarMessage(Object message) {
         super("");
     }
 

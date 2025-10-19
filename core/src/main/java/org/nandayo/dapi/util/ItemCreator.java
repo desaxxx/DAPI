@@ -129,7 +129,6 @@ public class ItemCreator {
      * @param name MiniString
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
     public ItemCreator nameMini(@Nullable MiniString name) {
         return name(name == null ? null : name.colorize(ColorizeType.LEGACY).getRawText());
     }
@@ -139,7 +138,6 @@ public class ItemCreator {
      * @param name Supplier of MiniString
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
     public ItemCreator nameMini(Supplier<@Nullable MiniString> name) {
         Validate.validate(name != null, "Name supplier cannot be null!");
         return nameMini(name.get());
@@ -219,7 +217,6 @@ public class ItemCreator {
      * @param lore String list
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
     public ItemCreator loreMini(@Nullable List<MiniString> lore) {
         return lore(lore == null ? null : lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.LEGACY).getRawText()).collect(Collectors.toList()));
     }
@@ -229,7 +226,6 @@ public class ItemCreator {
      * @param lore Components
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
     public ItemCreator loreMini(MiniString @Nullable... lore) {
         return loreMini(lore == null ? null : List.of(lore));
     }
@@ -239,7 +235,6 @@ public class ItemCreator {
      * @param loreSupplier Supplier of Component list
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
     public ItemCreator loreMini(Supplier<@Nullable List<MiniString>> loreSupplier) {
         return loreMini(loreSupplier == null ? null : loreSupplier.get());
     }
@@ -318,7 +313,6 @@ public class ItemCreator {
      * @param lore MiniString list
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
     public ItemCreator addLoreMini(List<MiniString> lore) {
         return addLore(lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.LEGACY).getRawText()).collect(Collectors.toList()));
     }
@@ -328,7 +322,6 @@ public class ItemCreator {
      * @param lore MiniStrings
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
     public ItemCreator addLoreMini(MiniString... lore) {
         return addLoreMini(List.of(lore));
     }
@@ -338,7 +331,6 @@ public class ItemCreator {
      * @param loreSupplier Supplier of MiniMessage List
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
     public ItemCreator addLoreMini(Supplier<List<MiniString>> loreSupplier) {
         return addLoreMini(loreSupplier == null ? new ArrayList<>() : loreSupplier.get());
     }
