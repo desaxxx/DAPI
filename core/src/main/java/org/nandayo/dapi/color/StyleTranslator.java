@@ -17,6 +17,8 @@ public class StyleTranslator {
     @ApiStatus.Obsolete
     private static final Pattern CUSTOM_GRADIENT_PATTERN_2 = Pattern.compile("<(#[0-9A-Fa-f]{6})>(.*?)</(#[0-9A-Fa-f]{6})>");
     private static final Pattern CUSTOM_HEX_PATTERN = Pattern.compile("&(#[0-9A-Fa-f]{6})");
+    @ApiStatus.Obsolete
+    private static final Pattern CUSTOM_HEX_PATTERN_2 = Pattern.compile("<(#[0-9A-Fa-f]{6})>");
 
     private static final Pattern LEGACY_COLOR_PATTERN = Pattern.compile("§([0-9A-Fa-f])");
     private static final Pattern LEGACY_DECORATION_PATTERN = Pattern.compile("§([K-Ok-oRr])");
@@ -94,7 +96,7 @@ public class StyleTranslator {
         if(input == null || input.isEmpty()) return "";
         String output = input;
 
-        final Matcher matcher = CUSTOM_HEX_PATTERN.matcher(output);
+        Matcher matcher = CUSTOM_HEX_PATTERN.matcher(output);
         while (matcher.find()) {
             String original = matcher.group(); // -> &#RRGGBB
             String hex = matcher.group(1); // -> #RRGGBB
@@ -104,6 +106,18 @@ public class StyleTranslator {
                 output = output.replace(original, color.insertLegacyStyleChar()); // -> §x§R§R§G§G§B§B
             } catch (Exception ignored) {}
         }
+
+        matcher = CUSTOM_HEX_PATTERN_2.matcher(output);
+        while (matcher.find()) {
+            String original = matcher.group(); // -> <#RRGGBB>
+            String hex = matcher.group(1); // -> #RRGGBB
+
+            try {
+                DColor color = DColor.of(hex);
+                output = output.replace(original, color.insertLegacyStyleChar()); // -> §x§R§R§G§G§B§B
+            } catch (Exception ignored) {}
+        }
+
         return output;
     }
 

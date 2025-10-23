@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestClass {
 
-    //@Test
+    @Test
     void testColors() {
         String s1 = "<aqua>Aqua, <light_purple>Light purple, <dark_blue>Dark blue, <#ff00bb>Hex-1, &#cc44ffHex-2, <italic>Italic, <bold>Bold, &nUnderline, &6Orange, &rReset, &0Black, &cRed, &6Another orange, &kObfuscate, &mStrikethrough";
         System.out.println(HexUtil.colorToMiniMessage(s1));
@@ -22,6 +22,10 @@ public class TestClass {
         String customHex = "&#ffcc55Hi!";
         System.out.println(StyleTranslator.applyCustomHex(customHex));
         System.out.println(HexUtil.colorize(customHex));
+
+        String customHex2 = "<#ffcc55>Feels weird...";
+        System.out.println(StyleTranslator.applyCustomHex(customHex2));
+        System.out.println(HexUtil.colorize(customHex2));
 
         String gradientText = "<&#A1D2DB>Hellooo :></&#3342C7>";
         System.out.println(HexUtil.colorize(gradientText));
