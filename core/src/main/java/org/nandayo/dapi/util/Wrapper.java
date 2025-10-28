@@ -52,7 +52,7 @@ public class Wrapper {
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     private static void setupArmorAttributeModifier() {
-        int MC = fetchVersion();
+        int MC = getMinecraftVersion();
         if(MC >= 2103) {
             armorAttribute = Attribute.ARMOR;
             attributeModifier = new AttributeModifier(new NamespacedKey("dapi", "foo"), 0, AttributeModifier.Operation.MULTIPLY_SCALAR_1, EquipmentSlotGroup.ANY);
@@ -92,7 +92,7 @@ public class Wrapper {
      * @param color Color
      */
     public static void editPotionMeta(@NotNull PotionMeta meta, @Nullable PotionType potionType, @Nullable Color color) {
-        int MC = fetchVersion();
+        int MC = getMinecraftVersion();
         if (MC >= 2005) {
             meta.setBasePotionType(potionType);
         }
@@ -125,7 +125,7 @@ public class Wrapper {
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static Sound getSound(@NotNull String key) {
-        if(fetchVersion() >= 1604) {
+        if(getMinecraftVersion() >= 1604) {
             return Registry.SOUNDS.get(NamespacedKey.minecraft(key));
         }
         else {
