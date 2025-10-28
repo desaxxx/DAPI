@@ -52,11 +52,12 @@ public class Wrapper {
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     private static void setupArmorAttributeModifier() {
-        if(minecraftVersion >= 2103) {
+        int MC = fetchVersion();
+        if(MC >= 2103) {
             armorAttribute = Attribute.ARMOR;
             attributeModifier = new AttributeModifier(new NamespacedKey("dapi", "foo"), 0, AttributeModifier.Operation.MULTIPLY_SCALAR_1, EquipmentSlotGroup.ANY);
         }
-        else if(minecraftVersion >= 2100) {
+        else if(MC >= 2100) {
             try {
                 Class<?> attributeClass = Class.forName("org.bukkit.attribute.Attribute");
                 armorAttribute = (Attribute) Enum.valueOf((Class<Enum>) attributeClass, "GENERIC_ARMOR");
@@ -91,10 +92,11 @@ public class Wrapper {
      * @param color Color
      */
     public static void editPotionMeta(@NotNull PotionMeta meta, @Nullable PotionType potionType, @Nullable Color color) {
-        if (minecraftVersion >= 2005) {
+        int MC = fetchVersion();
+        if (MC >= 2005) {
             meta.setBasePotionType(potionType);
         }
-        else if(minecraftVersion >= 2002) {
+        else if(MC >= 2002) {
             if(potionType != null) meta.setBasePotionType(potionType);
         }
         else {
@@ -123,7 +125,7 @@ public class Wrapper {
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static Sound getSound(@NotNull String key) {
-        if(minecraftVersion >= 1604) {
+        if(fetchVersion() >= 1604) {
             return Registry.SOUNDS.get(NamespacedKey.minecraft(key));
         }
         else {
