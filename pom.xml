@@ -7,7 +7,7 @@
     <groupId>org.nandayo</groupId>
     <artifactId>DAPI</artifactId>
     <!-- Note to author: Also update in DAPI.java -->
-    <version>1.4.2</version>
+    <version>1.5</version>
     <packaging>pom</packaging>
 
     <modules>
