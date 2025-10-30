@@ -85,13 +85,4 @@ public interface DSubCommand {
 
     @Deprecated(since = "1.5.1", forRemoval = true)
     default void executeCheckPermission(@NotNull CommandSender commandSender, @NotNull String[] args) {}
-
-    @Deprecated(since = "1.5.1")
-    default boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        return true;
-    }
-    @Deprecated(since = "1.5.1")
-    default @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        return List.of();
-    }
 }
