@@ -1,20 +1,21 @@
 package org.nandayo.dapi.command;
 
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.nandayo.dapi.util.Util;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @since 1.4.2
  */
 @ApiStatus.Experimental
-public interface DSubCommand extends CommandExecutor, TabCompleter {
+public interface DSubCommand {
 
     @NotNull String name();
     @NotNull Set<String> aliases();
@@ -29,33 +30,41 @@ public interface DSubCommand extends CommandExecutor, TabCompleter {
     //
     void execute(@NotNull CommandSender commandSender, @NotNull String[] args);
 
-    default void executeIf(@NotNull CommandSender commandSender, @NotNull String[] args, boolean condition) {
-        if(!condition) return;
-        execute(commandSender, args);
-    }
-    default void executeCheckPermission(@NotNull CommandSender commandSender, @NotNull String[] args) {
-        executeIf(commandSender, args, commandSender.hasPermission(permission()));
+    /**
+     * @since 1.5.1
+     */
+    default boolean canExecute(@NotNull CommandSender commandSender) {
+        if(!commandSender.hasPermission(permission())) {
+            Util.tell(commandSender, "&cYou don't have permission to execute this command.");
+            return false;
+        }
+        return true;
     }
 
     @Nullable
     default List<String> tabComplete(@NotNull CommandSender commandSender, @NotNull String[] args) {
         int argNum = args.length;
-        List<String> cumulativeSubCommandNames = new ArrayList<>();
+        Set<DSubCommand> subCommands = CommandHelper.getSubCommandsAtDepth(this.command(), argNum);
 
-        for(DSubCommand subCommand : CommandHelper.cumulativeSubCommands(command(), 0, argNum)) {
-            cumulativeSubCommandNames.add(subCommand.name());
-            if(ignoreAliasesOnTabComplete()) continue;
-            cumulativeSubCommandNames.addAll(subCommand.aliases());
-        }
-
-        return cumulativeSubCommandNames;
+        return subCommands.stream()
+                .flatMap(subCommand -> Stream.concat(
+                        Stream.of(subCommand.name()),
+                        this.ignoreAliasesOnTabComplete() ? Stream.empty() : subCommand.aliases().stream()
+                ))
+                .collect(Collectors.toList());
     }
     default boolean ignoreAliasesOnTabComplete() {
         return false;
     }
 
     default void callSubCommand(@NotNull CommandSender commandSender, @NotNull String[] args, @NotNull String subCommandNameOrAlias) {
-        subCommand(subCommandNameOrAlias).ifPresent(sc -> sc.executeCheckPermission(commandSender, args));
+        subCommand(subCommandNameOrAlias).ifPresent(sc -> {
+            if(!sc.canExecute(commandSender)) {
+                return;
+            }
+
+            sc.execute(commandSender, args);
+        });
     }
 
     @NotNull
@@ -67,13 +76,22 @@ public interface DSubCommand extends CommandExecutor, TabCompleter {
 
 
 
-    @Override
+
+    //============
+    // Deprecation
+
+    @Deprecated(since = "1.5.1", forRemoval = true)
+    default void executeIf(@NotNull CommandSender commandSender, @NotNull String[] args, boolean condition) {}
+
+    @Deprecated(since = "1.5.1", forRemoval = true)
+    default void executeCheckPermission(@NotNull CommandSender commandSender, @NotNull String[] args) {}
+
+    @Deprecated(since = "1.5.1")
     default boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        execute(commandSender, args);
         return true;
     }
-    @Override
+    @Deprecated(since = "1.5.1")
     default @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        return tabComplete(commandSender, args);
+        return List.of();
     }
 }

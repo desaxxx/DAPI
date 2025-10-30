@@ -3,20 +3,33 @@ package org.nandayo.dapi.command;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @since 1.4.2
+ */
 class CommandHelper {
 
-    public static Set<DSubCommand> cumulativeSubCommands(DSubCommand root, int current, int aimed) {
-        Set<DSubCommand> subCommands = new HashSet<>();
-        if(current > aimed) return subCommands;
-        if(current == aimed) {
-            subCommands.add(root);
-            return subCommands;
-        }
+    /**
+     * @since 1.5.1
+     */
+    public static Set<DSubCommand> getSubCommandsAtDepth(DSubCommand root, int targetDepth) {
+        Set<DSubCommand> collector = new HashSet<>();
+        findSubCommandsAtDepth(root, 0, targetDepth, collector);
+        return collector;
+    }
 
-        for(DSubCommand subCommand : root.subCommands()) {
-            subCommands.addAll(cumulativeSubCommands(subCommand, current+1, aimed));
+    /**
+     * @since 1.5.1
+     */
+    private static void findSubCommandsAtDepth(DSubCommand root, int currentDepth, int targetDepth, Set<DSubCommand> collector) {
+        if (currentDepth == targetDepth) {
+            collector.add(root);
+            return;
         }
-
-        return subCommands;
+        if (currentDepth > targetDepth) {
+            return;
+        }
+        for (DSubCommand subCommand : root.subCommands()) {
+            findSubCommandsAtDepth(subCommand, currentDepth + 1, targetDepth, collector);
+        }
     }
 }
