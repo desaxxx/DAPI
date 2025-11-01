@@ -102,6 +102,37 @@ public class ItemCreator {
     }
 
     /**
+     * Replaces text in the item's display name.
+     * <p>
+     * This method takes a variable number of strings, interpreting them as
+     * "find-and-replace" pairs. For example, calling
+     * {@code replaceInName("a", "b", "c", "d")} would replace all occurrences
+     * of "a" with "b", and then all occurrences of "c" with "d".
+     * <p>
+     * The replacements are applied sequentially. If an odd number of arguments
+     * is provided, the final string will be ignored.
+     * <p>
+     * @param strings A vararg list of find-and-replace pairs.
+     * @return ItemCreator
+     * @since 1.5.1
+     */
+    public ItemCreator replaceInName(@Nullable String... strings) {
+        if(hasMeta()) {
+            String name = meta.getDisplayName();
+            int limit = (strings.length / 2) * 2;
+            for (int i = 0; i < limit; i += 2) {
+                String find = strings[i];
+                String replace = strings[i + 1];
+                if (find != null && replace != null) {
+                    name = name.replace(find, replace);
+                }
+            }
+            meta.setDisplayName(name);
+        }
+        return this;
+    }
+
+    /**
      * Set name of the item stack using component.
      * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
      * @param name Component
@@ -333,6 +364,77 @@ public class ItemCreator {
      */
     public ItemCreator addLoreMini(Supplier<List<MiniString>> loreSupplier) {
         return addLoreMini(loreSupplier == null ? new ArrayList<>() : loreSupplier.get());
+    }
+
+    /**
+     * Replaces texts in the item's lore.
+     * <p>
+     * This method takes a variable number of strings, interpreting them as
+     * "find-and-replace" pairs. For example, calling
+     * {@code replaceInLore("a", "b", "c", "d")} would replace all occurrences
+     * of "a" with "b", and then all occurrences of "c" with "d".
+     * <p>
+     * The replacements are applied sequentially. If an odd number of arguments
+     * is provided, the final string will be ignored.
+     * <p>
+     * @param strings A vararg list of find-and-replace pairs.
+     * @return ItemCreator
+     * @since 1.5.1
+     */
+    public ItemCreator replaceInLore(@Nullable String... strings) {
+        if(hasMeta()) {
+            List<String> lore = meta.getLore();
+            if(lore == null) {
+                return this;
+            }
+            int limit = (strings.length / 2) * 2;
+            for (int i = 0; i < limit; i += 2) {
+                String find = strings[i];
+                String replace = strings[i + 1];
+                if (find != null && replace != null) {
+                    lore.replaceAll(s -> s.replace(find, replace));
+                }
+            }
+            meta.setLore(lore);
+        }
+        return this;
+    }
+
+    /**
+     * Replaces texts in the item's display name and lore.
+     * <p>
+     * This method takes a variable number of strings, interpreting them as
+     * "find-and-replace" pairs. For example, calling
+     * {@code replaceInNameAndLore("a", "b", "c", "d")} would replace all occurrences
+     * of "a" with "b", and then all occurrences of "c" with "d".
+     * <p>
+     * The replacements are applied sequentially. If an odd number of arguments
+     * is provided, the final string will be ignored.
+     * <p>
+     * @param strings A vararg list of find-and-replace pairs.
+     * @return ItemCreator
+     * @since 1.5.1
+     */
+    public ItemCreator replaceInNameAndLore(@Nullable String... strings) {
+        if(hasMeta()) {
+            String name = meta.getDisplayName();
+            List<String> lore = meta.getLore();
+
+            int limit = (strings.length / 2) * 2;
+            for (int i = 0; i < limit; i += 2) {
+                String find = strings[i];
+                String replace = strings[i + 1];
+                if (find != null && replace != null) {
+                    name = name.replace(find, replace);
+                    if(lore != null) {
+                        lore.replaceAll(s -> s.replace(find, replace));
+                    }
+                }
+            }
+            meta.setDisplayName(name);
+            meta.setLore(lore);
+        }
+        return this;
     }
 
     /**
