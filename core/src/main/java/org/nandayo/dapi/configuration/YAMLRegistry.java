@@ -1,4 +1,4 @@
-package org.nandayo.dapi.service;
+package org.nandayo.dapi.configuration;
 
 import lombok.Getter;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @since 1.4.0, relocated since 1.5.1
+ */
 @Getter
 @SuppressWarnings("unused")
 public abstract class YAMLRegistry {
