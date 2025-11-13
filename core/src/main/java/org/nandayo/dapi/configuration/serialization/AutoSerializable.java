@@ -18,10 +18,11 @@ public interface AutoSerializable extends ConfigurationSerializable {
     @NotNull
     default Map<String, Object> serialize() {
         Map<String, Object> map = new LinkedHashMap<>();
-        boolean serializeAll = this.getClass().isAnnotationPresent(Serialize.class);
 
         Class<?> clazz = this.getClass();
         while (clazz != null && clazz != Object.class) {
+            boolean serializeAllInThisClass = clazz.isAnnotationPresent(Serialize.class);
+
             for (Field field : clazz.getDeclaredFields()) {
                 // Skip static and transient fields
                 int modifiers = field.getModifiers();
@@ -41,7 +42,7 @@ public interface AutoSerializable extends ConfigurationSerializable {
                     shouldSerialize = true;
                     Serialize annotation = field.getAnnotation(Serialize.class);
                     customKey = annotation.value();
-                } else if (serializeAll) {
+                } else if (serializeAllInThisClass) {
                     shouldSerialize = true;
                 }
 
@@ -115,10 +116,11 @@ public interface AutoSerializable extends ConfigurationSerializable {
      * Call this from your constructor that takes Map<String, Object>
      */
     default void loadFromMap(Map<String, Object> map) {
-        boolean serializeAll = this.getClass().isAnnotationPresent(Serialize.class);
 
         Class<?> clazz = this.getClass();
         while (clazz != null && clazz != Object.class) {
+            boolean serializeAllInThisClass = clazz.isAnnotationPresent(Serialize.class);
+
             for (Field field : clazz.getDeclaredFields()) {
                 int modifiers = field.getModifiers();
                 if (Modifier.isStatic(modifiers) || Modifier.isTransient(modifiers)) {
@@ -135,7 +137,7 @@ public interface AutoSerializable extends ConfigurationSerializable {
                     shouldDeserialize = true;
                     Serialize annotation = field.getAnnotation(Serialize.class);
                     customKey = annotation.value();
-                } else if (serializeAll) {
+                } else if (serializeAllInThisClass) {
                     shouldDeserialize = true;
                 }
 
