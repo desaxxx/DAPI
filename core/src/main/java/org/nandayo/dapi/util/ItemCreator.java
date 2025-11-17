@@ -127,7 +127,7 @@ public class ItemCreator {
                     name = name.replace(find, replace);
                 }
             }
-            meta.setDisplayName(name);
+            this.name(name);
         }
         return this;
     }
@@ -395,7 +395,7 @@ public class ItemCreator {
                     lore.replaceAll(s -> s.replace(find, replace));
                 }
             }
-            meta.setLore(lore);
+            this.lore(lore);
         }
         return this;
     }
@@ -431,8 +431,8 @@ public class ItemCreator {
                     }
                 }
             }
-            meta.setDisplayName(name);
-            meta.setLore(lore);
+            this.name(name);
+            this.lore(lore);
         }
         return this;
     }
