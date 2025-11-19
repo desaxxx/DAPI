@@ -9,6 +9,7 @@ import java.lang.annotation.Target;
  * Annotation to mark classes or fields for serialization
  * - On CLASS: All fields are serialized by default
  * - On FIELD: Only that specific field is serialized (with optional custom key)
+ * @since 1.5.1
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.FIELD})

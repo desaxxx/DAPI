@@ -10,6 +10,7 @@ import java.util.*;
 /**
  * Interface for auto-serializable objects
  * Automatically serializes all fields marked with @Serialize annotation
+ * @since 1.5.1
  */
 @SuppressWarnings("unused")
 public interface AutoSerializable extends ConfigurationSerializable {

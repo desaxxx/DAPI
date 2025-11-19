@@ -4,6 +4,10 @@ import com.google.common.base.Preconditions;
 
 import java.util.function.Consumer;
 
+/**
+ * @since 1.5.1
+ * @param <T>
+ */
 @SuppressWarnings("unused")
 public class OnceConsumer<T> {
 

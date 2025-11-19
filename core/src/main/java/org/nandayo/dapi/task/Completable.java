@@ -2,6 +2,9 @@ package org.nandayo.dapi.task;
 
 import java.util.function.Supplier;
 
+/**
+ * @since 1.5.1
+ */
 @SuppressWarnings("unused")
 public class Completable {
 
@@ -20,7 +23,7 @@ public class Completable {
     }
 
     public void complete() {
-        if (isCompleted()) {
+        if (this.completed) {
             return;
         }
         this.completed = true;

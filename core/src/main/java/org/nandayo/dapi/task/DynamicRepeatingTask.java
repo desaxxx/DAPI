@@ -4,6 +4,9 @@ import com.google.common.base.Preconditions;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+/**
+ * @since 1.5.1
+ */
 @SuppressWarnings("unused")
 public abstract class DynamicRepeatingTask {
 
