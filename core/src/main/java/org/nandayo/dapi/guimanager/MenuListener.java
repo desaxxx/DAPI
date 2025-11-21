@@ -53,7 +53,7 @@ public class MenuListener implements Listener {
             if(abstractButton != null) {
                 e.setCancelled(!abstractButton.isModifiable());
                 // Debugged
-                Bukkit.getScheduler().runTask(DAPI.getPlugin(), () -> abstractButton.onClick(p, e.getClick()));
+                Bukkit.getScheduler().runTask(DAPI.getPlugin(), () -> abstractButton.onClick(e));
             }
         }
     }
