@@ -1,5 +1,6 @@
 package org.nandayo.dapi.guimanager;
 
+import com.google.common.base.Preconditions;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -44,7 +45,7 @@ public class MenuListener implements Listener {
             // Click on player inventory.
             boolean clickedOnPlayerInventory = Objects.equals(e.getClickedInventory(), p.getInventory());
             if(clickedOnPlayerInventory) {
-                menu.onPlayerInventoryClick().accept(p.getInventory(), e.getSlot());
+                menu.onPlayerInventoryClick(e);
                 return;
             }
 
@@ -83,7 +84,8 @@ public class MenuListener implements Listener {
         if (p.hasMetadata(DAPI.GUI_METADATA_KEY)) {
             AbstractMenu menu = (AbstractMenu) p.getMetadata(DAPI.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
-                menu.onClose().accept(menu.getInventory());
+                Preconditions.checkNotNull(menu.getInventory(), "Menu inventory is null.");
+                menu.onClose(menu.getInventory());
             }
             p.removeMetadata(DAPI.GUI_METADATA_KEY, DAPI.getPlugin());
         }
@@ -101,7 +103,8 @@ public class MenuListener implements Listener {
         if (p.hasMetadata(DAPI.GUI_METADATA_KEY)) {
             AbstractMenu menu = (AbstractMenu) p.getMetadata(DAPI.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
-                menu.onClose().accept(menu.getInventory());
+                Preconditions.checkNotNull(menu.getInventory(), "Menu inventory is null.");
+                menu.onClose(menu.getInventory());
             }
             p.removeMetadata(DAPI.GUI_METADATA_KEY, DAPI.getPlugin());
         }

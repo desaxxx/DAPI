@@ -39,6 +39,9 @@ public abstract class AbstractButton {
 
     public void onClick(@NotNull Player p, @NotNull ClickType clickType) {}
 
+    /**
+     * @since 1.5.1
+     */
     public void onClick(@NotNull InventoryClickEvent event) {
         this.onClick((Player) event.getWhoClicked(), event.getClick());
     }

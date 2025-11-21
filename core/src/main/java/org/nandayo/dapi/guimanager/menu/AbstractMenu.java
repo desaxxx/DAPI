@@ -1,6 +1,8 @@
 package org.nandayo.dapi.guimanager.menu;
 
+import com.google.common.base.Preconditions;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -139,7 +141,7 @@ public abstract class AbstractMenu {
     protected void uploadBackgroundButtons() {
         if(inventory == null) return;
         for(int i = 0; i < inventory.getSize(); i++) {
-            SingleSlotButton singleSlotButton = backgroundButtonFunction().apply(i);
+            SingleSlotButton singleSlotButton = backgroundButton(i);
             if(singleSlotButton == null || getButton(i) != null) continue;
             addButton(singleSlotButton);
         }
@@ -166,23 +168,72 @@ public abstract class AbstractMenu {
     }
 
     /**
-     * Set background button function.
+     * Set background button for given slot.<br>
+     * <b>Note:</b> Buttons added with {@link #addButton(AbstractButton)} will override background buttons.
+     *
+     * @param slot Slot to apply background button
+     * @return {@link SingleSlotButton} if specified, or no button (null)
+     * @since 1.5.1
      */
+    @Nullable
+    public SingleSlotButton backgroundButton(int slot) {
+        return null;
+    }
+
+    /**
+     * Called method on menu close.
+     *
+     * @param inventory Inventory of the menu
+     * @since 1.5.1
+     */
+    public void onClose(@NotNull Inventory inventory) {}
+
+    /**
+     * Called method on player clicking their own inventory.
+     *
+     * @param inventory Inventory of the menu viewer
+     * @param slot Slot clicked on PlayerInventory
+     * @since 1.5.1
+     */
+    public void onPlayerInventoryClick(@NotNull PlayerInventory inventory, int slot) {}
+
+    /**
+     * @since 1.5.1
+     */
+    public void onPlayerInventoryClick(@NotNull InventoryClickEvent event) {
+        Preconditions.checkNotNull(event.getClickedInventory(), "Clicked inventory is null."); // Shouldn't happen
+        this.onPlayerInventoryClick((PlayerInventory) event.getClickedInventory(), event.getSlot());
+    }
+
+
+
+
+
+    //================
+    // DEPRECATED AREA
+    //================
+
+    /**
+     * @deprecated See {@link #backgroundButton(int)}
+     */
+    @Deprecated(since = "1.5.1")
     public Function<Integer, @Nullable SingleSlotButton> backgroundButtonFunction() {
-        return slot -> null;
+        return this::backgroundButton;
     }
 
     /**
-     * Set close consumer.
+     * @deprecated See {@link #onClose(Inventory)}
      */
-    public  <T extends Inventory> Consumer<T> onClose() {
-        return inventory -> {};
+    @Deprecated(since = "1.5.1")
+    public <T extends Inventory> Consumer<T> onClose() {
+        return this::onClose;
     }
 
     /**
-     * Set player inventory click function.
+     * @deprecated See {@link #onPlayerInventoryClick(PlayerInventory, int)}
      */
+    @Deprecated(since = "1.5.1")
     public BiConsumer<PlayerInventory, Integer> onPlayerInventoryClick() {
-        return (playerInventory, slot) -> {};
+        return this::onPlayerInventoryClick;
     }
 }
