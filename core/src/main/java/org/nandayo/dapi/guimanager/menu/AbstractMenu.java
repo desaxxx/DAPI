@@ -168,6 +168,15 @@ public abstract class AbstractMenu {
     }
 
     /**
+     * Set player inventory modifiable or not.
+     *
+     * @return whether modifiable
+     */
+    public boolean isPlayerInventoryModifiable() {
+        return false;
+    }
+
+    /**
      * Set background button for given slot.<br>
      * <b>Note:</b> Buttons added with {@link #addButton(AbstractButton)} will override background buttons.
      *
