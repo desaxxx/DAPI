@@ -46,6 +46,7 @@ public class MenuListener implements Listener {
             boolean clickedOnPlayerInventory = Objects.equals(e.getClickedInventory(), p.getInventory());
             if(clickedOnPlayerInventory) {
                 menu.onPlayerInventoryClick(e);
+                e.setCancelled(!menu.isPlayerInventoryModifiable());
                 return;
             }
 
