@@ -16,7 +16,7 @@ public abstract class DynamicRepeatingTask {
     private BukkitRunnable current;
 
     public DynamicRepeatingTask(Plugin plugin, long initialSpeed) {
-        Preconditions.checkNotNull(plugin);
+        Preconditions.checkNotNull(plugin, "Plugin is null.");
         this.plugin = plugin;
         this.tickSpeed = initialSpeed;
     }

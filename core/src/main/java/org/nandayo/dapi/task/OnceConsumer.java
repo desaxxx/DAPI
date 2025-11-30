@@ -14,7 +14,7 @@ public class OnceConsumer<T> {
     private final Consumer<T> delegate;
     private boolean accepted = false;
     public OnceConsumer(Consumer<T> delegate) {
-        Preconditions.checkNotNull(delegate);
+        Preconditions.checkNotNull(delegate, "Delegate is null.");
         this.delegate = delegate;
     }
 
