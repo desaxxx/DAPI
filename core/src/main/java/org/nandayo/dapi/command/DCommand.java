@@ -2,7 +2,6 @@ package org.nandayo.dapi.command;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.*;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.nandayo.dapi.util.DAPIException;
@@ -12,13 +11,21 @@ import java.util.List;
 /**
  * @since 1.4.2
  */
-@ApiStatus.Experimental
 public interface DCommand extends DSubCommand, CommandExecutor, TabCompleter {
 
     @Override
     default @NotNull DCommand command() {
         return this;
     }
+
+    /**
+     * Create a
+     * @since 1.5.1
+     */
+//    @NotNull
+//    default Node hierarchy() {
+//        return node(null);
+//    }
 
     default void register() {
         PluginCommand pluginCommand = Bukkit.getPluginCommand(name());

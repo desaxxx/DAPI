@@ -1,8 +1,6 @@
 package org.nandayo.dapi.command;
 
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.nandayo.dapi.util.Util;
@@ -14,7 +12,6 @@ import java.util.stream.Stream;
 /**
  * @since 1.4.2
  */
-@ApiStatus.Experimental
 public interface DSubCommand {
 
     @NotNull String name();
@@ -34,7 +31,7 @@ public interface DSubCommand {
      * @since 1.5.1
      */
     default boolean canExecute(@NotNull CommandSender commandSender) {
-        if(!commandSender.hasPermission(permission())) {
+        if(!permission().isEmpty() && !commandSender.hasPermission(permission())) {
             Util.tell(commandSender, "&cYou don't have permission to execute this command.");
             return false;
         }
@@ -73,6 +70,11 @@ public interface DSubCommand {
                 .filter(s -> s.name().equalsIgnoreCase(nameOrAlias) || s.aliases().contains(nameOrAlias))
                 .findFirst();
     }
+
+//    @NotNull
+//    default Node node(@Nullable Node parent, @NotNull Node @NotNull... children) {
+//        return Node.builder(parent).children(children);
+//    }
 
 
 
