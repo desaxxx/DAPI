@@ -11,7 +11,7 @@ class CommandHelper {
     /**
      * @since 1.5.1
      */
-    public static Set<DSubCommand> getSubCommandsAtDepth(DSubCommand root, int targetDepth) {
+    public static Set<DSubCommand> getSubCommandsAtDepth(DCommand root, int targetDepth) {
         Set<DSubCommand> collector = new HashSet<>();
         findSubCommandsAtDepth(root, 0, targetDepth, collector);
         return collector;
