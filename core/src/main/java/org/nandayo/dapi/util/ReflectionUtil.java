@@ -12,6 +12,7 @@ import java.lang.reflect.Method;
  * @since 1.5.2
  */
 public class ReflectionUtil {
+    private static final boolean COMPONENT_AVAILABLE;
     private static final @Nullable Method ITEM_CREATOR_PAPER_OF_ITEMSTACK;
     private static final @Nullable Method ITEM_CREATOR_PAPER_OF_MATERIAL;
 
@@ -28,6 +29,23 @@ public class ReflectionUtil {
         }
         ITEM_CREATOR_PAPER_OF_ITEMSTACK = ofItemStackMethod;
         ITEM_CREATOR_PAPER_OF_MATERIAL = ofMaterialMethod;
+
+        boolean componentAvailable = false;
+        try {
+            Class.forName("net.kyori.adventure.text.Component");
+            componentAvailable = true;
+        } catch (ClassNotFoundException ignored) {}
+        COMPONENT_AVAILABLE = componentAvailable;
+    }
+
+    /**
+     * Check if {@code Component} class is available.
+     *
+     * @return whether available or not
+     * @since 1.5.2
+     */
+    public static boolean isComponentAvailable() {
+        return COMPONENT_AVAILABLE;
     }
 
 
