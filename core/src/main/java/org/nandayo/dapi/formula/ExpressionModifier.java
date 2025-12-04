@@ -1,5 +1,6 @@
 package org.nandayo.dapi.formula;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -7,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public interface ExpressionModifier {
 
+    @Contract(pure = true)
     @NotNull ExpressionModifier setVariable(String variable, double value);
     double evaluate();
 }

@@ -1,6 +1,7 @@
 package org.nandayo.dapi.formula;
 
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -40,6 +41,7 @@ public interface ValueFormula extends ExpressionModifier, ConfigurationSerializa
     }
 
     @Override
+    @Contract(pure = true, value = "_,_ -> new")
     @NotNull ExpressionModifier setVariable(String variable, double value);
 
     @Override
