@@ -11,6 +11,7 @@ import org.nandayo.dapi.util.Validate;
  * You can access the raw text with {@link #getRawText()} and deserialize to Component again with {@link #asComponent()}.
  *
  * @since 1.2.9
+ * @apiNote  MiniString no longer supports {@code Component}
  */
 @SuppressWarnings("unused")
 @ApiStatus.Obsolete(since = "1.5")
