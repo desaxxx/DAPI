@@ -2,104 +2,95 @@ package org.nandayo.dapi.util;
 
 import org.bukkit.Color;
 import org.bukkit.Material;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionType;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.nandayo.dapi.model.MiniString;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
-public class ItemCreator {
-
-    private final @NotNull ItemStack itemStack;
-    private final @Nullable ItemMeta meta;
-
-    public ItemCreator(ItemStack itemStack) {
-        Validate.validate(itemStack != null, "ItemStack cannot be null!");
-        this.itemStack = itemStack.clone();
-        this.meta = this.itemStack.getItemMeta();
-    }
+public interface ItemCreator {
 
     /**
-     * Get ItemCreator from item stack.
-     * @param itemStack ItemStack
+     * Create a builder with specified foundation.
+     *
+     * @param itemStack foundation item stack
      * @return new ItemCreator
      */
-    public static ItemCreator of(ItemStack itemStack) {
-        return new ItemCreator(itemStack);
+    @NotNull
+    static ItemCreator of(@NotNull ItemStack itemStack) {
+        return new ItemCreatorImpl(itemStack);
     }
 
     /**
-     * Get ItemCreator from a material.
-     * @param material Material
+     * Create a builder with specified foundation.
+     *
+     * @param material foundation material
      * @return new ItemCreator
      */
-    public static ItemCreator of(Material material) {
-        Validate.validate(material != null, "Material cannot be null!");
-        return new ItemCreator(new ItemStack(material));
+    @NotNull
+    static ItemCreator of(@NotNull Material material) {
+        Validate.notNull(material, "Material cannot be null!");
+        return new ItemCreatorImpl(new ItemStack(material));
     }
 
+
     /**
-     * Check if the item stack has a valid meta.
-     * @return Whether it has meta or not
+     * Check if the item stack has an item meta.
+     *
+     * @return whether it has meta or not
      */
-    private boolean hasMeta() {
-        return meta != null;
+    @Contract(pure = true)
+    boolean hasMeta();
+
+    /**
+     * Get the built item stack.
+     *
+     * @return built item stack
+     */
+    @NotNull
+    @ApiStatus.Obsolete(since = "1.5.2")
+    default ItemStack get() {
+        return build();
     }
 
     /**
      * Get the built item stack.
-     * @return ItemStack
+     *
+     * @return built item stack
      */
-    public ItemStack get() {
-        if(hasMeta()) {
-            itemStack.setItemMeta(meta);
-        }
-        return itemStack;
-    }
+    @NotNull ItemStack build();
 
     /**
      * Set amount of the item stack.
-     * @param amount Integer
+     *
+     * @param amount new amount
      * @return ItemCreator
      */
-    public ItemCreator amount(int amount) {
-        itemStack.setAmount(amount);
-        return this;
-    }
+    @NotNull ItemCreator amount(int amount);
 
     /**
      * Set name of the item stack.
-     * @param name String
+     *
+     * @param name new name
      * @return ItemCreator
      */
-    public ItemCreator name(@Nullable String name) {
-        if(hasMeta()) {
-            meta.setDisplayName(name == null ? null : HexUtil.parse(name));
-        }
-        return this;
-    }
+    @NotNull ItemCreator name(@Nullable String name);
 
     /**
-     * Set name of the item stack using supplier.
-     * @param nameSupplier Supplier of String
+     * Set name of the item stack.
+     *
+     * @param nameSupplier new name supplier
      * @return ItemCreator
      */
-    public ItemCreator name(Supplier<@Nullable String> nameSupplier) {
-        Validate.validate(nameSupplier != null, "Name supplier cannot be null!");
-        return name(nameSupplier.get());
-    }
+    @NotNull ItemCreator name(@NotNull Supplier<String> nameSupplier);
 
     /**
      * Replaces text in the item's display name.
@@ -111,260 +102,220 @@ public class ItemCreator {
      * <p>
      * The replacements are applied sequentially. If an odd number of arguments
      * is provided, the final string will be ignored.
-     * <p>
+     * 
      * @param strings A vararg list of find-and-replace pairs.
      * @return ItemCreator
      * @since 1.5.1
      */
-    public ItemCreator replaceInName(@Nullable String... strings) {
-        if(hasMeta()) {
-            String name = meta.getDisplayName();
-            int limit = (strings.length / 2) * 2;
-            for (int i = 0; i < limit; i += 2) {
-                String find = strings[i];
-                String replace = strings[i + 1];
-                if (find != null && replace != null) {
-                    name = name.replace(find, replace);
-                }
-            }
-            this.name(name);
-        }
-        return this;
-    }
+    @NotNull ItemCreator replaceInName(String @NotNull... strings);
 
     /**
      * Set name of the item stack using component.
-     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
-     * @param name Component
+     * <p>
+     * This will silently fail if the server is not on running Paper or any of its fork.
+     * 
+     * @param name new name component
      * @return ItemCreator.
      */
     @Deprecated(since = "1.4.0")
-    public ItemCreator namePaper(@Nullable Object name) {
-        return this;
-    }
+    @NotNull ItemCreator namePaper(@Nullable Object name);
 
     /**
      * Set name of the item stack using component.
-     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
-     * @param nameSupplier Supplier of Component
+     * <p>
+     * This will silently fail if the server is not on running Paper or any of its fork.
+     * 
+     * @param nameSupplier new name component supplier
      * @return ItemCreator
      */
     @Deprecated(since = "1.4.0")
-    public ItemCreator namePaper(Supplier<@Nullable Object> nameSupplier) {
-        Validate.validate(nameSupplier != null, "Name supplier cannot be null!");
-        return namePaper(nameSupplier.get());
-    }
+    @NotNull ItemCreator namePaper(@NotNull Supplier<Object> nameSupplier);
 
     /**
-     * Set name of the item stack using MiniString.
-     * @param name MiniString
+     * Set name of the item stack.
+     *
+     * @param name new name mini string
      * @return ItemCreator
      */
-    public ItemCreator nameMini(@Nullable MiniString name) {
-        return name(name == null ? null : name.colorize(ColorizeType.LEGACY).getRawText());
-    }
+    @Deprecated(since = "1.4.0")
+    @NotNull ItemCreator nameMini(@Nullable MiniString name);
 
     /**
-     * Set name of the item stack using MiniString.
-     * @param name Supplier of MiniString
+     * Set name of the item stack.
+     *
+     * @param name new name mini string supplier
      * @return ItemCreator
      */
-    public ItemCreator nameMini(Supplier<@Nullable MiniString> name) {
-        Validate.validate(name != null, "Name supplier cannot be null!");
-        return nameMini(name.get());
-    }
+    @Deprecated(since = "1.4.0")
+    @NotNull ItemCreator nameMini(@NotNull Supplier<MiniString> name);
 
     /**
      * Set lore of the item stack.
-     * @param lore String list
+     *
+     * @param lore new lore
      * @return ItemCreator
      */
-    public ItemCreator lore(@Nullable List<String> lore) {
-        if(hasMeta()) {
-            if(lore == null) {
-                meta.setLore(null);
-            }else {
-                List<String> newLore = new ArrayList<>(lore);
-                newLore.replaceAll(HexUtil::parse);
-                meta.setLore(newLore);
-            }
-        }
-        return this;
-    }
+    @NotNull ItemCreator lore(@Nullable List<String> lore);
 
     /**
      * Set lore of the item stack.
-     * @param lore Strings
+     *
+     * @param lore new lore
      * @return ItemCreator
      */
-    public ItemCreator lore(String @Nullable... lore) {
-        return lore(lore == null ? null : List.of(lore));
-    }
+    @NotNull ItemCreator lore(String @Nullable... lore);
 
     /**
-     * Set lore of the item stack using supplier.
-     * @param loreSupplier Supplier of String list
+     * Set lore of the item stack.
+     *
+     * @param loreSupplier new lore supplier
      * @return ItemCreator
      */
-    public ItemCreator lore(Supplier<@Nullable List<String>> loreSupplier) {
-        return lore(loreSupplier == null ? null : loreSupplier.get());
-    }
+    @NotNull ItemCreator lore(@Nullable Supplier<List<String>> loreSupplier);
 
     /**
-     * Set lore of the item stack using list of component.<br>
-     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
-     * @param lore Component list
+     * Set lore of the item stack.
+     * <p>
+     * This will silently fail if the server is not on running Paper or any of its fork.
+     *
+     * @param lore new component lore
      * @return ItemCreator
      */
     @Deprecated(since = "1.4.0")
-    public ItemCreator lorePaper(@Nullable List<Object> lore) {
-        return this;
-    }
+    @NotNull ItemCreator lorePaper(@Nullable List<Object> lore);
 
     /**
-     * Set lore of the item stack using component.
-     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
-     * @param lore Components
+     * Set lore of the item stack.
+     * <p>
+     * This will silently fail if the server is not on running Paper or any of its fork.
+     *
+     * @param lore new component lore
      * @return ItemCreator
      */
     @Deprecated(since = "1.4.0")
-    public ItemCreator lorePaper(Object @Nullable... lore) {
-        return lorePaper(lore == null ? null : List.of(lore));
-    }
+    @NotNull ItemCreator lorePaper(Object @Nullable... lore);
 
     /**
-     * Set lore of the item stack using component supplier.
-     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
-     * @param loreSupplier Supplier of Component list
+     * Set lore of the item stack.
+     * <p>
+     * This will silently fail if the server is not on running Paper or any of its fork.
+     *
+     * @param loreSupplier new component lore supplier
      * @return ItemCreator
      */
     @Deprecated(since = "1.4.0")
-    public ItemCreator lorePaper(Supplier<@Nullable List<Object>> loreSupplier) {
-        return lorePaper(loreSupplier == null ? null : loreSupplier.get());
-    }
+    @NotNull ItemCreator lorePaper(@Nullable Supplier<List<Object>> loreSupplier);
 
     /**
-     * Set lore of the item stack using MiniStrings.
-     * @param lore String list
-     * @return ItemCreator
-     */
-    public ItemCreator loreMini(@Nullable List<MiniString> lore) {
-        return lore(lore == null ? null : lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.LEGACY).getRawText()).collect(Collectors.toList()));
-    }
-
-    /**
-     * Set lore of the item stack using MiniString.
-     * @param lore Components
-     * @return ItemCreator
-     */
-    public ItemCreator loreMini(MiniString @Nullable... lore) {
-        return loreMini(lore == null ? null : List.of(lore));
-    }
-
-    /**
-     * Set lore of the item stack using MiniString supplier.
-     * @param loreSupplier Supplier of Component list
-     * @return ItemCreator
-     */
-    public ItemCreator loreMini(Supplier<@Nullable List<MiniString>> loreSupplier) {
-        return loreMini(loreSupplier == null ? null : loreSupplier.get());
-    }
-
-    /**
-     * Add lines to lore of the item stack.
-     * @param lore String list
-     * @return ItemCreator
-     */
-    public ItemCreator addLore(List<String> lore) {
-        Validate.validate(lore != null, "Lore to be added cannot be null!");
-        if(hasMeta()) {
-            List<String> existingLore = meta.getLore() != null ? new ArrayList<>(meta.getLore()) : new ArrayList<>();
-            List<String> newLore = new ArrayList<>(lore);
-            newLore.replaceAll(HexUtil::parse);
-            existingLore.addAll(newLore);
-            meta.setLore(existingLore);
-        }
-        return this;
-    }
-
-    /**
-     * Add lines to lore of the item stack.
-     * @param lore Strings
-     * @return ItemCreator
-     */
-    public ItemCreator addLore(String... lore) {
-        return addLore(List.of(lore));
-    }
-
-    /**
-     * Add lines to lore of the item stack using supplier.
-     * @param loreSupplier Supplier of String List
-     * @return ItemCreator
-     */
-    public ItemCreator addLore(Supplier<List<String>> loreSupplier) {
-        return addLore(loreSupplier == null ? null : loreSupplier.get().toArray(new String[0]));
-    }
-
-    /**
-     * Add lines to lore of the item stack.
-     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
-     * @param lore Component list
+     * Set lore of the item stack.
+     *
+     * @param lore new mini string lore
      * @return ItemCreator
      */
     @Deprecated(since = "1.4.0")
-    public ItemCreator addLorePaper(List<Object> lore) {
-        Validate.validate(lore != null, "Lore to be added cannot be null!");
-        return this;
-    }
+    @NotNull ItemCreator loreMini(@Nullable List<MiniString> lore);
 
     /**
-     * Add lines to lore of the item stack.
-     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
-     * @param lore Components
+     * Set lore of the item stack.
+     *
+     * @param lore new mini string lore
      * @return ItemCreator
      */
     @Deprecated(since = "1.4.0")
-    public ItemCreator addLorePaper(Object... lore) {
-        return addLorePaper(List.of(lore));
-    }
+    @NotNull ItemCreator loreMini(MiniString @Nullable... lore);
 
     /**
-     * Add lines to lore of the item stack using supplier.
-     * <b>NOTE:</b> This will silently fail if the server is not on running Paper or any of its fork.
-     * @param loreSupplier Supplier of Component List
+     * Set lore of the item stack.
+     *
+     * @param loreSupplier new mini string lore supplier
      * @return ItemCreator
      */
     @Deprecated(since = "1.4.0")
-    public ItemCreator addLorePaper(Supplier<List<Object>> loreSupplier) {
-        return addLorePaper(loreSupplier == null ? null : loreSupplier.get());
-    }
+    @NotNull ItemCreator loreMini(@Nullable Supplier<List<MiniString>> loreSupplier);
 
     /**
      * Add lines to lore of the item stack.
-     * @param lore MiniString list
+     *
+     * @param lore new lines
      * @return ItemCreator
      */
-    public ItemCreator addLoreMini(List<MiniString> lore) {
-        return addLore(lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.LEGACY).getRawText()).collect(Collectors.toList()));
-    }
+    @NotNull ItemCreator addLore(@NotNull List<String> lore);
 
     /**
      * Add lines to lore of the item stack.
-     * @param lore MiniStrings
+     *
+     * @param lore new lines
      * @return ItemCreator
      */
-    public ItemCreator addLoreMini(MiniString... lore) {
-        return addLoreMini(List.of(lore));
-    }
+    @NotNull ItemCreator addLore(String @NotNull... lore);
 
     /**
-     * Add lines to lore of the item stack using supplier.
-     * @param loreSupplier Supplier of MiniMessage List
+     * Add lines to lore of the item stack.
+     *
+     * @param loreSupplier new lines supplier
      * @return ItemCreator
      */
-    public ItemCreator addLoreMini(Supplier<List<MiniString>> loreSupplier) {
-        return addLoreMini(loreSupplier == null ? new ArrayList<>() : loreSupplier.get());
-    }
+    @NotNull ItemCreator addLore(@Nullable Supplier<List<String>> loreSupplier);
+
+    /**
+     * Add lines to lore of the item stack.
+     * <p>
+     * This will silently fail if the server is not on running Paper or any of its fork.
+     *
+     * @param lore new component lines
+     * @return ItemCreator
+     */
+    @Deprecated(since = "1.4.0")
+    @NotNull ItemCreator addLorePaper(@NotNull List<Object> lore);
+
+    /**
+     * Add lines to lore of the item stack.
+     * <p>
+     * This will silently fail if the server is not on running Paper or any of its fork.
+     *
+     * @param lore new component lines
+     * @return ItemCreator
+     */
+    @Deprecated(since = "1.4.0")
+    @NotNull ItemCreator addLorePaper(Object @NotNull... lore);
+
+    /**
+     * Add lines to lore of the item stack.
+     * <p>
+     * This will silently fail if the server is not on running Paper or any of its fork.
+     *
+     * @param loreSupplier new component lines supplier
+     * @return ItemCreator
+     */
+    @Deprecated(since = "1.4.0")
+    @NotNull ItemCreator addLorePaper(@Nullable Supplier<List<Object>> loreSupplier);
+
+    /**
+     * Add lines to lore of the item stack.
+     *
+     * @param lore new mini string lines
+     * @return ItemCreator
+     */
+    @Deprecated(since = "1.4.0")
+    @NotNull ItemCreator addLoreMini(@NotNull List<MiniString> lore);
+
+    /**
+     * Add lines to lore of the item stack.
+     *
+     * @param lore new mini string lines
+     * @return ItemCreator
+     */
+    @Deprecated(since = "1.4.0")
+    @NotNull ItemCreator addLoreMini(MiniString @NotNull... lore);
+
+    /**
+     * Add lines to lore of the item stack.
+     *
+     * @param loreSupplier new mini string lines supplier
+     * @return ItemCreator
+     */
+    @Deprecated(since = "1.4.0")
+    @NotNull ItemCreator addLoreMini(@Nullable Supplier<List<MiniString>> loreSupplier);
 
     /**
      * Replaces texts in the item's lore.
@@ -376,29 +327,12 @@ public class ItemCreator {
      * <p>
      * The replacements are applied sequentially. If an odd number of arguments
      * is provided, the final string will be ignored.
-     * <p>
+     *
      * @param strings A vararg list of find-and-replace pairs.
      * @return ItemCreator
      * @since 1.5.1
      */
-    public ItemCreator replaceInLore(@Nullable String... strings) {
-        if(hasMeta()) {
-            List<String> lore = meta.getLore();
-            if(lore == null) {
-                return this;
-            }
-            int limit = (strings.length / 2) * 2;
-            for (int i = 0; i < limit; i += 2) {
-                String find = strings[i];
-                String replace = strings[i + 1];
-                if (find != null && replace != null) {
-                    lore.replaceAll(s -> s.replace(find, replace));
-                }
-            }
-            this.lore(lore);
-        }
-        return this;
-    }
+    @NotNull ItemCreator replaceInLore(String @NotNull... strings);
 
     /**
      * Replaces texts in the item's display name and lore.
@@ -410,103 +344,52 @@ public class ItemCreator {
      * <p>
      * The replacements are applied sequentially. If an odd number of arguments
      * is provided, the final string will be ignored.
-     * <p>
+     *
      * @param strings A vararg list of find-and-replace pairs.
      * @return ItemCreator
      * @since 1.5.1
      */
-    public ItemCreator replaceInNameAndLore(@Nullable String... strings) {
-        if(hasMeta()) {
-            String name = meta.getDisplayName();
-            List<String> lore = meta.getLore();
-
-            int limit = (strings.length / 2) * 2;
-            for (int i = 0; i < limit; i += 2) {
-                String find = strings[i];
-                String replace = strings[i + 1];
-                if (find != null && replace != null) {
-                    name = name.replace(find, replace);
-                    if(lore != null) {
-                        lore.replaceAll(s -> s.replace(find, replace));
-                    }
-                }
-            }
-            this.name(name);
-            this.lore(lore);
-        }
-        return this;
-    }
+    @NotNull ItemCreator replaceInNameAndLore(String @NotNull... strings);
 
     /**
      * Enchant the item stack.
-     * @param enchantment Enchantment
-     * @param level Integer
+     *
+     * @param enchantment enchantment
+     * @param level enchantment level (no restriction)
      * @return ItemCreator
      */
-    public ItemCreator enchant(Enchantment enchantment, int level) {
-        Validate.validate(enchantment != null, "Enchantment cannot be null!");
-        if(hasMeta()) {
-            meta.addEnchant(enchantment, level, true);
-        }
-        return this;
-    }
+    @NotNull ItemCreator enchant(@NotNull Enchantment enchantment, int level);
 
     /**
-     * Hide flags of the item stack.
-     * @param flags ItemFlag
+     * Add flags to item stack.
+     *
+     * @param flags new item flags
      * @return ItemCreator
      */
-    public ItemCreator flags(ItemFlag... flags) {
-        Validate.validate(flags != null, "Flags cannot be null!");
-        if(hasMeta()) {
-            if(List.of(flags).contains(ItemFlag.HIDE_ATTRIBUTES)) {
-                Attribute armorAttribute = Wrapper.getArmorAttribute();
-                AttributeModifier attributeModifier = Wrapper.getArmorAttributeModifier();
-                if(armorAttribute != null && attributeModifier != null) {
-                    meta.addAttributeModifier(armorAttribute, attributeModifier);
-                }
-            }
-            meta.addItemFlags(flags);
-        }
-        return this;
-    }
+    @NotNull ItemCreator flags(ItemFlag @NotNull... flags);
 
     /**
      * Set the item stack unbreakable.
-     * @param unbreakable boolean
+     *
+     * @param unbreakable unbreakable
      * @return ItemCreator
      */
-    public ItemCreator unbreakable(boolean unbreakable) {
-        if(hasMeta()) {
-            meta.setUnbreakable(unbreakable);
-        }
-        return this;
-    }
+    @NotNull ItemCreator unbreakable(boolean unbreakable);
 
     /**
      * Set the base potion of item stack.
-     * @param potionType PotionType
-     * @param color Color
+     *
+     * @param potionType new potion type
+     * @param color new color
      * @return ItemCreator
      */
-    public ItemCreator potion(@Nullable PotionType potionType, @Nullable Color color) {
-        if(hasMeta() && meta instanceof PotionMeta) {
-            PotionMeta potionMeta = (PotionMeta) meta;
-            Wrapper.editPotionMeta(potionMeta, potionType, color);
-        }
-        return this;
-    }
+    @NotNull ItemCreator potion(@Nullable PotionType potionType, @Nullable Color color);
 
     /**
      * Set the base potion of item stack.
-     * @param potionType PotionType
+     *
+     * @param potionType new potion type
      * @return ItemCreator
      */
-    public ItemCreator potion(@Nullable PotionType potionType) {
-        if(hasMeta() && meta instanceof PotionMeta) {
-            PotionMeta potionMeta = (PotionMeta) meta;
-            return potion(potionType, potionMeta.getColor());
-        }
-        return this;
-    }
+    @NotNull ItemCreator potion(@Nullable PotionType potionType);
 }
