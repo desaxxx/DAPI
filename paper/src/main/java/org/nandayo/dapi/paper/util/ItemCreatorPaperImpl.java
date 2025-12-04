@@ -60,7 +60,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator amount(int amount) {
+    public ItemCreatorPaper amount(int amount) {
         itemStack.setAmount(amount);
         return this;
     }
@@ -70,7 +70,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator name(@Nullable String name) {
+    public ItemCreatorPaper name(@Nullable String name) {
         if(hasMeta()) {
             if(name == null) {
                 meta.displayName(null);
@@ -92,7 +92,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator name(@NotNull Supplier<String> nameSupplier) {
+    public ItemCreatorPaper name(@NotNull Supplier<String> nameSupplier) {
         Validate.notNull(nameSupplier, "Name supplier cannot be null!");
         return name(nameSupplier.get());
     }
@@ -102,7 +102,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator replaceInName(String @NotNull... strings) {
+    public ItemCreatorPaper replaceInName(String @NotNull... strings) {
         if(hasMeta()) {
             Component name = meta.displayName();
             if(name == null) {
@@ -128,7 +128,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator namePaper(@Nullable Object name) {
+    public ItemCreatorPaper namePaper(@Nullable Object name) {
         return this;
     }
 
@@ -138,7 +138,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator namePaper(@NotNull Supplier<Object> nameSupplier) {
+    public ItemCreatorPaper namePaper(@NotNull Supplier<Object> nameSupplier) {
         Validate.notNull(nameSupplier, "Name supplier cannot be null!");
         return namePaper(nameSupplier.get());
     }
@@ -149,7 +149,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator nameMini(@Nullable MiniString name) {
+    public ItemCreatorPaper nameMini(@Nullable MiniString name) {
         return name(name == null ? null : name.colorize(ColorizeType.LEGACY).getRawText());
     }
 
@@ -159,7 +159,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator nameMini(@NotNull Supplier<MiniString> name) {
+    public ItemCreatorPaper nameMini(@NotNull Supplier<MiniString> name) {
         Validate.notNull(name, "Name supplier cannot be null!");
         return nameMini(name.get());
     }
@@ -169,7 +169,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator lore(@Nullable List<String> lore) {
+    public ItemCreatorPaper lore(@Nullable List<String> lore) {
         if(hasMeta()) {
             if(lore == null) {
                 meta.lore(null);
@@ -195,7 +195,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator lore(String @Nullable... lore) {
+    public ItemCreatorPaper lore(String @Nullable... lore) {
         return lore(lore == null ? null : List.of(lore));
     }
 
@@ -204,7 +204,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator lore(@Nullable Supplier<List<String>> loreSupplier) {
+    public ItemCreatorPaper lore(@Nullable Supplier<List<String>> loreSupplier) {
         return lore(loreSupplier == null ? null : loreSupplier.get());
     }
 
@@ -214,7 +214,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator lorePaper(@Nullable List<Object> lore) {
+    public ItemCreatorPaper lorePaper(@Nullable List<Object> lore) {
         return this;
     }
 
@@ -224,7 +224,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator lorePaper(Object @Nullable... lore) {
+    public ItemCreatorPaper lorePaper(Object @Nullable... lore) {
         return lorePaper(lore == null ? null : List.of(lore));
     }
 
@@ -234,7 +234,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator lorePaper(@Nullable Supplier<List<Object>> loreSupplier) {
+    public ItemCreatorPaper lorePaper(@Nullable Supplier<List<Object>> loreSupplier) {
         return lorePaper(loreSupplier == null ? null : loreSupplier.get());
     }
 
@@ -244,7 +244,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator loreMini(@Nullable List<MiniString> lore) {
+    public ItemCreatorPaper loreMini(@Nullable List<MiniString> lore) {
         return lore(lore == null ? null : lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.LEGACY).getRawText()).collect(Collectors.toList()));
     }
 
@@ -254,7 +254,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator loreMini(MiniString @Nullable... lore) {
+    public ItemCreatorPaper loreMini(MiniString @Nullable... lore) {
         return loreMini(lore == null ? null : List.of(lore));
     }
 
@@ -264,7 +264,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator loreMini(@Nullable Supplier<List<MiniString>> loreSupplier) {
+    public ItemCreatorPaper loreMini(@Nullable Supplier<List<MiniString>> loreSupplier) {
         return loreMini(loreSupplier == null ? null : loreSupplier.get());
     }
 
@@ -273,7 +273,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator addLore(@NotNull List<String> lore) {
+    public ItemCreatorPaper addLore(@NotNull List<String> lore) {
         Validate.notNull(lore, "Lore to be added cannot be null!");
         if(hasMeta()) {
             List<Component> existingLore = meta.lore() != null ? new ArrayList<>(meta.lore()) : new ArrayList<>();
@@ -298,7 +298,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator addLore(String @NotNull... lore) {
+    public ItemCreatorPaper addLore(String @NotNull... lore) {
         return addLore(List.of(lore));
     }
 
@@ -307,7 +307,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator addLore(@Nullable Supplier<List<String>> loreSupplier) {
+    public ItemCreatorPaper addLore(@Nullable Supplier<List<String>> loreSupplier) {
         return addLore(loreSupplier == null ? new String[0] : loreSupplier.get().toArray(new String[0]));
     }
 
@@ -317,7 +317,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator addLorePaper(@NotNull List<Object> lore) {
+    public ItemCreatorPaper addLorePaper(@NotNull List<Object> lore) {
         Validate.notNull(lore, "Lore to be added cannot be null!");
         return this;
     }
@@ -328,7 +328,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator addLorePaper(Object @NotNull... lore) {
+    public ItemCreatorPaper addLorePaper(Object @NotNull... lore) {
         return addLorePaper(List.of(lore));
     }
 
@@ -338,7 +338,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator addLorePaper(@Nullable Supplier<List<Object>> loreSupplier) {
+    public ItemCreatorPaper addLorePaper(@Nullable Supplier<List<Object>> loreSupplier) {
         return addLorePaper(loreSupplier == null ? List.of() : loreSupplier.get());
     }
 
@@ -348,7 +348,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator addLoreMini(@NotNull List<MiniString> lore) {
+    public ItemCreatorPaper addLoreMini(@NotNull List<MiniString> lore) {
         Validate.notNull(lore, "Lore to be added cannot be null!");
         return addLore(lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.LEGACY).getRawText()).collect(Collectors.toList()));
     }
@@ -359,7 +359,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator addLoreMini(MiniString @NotNull... lore) {
+    public ItemCreatorPaper addLoreMini(MiniString @NotNull... lore) {
         return addLoreMini(List.of(lore));
     }
 
@@ -369,7 +369,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     @Deprecated(since = "1.4.0")
-    public ItemCreator addLoreMini(@Nullable Supplier<List<MiniString>> loreSupplier) {
+    public ItemCreatorPaper addLoreMini(@Nullable Supplier<List<MiniString>> loreSupplier) {
         return addLoreMini(loreSupplier == null ? new ArrayList<>() : loreSupplier.get());
     }
 
@@ -378,7 +378,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator replaceInLore(String @NotNull... strings) {
+    public ItemCreatorPaper replaceInLore(String @NotNull... strings) {
         if(hasMeta()) {
             List<Component> lore = meta.lore();
             if(lore == null) {
@@ -406,7 +406,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator replaceInNameAndLore(String @NotNull... strings) {
+    public ItemCreatorPaper replaceInNameAndLore(String @NotNull... strings) {
         if(hasMeta()) {
             Component name = meta.displayName();
             List<Component> lore = meta.lore();
@@ -440,7 +440,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator enchant(@NotNull Enchantment enchantment, int level) {
+    public ItemCreatorPaper enchant(@NotNull Enchantment enchantment, int level) {
         Validate.notNull(enchantment, "Enchantment cannot be null!");
         if(hasMeta()) {
             meta.addEnchant(enchantment, level, true);
@@ -453,7 +453,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator flags(ItemFlag @NotNull... flags) {
+    public ItemCreatorPaper flags(ItemFlag @NotNull... flags) {
         Validate.notNull(flags, "Flags cannot be null!");
         if(hasMeta()) {
             if(List.of(flags).contains(ItemFlag.HIDE_ATTRIBUTES)) {
@@ -473,7 +473,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator unbreakable(boolean unbreakable) {
+    public ItemCreatorPaper unbreakable(boolean unbreakable) {
         if(hasMeta()) {
             meta.setUnbreakable(unbreakable);
         }
@@ -485,7 +485,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator potion(@Nullable PotionType potionType, @Nullable Color color) {
+    public ItemCreatorPaper potion(@Nullable PotionType potionType, @Nullable Color color) {
         if(hasMeta() && meta instanceof PotionMeta) {
             PotionMeta potionMeta = (PotionMeta) meta;
             Wrapper.editPotionMeta(potionMeta, potionType, color);
@@ -498,7 +498,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      */
     @Override
     @NotNull
-    public ItemCreator potion(@Nullable PotionType potionType) {
+    public ItemCreatorPaper potion(@Nullable PotionType potionType) {
         if(hasMeta() && meta instanceof PotionMeta) {
             PotionMeta potionMeta = (PotionMeta) meta;
             return potion(potionType, potionMeta.getColor());
@@ -513,7 +513,8 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     //===================
 
     @Override
-    public @NotNull ItemCreator name(@Nullable Component name) {
+    @NotNull
+    public ItemCreatorPaper name(@Nullable Component name) {
         if(hasMeta()) {
             meta.displayName(name);
         }
@@ -521,7 +522,8 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     }
 
     @Override
-    public @NotNull ItemCreator nameSup(@NotNull Supplier<Component> nameSupplier) {
+    @NotNull
+    public ItemCreatorPaper nameSup(@NotNull Supplier<Component> nameSupplier) {
         if(hasMeta()) {
             meta.displayName(nameSupplier.get());
         }
@@ -529,7 +531,8 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     }
 
     @Override
-    public @NotNull ItemCreator loreList(@Nullable List<Component> lore) {
+    @NotNull
+    public ItemCreatorPaper loreList(@Nullable List<Component> lore) {
         if(hasMeta()) {
             meta.lore(lore);
         }
@@ -537,17 +540,20 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     }
 
     @Override
-    public @NotNull ItemCreator lore(Component @Nullable ... lore) {
+    @NotNull
+    public ItemCreatorPaper lore(Component @Nullable ... lore) {
         return loreList(lore == null ? null : List.of(lore));
     }
 
     @Override
-    public @NotNull ItemCreator loreSup(@Nullable Supplier<List<Component>> loreSupplier) {
+    @NotNull
+    public ItemCreatorPaper loreSup(@Nullable Supplier<List<Component>> loreSupplier) {
         return loreList(loreSupplier == null ? null : loreSupplier.get());
     }
 
     @Override
-    public @NotNull ItemCreator addLoreList(@NotNull List<Component> lore) {
+    @NotNull
+    public ItemCreatorPaper addLoreList(@NotNull List<Component> lore) {
         if(hasMeta()) {
             List<Component> existingLore = meta.lore() != null ? new ArrayList<>(meta.lore()) : new ArrayList<>();
             existingLore.addAll(lore);
@@ -557,12 +563,14 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     }
 
     @Override
-    public @NotNull ItemCreator addLore(Component @NotNull ... lore) {
+    @NotNull
+    public ItemCreatorPaper addLore(Component @NotNull ... lore) {
         return addLoreList(List.of(lore));
     }
 
     @Override
-    public @NotNull ItemCreator addLoreSup(@Nullable Supplier<List<Component>> loreSupplier) {
+    @NotNull
+    public ItemCreatorPaper addLoreSup(@Nullable Supplier<List<Component>> loreSupplier) {
         return addLoreList(loreSupplier == null ? new ArrayList<>() : loreSupplier.get());
     }
 }
