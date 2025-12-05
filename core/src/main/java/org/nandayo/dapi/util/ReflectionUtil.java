@@ -17,25 +17,27 @@ public class ReflectionUtil {
     private static final @Nullable Method ITEM_CREATOR_PAPER_OF_MATERIAL;
 
     static {
-        Method ofItemStackMethod = null;
-        Method ofMaterialMethod = null;
-        try {
-            Class<?> itemCreatorPaper = Class.forName("org.nandayo.dapi.paper.util.ItemCreatorPaper");
-
-            ofItemStackMethod = itemCreatorPaper.getMethod("of", ItemStack.class);
-            ofMaterialMethod = itemCreatorPaper.getMethod("of", Material.class);
-        } catch (ClassNotFoundException | NoSuchMethodException | SecurityException e) {
-            Util.logInternal("Couldn't find ItemCreatorPaper methods.");
-        }
-        ITEM_CREATOR_PAPER_OF_ITEMSTACK = ofItemStackMethod;
-        ITEM_CREATOR_PAPER_OF_MATERIAL = ofMaterialMethod;
-
         boolean componentAvailable = false;
         try {
             Class.forName("net.kyori.adventure.text.Component");
             componentAvailable = true;
         } catch (ClassNotFoundException ignored) {}
         COMPONENT_AVAILABLE = componentAvailable;
+
+        Method ofItemStackMethod = null;
+        Method ofMaterialMethod = null;
+        if(COMPONENT_AVAILABLE) {
+            try {
+                Class<?> itemCreatorPaper = Class.forName("org.nandayo.dapi.paper.util.ItemCreatorPaper");
+
+                ofItemStackMethod = itemCreatorPaper.getMethod("of", ItemStack.class);
+                ofMaterialMethod = itemCreatorPaper.getMethod("of", Material.class);
+            } catch (ClassNotFoundException | NoSuchMethodException | SecurityException e) {
+                Util.logInternal("Couldn't find ItemCreatorPaper methods.");
+            }
+        }
+        ITEM_CREATOR_PAPER_OF_ITEMSTACK = ofItemStackMethod;
+        ITEM_CREATOR_PAPER_OF_MATERIAL = ofMaterialMethod;
     }
 
     /**
