@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Only supports 1.16.1 - 1.21.9<br>
+ * Only supports 1.16.1 - 1.21.11<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)
  */
@@ -21,6 +21,8 @@ public enum DPotionEffectType {
     ABSORPTION,
     BAD_OMEN,
     BLINDNESS,
+    @DInfo(since = "1.21.11")
+    BREATH_OF_THE_NAUTILUS,
     CONDUIT_POWER,
     @DInfo(since = "1.19.1")
     DARKNESS,

@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Only supports 1.16.1 - 1.21.9.<br>
+ * Only supports 1.16.1 - 1.21.11.<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
@@ -53,6 +53,8 @@ public enum DEntityType {
     BREEZE_WIND_CHARGE,
     @DInfo(since = "1.19.3")
     CAMEL,
+    @DInfo(since = "1.21.11")
+    CAMEL_HUSK,
     CAT,
     CAVE_SPIDER,
     @DInfo(since = "1.21.2")
@@ -156,6 +158,8 @@ public enum DEntityType {
     @DRenamed(since = "1.20.5", from = "MUSHROOM_COW")
     MOOSHROOM,
     MULE,
+    @DInfo(since = "1.21.11")
+    NAUTILUS,
     @DInfo(since = "1.21.2")
     OAK_BOAT,
     @DInfo(since = "1.21.2")
@@ -169,6 +173,8 @@ public enum DEntityType {
     @DInfo(since = "1.21.2")
     PALE_OAK_CHEST_BOAT,
     PANDA,
+    @DInfo(since = "1.21.11")
+    PARCHED,
     PARROT,
     PHANTOM,
     PIG,
@@ -242,6 +248,8 @@ public enum DEntityType {
     ZOGLIN,
     ZOMBIE,
     ZOMBIE_HORSE,
+    @DInfo(since = "1.21.11")
+    ZOMBIE_NAUTILUS,
     ZOMBIE_VILLAGER,
     @DRenamed(since = "1.16.1", from = "PIG_ZOMBIE")
     ZOMBIFIED_PIGLIN,

@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Only supports 1.16.1 - 1.21.9.<br>
+ * Only supports 1.16.1 - 1.21.11.<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
@@ -301,6 +301,8 @@ public enum DMaterial {
     CALCITE,
     @DInfo(since = "1.20")
     CALIBRATED_SCULK_SENSOR,
+    @DInfo(since = "1.21.11")
+    CAMEL_HUSK_SPAWN_EGG,
     @DInfo(since = "1.19.3")
     CAMEL_SPAWN_EGG,
     CAMPFIRE,
@@ -470,6 +472,8 @@ public enum DMaterial {
     COPPER_LANTERN,
     @DInfo(since = "1.21.9")
     COPPER_LEGGINGS,
+    @DInfo(since = "1.21.11")
+    COPPER_NAUTILUS_ARMOR,
     @DInfo(since = "1.21.9")
     COPPER_NUGGET,
     @DInfo(since = "1.17")
@@ -478,6 +482,8 @@ public enum DMaterial {
     COPPER_PICKAXE,
     @DInfo(since = "1.21.9")
     COPPER_SHOVEL,
+    @DInfo(since = "1.21.11")
+    COPPER_SPEAR,
     @DInfo(since = "1.21.9")
     COPPER_SWORD,
     @DInfo(since = "1.21.9")
@@ -657,9 +663,13 @@ public enum DMaterial {
     DIAMOND_HOE,
     DIAMOND_HORSE_ARMOR,
     DIAMOND_LEGGINGS,
+    @DInfo(since = "1.21.11")
+    DIAMOND_NAUTILUS_ARMOR,
     DIAMOND_ORE,
     DIAMOND_PICKAXE,
     DIAMOND_SHOVEL,
+    @DInfo(since = "1.21.11")
+    DIAMOND_SPEAR,
     DIAMOND_SWORD,
     DIORITE,
     DIORITE_SLAB,
@@ -827,8 +837,12 @@ public enum DMaterial {
     GOLDEN_HOE,
     GOLDEN_HORSE_ARMOR,
     GOLDEN_LEGGINGS,
+    @DInfo(since = "1.21.11")
+    GOLDEN_NAUTILUS_ARMOR,
     GOLDEN_PICKAXE,
     GOLDEN_SHOVEL,
+    @DInfo(since = "1.21.11")
+    GOLDEN_SPEAR,
     GOLDEN_SWORD,
     GOLD_BLOCK,
     GOLD_INGOT,
@@ -944,10 +958,14 @@ public enum DMaterial {
     IRON_HORSE_ARMOR,
     IRON_INGOT,
     IRON_LEGGINGS,
+    @DInfo(since = "1.21.11")
+    IRON_NAUTILUS_ARMOR,
     IRON_NUGGET,
     IRON_ORE,
     IRON_PICKAXE,
     IRON_SHOVEL,
+    @DInfo(since = "1.21.11")
+    IRON_SPEAR,
     IRON_SWORD,
     IRON_TRAPDOOR,
     ITEM_FRAME,
@@ -1222,17 +1240,25 @@ public enum DMaterial {
     MYCELIUM,
     NAME_TAG,
     NAUTILUS_SHELL,
+    @DInfo(since = "1.21.11")
+    NAUTILUS_SPAWN_EGG,
     NETHERITE_AXE,
     NETHERITE_BLOCK,
     NETHERITE_BOOTS,
     NETHERITE_CHESTPLATE,
     NETHERITE_HELMET,
     NETHERITE_HOE,
+    @DInfo(since = "1.21.11")
+    NETHERITE_HORSE_ARMOR,
     NETHERITE_INGOT,
     NETHERITE_LEGGINGS,
+    @DInfo(since = "1.21.11")
+    NETHERITE_NAUTILUS_ARMOR,
     NETHERITE_PICKAXE,
     NETHERITE_SCRAP,
     NETHERITE_SHOVEL,
+    @DInfo(since = "1.21.11")
+    NETHERITE_SPEAR,
     NETHERITE_SWORD,
     @DInfo(since = "1.19.4")
     NETHERITE_UPGRADE_SMITHING_TEMPLATE,
@@ -1390,6 +1416,8 @@ public enum DMaterial {
     PALE_OAK_WOOD,
     PANDA_SPAWN_EGG,
     PAPER,
+    @DInfo(since = "1.21.11")
+    PARCHED_SPAWN_EGG,
     PARROT_SPAWN_EGG,
     @DInfo(since = "1.19")
     PEARLESCENT_FROGLIGHT,
@@ -1825,6 +1853,8 @@ public enum DMaterial {
     STONE_PRESSURE_PLATE,
     STONE_SHOVEL,
     STONE_SLAB,
+    @DInfo(since = "1.21.11")
+    STONE_SPEAR,
     STONE_STAIRS,
     STONE_SWORD,
     STRAY_SPAWN_EGG,
@@ -2184,6 +2214,8 @@ public enum DMaterial {
     WOODEN_HOE,
     WOODEN_PICKAXE,
     WOODEN_SHOVEL,
+    @DInfo(since = "1.21.11")
+    WOODEN_SPEAR,
     WOODEN_SWORD,
     WRITABLE_BOOK,
     WRITTEN_BOOK,
@@ -2211,6 +2243,8 @@ public enum DMaterial {
     ZOGLIN_SPAWN_EGG,
     ZOMBIE_HEAD,
     ZOMBIE_HORSE_SPAWN_EGG,
+    @DInfo(since = "1.21.11")
+    ZOMBIE_NAUTILUS_SPAWN_EGG,
     ZOMBIE_SPAWN_EGG,
     ZOMBIE_VILLAGER_SPAWN_EGG,
     ZOMBIE_WALL_HEAD,

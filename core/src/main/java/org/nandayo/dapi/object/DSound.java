@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 /**
- * Only supports 1.16.1 - 1.21.9.<br>
+ * Only supports 1.16.1 - 1.21.11.<br>
  * Made by @desaxx (<a href="https://github.com/desaxxx/">GitHub</a>)<br>
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
@@ -1514,6 +1514,22 @@ public enum DSound {
     ENTITY_AXOLOTL_SPLASH("entity.axolotl.splash"),
     @DInfo(since = "1.17")
     ENTITY_AXOLOTL_SWIM("entity.axolotl.swim"),
+    @DInfo(since = "1.21.11")
+    ENTITY_BABY_NAUTILUS_AMBIENT("entity.baby_nautilus.ambient"),
+    @DInfo(since = "1.21.11")
+    ENTITY_BABY_NAUTILUS_AMBIENT_LAND("entity.baby_nautilus.ambient_land"),
+    @DInfo(since = "1.21.11")
+    ENTITY_BABY_NAUTILUS_DEATH("entity.baby_nautilus.death"),
+    @DInfo(since = "1.21.11")
+    ENTITY_BABY_NAUTILUS_DEATH_LAND("entity.baby_nautilus.death_land"),
+    @DInfo(since = "1.21.11")
+    ENTITY_BABY_NAUTILUS_EAT("entity.baby_nautilus.eat"),
+    @DInfo(since = "1.21.11")
+    ENTITY_BABY_NAUTILUS_HURT("entity.baby_nautilus.hurt"),
+    @DInfo(since = "1.21.11")
+    ENTITY_BABY_NAUTILUS_HURT_LAND("entity.baby_nautilus.hurt_land"),
+    @DInfo(since = "1.21.11")
+    ENTITY_BABY_NAUTILUS_SWIM("entity.baby_nautilus.swim"),
     ENTITY_BAT_AMBIENT("entity.bat.ambient"),
     ENTITY_BAT_DEATH("entity.bat.death"),
     ENTITY_BAT_HURT("entity.bat.hurt"),
@@ -1580,6 +1596,28 @@ public enum DSound {
     ENTITY_CAMEL_EAT("entity.camel.eat"),
     @DInfo(since = "1.19.3")
     ENTITY_CAMEL_HURT("entity.camel.hurt"),
+    @DInfo(since = "1.21.11")
+    ENTITY_CAMEL_HUSK_AMBIENT("entity.camel_husk.ambient"),
+    @DInfo(since = "1.21.11")
+    ENTITY_CAMEL_HUSK_DASH("entity.camel_husk.dash"),
+    @DInfo(since = "1.21.11")
+    ENTITY_CAMEL_HUSK_DASH_READY("entity.camel_husk.dash_ready"),
+    @DInfo(since = "1.21.11")
+    ENTITY_CAMEL_HUSK_DEATH("entity.camel_husk.death"),
+    @DInfo(since = "1.21.11")
+    ENTITY_CAMEL_HUSK_EAT("entity.camel_husk.eat"),
+    @DInfo(since = "1.21.11")
+    ENTITY_CAMEL_HUSK_HURT("entity.camel_husk.hurt"),
+    @DInfo(since = "1.21.11")
+    ENTITY_CAMEL_HUSK_SADDLE("entity.camel_husk.saddle"),
+    @DInfo(since = "1.21.11")
+    ENTITY_CAMEL_HUSK_SIT("entity.camel_husk.sit"),
+    @DInfo(since = "1.21.11")
+    ENTITY_CAMEL_HUSK_STAND("entity.camel_husk.stand"),
+    @DInfo(since = "1.21.11")
+    ENTITY_CAMEL_HUSK_STEP("entity.camel_husk.step"),
+    @DInfo(since = "1.21.11")
+    ENTITY_CAMEL_HUSK_STEP_SAND("entity.camel_husk.step_sand"),
     @DInfo(since = "1.19.3")
     ENTITY_CAMEL_SADDLE("entity.camel.saddle"),
     @DInfo(since = "1.19.3")
@@ -1985,6 +2023,32 @@ public enum DSound {
     ENTITY_MULE_HURT("entity.mule.hurt"),
     @DInfo(since = "1.20.5")
     ENTITY_MULE_JUMP("entity.mule.jump"),
+    @DInfo(since = "1.21.11")
+    ENTITY_NAUTILUS_AMBIENT("entity.nautilus.ambient"),
+    @DInfo(since = "1.21.11")
+    ENTITY_NAUTILUS_AMBIENT_LAND("entity.nautilus.ambient_land"),
+    @DInfo(since = "1.21.11")
+    ENTITY_NAUTILUS_DASH("entity.nautilus.dash"),
+    @DInfo(since = "1.21.11")
+    ENTITY_NAUTILUS_DASH_LAND("entity.nautilus.dash_land"),
+    @DInfo(since = "1.21.11")
+    ENTITY_NAUTILUS_DASH_READY("entity.nautilus.dash_ready"),
+    @DInfo(since = "1.21.11")
+    ENTITY_NAUTILUS_DASH_READY_LAND("entity.nautilus.dash_ready_land"),
+    @DInfo(since = "1.21.11")
+    ENTITY_NAUTILUS_DEATH("entity.nautilus.death"),
+    @DInfo(since = "1.21.11")
+    ENTITY_NAUTILUS_DEATH_LAND("entity.nautilus.death_land"),
+    @DInfo(since = "1.21.11")
+    ENTITY_NAUTILUS_EAT("entity.nautilus.eat"),
+    @DInfo(since = "1.21.11")
+    ENTITY_NAUTILUS_HURT("entity.nautilus.hurt"),
+    @DInfo(since = "1.21.11")
+    ENTITY_NAUTILUS_HURT_LAND("entity.nautilus.hurt_land"),
+    @DInfo(since = "1.21.11")
+    ENTITY_NAUTILUS_RIDING("entity.nautilus.riding"),
+    @DInfo(since = "1.21.11")
+    ENTITY_NAUTILUS_SWIM("entity.nautilus.swim"),
     ENTITY_OCELOT_AMBIENT("entity.ocelot.ambient"),
     ENTITY_OCELOT_DEATH("entity.ocelot.death"),
     ENTITY_OCELOT_HURT("entity.ocelot.hurt"),
@@ -2001,6 +2065,14 @@ public enum DSound {
     ENTITY_PANDA_SNEEZE("entity.panda.sneeze"),
     ENTITY_PANDA_STEP("entity.panda.step"),
     ENTITY_PANDA_WORRIED_AMBIENT("entity.panda.worried_ambient"),
+    @DInfo(since = "1.21.11")
+    ENTITY_PARCHED_AMBIENT("entity.parched.ambient"),
+    @DInfo(since = "1.21.11")
+    ENTITY_PARCHED_DEATH("entity.parched.death"),
+    @DInfo(since = "1.21.11")
+    ENTITY_PARCHED_HURT("entity.parched.hurt"),
+    @DInfo(since = "1.21.11")
+    ENTITY_PARCHED_STEP("entity.parched.step"),
     ENTITY_PARROT_AMBIENT("entity.parrot.ambient"),
     ENTITY_PARROT_DEATH("entity.parrot.death"),
     ENTITY_PARROT_EAT("entity.parrot.eat"),
@@ -2011,6 +2083,8 @@ public enum DSound {
     ENTITY_PARROT_IMITATE_BOGGED("entity.parrot.imitate.bogged"),
     @DInfo(since = "1.21")
     ENTITY_PARROT_IMITATE_BREEZE("entity.parrot.imitate.breeze"),
+    @DInfo(since = "1.21.11")
+    ENTITY_PARROT_IMITATE_CAMEL_HUSK("entity.parrot.imitate.camel_husk"),
     @DInfo(since = "1.21.2")
     ENTITY_PARROT_IMITATE_CREAKING("entity.parrot.imitate.creaking"),
     ENTITY_PARROT_IMITATE_CREEPER("entity.parrot.imitate.creeper"),
@@ -2026,6 +2100,8 @@ public enum DSound {
     ENTITY_PARROT_IMITATE_HUSK("entity.parrot.imitate.husk"),
     ENTITY_PARROT_IMITATE_ILLUSIONER("entity.parrot.imitate.illusioner"),
     ENTITY_PARROT_IMITATE_MAGMA_CUBE("entity.parrot.imitate.magma_cube"),
+    @DInfo(since = "1.21.11")
+    ENTITY_PARROT_IMITATE_PARCHED("entity.parrot.imitate.parched"),
     ENTITY_PARROT_IMITATE_PHANTOM("entity.parrot.imitate.phantom"),
     @DInfo(since = "1.16.1")
     ENTITY_PARROT_IMITATE_PIGLIN("entity.parrot.imitate.piglin"),
@@ -2049,6 +2125,10 @@ public enum DSound {
     @DInfo(since = "1.16.1")
     ENTITY_PARROT_IMITATE_ZOGLIN("entity.parrot.imitate.zoglin"),
     ENTITY_PARROT_IMITATE_ZOMBIE("entity.parrot.imitate.zombie"),
+    @DInfo(since = "1.21.11")
+    ENTITY_PARROT_IMITATE_ZOMBIE_HORSE("entity.parrot.imitate.zombie_horse"),
+    @DInfo(since = "1.21.11")
+    ENTITY_PARROT_IMITATE_ZOMBIE_NAUTILUS("entity.parrot.imitate.zombie_nautilus"),
     ENTITY_PARROT_IMITATE_ZOMBIE_VILLAGER("entity.parrot.imitate.zombie_villager"),
     ENTITY_PARROT_STEP("entity.parrot.step"),
     ENTITY_PHANTOM_AMBIENT("entity.phantom.ambient"),
@@ -2479,10 +2559,38 @@ public enum DSound {
     ENTITY_ZOMBIE_DEATH("entity.zombie.death"),
     ENTITY_ZOMBIE_DESTROY_EGG("entity.zombie.destroy_egg"),
     ENTITY_ZOMBIE_HORSE_AMBIENT("entity.zombie_horse.ambient"),
+    @DInfo(since = "1.21.11")
+    ENTITY_ZOMBIE_HORSE_ANGRY("entity.zombie_horse.angry"),
     ENTITY_ZOMBIE_HORSE_DEATH("entity.zombie_horse.death"),
+    @DInfo(since = "1.21.11")
+    ENTITY_ZOMBIE_HORSE_EAT("entity.zombie_horse.eat"),
     ENTITY_ZOMBIE_HORSE_HURT("entity.zombie_horse.hurt"),
     ENTITY_ZOMBIE_HURT("entity.zombie.hurt"),
     ENTITY_ZOMBIE_INFECT("entity.zombie.infect"),
+    @DInfo(since = "1.21.11")
+    ENTITY_ZOMBIE_NAUTILUS_AMBIENT("entity.zombie_nautilus.ambient"),
+    @DInfo(since = "1.21.11")
+    ENTITY_ZOMBIE_NAUTILUS_AMBIENT_LAND("entity.zombie_nautilus.ambient_land"),
+    @DInfo(since = "1.21.11")
+    ENTITY_ZOMBIE_NAUTILUS_DASH("entity.zombie_nautilus.dash"),
+    @DInfo(since = "1.21.11")
+    ENTITY_ZOMBIE_NAUTILUS_DASH_LAND("entity.zombie_nautilus.dash_land"),
+    @DInfo(since = "1.21.11")
+    ENTITY_ZOMBIE_NAUTILUS_DASH_READY("entity.zombie_nautilus.dash_ready"),
+    @DInfo(since = "1.21.11")
+    ENTITY_ZOMBIE_NAUTILUS_DASH_READY_LAND("entity.zombie_nautilus.dash_ready_land"),
+    @DInfo(since = "1.21.11")
+    ENTITY_ZOMBIE_NAUTILUS_DEATH("entity.zombie_nautilus.death"),
+    @DInfo(since = "1.21.11")
+    ENTITY_ZOMBIE_NAUTILUS_DEATH_LAND("entity.zombie_nautilus.death_land"),
+    @DInfo(since = "1.21.11")
+    ENTITY_ZOMBIE_NAUTILUS_EAT("entity.zombie_nautilus.eat"),
+    @DInfo(since = "1.21.11")
+    ENTITY_ZOMBIE_NAUTILUS_HURT("entity.zombie_nautilus.hurt"),
+    @DInfo(since = "1.21.11")
+    ENTITY_ZOMBIE_NAUTILUS_HURT_LAND("entity.zombie_nautilus.hurt_land"),
+    @DInfo(since = "1.21.11")
+    ENTITY_ZOMBIE_NAUTILUS_SWIM("entity.zombie_nautilus.swim"),
     ENTITY_ZOMBIE_STEP("entity.zombie.step"),
     ENTITY_ZOMBIE_VILLAGER_AMBIENT("entity.zombie_villager.ambient"),
     ENTITY_ZOMBIE_VILLAGER_CONVERTED("entity.zombie_villager.converted"),
@@ -2516,11 +2624,15 @@ public enum DSound {
     ITEM_ARMOR_EQUIP_GOLD("item.armor.equip_gold"),
     ITEM_ARMOR_EQUIP_IRON("item.armor.equip_iron"),
     ITEM_ARMOR_EQUIP_LEATHER("item.armor.equip_leather"),
+    @DInfo(since = "1.21.11")
+    ITEM_ARMOR_EQUIP_NAUTILUS("item.armor.equip_nautilus"),
     @DInfo(since = "1.16.1")
     ITEM_ARMOR_EQUIP_NETHERITE("item.armor.equip_netherite"),
     ITEM_ARMOR_EQUIP_TURTLE("item.armor.equip_turtle"),
     @DInfo(since = "1.20.5")
     ITEM_ARMOR_EQUIP_WOLF("item.armor.equip_wolf"),
+    @DInfo(since = "1.21.11")
+    ITEM_ARMOR_UNEQUIP_NAUTILUS("item.armor.unequip_nautilus"),
     @DInfo(since = "1.20.5")
     ITEM_ARMOR_UNEQUIP_WOLF("item.armor.unequip_wolf"),
     @DInfo(since = "1.17")
@@ -2628,6 +2740,10 @@ public enum DSound {
     ITEM_MACE_SMASH_GROUND("item.mace.smash_ground"),
     @DInfo(since = "1.21")
     ITEM_MACE_SMASH_GROUND_HEAVY("item.mace.smash_ground_heavy"),
+    @DInfo(since = "1.21.11")
+    ITEM_NAUTILUS_SADDLE_EQUIP("item.nautilus_saddle_equip"),
+    @DInfo(since = "1.21.11")
+    ITEM_NAUTILUS_SADDLE_UNDERWATER_EQUIP("item.nautilus_saddle_underwater_equip"),
     ITEM_NETHER_WART_PLANT("item.nether_wart.plant"),
     @DInfo(since = "1.21")
     ITEM_OMINOUS_BOTTLE_DISPOSE("item.ominous_bottle.dispose"),
@@ -2638,6 +2754,24 @@ public enum DSound {
     ITEM_SHIELD_BLOCK("item.shield.block"),
     ITEM_SHIELD_BREAK("item.shield.break"),
     ITEM_SHOVEL_FLATTEN("item.shovel.flatten"),
+    @DInfo(since = "1.21.11")
+    ITEM_SPEAR_ATTACK("item.spear.attack"),
+    @DInfo(since = "1.21.11")
+    ITEM_SPEAR_HIT("item.spear.hit"),
+    @DInfo(since = "1.21.11")
+    ITEM_SPEAR_LUNGE_1("item.spear.lunge_1"),
+    @DInfo(since = "1.21.11")
+    ITEM_SPEAR_LUNGE_2("item.spear.lunge_2"),
+    @DInfo(since = "1.21.11")
+    ITEM_SPEAR_LUNGE_3("item.spear.lunge_3"),
+    @DInfo(since = "1.21.11")
+    ITEM_SPEAR_USE("item.spear.use"),
+    @DInfo(since = "1.21.11")
+    ITEM_SPEAR_WOOD_ATTACK("item.spear_wood.attack"),
+    @DInfo(since = "1.21.11")
+    ITEM_SPEAR_WOOD_HIT("item.spear_wood.hit"),
+    @DInfo(since = "1.21.11")
+    ITEM_SPEAR_WOOD_USE("item.spear_wood.use"),
     @DInfo(since = "1.17")
     ITEM_SPYGLASS_STOP_USING("item.spyglass.stop_using"),
     @DInfo(since = "1.17")
