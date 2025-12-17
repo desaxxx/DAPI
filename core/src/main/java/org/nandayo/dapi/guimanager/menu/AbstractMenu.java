@@ -74,6 +74,17 @@ public abstract class AbstractMenu {
     }
 
     /**
+     * Clear buttons within {@link #abstractButtons}.
+     * <p></p>
+     * This action doesn't remove items from {@link #inventory}.
+     *
+     * @since 1.5.2
+     */
+    protected void clearButtons() {
+        this.abstractButtons.clear();
+    }
+
+    /**
      * Remove a button from given slot or remove the slot from slots of the button in case it has multiple slots.
      * @param slot Integer
      * @return The button that contains the given slot
