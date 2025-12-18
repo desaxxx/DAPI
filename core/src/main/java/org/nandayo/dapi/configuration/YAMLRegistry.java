@@ -20,10 +20,15 @@ import java.util.List;
 public abstract class YAMLRegistry {
 
     private final @NotNull JavaPlugin plugin;
-    protected YAMLRegistry(@NotNull JavaPlugin plugin) {
+    protected YAMLRegistry(@NotNull JavaPlugin plugin, boolean delayLoad) {
         this.plugin = plugin;
-        loadFile();
+        if(!delayLoad) {
+            loadFile();
+        }
         REGISTRIES.add(this);
+    }
+    protected YAMLRegistry(@NotNull JavaPlugin plugin) {
+        this(plugin, false);
     }
 
     private File file;
