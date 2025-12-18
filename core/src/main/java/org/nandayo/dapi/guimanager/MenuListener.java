@@ -86,7 +86,7 @@ public class MenuListener implements Listener {
             AbstractMenu menu = (AbstractMenu) p.getMetadata(DAPI.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
                 Preconditions.checkNotNull(menu.getInventory(), "Menu inventory is null.");
-                menu.onClose(menu.getInventory());
+                menu.onClose(e);
             }
             p.removeMetadata(DAPI.GUI_METADATA_KEY, DAPI.getPlugin());
         }
@@ -102,11 +102,6 @@ public class MenuListener implements Listener {
 
         Player p = e.getPlayer();
         if (p.hasMetadata(DAPI.GUI_METADATA_KEY)) {
-            AbstractMenu menu = (AbstractMenu) p.getMetadata(DAPI.GUI_METADATA_KEY).get(0).value();
-            if(menu != null) {
-                Preconditions.checkNotNull(menu.getInventory(), "Menu inventory is null.");
-                menu.onClose(menu.getInventory());
-            }
             p.removeMetadata(DAPI.GUI_METADATA_KEY, DAPI.getPlugin());
         }
     }

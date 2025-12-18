@@ -3,6 +3,7 @@ package org.nandayo.dapi.guimanager.menu;
 import com.google.common.base.Preconditions;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -207,6 +208,16 @@ public abstract class AbstractMenu {
      * @since 1.5.1
      */
     public void onClose(@NotNull Inventory inventory) {}
+
+    /**
+     * Called method on menu close.
+     *
+     * @param event inventory close event
+     * @since 1.5.2
+     */
+    public void onClose(@NotNull InventoryCloseEvent event) {
+        onClose(event.getInventory());
+    }
 
     /**
      * Called method on player clicking their own inventory.
