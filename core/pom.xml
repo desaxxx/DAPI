@@ -39,10 +39,6 @@
                 <createDependencyReducedPom>false</createDependencyReducedPom>
                 <relocations>
                     <relocation>
-                        <pattern>net.kyori</pattern>
-                        <shadedPattern>org.nandayo.dapi.shaded.kyori</shadedPattern>
-                    </relocation>
-                    <relocation>
                         <pattern>org.bstats</pattern>
                         <shadedPattern>org.nandayo.dapi.shaded.bstats</shadedPattern>
                     </relocation>
