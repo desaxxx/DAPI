@@ -1,5 +1,6 @@
 package org.nandayo.dapi.object;
 
+import lombok.NonNull;
 import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 import org.nandayo.dapi.object.annotation.DDeprecated;
@@ -8,6 +9,7 @@ import org.nandayo.dapi.object.annotation.DRenamed;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Only supports 1.16.1 - 1.21.11<br>
@@ -15,7 +17,7 @@ import java.util.Map;
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)
  */
 @SuppressWarnings("unused")
-public enum DPotionEffectType {
+public enum DPotionEffectType implements ObjectWrapper<PotionEffectType> {
 
     //<editor-fold desc="PotionEffectTypes" defaultstate="collapsed">
     ABSORPTION,
@@ -106,10 +108,15 @@ public enum DPotionEffectType {
 
     private final PotionEffectType potionEffectType;
 
-    public PotionEffectType get() {
+    @Override
+    public PotionEffectType parse() {
         return potionEffectType;
     }
 
+    @Override
+    public @NotNull Optional<PotionEffectType> parseOptional() {
+        return Optional.ofNullable(potionEffectType);
+    }
 
     //
 
@@ -121,7 +128,21 @@ public enum DPotionEffectType {
         }
     }
 
-    public static PotionEffectType getByName(@NotNull String name) {
+    /**
+     * @since 1.5.3
+     */
+    public static DPotionEffectType getByName(@NonNull String name) {
+        return NAME_MAP.get(name);
+    }
+
+
+    @Deprecated(since = "1.5.3")
+    public PotionEffectType get() {
+        return potionEffectType;
+    }
+
+    @Deprecated(since = "1.5.3")
+    public static PotionEffectType getByNameDeprecated(@NotNull String name) {
         DPotionEffectType dPotionEffectType = NAME_MAP.get(name);
         return dPotionEffectType == null ? null : dPotionEffectType.get();
     }

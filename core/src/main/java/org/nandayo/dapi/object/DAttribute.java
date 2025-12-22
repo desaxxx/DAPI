@@ -11,6 +11,7 @@ import org.nandayo.dapi.object.annotation.DRenamed;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Only supports 1.16.1 - 1.21.11<br>
@@ -20,7 +21,7 @@ import java.util.Map;
  * @since 1.5.3
  */
 @SuppressWarnings("unused")
-public enum DAttribute {
+public enum DAttribute implements ObjectWrapper<Attribute> {
 
     //<editor-fold desc="Attributes" defaultstate="collapsed">
     @DInfo(since = "1.21.3")
@@ -205,10 +206,15 @@ public enum DAttribute {
         this.attribute = att;
     }
 
-    public Attribute parseAttribute() {
+    @Override
+    public Attribute parse() {
         return attribute;
     }
 
+    @Override
+    public @NotNull Optional<Attribute> parseOptional() {
+        return Optional.ofNullable(attribute);
+    }
 
     //
 

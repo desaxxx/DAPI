@@ -9,6 +9,7 @@ import org.nandayo.dapi.object.annotation.DRenamed;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Only supports 1.16.1 - 1.21.11.<br>
@@ -16,7 +17,7 @@ import java.util.Map;
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
 @SuppressWarnings("unused")
-public enum DEntityType {
+public enum DEntityType implements ObjectWrapper<EntityType> {
 
     //<editor-fold desc="EntityTypes" defaultstate="collapsed">
     @DInfo(since = "1.21.2")
@@ -255,7 +256,7 @@ public enum DEntityType {
     ZOMBIFIED_PIGLIN,
     //</editor-fold>
 
-    //<editor-fold desc="Deprecated" defaultstate="collapsed>
+    //<editor-fold desc="Deprecated" defaultstate="collapsed">
     @DDeprecated(since = "1.20.5")
     DROPPED_ITEM,
     @DDeprecated(since = "1.20.5")
@@ -313,8 +314,14 @@ public enum DEntityType {
 
     private final EntityType entityType;
 
-    public EntityType get() {
+    @Override
+    public EntityType parse() {
         return entityType;
+    }
+
+    @Override
+    public @NotNull Optional<EntityType> parseOptional() {
+        return Optional.ofNullable(entityType);
     }
 
     //
@@ -327,7 +334,22 @@ public enum DEntityType {
         }
     }
 
-    public static EntityType getByName(@NotNull String name) {
+    /**
+     * @since 1.5.3
+     */
+    public static DEntityType getByName(@NotNull String name) {
+        return NAME_MAP.get(name);
+    }
+
+
+
+    @Deprecated(since = "1.5.3")
+    public EntityType get() {
+        return entityType;
+    }
+
+    @Deprecated(since = "1.5.3")
+    public static EntityType getByNameDeprecated(@NotNull String name) {
         DEntityType dEntityType = NAME_MAP.get(name);
         return dEntityType == null ? null : dEntityType.get();
     }

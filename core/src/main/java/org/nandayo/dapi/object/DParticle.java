@@ -9,6 +9,7 @@ import org.nandayo.dapi.object.annotation.DRenamed;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Only supports 1.16.1 - 1.21.11<br>
@@ -16,7 +17,7 @@ import java.util.Map;
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)
  */
 @SuppressWarnings("unused")
-public enum DParticle {
+public enum DParticle implements ObjectWrapper<Particle> {
 
     //<editor-fold desc="Particles" defaultstate="collapsed">
     @DRenamed(since = "1.20.5", from = "VILLAGER_ANGRY")
@@ -208,7 +209,7 @@ public enum DParticle {
     WITCH,
     //</editor-fold>
 
-    //<editor-fold desc="Deprecated" defaultstate="collapsed>
+    //<editor-fold desc="Deprecated" defaultstate="collapsed">
     @DDeprecated(since = "1.20.5")
     BARRIER,
     @DDeprecated(since = "1.20.5")
@@ -308,10 +309,15 @@ public enum DParticle {
 
     private final Particle particle;
 
-    public Particle get() {
+    @Override
+    public Particle parse() {
         return particle;
     }
 
+    @Override
+    public @NotNull Optional<Particle> parseOptional() {
+        return Optional.ofNullable(particle);
+    }
 
     //
 
@@ -323,7 +329,22 @@ public enum DParticle {
         }
     }
 
-    public static Particle getByName(@NotNull String name) {
+    /**
+     * @since 1.5.3
+     */
+    public static DParticle getByName(@NotNull String name) {
+        return NAME_MAP.get(name);
+    }
+
+
+
+    @Deprecated(since = "1.5.3")
+    public Particle get() {
+        return particle;
+    }
+
+    @Deprecated(since = "1.5.3")
+    public static Particle getByNameDeprecated(@NotNull String name) {
         DParticle dParticle = NAME_MAP.get(name);
         return dParticle == null ? null : dParticle.get();
     }

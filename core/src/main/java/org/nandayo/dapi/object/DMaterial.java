@@ -8,6 +8,7 @@ import org.nandayo.dapi.object.annotation.DRenamed;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Only supports 1.16.1 - 1.21.11.<br>
@@ -15,7 +16,7 @@ import java.util.Map;
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
 @SuppressWarnings("unused")
-public enum DMaterial {
+public enum DMaterial implements ObjectWrapper<Material> {
 
     //<editor-fold desc="Materials" defaultstate="collapsed">
     ACACIA_BOAT,
@@ -2281,10 +2282,15 @@ public enum DMaterial {
 
     private final Material material;
 
-    public Material parseMaterial() {
+    @Override
+    public Material parse() {
         return material;
     }
 
+    @Override
+    public @NotNull Optional<Material> parseOptional() {
+        return Optional.ofNullable(material);
+    }
 
     //
 
@@ -2299,5 +2305,11 @@ public enum DMaterial {
 
     public static DMaterial getByName(@NotNull String name) {
         return NAME_MAP.get(name);
+    }
+
+
+    @Deprecated(since = "1.5.3")
+    public Material parseMaterial() {
+        return material;
     }
 }

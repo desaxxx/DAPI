@@ -9,6 +9,7 @@ import org.nandayo.dapi.object.annotation.DRenamed;
 
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Optional;
 
 /**
  * Only supports 1.16.1 - 1.21.11.<br>
@@ -16,7 +17,7 @@ import java.util.Locale;
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
 @SuppressWarnings("unused")
-public enum DSound {
+public enum DSound implements ObjectWrapper<Sound> {
 
     //<editor-fold desc="Sounds" defaultstate="collapsed">
     @DInfo(since = "1.16.1")
@@ -2946,16 +2947,23 @@ public enum DSound {
     ;
     //</editor-fold>
 
+    private final @NotNull String key;
+    private final Sound sound;
+
     DSound(@NotNull String key) {
         this.key = key;
+        this.sound = Wrapper.getSound(key);
     }
 
-    private final @NotNull String key;
-
-    public Sound parseSound() {
-        return Wrapper.getSound(key);
+    @Override
+    public Sound parse() {
+        return sound;
     }
 
+    @Override
+    public @NotNull Optional<Sound> parseOptional() {
+        return Optional.ofNullable(sound);
+    }
 
     //
 
@@ -2974,5 +2982,11 @@ public enum DSound {
 
     public static DSound getByKey(@NotNull String key) {
         return NAME_MAP.get(key.replace(".","_").toUpperCase(Locale.ENGLISH));
+    }
+
+
+    @Deprecated(since = "1.5.3")
+    public Sound parseSound() {
+        return Wrapper.getSound(key);
     }
 }

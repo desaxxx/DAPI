@@ -8,6 +8,7 @@ import org.nandayo.dapi.object.annotation.DRenamed;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Only supports 1.16.1 - 1.21.11.<br>
@@ -15,7 +16,7 @@ import java.util.Map;
  * Inspired from XSeries (<a href="https://github.com/CryptoMorin/XSeries">GitHub</a>)<br>
  */
 @SuppressWarnings("unused")
-public enum DEnchantment {
+public enum DEnchantment implements ObjectWrapper<Enchantment> {
 
     //<editor-fold desc="Enchantments" defaultstate="collapsed>
     @DRenamed(since = "1.20.5", from = "WATER_WORKER")
@@ -136,8 +137,14 @@ public enum DEnchantment {
 
     private final Enchantment enchantment;
 
-    public Enchantment get() {
+    @Override
+    public Enchantment parse() {
         return enchantment;
+    }
+
+    @Override
+    public @NotNull Optional<Enchantment> parseOptional() {
+        return Optional.ofNullable(enchantment);
     }
 
     //
@@ -150,9 +157,24 @@ public enum DEnchantment {
         }
     }
 
-    public static Enchantment getByName(@NotNull String name) {
+    /**
+     * @since 1.5.3
+     */
+    public static DEnchantment getByName(@NotNull String name) {
+        return NAME_MAP.get(name);
+    }
+
+
+
+
+    @Deprecated(since = "1.5.3")
+    public Enchantment get() {
+        return enchantment;
+    }
+
+    @Deprecated(since = "1.5.3")
+    public static Enchantment getByNameDeprecated(@NotNull String name) {
         DEnchantment dEnchantment = NAME_MAP.get(name);
         return dEnchantment == null ? null : dEnchantment.get();
     }
-
 }
