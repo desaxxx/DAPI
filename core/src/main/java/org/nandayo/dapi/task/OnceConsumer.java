@@ -1,6 +1,7 @@
 package org.nandayo.dapi.task;
 
-import com.google.common.base.Preconditions;
+
+import org.nandayo.dapi.util.Validate;
 
 import java.util.function.Consumer;
 
@@ -14,7 +15,7 @@ public class OnceConsumer<T> {
     private final Consumer<T> delegate;
     private boolean accepted = false;
     public OnceConsumer(Consumer<T> delegate) {
-        Preconditions.checkNotNull(delegate, "Delegate is null.");
+        Validate.notNull(delegate, "Delegate is null.");
         this.delegate = delegate;
     }
 

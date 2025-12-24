@@ -1,6 +1,5 @@
 package org.nandayo.dapi.guimanager;
 
-import com.google.common.base.Preconditions;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.nandayo.dapi.DAPI;
 import org.nandayo.dapi.guimanager.button.AbstractButton;
 import org.nandayo.dapi.guimanager.menu.AbstractMenu;
+import org.nandayo.dapi.util.Validate;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -85,7 +85,7 @@ public class MenuListener implements Listener {
         if (p.hasMetadata(DAPI.GUI_METADATA_KEY)) {
             AbstractMenu menu = (AbstractMenu) p.getMetadata(DAPI.GUI_METADATA_KEY).get(0).value();
             if(menu != null) {
-                Preconditions.checkNotNull(menu.getInventory(), "Menu inventory is null.");
+                Validate.notNull(menu.getInventory(), "Menu inventory is null.");
                 menu.onClose(e);
             }
             p.removeMetadata(DAPI.GUI_METADATA_KEY, DAPI.getPlugin());

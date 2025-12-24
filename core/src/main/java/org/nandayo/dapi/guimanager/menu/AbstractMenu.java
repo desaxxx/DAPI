@@ -1,6 +1,5 @@
 package org.nandayo.dapi.guimanager.menu;
 
-import com.google.common.base.Preconditions;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -13,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import org.nandayo.dapi.DAPI;
 import org.nandayo.dapi.guimanager.button.AbstractButton;
 import org.nandayo.dapi.guimanager.button.SingleSlotButton;
+import org.nandayo.dapi.util.Validate;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -232,7 +232,7 @@ public abstract class AbstractMenu {
      * @since 1.5.1
      */
     public void onPlayerInventoryClick(@NotNull InventoryClickEvent event) {
-        Preconditions.checkNotNull(event.getClickedInventory(), "Clicked inventory is null."); // Shouldn't happen
+        Validate.notNull(event.getClickedInventory(), "Clicked inventory is null."); // Shouldn't happen
         this.onPlayerInventoryClick((PlayerInventory) event.getClickedInventory(), event.getSlot());
     }
 

@@ -1,8 +1,8 @@
 package org.nandayo.dapi.task;
 
-import com.google.common.base.Preconditions;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.nandayo.dapi.util.Validate;
 
 /**
  * @since 1.5.1
@@ -16,7 +16,7 @@ public abstract class DynamicRepeatingTask {
     private BukkitRunnable current;
 
     public DynamicRepeatingTask(Plugin plugin, long initialSpeed) {
-        Preconditions.checkNotNull(plugin, "Plugin is null.");
+        Validate.notNull(plugin, "Plugin is null.");
         this.plugin = plugin;
         this.tickSpeed = initialSpeed;
     }
