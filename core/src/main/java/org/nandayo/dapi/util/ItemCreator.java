@@ -69,6 +69,16 @@ public interface ItemCreator {
     @NotNull ItemStack build();
 
     /**
+     * Set auto colorization option.
+     * <br>
+     * This option uses {@link HexUtil#parse(String)} for colorizing name and lore.
+     *
+     * @param autoColorize colorize
+     * @return ItemCreator
+     */
+    @NotNull ItemCreator autoColorize(boolean autoColorize);
+
+    /**
      * Set amount of the item stack.
      *
      * @param amount new amount

@@ -24,6 +24,7 @@ class ItemCreatorImpl implements ItemCreator {
 
     private final @NotNull ItemStack itemStack;
     private final ItemMeta meta;
+    private boolean autoColorize = true;
 
     ItemCreatorImpl(@NotNull ItemStack itemStack) {
         Validate.notNull(itemStack, "ItemStack cannot be null!");
@@ -56,6 +57,19 @@ class ItemCreatorImpl implements ItemCreator {
      * {@inheritDoc}
      */
     @Override
+    public @NotNull ItemCreator autoColorize(boolean autoColorize) {
+        this.autoColorize = autoColorize;
+        return this;
+    }
+
+    private String colorize(String str) {
+        return str == null ? null : (autoColorize ? HexUtil.parse(str) : str);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     @NotNull
     public ItemCreator amount(int amount) {
         itemStack.setAmount(amount);
@@ -69,7 +83,7 @@ class ItemCreatorImpl implements ItemCreator {
     @NotNull
     public ItemCreator name(@Nullable String name) {
         if(hasMeta()) {
-            meta.setDisplayName(name == null ? null : HexUtil.parse(name));
+            meta.setDisplayName(name == null ? null : colorize(name));
         }
         return this;
     }
@@ -160,7 +174,7 @@ class ItemCreatorImpl implements ItemCreator {
                 meta.setLore(null);
             }else {
                 List<String> newLore = new ArrayList<>(lore);
-                newLore.replaceAll(HexUtil::parse);
+                newLore.replaceAll(this::colorize);
                 meta.setLore(newLore);
             }
         }
@@ -255,7 +269,7 @@ class ItemCreatorImpl implements ItemCreator {
         if(hasMeta()) {
             List<String> existingLore = meta.getLore() != null ? new ArrayList<>(meta.getLore()) : new ArrayList<>();
             List<String> newLore = new ArrayList<>(lore);
-            newLore.replaceAll(HexUtil::parse);
+            newLore.replaceAll(this::colorize);
             existingLore.addAll(newLore);
             meta.setLore(existingLore);
         }

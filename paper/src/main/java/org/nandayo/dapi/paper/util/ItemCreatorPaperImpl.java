@@ -27,6 +27,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
 
     private final @NotNull ItemStack itemStack;
     private final ItemMeta meta;
+    private boolean autoColorize;
 
     ItemCreatorPaperImpl(@NotNull ItemStack itemStack) {
         Validate.notNull(itemStack, "ItemStack cannot be null!");
@@ -59,6 +60,19 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      * {@inheritDoc}
      */
     @Override
+    public @NotNull ItemCreator autoColorize(boolean autoColorize) {
+        this.autoColorize = autoColorize;
+        return this;
+    }
+
+    private String colorize(String str) {
+        return str == null ? null : (autoColorize ? HexUtil.parse(str) : str);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     @NotNull
     public ItemCreatorPaper amount(int amount) {
         itemStack.setAmount(amount);
@@ -77,7 +91,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
                 return this;
             }
 
-            String hexUtilResult = HexUtil.parse(name);
+            String hexUtilResult = colorize(name);
             if(ReflectionUtil.MINIMESSAGE_AVAILABLE) {
                 meta.displayName(MiniMessage.miniMessage().deserialize(hexUtilResult));
             }else {
@@ -177,7 +191,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
                 List<Component> newLore = new ArrayList<>();
                 for(String s : lore) {
 
-                    String hexUtilResult = HexUtil.parse(s);
+                    String hexUtilResult = colorize(s);
                     if(ReflectionUtil.MINIMESSAGE_AVAILABLE) {
                         newLore.add(MiniMessage.miniMessage().deserialize(hexUtilResult));
                     }else {
@@ -280,7 +294,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
             List<Component> newLore = new ArrayList<>();
             for(String s : lore) {
 
-                String hexUtilResult = HexUtil.parse(s);
+                String hexUtilResult = colorize(s);
                 if(ReflectionUtil.MINIMESSAGE_AVAILABLE) {
                     newLore.add(MiniMessage.miniMessage().deserialize(hexUtilResult));
                 }else {
