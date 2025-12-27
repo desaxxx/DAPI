@@ -13,7 +13,7 @@ public abstract class SingleSlotButton extends AbstractButton {
 
     abstract public int getSlot();
 
-    abstract public @Nullable ItemStack getItem();
+    abstract public ItemStack getItem();
 
     // AbstractButton supplies onClick() and isModifiable()
 

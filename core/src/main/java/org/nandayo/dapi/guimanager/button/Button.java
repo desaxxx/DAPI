@@ -13,7 +13,7 @@ public abstract class Button extends AbstractButton {
 
     abstract protected @NotNull Set<Integer> getSlots();
 
-    abstract public @Nullable ItemStack getItem();
+    abstract public ItemStack getItem();
 
     // AbstractButton supplies onClick() and isModifiable()
 }

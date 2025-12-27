@@ -33,7 +33,7 @@ public abstract class AbstractButton {
         updatedMutableSlots().remove(slot);
     }
 
-    public @Nullable ItemStack getItem() {
+    public ItemStack getItem() {
         return null;
     }
 

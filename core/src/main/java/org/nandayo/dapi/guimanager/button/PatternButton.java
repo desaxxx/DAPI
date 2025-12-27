@@ -14,7 +14,7 @@ public abstract class PatternButton extends AbstractButton {
 
     abstract public @NotNull String[] getLayout();
 
-    abstract public @Nullable ItemStack getItem();
+    abstract public ItemStack getItem();
 
     // AbstractButton supplies onClick() and isModifiable()
 
