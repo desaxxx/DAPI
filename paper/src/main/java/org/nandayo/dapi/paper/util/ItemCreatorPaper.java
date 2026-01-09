@@ -148,6 +148,9 @@ public interface ItemCreatorPaper extends ItemCreator {
     @NotNull ItemCreatorPaper unbreakable(boolean unbreakable);
 
     @Override
+    @NotNull ItemCreator enchantmentGlintOverride(boolean b);
+
+    @Override
     @NotNull ItemCreatorPaper potion(@Nullable PotionType potionType, @Nullable Color color);
 
     @Override

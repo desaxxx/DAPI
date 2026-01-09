@@ -66,7 +66,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     }
 
     private String colorize(String str) {
-        return str == null ? null : (autoColorize ? HexUtil.parse(str) : str);
+        return str == null || !autoColorize ? str : HexUtil.parse(str);
     }
 
     /**
@@ -490,6 +490,14 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     public ItemCreatorPaper unbreakable(boolean unbreakable) {
         if(hasMeta()) {
             meta.setUnbreakable(unbreakable);
+        }
+        return this;
+    }
+
+    @Override
+    public @NotNull ItemCreator enchantmentGlintOverride(boolean b) {
+        if(hasMeta()) {
+            meta.setEnchantmentGlintOverride(b);
         }
         return this;
     }

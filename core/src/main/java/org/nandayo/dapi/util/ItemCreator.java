@@ -75,6 +75,7 @@ public interface ItemCreator {
      *
      * @param autoColorize colorize
      * @return ItemCreator
+     * @since 1.5.3
      */
     @NotNull ItemCreator autoColorize(boolean autoColorize);
 
@@ -385,6 +386,15 @@ public interface ItemCreator {
      * @return ItemCreator
      */
     @NotNull ItemCreator unbreakable(boolean unbreakable);
+
+    /**
+     * Set enchantments glint override for the item stack.
+     *
+     * @param b override state
+     * @return ItemCreator
+     * @since 1.5.3
+     */
+    @NotNull ItemCreator enchantmentGlintOverride(boolean b);
 
     /**
      * Set the base potion of item stack.
