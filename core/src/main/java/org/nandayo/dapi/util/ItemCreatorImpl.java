@@ -459,7 +459,7 @@ class ItemCreatorImpl implements ItemCreator {
      */
     @Override
     public @NotNull ItemCreator enchantmentGlintOverride(boolean b) {
-        if (hasMeta()) {
+        if (hasMeta() && Wrapper.getMinecraftVersion() >= 2005) {
             meta.setEnchantmentGlintOverride(b);
         }
         return this;
