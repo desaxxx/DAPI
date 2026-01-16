@@ -61,7 +61,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      * {@inheritDoc}
      */
     @Override
-    public @NotNull ItemCreator autoColorize(boolean autoColorize) {
+    public @NotNull ItemCreatorPaper autoColorize(boolean autoColorize) {
         this.autoColorize = autoColorize;
         return this;
     }
@@ -70,7 +70,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
      * {@inheritDoc}
      */
     @Override
-    public @NotNull ItemCreator autoDisableItalic(boolean autoDisableItalic) {
+    public @NotNull ItemCreatorPaper autoDisableItalic(boolean autoDisableItalic) {
         this.autoDisableItalic = autoDisableItalic;
         return this;
     }
@@ -487,7 +487,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     }
 
     @Override
-    public @NotNull ItemCreator enchantmentGlintOverride(boolean b) {
+    public @NotNull ItemCreatorPaper enchantmentGlintOverride(boolean b) {
         if(hasMeta() && Wrapper.getMinecraftVersion() >= 2005) {
             meta.setEnchantmentGlintOverride(b);
         }
