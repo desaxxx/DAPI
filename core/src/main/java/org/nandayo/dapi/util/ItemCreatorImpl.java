@@ -62,6 +62,14 @@ class ItemCreatorImpl implements ItemCreator {
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public @NotNull ItemCreator autoDisableItalic(boolean autoDisableItalic) {
+        return this;
+    }
+
     private String colorize(String str) {
         return str == null || !autoColorize ? str : HexUtil.parse(str);
     }

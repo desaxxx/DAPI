@@ -1,6 +1,7 @@
 package org.nandayo.dapi.paper.util;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Color;
 import org.bukkit.attribute.Attribute;
@@ -27,6 +28,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     private final @NotNull ItemStack itemStack;
     private final ItemMeta meta;
     private boolean autoColorize = true;
+    private boolean autoDisableItalic = false; // Paper specific
 
     ItemCreatorPaperImpl(@NotNull ItemStack itemStack) {
         Validate.notNull(itemStack, "ItemStack cannot be null!");
@@ -61,6 +63,15 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     public @NotNull ItemCreator autoColorize(boolean autoColorize) {
         this.autoColorize = autoColorize;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public @NotNull ItemCreator autoDisableItalic(boolean autoDisableItalic) {
+        this.autoDisableItalic = autoDisableItalic;
         return this;
     }
 
@@ -515,11 +526,15 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     // PAPER SPECIFIC
     //===================
 
+    private Component buildComponent(Component component) {
+        return component == null || !autoDisableItalic ? component : component.decoration(TextDecoration.ITALIC, false);
+    }
+
     @Override
     @NotNull
     public ItemCreatorPaper name(@Nullable Component name) {
         if(hasMeta()) {
-            meta.displayName(name);
+            meta.displayName(buildComponent(name));
         }
         return this;
     }
@@ -527,17 +542,20 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     @Override
     @NotNull
     public ItemCreatorPaper nameSup(@NotNull Supplier<Component> nameSupplier) {
-        if(hasMeta()) {
-            meta.displayName(nameSupplier.get());
-        }
-        return this;
+        return name(nameSupplier.get());
     }
 
     @Override
     @NotNull
     public ItemCreatorPaper loreList(@Nullable List<Component> lore) {
         if(hasMeta()) {
-            meta.lore(lore);
+            if(lore == null || !autoDisableItalic) {
+                meta.lore(lore);
+            }else {
+                List<Component> newLore = new ArrayList<>(lore);
+                newLore.replaceAll(this::buildComponent);
+                meta.lore(newLore);
+            }
         }
         return this;
     }
@@ -559,7 +577,13 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
     public ItemCreatorPaper addLoreList(@NotNull List<Component> lore) {
         if(hasMeta()) {
             List<Component> existingLore = meta.lore() != null ? new ArrayList<>(meta.lore()) : new ArrayList<>();
-            existingLore.addAll(lore);
+            if(!autoDisableItalic) {
+                existingLore.addAll(lore);
+            }else {
+                List<Component> toAddLore = new ArrayList<>(lore);
+                toAddLore.replaceAll(this::buildComponent);
+                existingLore.addAll(toAddLore);
+            }
             meta.lore(existingLore);
         }
         return this;

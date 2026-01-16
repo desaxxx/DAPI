@@ -72,12 +72,29 @@ public interface ItemCreator {
      * Set auto colorization option.
      * <br>
      * This option uses {@link HexUtil#parse(String)} for colorizing name and lore.
+     * <br>
+     * The option is {@code true} by default.
      *
      * @param autoColorize colorize
      * @return ItemCreator
      * @since 1.5.3
      */
     @NotNull ItemCreator autoColorize(boolean autoColorize);
+
+    /**
+     * Set auto disable italic option.
+     * <br>
+     * This option disables italic for the item's name and lore by default.
+     * <br>
+     * This is useful <b>only</b> when creating items on Paper servers which keeps italic true even after color changes.
+     * <br>
+     * The option is {@code false} by default.
+     *
+     * @param autoDisableItalic disable italic
+     * @return ItemCreator
+     * @since 1.5.3
+     */
+    @NotNull ItemCreator autoDisableItalic(boolean autoDisableItalic);
 
     /**
      * Set amount of the item stack.
