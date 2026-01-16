@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
  * @since 1.4.0
  */
 @SuppressWarnings("unused")
-@ApiStatus.Experimental
 public class StyleTranslator {
 
     private static final Pattern CUSTOM_GRADIENT_PATTERN = Pattern.compile("<&(#[0-9A-Fa-f]{6})>(.*?)</&(#[0-9A-Fa-f]{6})>");

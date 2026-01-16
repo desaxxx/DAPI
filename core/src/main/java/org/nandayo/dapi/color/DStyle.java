@@ -1,13 +1,11 @@
 package org.nandayo.dapi.color;
 
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * @since 1.4.0
  */
 @SuppressWarnings("unused")
-@ApiStatus.Experimental
 public interface DStyle {
     char LEGACY_STYLE_CHAR = '§';
     char LEGACY_ALTERNATIVE_STYLE_CHAR = '&';

@@ -2,7 +2,6 @@ package org.nandayo.dapi.color;
 
 import lombok.Getter;
 import org.bukkit.Color;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.nandayo.dapi.util.Validate;
@@ -14,7 +13,6 @@ import java.util.Objects;
 /**
  * @since 1.3.3
  */
-@ApiStatus.Experimental
 @SuppressWarnings("unused")
 public class DColor implements DStyle {
     public static final String LEGACY_COLOR_CODES = "0123456789ABCDEF";
@@ -64,7 +62,7 @@ public class DColor implements DStyle {
     @Getter
     private final @NotNull String miniMessageFormat;
 
-    private DColor(Color color, String legacyCode, String miniMessageFormat) {
+    private DColor(@NotNull Color color, @NotNull String legacyCode, @NotNull String miniMessageFormat) {
         Validate.notNull(color, "Color cannot be null.");
         Validate.notNull(legacyCode, "Legacy code cannot be null.");
         Validate.notNull(miniMessageFormat, "MiniMessage format cannot be null.");

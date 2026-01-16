@@ -1,7 +1,6 @@
 package org.nandayo.dapi.color;
 
 import lombok.Getter;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.nandayo.dapi.util.Validate;
@@ -13,7 +12,6 @@ import java.util.Map;
  * @since 1.4.0
  */
 @SuppressWarnings("unused")
-@ApiStatus.Experimental
 public class DDecoration implements DStyle {
     public static final String LEGACY_DECORATION_CODES = "KLMNOR";
     public static final String MINI_MESSAGE_CLEAR = "<!b><!i><!obf><!st><!u>";
