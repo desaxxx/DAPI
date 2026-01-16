@@ -374,7 +374,7 @@ class ItemCreatorImpl implements ItemCreator {
                 String replace = strings[i + 1];
 
                 if (find != null && replace != null) {
-                    lore.replaceAll(s -> s.replace(find, replace));
+                    lore.replaceAll(line -> line.replace(find, replace));
                 }
             }
             this.lore(lore);
@@ -399,7 +399,7 @@ class ItemCreatorImpl implements ItemCreator {
                 if (find != null && replace != null) {
                     name = name.replace(find, replace);
                     if(lore != null) {
-                        lore.replaceAll(s -> s.replace(find, replace));
+                        lore.replaceAll(line -> line.replace(find, replace));
                     }
                 }
             }

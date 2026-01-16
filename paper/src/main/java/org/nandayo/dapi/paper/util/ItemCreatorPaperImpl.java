@@ -386,18 +386,15 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
                 return this;
             }
 
-            List<Component> newLore = new ArrayList<>();
             int limit = (strings.length / 2) * 2;
             for (int i = 0; i < limit; i += 2) {
                 String find = strings[i];
                 String replace = strings[i + 1];
                 if (find != null && replace != null) {
-                    for(Component line : lore) {
-                        newLore.add(line.replaceText(b -> b.matchLiteral(find).replacement(replace)));
-                    }
+                    lore.replaceAll(line -> line.replaceText(b -> b.matchLiteral(find).replacement(replace)));
                 }
             }
-            this.loreList(newLore);
+            this.loreList(lore);
         }
         return this;
     }
@@ -412,7 +409,6 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
             Component name = meta.displayName();
             List<Component> lore = meta.lore();
 
-            List<Component> newLore = new ArrayList<>();
             int limit = (strings.length / 2) * 2;
             for (int i = 0; i < limit; i += 2) {
                 String find = strings[i];
@@ -424,14 +420,12 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
                     }
 
                     if(lore != null) {
-                        for(Component line : lore) {
-                            newLore.add(line.replaceText(b -> b.matchLiteral(find).replacement(replace)));
-                        }
+                        lore.replaceAll(line -> line.replaceText(b -> b.matchLiteral(find).replacement(replace)));
                     }
                 }
             }
             this.name(name);
-            this.loreList(newLore);
+            this.loreList(lore);
         }
         return this;
     }
