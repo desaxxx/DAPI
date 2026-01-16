@@ -26,7 +26,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
 
     private final @NotNull ItemStack itemStack;
     private final ItemMeta meta;
-    private boolean autoColorize;
+    private boolean autoColorize = true;
 
     ItemCreatorPaperImpl(@NotNull ItemStack itemStack) {
         Validate.notNull(itemStack, "ItemStack cannot be null!");
