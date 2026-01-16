@@ -55,6 +55,12 @@ public interface ItemCreatorPaper extends ItemCreator {
     @NotNull ItemStack build();
 
     @Override
+    @NotNull ItemCreatorPaper autoColorize(boolean autoColorize);
+
+    @Override
+    @NotNull ItemCreatorPaper autoDisableItalic(boolean autoDisableItalic);
+
+    @Override
     @NotNull ItemCreatorPaper amount(int amount);
 
     @Override
@@ -148,7 +154,7 @@ public interface ItemCreatorPaper extends ItemCreator {
     @NotNull ItemCreatorPaper unbreakable(boolean unbreakable);
 
     @Override
-    @NotNull ItemCreator enchantmentGlintOverride(boolean b);
+    @NotNull ItemCreatorPaper enchantmentGlintOverride(boolean b);
 
     @Override
     @NotNull ItemCreatorPaper potion(@Nullable PotionType potionType, @Nullable Color color);
