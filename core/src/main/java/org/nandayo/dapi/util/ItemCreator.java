@@ -389,6 +389,8 @@ public interface ItemCreator {
 
     /**
      * Set enchantments glint override for the item stack.
+     * <br>
+     * Silently fails if this field is absent in the item meta.
      *
      * @param b override state
      * @return ItemCreator

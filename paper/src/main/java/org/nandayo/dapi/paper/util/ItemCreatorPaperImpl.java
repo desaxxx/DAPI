@@ -1,7 +1,6 @@
 package org.nandayo.dapi.paper.util;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Color;
 import org.bukkit.attribute.Attribute;
@@ -92,11 +91,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
             }
 
             String hexUtilResult = colorize(name);
-            if(ReflectionUtil.MINIMESSAGE_AVAILABLE) {
-                meta.displayName(MiniMessage.miniMessage().deserialize(hexUtilResult));
-            }else {
-                meta.displayName(LegacyComponentSerializer.legacySection().deserialize(hexUtilResult));
-            }
+            meta.displayName(LegacyComponentSerializer.legacySection().deserialize(hexUtilResult));
         }
         return this;
     }
@@ -192,11 +187,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
                 for(String s : lore) {
 
                     String hexUtilResult = colorize(s);
-                    if(ReflectionUtil.MINIMESSAGE_AVAILABLE) {
-                        newLore.add(MiniMessage.miniMessage().deserialize(hexUtilResult));
-                    }else {
-                        newLore.add(LegacyComponentSerializer.legacySection().deserialize(hexUtilResult));
-                    }
+                    newLore.add(LegacyComponentSerializer.legacySection().deserialize(hexUtilResult));
                 }
                 meta.lore(newLore);
             }
@@ -295,11 +286,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
             for(String s : lore) {
 
                 String hexUtilResult = colorize(s);
-                if(ReflectionUtil.MINIMESSAGE_AVAILABLE) {
-                    newLore.add(MiniMessage.miniMessage().deserialize(hexUtilResult));
-                }else {
-                    newLore.add(LegacyComponentSerializer.legacySection().deserialize(hexUtilResult));
-                }
+                newLore.add(LegacyComponentSerializer.legacySection().deserialize(hexUtilResult));
             }
             existingLore.addAll(newLore);
             meta.lore(existingLore);

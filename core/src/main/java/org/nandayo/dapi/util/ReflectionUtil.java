@@ -33,7 +33,7 @@ public class ReflectionUtil {
                 ofItemStackMethod = itemCreatorPaper.getMethod("of", ItemStack.class);
                 ofMaterialMethod = itemCreatorPaper.getMethod("of", Material.class);
             } catch (ClassNotFoundException | NoSuchMethodException | SecurityException e) {
-                Util.logInternal("Couldn't find ItemCreatorPaper methods.");
+                Util.logInternal("Couldn't find ItemCreatorPaper methods. " + e.getMessage());
             }
         }
         ITEM_CREATOR_PAPER_OF_ITEMSTACK = ofItemStackMethod;

@@ -12,13 +12,9 @@ public final class ItemCreators {
 
     /**
      * Get an ItemCreator based on {@code Component} existence.
-     * <p>
-     *     {@code ItemCreatorPaper} if Component is available,
-     *     {@link ItemCreator} otherwise
-     * </p>
      *
      * @param itemStack ItemStack
-     * @return ItemCreator
+     * @return {@code ItemCreatorPaper} if Component is available, {@link ItemCreator} otherwise
      * @since 1.5.2
      */
     @NotNull
@@ -31,13 +27,9 @@ public final class ItemCreators {
 
     /**
      * Get an ItemCreator based on {@code Component} existence.
-     * <p>
-     *     {@code ItemCreatorPaper} if Component is available,
-     *     {@link ItemCreator} otherwise
-     * </p>
      *
      * @param material Material
-     * @return ItemCreator
+     * @return {@code ItemCreatorPaper} if Component is available, {@link ItemCreator} otherwise
      * @since 1.5.2
      */
     @NotNull
