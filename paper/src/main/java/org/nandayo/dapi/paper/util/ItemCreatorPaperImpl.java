@@ -102,7 +102,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
             }
 
             String hexUtilResult = colorize(name);
-            meta.displayName(LegacyComponentSerializer.legacySection().deserialize(hexUtilResult));
+            meta.displayName(buildComponent(LegacyComponentSerializer.legacySection().deserialize(hexUtilResult)));
         }
         return this;
     }
@@ -198,7 +198,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
                 for(String s : lore) {
 
                     String hexUtilResult = colorize(s);
-                    newLore.add(LegacyComponentSerializer.legacySection().deserialize(hexUtilResult));
+                    newLore.add(buildComponent(LegacyComponentSerializer.legacySection().deserialize(hexUtilResult)));
                 }
                 meta.lore(newLore);
             }
@@ -297,7 +297,7 @@ class ItemCreatorPaperImpl implements ItemCreatorPaper {
             for(String s : lore) {
 
                 String hexUtilResult = colorize(s);
-                newLore.add(LegacyComponentSerializer.legacySection().deserialize(hexUtilResult));
+                newLore.add(buildComponent(LegacyComponentSerializer.legacySection().deserialize(hexUtilResult)));
             }
             existingLore.addAll(newLore);
             meta.lore(existingLore);
