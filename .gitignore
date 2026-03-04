@@ -11,5 +11,7 @@
 
 -postponed/
 
+**/src/**/README.md
+
 # Don't ignore the .gitignore file itself
 !.gitignore
