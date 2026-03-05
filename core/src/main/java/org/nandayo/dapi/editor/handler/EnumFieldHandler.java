@@ -1,7 +1,9 @@
 package org.nandayo.dapi.editor.handler;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.inventory.ClickType;
 import org.jetbrains.annotations.NotNull;
+import org.nandayo.dapi.DAPI;
 import org.nandayo.dapi.editor.EditorMenuAdapter;
 import org.nandayo.dapi.editor.GeneratedMenu;
 import org.nandayo.dapi.editor.annotation.EditableField;
@@ -97,12 +99,12 @@ public class EnumFieldHandler implements FieldEditorHandler<Enum<?>> {
         List<Button> buttons = new ArrayList<>();
         for (int i = 0; i < constants.length; i++) {
             Enum<?> constant = constants[i];
-            int finalI = i;
+            int idx = i;
 
             buttons.add(new Button() {
                 @Override
                 protected @NotNull Set<Integer> getSlots() {
-                    return Set.of(finalI);
+                    return Set.of(idx);
                 }
 
                 @Override
@@ -112,7 +114,7 @@ public class EnumFieldHandler implements FieldEditorHandler<Enum<?>> {
 
                 @Override
                 public void onClick(@NotNull Player p, @NotNull ClickType clickType) {
-                    ctx.setValue(constants[finalI]);
+                    ctx.setValue(constants[idx]);
                     reopenParent(ctx);
                 }
             });
@@ -123,7 +125,7 @@ public class EnumFieldHandler implements FieldEditorHandler<Enum<?>> {
     }
 
     private void reopenParent(EditorContext ctx) {
-        new EditorMenuAdapter(ctx.getPlayer(), ctx.getSession(), ctx.getSession().currentPage()).open();
+        Bukkit.getScheduler().runTask(DAPI.getPlugin(), () -> new EditorMenuAdapter(ctx.getPlayer(), ctx.getSession(), ctx.getSession().currentPage()).open());
     }
 
     // -----------------------------------------------------------------------

@@ -1,6 +1,8 @@
 package org.nandayo.dapi.editor.handler;
 
+import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
+import org.nandayo.dapi.DAPI;
 import org.nandayo.dapi.editor.annotation.Editable;
 import org.nandayo.dapi.editor.annotation.EditableField;
 import org.nandayo.dapi.editor.*;
@@ -99,7 +101,7 @@ public class ListFieldHandler implements FieldEditorHandler<List<?>> {
     }
 
     private void reopenParent(EditorContext ctx) {
-        new EditorMenuAdapter(ctx.getPlayer(), ctx.getSession(), ctx.getSession().currentPage()).open();
+        Bukkit.getScheduler().runTask(DAPI.getPlugin(), () -> new EditorMenuAdapter(ctx.getPlayer(), ctx.getSession(), ctx.getSession().currentPage()).open());
     }
 
     // -----------------------------------------------------------------------
