@@ -42,6 +42,8 @@ public class EditorSession {
     /** Called whenever a new page is pushed so EditorMenuAdapter can open the new menu. */
     private Consumer<EditorPage> pageOpenCallback;
 
+    private boolean suppressNextClose = false;
+
     public EditorSession(Player player, EditorHandlerRegistry registry) {
         this.player = player;
         this.registry = registry;
@@ -129,5 +131,13 @@ public class EditorSession {
 
     public EditorHandlerRegistry getRegistry() {
         return registry;
+    }
+
+    public void setSuppressNextClose(boolean suppress) {
+        this.suppressNextClose = suppress;
+    }
+
+    public boolean isSuppressNextClose() {
+        return suppressNextClose;
     }
 }

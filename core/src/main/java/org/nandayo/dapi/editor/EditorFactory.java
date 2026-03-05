@@ -2,7 +2,6 @@ package org.nandayo.dapi.editor;
 
 import org.nandayo.dapi.editor.annotation.Editable;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.nandayo.dapi.editor.handler.EditorHandlerRegistry;
 
 import java.util.HashMap;
@@ -16,7 +15,7 @@ import java.util.function.Consumer;
  * Usage in your plugin:
  * <pre>
  * 1. Setup once in onEnable:
- *   EditorFactory factory = new EditorFactory(this);
+ *   EditorFactory factory = new EditorFactory();
  *   // Optionally register custom handlers:
  *   factory.getRegistry().register(new LocationFieldHandler());
  *
@@ -37,7 +36,7 @@ public class EditorFactory {
         this.registry = registry;
     }
 
-    public EditorFactory(JavaPlugin plugin) {
+    public EditorFactory() {
         this(EditorHandlerRegistry.createDefault());
     }
 

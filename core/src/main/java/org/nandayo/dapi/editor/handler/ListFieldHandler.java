@@ -91,6 +91,7 @@ public class ListFieldHandler implements FieldEditorHandler<List<?>> {
         refreshMenu[0] = () -> {
             int rows = Math.min(6, Math.max(list.size() + 2, 9) / 9 + 1);
             List<Button> buttons = buildButtons(ctx, list, elementType, refreshMenu);
+            ctx.getSession().setSuppressNextClose(true);
             new GeneratedMenu(player, title, rows, buttons, () -> reopenParent(ctx)).open();
         };
 

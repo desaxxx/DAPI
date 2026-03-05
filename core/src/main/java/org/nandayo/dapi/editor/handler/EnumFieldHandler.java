@@ -118,6 +118,7 @@ public class EnumFieldHandler implements FieldEditorHandler<Enum<?>> {
             });
         }
 
+        ctx.getSession().setSuppressNextClose(true);
         new GeneratedMenu(player, title, rows, buttons, () -> reopenParent(ctx)).open();
     }
 

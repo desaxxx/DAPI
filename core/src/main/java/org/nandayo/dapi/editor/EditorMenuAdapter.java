@@ -55,12 +55,6 @@ public class EditorMenuAdapter extends Menu {
         this.session = session;
         this.page    = page;
 
-        // Wire EditorPage callbacks so it can push item updates back into the open inventory
-//        page.setSlotUpdateListener((slot, item) -> {
-//            // Update a single slot in the open inventory without reopening the whole menu.
-//            // Example: getInventory().setItem(slot, item);
-//        });
-
         page.setFullRefreshListener(() -> {
             suppressCloseHandling = true;
             open(); // reopens with a fresh slot map
@@ -155,8 +149,9 @@ public class EditorMenuAdapter extends Menu {
      */
     @Override
     public void onClose(@NotNull Inventory inventory) {
-        if (suppressCloseHandling) {
+        if (suppressCloseHandling || session.isSuppressNextClose()) {
             suppressCloseHandling = false;
+            session.setSuppressNextClose(false);
             return;
         }
         // Player closed the menu themselves — treat as cancel

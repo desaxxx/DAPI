@@ -10,14 +10,15 @@ import java.util.List;
 
 /**
  * Central registry of all FieldEditorHandlers.
- *
- * Handlers are stored in ascending priority order (lowest number = checked first).
+ * <p>
+ * Handlers are stored in the ascending priority order (the lowest number = checked first).
  * The first handler whose supports() returns true for a given field is used.
- *
+ * <pre>
  * Usage:
  *   EditorHandlerRegistry registry = EditorHandlerRegistry.createDefault();
- *   registry.register(new MyCustomHandler());        // plug in new types
+ *   registry.register(new MyCustomHandler()); // plug in new types
  *   FieldEditorHandler<?> h = registry.resolve(field); // find handler for a field
+ * </pre>
  */
 public class EditorHandlerRegistry {
 
