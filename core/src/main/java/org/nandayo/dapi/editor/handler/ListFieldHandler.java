@@ -93,7 +93,6 @@ public class ListFieldHandler implements FieldEditorHandler<List<?>> {
         refreshMenu[0] = () -> {
             int rows = Math.min(6, Math.max(list.size() + 2, 9) / 9 + 1);
             List<Button> buttons = buildButtons(ctx, list, elementType, refreshMenu);
-            ctx.getSession().setSuppressNextClose(true);
             new GeneratedMenu(player, title, rows, buttons, () -> reopenParent(ctx)).open();
         };
 
@@ -101,7 +100,7 @@ public class ListFieldHandler implements FieldEditorHandler<List<?>> {
     }
 
     private void reopenParent(EditorContext ctx) {
-        Bukkit.getScheduler().runTask(DAPI.getPlugin(), () -> new EditorMenuAdapter(ctx.getPlayer(), ctx.getSession(), ctx.getSession().currentPage()).open());
+        Bukkit.getScheduler().runTask(DAPI.getPlugin(), () -> new EditorMenuAdapter(ctx.getPlayer(), ctx.getSession(), ctx.getSession().currentPage()).reopen());
     }
 
     // -----------------------------------------------------------------------
@@ -141,7 +140,7 @@ public class ListFieldHandler implements FieldEditorHandler<List<?>> {
                         Object element = list.get(slot);
                         if (element != null && element.getClass().isAnnotationPresent(Editable.class)) {
                             EditorPage elementPage = new EditorPage(element, registry, ctx.getSession());
-                            ctx.getSession().push(elementPage);
+                            ctx.getSession().push(elementPage, true);
                         } else {
                             FieldEditorHandler<?> handler = registry.resolveOrNull(element != null ? element.getClass() : getElementType(ctx.getField()));
                             if (handler != null) {

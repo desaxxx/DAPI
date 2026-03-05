@@ -39,7 +39,11 @@ public class EditorSession {
     /** Fired when the player cancels or closes the root page without saving. */
     private Runnable onCancel;
 
-    /** Called whenever a new page is pushed so EditorMenuAdapter can open the new menu. */
+    /**
+     * Called whenever a new page is pushed so EditorMenuAdapter can open the new menu.
+     * <br>
+     * Note: This calls {@link EditorMenuAdapter#open()}, so it doesn't suppress next close.
+     */
     private Consumer<EditorPage> pageOpenCallback;
 
     private boolean suppressNextClose = false;
@@ -57,9 +61,10 @@ public class EditorSession {
      * Pushes a new page onto the stack and fires the pageOpenCallback so the
      * EditorMenuAdapter (or EditorFactory) can open the inventory for it.
      */
-    public void push(EditorPage page) {
+    public void push(EditorPage page, boolean suppressNextClose) {
         pageStack.push(page);
         if (pageOpenCallback != null) {
+            if(suppressNextClose) this.suppressNextClose = true;
             pageOpenCallback.accept(page);
         }
     }
@@ -67,8 +72,10 @@ public class EditorSession {
     /**
      * Pops the current page. If there are still pages remaining, fires pageOpenCallback
      * for the new top so the parent menu is re-opened. If the stack is now empty, cancels.
+     *
+     * @param suppressNextClose suppress next close handler
      */
-    public void pop() {
+    public void pop(boolean suppressNextClose) {
         if (!pageStack.isEmpty()) {
             pageStack.pop();
         }
@@ -77,6 +84,7 @@ public class EditorSession {
         } else {
             // Re-open the parent page
             if (pageOpenCallback != null) {
+                if (suppressNextClose) this.suppressNextClose = true;
                 pageOpenCallback.accept(pageStack.peek());
             }
         }

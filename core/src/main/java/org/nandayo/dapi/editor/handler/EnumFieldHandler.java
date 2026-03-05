@@ -120,12 +120,11 @@ public class EnumFieldHandler implements FieldEditorHandler<Enum<?>> {
             });
         }
 
-        ctx.getSession().setSuppressNextClose(true);
         new GeneratedMenu(player, title, rows, buttons, () -> reopenParent(ctx)).open();
     }
 
     private void reopenParent(EditorContext ctx) {
-        Bukkit.getScheduler().runTask(DAPI.getPlugin(), () -> new EditorMenuAdapter(ctx.getPlayer(), ctx.getSession(), ctx.getSession().currentPage()).open());
+        Bukkit.getScheduler().runTask(DAPI.getPlugin(), () -> new EditorMenuAdapter(ctx.getPlayer(), ctx.getSession(), ctx.getSession().currentPage()).reopen());
     }
 
     // -----------------------------------------------------------------------

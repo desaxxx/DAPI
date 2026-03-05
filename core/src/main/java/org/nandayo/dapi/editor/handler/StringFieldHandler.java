@@ -69,7 +69,7 @@ public class StringFieldHandler implements FieldEditorHandler<String> {
             if (input != null) {
                 ctx.setValue(input);
             }
-            new EditorMenuAdapter(player, ctx.getSession(), ctx.getSession().currentPage()).open();
+            new EditorMenuAdapter(player, ctx.getSession(), ctx.getSession().currentPage()).reopen();
         }).open();
     }
 

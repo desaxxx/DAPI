@@ -67,7 +67,7 @@ public class NestedObjectHandler implements FieldEditorHandler<Object> {
         }
 
         EditorPage nestedPage = new EditorPage(nestedObject, ctx.getSession().getRegistry(), ctx.getSession());
-        ctx.getSession().push(nestedPage);
+        ctx.getSession().push(nestedPage, true);
     }
 
     @Override

@@ -81,7 +81,7 @@ public class EditorFactory {
 
         // Push the root page — this fires pageOpenCallback and opens the menu
         EditorPage rootPage = new EditorPage(snapshot, registry, session);
-        session.push(rootPage);
+        session.push(rootPage, false);
     }
 
     /**

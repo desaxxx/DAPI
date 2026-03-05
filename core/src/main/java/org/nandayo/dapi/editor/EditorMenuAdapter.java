@@ -43,8 +43,9 @@ public class EditorMenuAdapter extends Menu {
     protected final EditorSession session;
     protected final EditorPage page;
 
-    /** Tracks whether the close was triggered by us (navigation) vs the player pressing Esc. */
-    private boolean suppressCloseHandling = false;
+    /* Tracks whether the close was triggered by us (navigation) vs the player pressing Esc. */
+    // used EditorSession#suppressNextClose
+    //private boolean suppressCloseHandling = false;
 
     // -----------------------------------------------------------------------
     // Constructor
@@ -55,10 +56,7 @@ public class EditorMenuAdapter extends Menu {
         this.session = session;
         this.page    = page;
 
-        page.setFullRefreshListener(() -> {
-            suppressCloseHandling = true;
-            open(); // reopens with a fresh slot map
-        });
+        page.setFullRefreshListener(this::reopen);
     }
 
     // -----------------------------------------------------------------------
@@ -107,8 +105,7 @@ public class EditorMenuAdapter extends Menu {
 
                 @Override
                 public void onClick(@NotNull Player p, @NotNull ClickType clickType) {
-                    suppressCloseHandling = true;
-                    session.pop(); // pops current page, pageOpenCallback re-opens parent
+                    session.pop(true); // pops current page, pageOpenCallback re-opens parent
                 }
             });
         }
@@ -126,13 +123,19 @@ public class EditorMenuAdapter extends Menu {
 
             @Override
             public void onClick(@NotNull Player p, @NotNull ClickType clickType) {
-                suppressCloseHandling = true;
-                session.cancel();
                 player.closeInventory();
             }
         });
 
         displayTo(player);
+    }
+
+    /**
+     * Reopens the menu while marking {@link EditorSession#isSuppressNextClose()} true.
+     */
+    public void reopen() {
+        session.setSuppressNextClose(true);
+        open();
     }
 
 
@@ -149,8 +152,7 @@ public class EditorMenuAdapter extends Menu {
      */
     @Override
     public void onClose(@NotNull Inventory inventory) {
-        if (suppressCloseHandling || session.isSuppressNextClose()) {
-            suppressCloseHandling = false;
+        if (session.isSuppressNextClose()) {
             session.setSuppressNextClose(false);
             return;
         }
