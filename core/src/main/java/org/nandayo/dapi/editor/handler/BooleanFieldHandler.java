@@ -45,7 +45,7 @@ public class BooleanFieldHandler implements FieldEditorHandler<Boolean> {
     @Override
     public void onClick(EditorContext ctx) {
         Boolean current = ctx.getValue();
-        ctx.setValue(current == null || !current);
+        ctx.setValue(current == null || !current, true);
     }
 
     @Override

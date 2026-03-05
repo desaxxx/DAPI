@@ -59,7 +59,7 @@ public class IntegerFieldHandler implements FieldEditorHandler<Number> {
         val += ctx.isLeftClick() ? step : -step;
         val  = Math.max(min, Math.min(max, val));
 
-        ctx.setValue(val);
+        ctx.setValue(val, true);
     }
 
     @Override

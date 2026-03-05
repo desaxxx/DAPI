@@ -137,7 +137,7 @@ public class ListFieldHandler implements FieldEditorHandler<List<?>> {
                 public void onClick(@NotNull Player p, @NotNull ClickType clickType) {
                     if (clickType == ClickType.RIGHT || clickType == ClickType.SHIFT_RIGHT) {
                         list.remove(slot);
-                        ctx.setValue(list);
+                        ctx.setValue(list, false);
                         refreshMenu[0].run();
                     } else {
                         Object element = list.get(slot);
@@ -155,7 +155,7 @@ public class ListFieldHandler implements FieldEditorHandler<List<?>> {
                                     }
 
                                     @Override
-                                    public void setValue(Object newValue) {
+                                    public void setValue(Object newValue, boolean refreshPage) {
                                         list.set(slot, newValue);
                                         refreshMenu[0].run();
                                     }
@@ -184,7 +184,7 @@ public class ListFieldHandler implements FieldEditorHandler<List<?>> {
             @Override
             public void onClick(@NotNull Player p, @NotNull ClickType clickType) {
                 list.add(defaultValue(elementType));
-                ctx.setValue(list);
+                ctx.setValue(list, false);
                 refreshMenu[0].run();
             }
         });
@@ -200,7 +200,7 @@ public class ListFieldHandler implements FieldEditorHandler<List<?>> {
         List<Object> list = ctx.getValue();
         if (list == null) {
             list = new ArrayList<>();
-            ctx.setValue(list);
+            ctx.setValue(list, false);
         }
         return list;
     }

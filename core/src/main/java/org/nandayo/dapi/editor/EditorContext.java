@@ -74,12 +74,11 @@ public class EditorContext {
      * Writes a new value into the field on the page's working object,
      * then requests the page to refresh the display item for this field's slot.
      */
-    public void setValue(Object newValue) {
+    public void setValue(Object newValue, boolean refreshPage) {
         try {
             field.setAccessible(true);
             field.set(page.getWorkingObject(), newValue);
-            page.triggerFullRefresh();
-            //page.refreshSlot(field);
+            if(refreshPage) page.triggerFullRefresh();
         } catch (IllegalAccessException e) {
             throw new RuntimeException("Cannot write field: " + field.getName(), e);
         }

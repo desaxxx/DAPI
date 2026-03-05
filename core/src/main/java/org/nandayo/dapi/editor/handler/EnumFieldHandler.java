@@ -83,7 +83,7 @@ public class EnumFieldHandler implements FieldEditorHandler<Enum<?>> {
      * <br>
      * One button is created per constant, using icon and label from {@link EditableOptions} if present.
      * <br>
-     * Selecting a constant calls {@link EditorContext#setValue(Object)} and reopens the parent page.
+     * Selecting a constant calls {@link EditorContext#setValue(Object, boolean)} and reopens the parent page.
      * <br>
      * Closing without selecting also reopens the parent page via the {@code onClose} runnable.
      */
@@ -114,7 +114,7 @@ public class EnumFieldHandler implements FieldEditorHandler<Enum<?>> {
 
                 @Override
                 public void onClick(@NotNull Player p, @NotNull ClickType clickType) {
-                    ctx.setValue(constants[idx]);
+                    ctx.setValue(constants[idx], false);
                     reopenParent(ctx);
                 }
             });

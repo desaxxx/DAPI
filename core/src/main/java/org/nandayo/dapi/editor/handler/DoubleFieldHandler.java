@@ -65,9 +65,9 @@ public class DoubleFieldHandler implements FieldEditorHandler<Number> {
 
         // Preserve float vs double
         if (ctx.getField().getType() == float.class || ctx.getField().getType() == Float.class) {
-            ctx.setValue((float) val);
+            ctx.setValue((float) val, true);
         } else {
-            ctx.setValue(val);
+            ctx.setValue(val, true);
         }
     }
 

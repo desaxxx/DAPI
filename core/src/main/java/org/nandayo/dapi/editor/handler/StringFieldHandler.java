@@ -67,7 +67,7 @@ public class StringFieldHandler implements FieldEditorHandler<String> {
         ctx.getSession().setSuppressNextClose(true);
         new InputMenu(player, "Enter the new value:", current != null ? current : "", input -> {
             if (input != null) {
-                ctx.setValue(input);
+                ctx.setValue(input, false);
             }
             new EditorMenuAdapter(player, ctx.getSession(), ctx.getSession().currentPage()).reopen();
         }).open();
