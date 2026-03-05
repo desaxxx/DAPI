@@ -163,6 +163,7 @@ public abstract class AbstractMenu {
         if(inventory == null) return;
         for(AbstractButton abstractButton : getButtons()) {
             for(int slot : abstractButton.updatedMutableSlots()) {
+                if(slot < 0 || slot >= inventory.getSize()) continue;
                 inventory.setItem(slot , abstractButton.getItem());
             }
         }
