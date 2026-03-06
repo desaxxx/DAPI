@@ -3,7 +3,7 @@ This API is being designed by me and for my plugins. Still, you can also use it 
 ![](https://www.codefactor.io/Content/badges/APlus.svg)
 
 ## Features
-- **Menu Manager**: Easily create and manage your Minecraft GUIs with this class. (Chest menus, and soon Anvil menu)
+- **Menu Manager**: Easily create and manage your Minecraft GUIs with this class. (Chest menus, and Anvil menu)
 > [!IMPORTANT]
 > In order to register menu events. You need to use `DAPI.registerMenuListener()` on your plugin start.\
 > AnvilMenu requires another repository to be added as well. See [AnvilMenu](https://github.com/desaxxx/AnvilMenu/tree/main)
