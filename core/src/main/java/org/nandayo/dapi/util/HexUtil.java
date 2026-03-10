@@ -16,35 +16,6 @@ import java.util.regex.Pattern;
  */
 @SuppressWarnings("unused")
 public class HexUtil {
-    /**
-     * @since 1.3.2
-     */
-    @Deprecated(since = "1.4.0", forRemoval = true)
-    private static final String COLOR_REGEX = "(?i)(aqua|black|blue|dark_(aqua|blue|gray|green|purple|red)|gray|gold|green|light_purple|red|white|yellow|#[0-9a-f]{6})";
-    /**
-     * @since 1.2.6
-     */
-    @Deprecated(since = "1.4.0", forRemoval = true)
-    private static final Pattern COLORIZE_PATTERN = Pattern.compile(
-            "<(#[0-9A-F]{6}|aqua|black|blue|bold|dark_(aqua|blue|gray|green|purple|red)|gray|gold|green|italic|light_purple|obfuscated|red|reset|strikethrough|underline|white|yellow)>|&(?<hex>#[0-9A-F]{6})",
-            Pattern.CASE_INSENSITIVE
-    );
-    /**
-     * @since 1.3.2
-     */
-    @Deprecated(since = "1.4.0", forRemoval = true)
-    private static final Pattern GRADIENT_PATTERN = Pattern.compile("<(#[0-9A-F]{6})>(.*?)</(#[0-9A-F]{6})>", Pattern.CASE_INSENSITIVE);
-    /**
-     * @since 1.2.7
-     */
-    @Deprecated(since = "1.4.0", forRemoval = true)
-    private static final Pattern LEGACY_COLOR_CODE_PATTERN = Pattern.compile("§([0-9A-FK-OR])", Pattern.CASE_INSENSITIVE);
-    /**
-     * @since 1.2.7
-     */
-    @Deprecated(since = "1.4.0", forRemoval = true)
-    private static final Pattern LEGACY_HEX_COLOR_PATTERN = Pattern.compile("§x(§[0-9A-F]){6}|&#[0-9A-F]{6}", Pattern.CASE_INSENSITIVE);
-
 
     // =================
     // Legacy Start
@@ -67,24 +38,6 @@ public class HexUtil {
         output = DStyle.applyAlternativeStyleChar(output, '&');
 
         return output;
-    }
-
-    /**
-     * @since 1.3.2
-     * @deprecated in favor of {@link StyleTranslator#applyGradient(String)}.
-     */
-    @Deprecated(since = "1.4.0", forRemoval = true)
-    private static String applyGradient(String input) {
-        return StyleTranslator.applyGradient(input);
-    }
-
-    /**
-     * @since 1.3.2
-     * @deprecated in favor of {@link org.nandayo.dapi.color.DColor#interpolate(Color, Color, float)}.
-     */
-    @Deprecated(since = "1.4.0", forRemoval = true)
-    private static Color interpolate(Color start, Color end, float ratio) {
-        return DColor.interpolate(start, end, ratio).getColor();
     }
 
     // =================
