@@ -10,15 +10,23 @@ import java.util.Set;
 @SuppressWarnings("unused")
 public abstract class SingleSlotButton extends AbstractButton {
 
-    abstract public int getSlot();
+    /**
+     * Get the slot of the button that will appear on the menu.
+     *
+     * @return the slot of the button
+     */
+    protected abstract int getSlot();
 
-    abstract public ItemStack getItem();
-
-    // AbstractButton supplies onClick() and isModifiable()
-
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    final protected @NotNull Set<Integer> getSlots() {
+    protected final @NotNull Set<Integer> getSlots() {
         return Set.of(getSlot());
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public abstract ItemStack getItem();
 }

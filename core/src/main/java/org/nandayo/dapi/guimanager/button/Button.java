@@ -10,9 +10,13 @@ import java.util.Set;
 @Getter
 public abstract class Button extends AbstractButton {
 
-    abstract protected @NotNull Set<Integer> getSlots();
+    /**
+     * {@inheritDoc}
+     */
+    protected abstract @NotNull Set<Integer> getSlots();
 
-    abstract public ItemStack getItem();
-
-    // AbstractButton supplies onClick() and isModifiable()
+    /**
+     * {@inheritDoc}
+     */
+    public abstract ItemStack getItem();
 }

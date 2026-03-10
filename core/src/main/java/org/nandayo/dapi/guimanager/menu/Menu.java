@@ -16,14 +16,18 @@ public class Menu extends AbstractMenu {
 
 
     /**
-     * Create inventory with menu type and a title.
-     * @param menuType MenuType
-     * @param title String
+     * Create inventory with the menu type and a title.
+     *
+     * @param menuType menu type
+     * @param title title of the inventory
      */
     protected final void createInventory(@NotNull MenuType menuType, @NotNull String title) {
         setInventory(menuType.createInventory(HexUtil.parse(title)));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void displayTo(@NotNull Player player) {
         if(getInventory() == null) {

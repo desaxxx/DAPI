@@ -22,8 +22,9 @@ public class AnvilMenu extends AbstractMenu {
 
     /**
      * Create anvil inventory with a title.
-     * @param player Player
-     * @param title String
+     *
+     * @param player player
+     * @param title the title of the inventory
      */
     protected final void createInventory(@NotNull Player player, @NotNull String title) {
         menuAnvilWrapper = NMSWrapper.getAnvilWrapper().createMenuAnvil(player, title);

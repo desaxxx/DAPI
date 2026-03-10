@@ -11,15 +11,27 @@ import java.util.Set;
 @SuppressWarnings("unused")
 public abstract class PatternButton extends AbstractButton {
 
-    abstract public @NotNull String[] getLayout();
+    /**
+     * Get the layout of the button slots.
+     * <p>
+     * An example layout where the button has the slots on menu edges:
+     * <pre>
+     * new String[] {
+     *     "XXXXXXXXX",
+     *     "X       X",
+     *     "XXXXXXXXX",
+     * }
+     * </pre>
+     *
+     * @return String array of the layout
+     */
+    public abstract @NotNull String[] getLayout();
 
-    abstract public ItemStack getItem();
-
-    // AbstractButton supplies onClick() and isModifiable()
-
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    final protected @NotNull Set<Integer> getSlots() {
+    protected final @NotNull Set<Integer> getSlots() {
         Set<Integer> slots = new HashSet<>();
         String[] layout = getLayout();
         for(int i = 0; i < layout.length; i++) {
@@ -33,4 +45,9 @@ public abstract class PatternButton extends AbstractButton {
         }
         return slots;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public abstract ItemStack getItem();
 }
