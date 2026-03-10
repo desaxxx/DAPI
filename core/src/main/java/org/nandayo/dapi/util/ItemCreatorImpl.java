@@ -12,12 +12,10 @@ import org.bukkit.potion.PotionType;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.nandayo.dapi.model.MiniString;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 @SuppressWarnings("deprecation")
 class ItemCreatorImpl implements ItemCreator {
@@ -155,27 +153,6 @@ class ItemCreatorImpl implements ItemCreator {
      */
     @Override
     @NotNull
-    @Deprecated(since = "1.4.0")
-    public ItemCreator nameMini(@Nullable MiniString name) {
-        return name(name == null ? null : name.colorize(ColorizeType.LEGACY).getRawText());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @NotNull
-    @Deprecated(since = "1.4.0")
-    public ItemCreator nameMini(@NotNull Supplier<MiniString> name) {
-        Validate.notNull(name, "Name supplier cannot be null!");
-        return nameMini(name.get());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @NotNull
     public ItemCreator lore(@Nullable List<String> lore) {
         if(hasMeta()) {
             if(lore == null) {
@@ -242,36 +219,6 @@ class ItemCreatorImpl implements ItemCreator {
      */
     @Override
     @NotNull
-    @Deprecated(since = "1.4.0")
-    public ItemCreator loreMini(@Nullable List<MiniString> lore) {
-        return lore(lore == null ? null : lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.LEGACY).getRawText()).collect(Collectors.toList()));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @NotNull
-    @Deprecated(since = "1.4.0")
-    public ItemCreator loreMini(MiniString @Nullable... lore) {
-        return loreMini(lore == null ? null : List.of(lore));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @NotNull
-    @Deprecated(since = "1.4.0")
-    public ItemCreator loreMini(@Nullable Supplier<List<MiniString>> loreSupplier) {
-        return loreMini(loreSupplier == null ? null : loreSupplier.get());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @NotNull
     public ItemCreator addLore(@NotNull List<String> lore) {
         Validate.notNull(lore, "Lore to be added cannot be null!");
         if(hasMeta()) {
@@ -331,37 +278,6 @@ class ItemCreatorImpl implements ItemCreator {
     @Deprecated(since = "1.4.0")
     public ItemCreator addLorePaper(@Nullable Supplier<List<Object>> loreSupplier) {
         return addLorePaper(loreSupplier == null ? List.of() : loreSupplier.get());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @NotNull
-    @Deprecated(since = "1.4.0")
-    public ItemCreator addLoreMini(@NotNull List<MiniString> lore) {
-        Validate.notNull(lore, "Lore to be added cannot be null!");
-        return addLore(lore.stream().map(ms -> ms == null ? null : ms.colorize(ColorizeType.LEGACY).getRawText()).collect(Collectors.toList()));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @NotNull
-    @Deprecated(since = "1.4.0")
-    public ItemCreator addLoreMini(MiniString @NotNull... lore) {
-        return addLoreMini(List.of(lore));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @NotNull
-    @Deprecated(since = "1.4.0")
-    public ItemCreator addLoreMini(@Nullable Supplier<List<MiniString>> loreSupplier) {
-        return addLoreMini(loreSupplier == null ? new ArrayList<>() : loreSupplier.get());
     }
 
     /**

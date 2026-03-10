@@ -14,7 +14,7 @@ import org.nandayo.dapi.util.Validate;
  * @apiNote  MiniString no longer supports {@code Component}
  */
 @SuppressWarnings("unused")
-@ApiStatus.Obsolete(since = "1.5")
+@Deprecated(since = "1.5")
 public class MiniString {
 
     @Getter

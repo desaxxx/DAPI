@@ -165,8 +165,10 @@ public interface ItemCreator {
      * @param name new name mini string
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
-    @NotNull ItemCreator nameMini(@Nullable MiniString name);
+    @Deprecated(since = "1.4.0", forRemoval = true)
+    default @NotNull ItemCreator nameMini(@Nullable MiniString name) {
+        return this;
+    }
 
     /**
      * Set name of the item stack.
@@ -174,8 +176,10 @@ public interface ItemCreator {
      * @param name new name mini string supplier
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
-    @NotNull ItemCreator nameMini(@NotNull Supplier<MiniString> name);
+    @Deprecated(since = "1.4.0", forRemoval = true)
+    default @NotNull ItemCreator nameMini(@NotNull Supplier<MiniString> name) {
+        return this;
+    }
 
     /**
      * Set lore of the item stack.
@@ -240,8 +244,10 @@ public interface ItemCreator {
      * @param lore new mini string lore
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
-    @NotNull ItemCreator loreMini(@Nullable List<MiniString> lore);
+    @Deprecated(since = "1.4.0", forRemoval = true)
+    default @NotNull ItemCreator loreMini(@Nullable List<MiniString> lore) {
+        return this;
+    }
 
     /**
      * Set lore of the item stack.
@@ -249,8 +255,10 @@ public interface ItemCreator {
      * @param lore new mini string lore
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
-    @NotNull ItemCreator loreMini(MiniString @Nullable... lore);
+    @Deprecated(since = "1.4.0", forRemoval = true)
+    default @NotNull ItemCreator loreMini(MiniString @Nullable... lore) {
+        return this;
+    }
 
     /**
      * Set lore of the item stack.
@@ -258,8 +266,10 @@ public interface ItemCreator {
      * @param loreSupplier new mini string lore supplier
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
-    @NotNull ItemCreator loreMini(@Nullable Supplier<List<MiniString>> loreSupplier);
+    @Deprecated(since = "1.4.0", forRemoval = true)
+    default @NotNull ItemCreator loreMini(@Nullable Supplier<List<MiniString>> loreSupplier) {
+        return this;
+    }
 
     /**
      * Add lines to lore of the item stack.
@@ -324,8 +334,10 @@ public interface ItemCreator {
      * @param lore new mini string lines
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
-    @NotNull ItemCreator addLoreMini(@NotNull List<MiniString> lore);
+    @Deprecated(since = "1.4.0", forRemoval = true)
+    default @NotNull ItemCreator addLoreMini(@NotNull List<MiniString> lore) {
+        return this;
+    }
 
     /**
      * Add lines to lore of the item stack.
@@ -333,8 +345,10 @@ public interface ItemCreator {
      * @param lore new mini string lines
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
-    @NotNull ItemCreator addLoreMini(MiniString @NotNull... lore);
+    @Deprecated(since = "1.4.0", forRemoval = true)
+    default @NotNull ItemCreator addLoreMini(MiniString @NotNull... lore) {
+        return this;
+    }
 
     /**
      * Add lines to lore of the item stack.
@@ -342,8 +356,10 @@ public interface ItemCreator {
      * @param loreSupplier new mini string lines supplier
      * @return ItemCreator
      */
-    @Deprecated(since = "1.4.0")
-    @NotNull ItemCreator addLoreMini(@Nullable Supplier<List<MiniString>> loreSupplier);
+    @Deprecated(since = "1.4.0", forRemoval = true)
+    default @NotNull ItemCreator addLoreMini(@Nullable Supplier<List<MiniString>> loreSupplier) {
+        return this;
+    }
 
     /**
      * Replaces texts in the item's lore.

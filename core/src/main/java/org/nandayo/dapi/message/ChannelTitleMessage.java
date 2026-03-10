@@ -11,16 +11,17 @@ import org.nandayo.dapi.util.Validate;
 @SuppressWarnings("unused")
 public class ChannelTitleMessage extends ChannelMessage {
 
-    private @NotNull MiniString secondaryMessage = new MiniString("");
+    private @NotNull String secondaryMessage = "";
     private int fadeInTicks = 10;
     private int stayTicks = 70;
     private int fadeOutTicks = 20;
 
+    @Deprecated(since = "1.5.3", forRemoval = true)
     protected ChannelTitleMessage(MiniString message, MiniString secondaryMessage, int fadeInTicks, int stayTicks, int fadeOutTicks) {
-        super(message);
+        super(message.getRawText());
         Validate.validate(secondaryMessage != null, "Secondary message cannot be null!");
 
-        this.secondaryMessage = secondaryMessage.copy();
+        this.secondaryMessage = secondaryMessage.copy().getRawText();
         this.fadeInTicks = fadeInTicks;
         this.stayTicks = stayTicks;
         this.fadeOutTicks = fadeOutTicks;
@@ -30,7 +31,7 @@ public class ChannelTitleMessage extends ChannelMessage {
         super(message);
         Validate.validate(secondaryMessage != null, "Secondary message cannot be null!");
 
-        this.secondaryMessage = new MiniString(secondaryMessage);
+        this.secondaryMessage = secondaryMessage;
         this.fadeInTicks = fadeInTicks;
         this.stayTicks = stayTicks;
         this.fadeOutTicks = fadeOutTicks;
@@ -40,19 +41,22 @@ public class ChannelTitleMessage extends ChannelMessage {
         super("");
         Validate.validate(secondaryMessage != null, "Secondary message cannot be null!");
 
-        this.secondaryMessage = new MiniString("");
+        this.secondaryMessage = "";
         this.fadeInTicks = fadeInTicks;
         this.stayTicks = stayTicks;
         this.fadeOutTicks = fadeOutTicks;
     }
 
+    @Deprecated(since = "1.5.3", forRemoval = true)
     protected ChannelTitleMessage(MiniString message) {
-        super(message);
+        super(message.getRawText());
     }
+
+    @Deprecated(since = "1.5.3", forRemoval = true)
     protected ChannelTitleMessage(MiniString message, MiniString secondaryMessage) {
-        super(message);
+        super(message.getRawText());
         Validate.validate(secondaryMessage != null, "Secondary message cannot be null!");
-        this.secondaryMessage = secondaryMessage.copy();
+        this.secondaryMessage = secondaryMessage.copy().getRawText();
     }
 
     public ChannelTitleMessage(String message) {
@@ -66,13 +70,13 @@ public class ChannelTitleMessage extends ChannelMessage {
     public ChannelTitleMessage(String message, String secondaryMessage) {
         super(message);
         Validate.validate(secondaryMessage != null, "Secondary message cannot be null!");
-        this.secondaryMessage = new MiniString(secondaryMessage);
+        this.secondaryMessage = secondaryMessage;
     }
     @Deprecated(since = "1.4.0", forRemoval = true)
     public ChannelTitleMessage(Object message, Object secondaryMessage) {
         super("");
         Validate.validate(secondaryMessage != null, "Secondary message cannot be null!");
-        this.secondaryMessage = new MiniString("");
+        this.secondaryMessage = "";
     }
 
     public ChannelTitleMessage(String message, int fadeInTicks, int stayTicks, int fadeOutTicks) {
@@ -93,7 +97,7 @@ public class ChannelTitleMessage extends ChannelMessage {
         if(isTitle) {
             return new ChannelTitleMessage(message.message);
         }else {
-            return new ChannelTitleMessage(new MiniString(""), message.message);
+            return new ChannelTitleMessage("", message.message);
         }
     }
 
@@ -105,7 +109,7 @@ public class ChannelTitleMessage extends ChannelMessage {
     }
 
     public String getRawSecondaryMessage() {
-        return secondaryMessage.getRawText();
+        return secondaryMessage;
     }
     @Deprecated(since = "1.4.0", forRemoval = true)
     public Object getSecondaryMessage() {
@@ -114,12 +118,12 @@ public class ChannelTitleMessage extends ChannelMessage {
 
     @Override
     public ChannelTitleMessage insertPrefix() {
-        return new ChannelTitleMessage(Util.PREFIX + message.getRawText(), Util.PREFIX + secondaryMessage.getRawText(), fadeInTicks, stayTicks, fadeOutTicks);
+        return new ChannelTitleMessage(Util.PREFIX + message, Util.PREFIX + secondaryMessage, fadeInTicks, stayTicks, fadeOutTicks);
     }
 
     @Override
     public ChannelTitleMessage colorize(ColorizeType colorizeType) {
-        return new ChannelTitleMessage(message.colorize(colorizeType), secondaryMessage.colorize(colorizeType), fadeInTicks, stayTicks, fadeOutTicks);
+        return new ChannelTitleMessage(colorizeType.apply(message), colorizeType.apply(message), fadeInTicks, stayTicks, fadeOutTicks);
     }
 
     @Override

@@ -78,11 +78,17 @@ public interface ItemCreatorPaper extends ItemCreator {
     @Override
     @NotNull ItemCreatorPaper namePaper(@NotNull Supplier<Object> nameSupplier);
 
+    @SuppressWarnings("removal")
     @Override
-    @NotNull ItemCreatorPaper nameMini(@Nullable MiniString name);
+    default @NotNull ItemCreatorPaper nameMini(@Nullable MiniString name) {
+        return this;
+    }
 
+    @SuppressWarnings("removal")
     @Override
-    @NotNull ItemCreatorPaper nameMini(@NotNull Supplier<MiniString> name);
+    default @NotNull ItemCreatorPaper nameMini(@NotNull Supplier<MiniString> name) {
+        return this;
+    }
 
     @Override
     @NotNull ItemCreatorPaper lore(@Nullable List<String> lore);
@@ -102,14 +108,23 @@ public interface ItemCreatorPaper extends ItemCreator {
     @Override
     @NotNull ItemCreatorPaper lorePaper(@Nullable Supplier<List<Object>> loreSupplier);
 
+    @SuppressWarnings("removal")
     @Override
-    @NotNull ItemCreatorPaper loreMini(@Nullable List<MiniString> lore);
+    default @NotNull ItemCreatorPaper loreMini(@Nullable List<MiniString> lore) {
+        return this;
+    }
 
+    @SuppressWarnings("removal")
     @Override
-    @NotNull ItemCreatorPaper loreMini(MiniString @Nullable ... lore);
+    default @NotNull ItemCreatorPaper loreMini(MiniString @Nullable ... lore) {
+        return this;
+    }
 
+    @SuppressWarnings("removal")
     @Override
-    @NotNull ItemCreatorPaper loreMini(@Nullable Supplier<List<MiniString>> loreSupplier);
+    default @NotNull ItemCreatorPaper loreMini(@Nullable Supplier<List<MiniString>> loreSupplier) {
+        return this;
+    }
 
     @Override
     @NotNull ItemCreatorPaper addLore(@NotNull List<String> lore);
@@ -129,14 +144,23 @@ public interface ItemCreatorPaper extends ItemCreator {
     @Override
     @NotNull ItemCreatorPaper addLorePaper(@Nullable Supplier<List<Object>> loreSupplier);
 
+    @SuppressWarnings("removal")
     @Override
-    @NotNull ItemCreatorPaper addLoreMini(@NotNull List<MiniString> lore);
+    default @NotNull ItemCreatorPaper addLoreMini(@NotNull List<MiniString> lore) {
+        return this;
+    }
 
+    @SuppressWarnings("removal")
     @Override
-    @NotNull ItemCreatorPaper addLoreMini(MiniString @NotNull ... lore);
+    default @NotNull ItemCreatorPaper addLoreMini(MiniString @NotNull ... lore) {
+        return this;
+    }
 
+    @SuppressWarnings("removal")
     @Override
-    @NotNull ItemCreatorPaper addLoreMini(@Nullable Supplier<List<MiniString>> loreSupplier);
+    default @NotNull ItemCreatorPaper addLoreMini(@Nullable Supplier<List<MiniString>> loreSupplier) {
+        return this;
+    }
 
     @Override
     @NotNull ItemCreatorPaper replaceInLore(String @NotNull ... strings);

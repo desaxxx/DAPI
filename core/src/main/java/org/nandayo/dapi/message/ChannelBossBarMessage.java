@@ -20,8 +20,9 @@ public class ChannelBossBarMessage extends ChannelMessage {
     private @NotNull BarFlag[] flags = new BarFlag[0];
     private double progress = 1.0;
 
+    @Deprecated(since = "1.5.3", forRemoval = true)
     protected ChannelBossBarMessage(MiniString message, int stayTicks, double progress, BarColor color, BarStyle style, BarFlag... flags) {
-        super(message);
+        super(message.getRawText());
     }
 
     public ChannelBossBarMessage(String message, int stayTicks, double progress, BarColor color, BarStyle style, BarFlag... flags) {
@@ -62,8 +63,9 @@ public class ChannelBossBarMessage extends ChannelMessage {
         this.progress = Math.max(0.0F, Math.min(1.0F, progress));
     }
 
+    @Deprecated(since = "1.5.3", forRemoval = true)
     protected ChannelBossBarMessage(MiniString message) {
-        super(message);
+        super(message.getRawText());
     }
 
     public ChannelBossBarMessage(String message) {
@@ -91,12 +93,12 @@ public class ChannelBossBarMessage extends ChannelMessage {
 
     @Override
     public ChannelBossBarMessage insertPrefix() {
-        return new ChannelBossBarMessage(Util.PREFIX + message.getRawText(), stayTicks, progress, color, style, flags);
+        return new ChannelBossBarMessage(Util.PREFIX + message, stayTicks, progress, color, style, flags);
     }
 
     @Override
     public ChannelBossBarMessage colorize(ColorizeType colorizeType) {
-        return new ChannelBossBarMessage(message.colorize(colorizeType), stayTicks, progress, color, style, flags);
+        return new ChannelBossBarMessage(colorizeType.apply(message), stayTicks, progress, color, style, flags);
     }
 
     @Override

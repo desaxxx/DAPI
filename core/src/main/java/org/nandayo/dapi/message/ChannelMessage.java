@@ -11,21 +11,22 @@ import org.nandayo.dapi.util.Validate;
 @SuppressWarnings("unused")
 public class ChannelMessage implements IChannelMessage {
 
-    protected final @NotNull MiniString message;
+    protected final @NotNull String message;
 
+    @Deprecated(since = "1.5.3", forRemoval = true)
     protected ChannelMessage(MiniString message) {
         Validate.validate(message != null, "MiniString cannot be null!");
-        this.message = message.copy();
+        this.message = message.copy().getRawText();
     }
 
     public ChannelMessage(String message) {
         Validate.validate(message != null, "Message cannot be null!");
-        this.message = new MiniString(message);
+        this.message = message;
     }
     @Deprecated(since = "1.4.0", forRemoval = true)
     public ChannelMessage(Object message) {
         Validate.validate(message != null, "Message cannot be null!");
-        this.message = new MiniString("");
+        this.message = "";
     }
 
 
@@ -37,7 +38,7 @@ public class ChannelMessage implements IChannelMessage {
 
     @Override
     public String getRawMessage() {
-        return message.getRawText();
+        return message;
     }
 
     @Override
@@ -48,12 +49,12 @@ public class ChannelMessage implements IChannelMessage {
 
     @Override
     public ChannelMessage insertPrefix() {
-        return new ChannelMessage(Util.PREFIX + message.getRawText());
+        return new ChannelMessage(Util.PREFIX + message);
     }
 
     @Override
     public ChannelMessage colorize(ColorizeType colorizeType) {
-        return new ChannelMessage(message.colorize(colorizeType));
+        return new ChannelMessage(colorizeType.apply(message));
     }
 
     @Override
